@@ -23,7 +23,7 @@ function drawCounties() {
         .range(d3.schemeBlues[9]);
 
     // Population data
-    var population_data = d3.map();
+    var prevalence_data = d3.map();
 
     var svg = d3.select("svg.map_population");
 
@@ -38,9 +38,9 @@ function drawCounties() {
         .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
         .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
             if (isNaN(d['pop_' + current_year])) {
-                population_data.set(d.id, 0);
+                prevalence_data.set(d.id, 0);
             } else {
-                population_data.set(d.id, +d['pop_' + current_year]);
+                prevalence_data.set(d.id, +d['pop_' + current_year]);
             }
         })
         .await(ready);
@@ -72,7 +72,7 @@ function drawCounties() {
             .append("path")
             .attr("d", path)
             .attr("fill", function(d) {
-                return population_colour(d.population = population_data.get(d.properties.MKOOD));
+                return population_colour(d.population = prevalence_data.get(d.properties.MKOOD));
             })
             .on("click", clicked);
 
@@ -158,7 +158,7 @@ function drawMunicipalities() {
         .range(d3.schemeBlues[9]);
 
     // Population data
-    var population_data = d3.map();
+    var prevalence_data = d3.map();
 
     var svg = d3.select("svg.map_population");
 
@@ -173,9 +173,9 @@ function drawMunicipalities() {
         .defer(d3.json, "/koroonakaart/data/topojson/municipalities.json")
         .defer(d3.csv, "/koroonakaart/data/population_by_municipality.csv", function (d) {
             if (isNaN(d['pop_2018'])) {
-                population_data.set(d.id, 0);
+                prevalence_data.set(d.id, 0);
             } else {
-                population_data.set(d.id, +d['pop_2018']);
+                prevalence_data.set(d.id, +d['pop_2018']);
                 
             }
         })
@@ -209,7 +209,7 @@ function drawMunicipalities() {
             .append("path")
             .attr("d", path)
             .attr("fill", function(d) {
-                return population_colour(d.population = population_data.get(d.properties.OKOOD));
+                return population_colour(d.population = prevalence_data.get(d.properties.OKOOD));
             })
             .on("click", clicked);
 
