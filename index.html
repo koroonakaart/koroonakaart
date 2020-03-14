@@ -82,13 +82,13 @@
                                     <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
                                 </label>
                             </div>
-                            <div style="float: right; width: 250px;">
+                            <!-- Map -->
+                            <svg class="map_population" width="600" height="500"></svg>
+                            <div style="float: left; width: 250px;">
                                 <div style="height: 40px !important; margin-top: 25px">
                                     <svg id="legend" style="height: 40px !important"></svg>
                                 </div>
                             </div>
-                            <!-- Map -->
-                            <svg class="map_population" width="600" height="500"></svg>
                             <div id="credits">
                                 <p>Source:<br>
                                 Administrative and settlement data: <a href="https://github.com/buildig/EHAK">Estonian Land Board</a>, version 20180901<br>
