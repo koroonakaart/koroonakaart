@@ -51,24 +51,20 @@ const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
  * Region confirmed cases
  */
 
-const region_confirmed_cases = [
-    ["Tallinn/Harjumaa", 54],
-    ["Tartu",6],
-    ["Võru",9],
-    ["Saaremaa",31],
-    ["Virumaa", 3],
-    ["Pärnu", 12],
+const sorted_region_data = [
     ["Jõhvi", 0],
-    //["Teadmata", 0]
+    ["Virumaa", 3],
+    ["Tartu", 6],
+    ["Võru", 9],
+    ["Pärnu", 12],
+    ["Saaremaa", 31],
+    ["Tallinn/Harjumaa", 54],
 ]
 
 /**
  * Plots the progression as a line chart.
  */
 function progressionChart() {
-
-
-
     var confirmed = {
         x: x_dates,
         y: cumulative_confirmed_cases,
@@ -132,9 +128,21 @@ function progressionChart() {
     
     var data = [ confirmed, recovered, active, death ];
     
-    var layout = {
-        // title:'COVID-19 progressioon'
-    };
+    var layout = {xaxis: {tickfont: {
+        size: 14,
+        color: 'rgb(107, 107, 107)'
+      }},
+    yaxis: {
+      title: 'Juhtumite arv',
+      titlefont: {
+        size: 16,
+        color: 'rgb(107, 107, 107)'
+      },
+      tickfont: {
+        size: 14,
+        color: 'rgb(107, 107, 107)'
+      }
+    }};
     
     Plotly.newPlot('case_graph', data, layout);
 
@@ -199,7 +207,10 @@ function casesPerDay() {
         },
         barmode: 'group',
         bargap: 0.15,
-        bargroupgap: 0.2
+        bargroupgap: 0.2,
+        grid: {
+
+        }
       };
       
       Plotly.newPlot('cases_day_graph', data, layout);
@@ -230,29 +241,34 @@ function pieChart() {
 /**
  * Plot for municipalities
  */
-function regionChart() {
+function regionChart(srt_region) {
 
     // Sort by second key
-    const new_arr = region_confirmed_cases.sort((a,b) => a[1] > b[1]);
-
+    //const new_arr = region_confirmed_cases.sort((a,b) => a[1] > b[1]);
+    //console.log(new_arr);
     // reextract x and y
-    const new_x = new_arr.map(a => a[0]);
-    const new_y = new_arr.map(a => a[1]);
-    
+    let new_x = [];
+    let new_y = [];
+    for (let i = 0; i < srt_region.length; i++) {
+        new_x.push(srt_region[i][1]);
+        new_y.push(srt_region[i][0]);
+    }
+
+
     var data = [{
         type: 'bar',
-        x: new_y,
-        y: new_x,
+        x: new_x,
+        y: new_y,
         orientation: 'h',
         marker: {
             color: blue,
-            opacity: [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0]
+            opacity: 0.9
         }
       }];
 
       var layout = {
         xaxis: {
-            title: 'Juhtumite arv'
+                title: 'Juhtumite arv'        
             }
         };
       
@@ -262,6 +278,6 @@ function regionChart() {
 
 
 progressionChart();
-pieChart();
+//pieChart();
 casesPerDay();
-regionChart();
+regionChart(sorted_region_data);
