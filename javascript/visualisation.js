@@ -17,7 +17,7 @@ var path = d3.geoPath()
 
 function drawCounties() {
     // Colour
-    var population_domain = [0, 1000, 5000, 10000, 20000, 50000, 100000, 500000];
+    var population_domain = [0, 50, 250, 500, 1000, 5000];
     var population_colour = d3.scaleThreshold()
         .domain(population_domain)
         .range(d3.schemeBlues[9]);
@@ -36,8 +36,7 @@ function drawCounties() {
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
         .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
-        // .defer(d3.json, "/koroonakaart/data/json/settlements.json")
-        .defer(d3.csv, "/koroonakaart/data/population_by_county.csv", function (d) {
+        .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
             if (isNaN(d['pop_' + current_year])) {
                 population_data.set(d.id, 0);
             } else {
@@ -47,7 +46,7 @@ function drawCounties() {
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "5,000", "20,000", "50,000", "125,000", "500,000"];
+    var legendText = ["0", "50", "250", "500", "1000", "5000"];
     var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
 
     function ready(error, data) {
