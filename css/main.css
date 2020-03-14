@@ -72,6 +72,7 @@ p, .nav-link {
 }
 
 .headline_number_card {
+    text-align: center;
     font-size: 2.4rem;
 }
 
