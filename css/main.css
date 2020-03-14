@@ -1,0 +1,169 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Verdana, sans-serif !important;
+    color: #444 !important;
+    /*background: #f8f8f8 !important;*/
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+h1 {
+    font-family: Ubuntu;
+    font-weight: 400 !important;
+    font-size: 3.2rem !important;
+    margin-bottom: 1.6rem !important;
+}
+
+.navbar {
+    padding: 0;
+    height: 57px;    
+}
+
+#navbar {
+    background-image: url('../img/header_dark_right.png'), url('../img/header_dark_left.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: right -80px top, -20px 0;
+}
+
+.navbar h1 {
+    color: #fff;
+    opacity: 0.85;
+    margin-bottom: 0 !important;
+    text-transform: uppercase;
+    font-size: 2.2rem !important;
+    font-family: Ubuntu;
+    font-weight: 400 !important;
+    letter-spacing: 1.2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-inverse {
+    background-color: #000 !important;
+}
+
+p, .nav-link {
+    font-size: 1.6rem;
+    color: #444 !important;
+}
+
+#content {
+    background: #f8f8f8;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 30px;
+    margin-top: 0 !important;
+}
+
+/* Map-related styles */
+rect {
+    fill: none;
+    pointer-events: all;
+}
+
+#county_borders {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.5px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+}
+
+#municipality_borders {
+    fill: none;
+    stroke: black;
+    stroke-width: 10px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+
+}
+
+path {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+#pyramid {
+    width: 600px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+#legend text {
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 400;
+}
+
+.tab-content {
+    padding-top: 25px;
+    padding-bottom: 50px;
+    background: #fff;
+}
+
+.topnav-centered h1 {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn {
+    margin-bottom: 0px;
+    padding-left: 10px;
+    font-size: 1.4rem !important;
+}
+
+.bar {
+    fill-opacity: 0.9 !important;
+}
+.bar.left {
+    fill: #4682b4 !important;
+}
+.bar.right {
+    fill: #ff69b4 !important;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #dee2e6;
+    padding-left: 50px;
+}
+
+footer p {
+    line-height: 1;
+    padding-top: 15px;
+}
+
+a {
+    color: #0000CC !important;
+}
+
+#credits {
+    padding-left: 30px;
+    padding-bottom: 25px;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Statistics Explorer</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Boostrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- TopoJSON -->
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <!-- Vue.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.1/vue.js"></script>
+    <!-- Web fonts -->
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Header bar -->
+        <nav class="navbar navbar-dark bg-inverse" id="navbar">
+                <h1>Statistics Explorer</h1>
+        </nav>
+
+        <!-- Page content -->
+        <div class="container-fluid mt-2" id="content">
+
+            <!-- Navigation tabs -->
+            <ul class="nav nav-tabs" style="padding-left: 45px">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#demographics">Demographics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#economics">Economics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#health">Health</a>
+                </li>
+            </ul>
+
+            <!-- Tab content -->
+            <div class="tab-content">
+                <div id="demographics" class="tab-pane active">
+                    <div class="row container-fluid">
+                        <!-- Column containing map -->
+                        <div style="width:600px; padding-left: 20px;">
+                            <!--Details-->
+                            <div style="width: 250px; padding-left: 35px; padding-bottom: 15px; float: left">
+                                <p style="margin-bottom: 0.6rem !important"><b style="font-size: 1.5rem !important; font-weight: 600 !important;">Level of detail</b></p>
+                                <label class="btn">
+                                    <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> County
+                                </label><br>
+                                <label class="btn">
+                                    <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Municipality
+                                </label>
+                            </div>
+                            <div style="float: right; width: 250px;">
+                                <h2 class="year">{{ current_year }}</h2>
+                                <div class="slider">
+                                    <input type="range" min="2012" max="2018" step="1" v-model="current_year" @input="changePyramid();updatePopulation()" style="width: 250px; margin-bottom: 12px !important">
+                                </div>
+                                <div style="height: 40px !important; margin-top: 25px">
+                                    <svg id="legend" style="height: 40px !important"></svg>
+                                </div>
+                            </div>
+                            <!-- Map -->
+                            <svg class="map_population" width="600" height="500"></svg>
+                            <div id="credits">
+                                <p>Source:<br>
+                                Administrative and settlement data: <a href="https://github.com/buildig/EHAK">Estonian Land Board</a>, version 20180901<br>
+                                Demographic data: <a href="https://www.stat.ee/">Statistics Estonia</a></p>
+                            </div>
+                        </div>
+                        <!-- Statistics for the selected region -->
+                        <div class="col-6" style="padding-left: 50px">
+                            <h1>{{ current_place_name }}</h1>
+
+                            <p><b>Population:</b><br>
+                            {{ current_place_population }}</p>
+
+                            <div id="pyramid" v-show="current_place_name === 'Estonia'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="economics" class="container tab-pane fade">
+                    <h2 style="margin-bottom: 1.6rem">Economics</h2>
+                    <p>In the future, this section of the app could be used to enable the user to browse various data relating to the economic situation in different parts of Estonia, such as average salary, unemployment rate, the number of businesses created and closed down, etc.</p>
+                </div>
+                <div id="health" class="container tab-pane fade">
+                    <h2 style="margin-bottom: 1.6rem">Health</h2>
+                    <p>In the future, this section of the app could be used to enable the user to browse various data relating to health in different parts of Estonia, such as average life expectancy for men and women, infant mortality rate, number of family doctors per capita, etc.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2019 <a href="https://neuroactive.ai/">Neuroactive AI</a>. Created as part of the <a href="https://garage48.org/events/garage48-visualising-data">Garage48 Visualising Data</a> hackathon.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript required for Bootstrap. See: https://getbootstrap.com/docs/4.1/getting-started/introduction/#quick-start)  -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <!-- Other JavaScript -->
+    <!-- Population pyramid -->
+    <script src="javascript/popPyramid.min.js"></script>
+    <!-- Custom JavaScript for app -->
+    <script src="javascript/vue_app.js"></script>
+    <script src="javascript/visualisation.js"></script>
+    <!-- Script to calculate an exponential moving average (not yet used) -->
+    <!-- <script src="moving_average.js"></script> -->
+
+</body>
+</html>
