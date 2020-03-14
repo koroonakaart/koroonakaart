@@ -85,6 +85,10 @@ p, .nav-link {
     font-size: 6.6rem;
 }
 
+.chart_card {
+    border: none;
+}
+
 .row {
     margin-bottom: 4rem;
 }
