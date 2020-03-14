@@ -55,6 +55,7 @@ function drawCounties() {
         if (error) throw error; 
              
         // Debug
+        console.log('data:');
         console.log(data);
 
         // Load population data
