@@ -35,7 +35,7 @@ function drawCounties() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/koroonakaart/data/json/counties.json")
+        .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
         // .defer(d3.json, "/koroonakaart/data/json/settlements.json")
         .defer(d3.csv, "/koroonakaart/data/population_by_county.csv", function (d) {
             if (isNaN(d['pop_' + current_year])) {
@@ -190,8 +190,7 @@ function drawMunicipalities() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/koroonakaart/data/json/municipalities.json")
-        // .defer(d3.json, "/koroonakaart/data/json/settlements.json")
+        .defer(d3.json, "/koroonakaart/data/topojson/municipalities.json")
         .defer(d3.csv, "/koroonakaart/data/population_by_municipality.csv", function (d) {
             if (isNaN(d['pop_2018'])) {
                 population_data.set(d.id, 0);
