@@ -25,7 +25,14 @@
     <div id="wrapper">
         <!-- Header bar -->
         <nav class="navbar navbar-dark bg-inverse" id="navbar">
-                <h1>Koroonakaart</h1>
+            <h1>Koroonakaart</h1>
+            <span class="navbar-text">
+                <p>Statistika COVID-19 viiruse leviku kohta Eestis · Uuendatud: 13. märtsil 2020 kell 17:32</p>
+            </span>
+            <span class="navbar-text">
+                <!-- TODO: Enable translations in Russian and English -->
+                <p><!-- 🌐  -->Eesti ▼</p>
+            </span>
         </nav>
 
         <!-- Page content -->
@@ -34,29 +41,45 @@
             <!-- Navigation tabs -->
             <ul class="nav nav-tabs" style="padding-left: 45px">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#demographics">Demographics</a>
+                    <a class="nav-link active" data-toggle="tab" href="#prevalence">Prevalence</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#economics">Economics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#health">Health</a>
+                    <a class="nav-link" data-toggle="tab" href="#economics">Lorem ipsum</a>
                 </li>
             </ul>
 
             <!-- Tab content -->
             <div class="tab-content">
                 <div id="demographics" class="tab-pane active">
-                    <div class="row container-fluid">
+                    <div class="row">
+                        <!-- Headline numbers -->
+                        <div class="card col-md-3">
+                            <p>Kinnitatud haigusjuhud<br>
+                            <span class="headline_number">71</span></p>
+                        </div>
+                        <div class="card col-md-3">
+                            <p>Aktiivsed<br>
+                            <span class="headline_number">59</span></p>
+                        </div>
+                        <div class="card col-md-3">
+                            <p>Hukkunud<br>
+                            <span class="headline_number">0</span></p>
+                        </div>
+                        <div class="card col-md-3">
+                            <p>Tervenenud<br>
+                            <span class="headline_number">12</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
                         <!-- Column containing map -->
                         <div style="width:600px; padding-left: 20px;">
                             <!--Details-->
                             <div style="width: 250px; padding-left: 35px; padding-bottom: 15px; float: left">
                                 <label class="btn">
-                                    <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> County
+                                    <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
                                 </label><br>
                                 <label class="btn">
-                                    <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Municipality
+                                    <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
                                 </label>
                             </div>
                             <div style="float: right; width: 250px;">
@@ -86,10 +109,6 @@
                 <div id="economics" class="container tab-pane fade">
                     <h2 style="margin-bottom: 1.6rem">Economics</h2>
                     <p>In the future, this section of the app could be used to enable the user to browse various data relating to the economic situation in different parts of Estonia, such as average salary, unemployment rate, the number of businesses created and closed down, etc.</p>
-                </div>
-                <div id="health" class="container tab-pane fade">
-                    <h2 style="margin-bottom: 1.6rem">Health</h2>
-                    <p>In the future, this section of the app could be used to enable the user to browse various data relating to health in different parts of Estonia, such as average life expectancy for men and women, infant mortality rate, number of family doctors per capita, etc.</p>
                 </div>
             </div>
         </div>

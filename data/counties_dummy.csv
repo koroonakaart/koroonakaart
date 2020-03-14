@@ -1,0 +1,16 @@
+﻿id,county_et,county_en,county_ru,population,tests,confirmed,active,in_treatment,deaths,recovered
+0037,Harjumaa,Harju County,Харьюмаа,598059,192,34,29,2,0,3
+0039,Hiiumaa,Hiiu County,Хийумаа,9387,0,10,10,0,0,0
+0045,Ida-Virumaa,Ida-Viru County,Ида-Вирумаа,136240,4,21,11,3,2,5
+0052,Järvamaa,Järva County,Ярвамаа,30286,7,21,11,3,2,5
+0050,Jõgevamaa,Jõgeva County,Йыгевамаа,28734,8,21,11,3,2,5
+0056,Läänemaa,Lääne County,Ляэнемаа,20507,23,21,11,3,2,5
+0060,Lääne-Virumaa,Lääne-Viru County,Ляэне-Вирумаа,59325,6,21,11,3,2,5
+0068,Pärnumaa,Pärnu County,Пярнумаа,85938,3,21,11,3,2,5
+0064,Põlvamaa,Põlva County,Пылвамаа,25006,7,21,11,3,2,5
+0071,Raplamaa,Rapla County,Рапламаа,85938,1,21,11,3,2,5
+0074,Saaremaa,Saare County,Сааремаа,33108,2,21,11,3,2,5
+0079,Tartumaa,Tartu County,Тартумаа,152976,6,21,11,3,2,5
+0081,Valgamaa,Valga County,Валгамаа,28370,3,21,11,3,2,5
+0084,Viljandimaa,Viljandi County,Вильяндимаа,46371,2,21,11,3,2,5
+0087,Võrumaa,Võru County,Вырумаа,35782,0,21,11,3,2,5

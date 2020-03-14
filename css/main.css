@@ -66,6 +66,19 @@ p, .nav-link {
     margin-top: 0 !important;
 }
 
+.tab-content {
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+
+.headline_number {
+    font-size: 48px;
+}
+
+.row {
+    margin-bottom: 4rem;
+}
+
 /* Map-related styles */
 rect {
     fill: none;

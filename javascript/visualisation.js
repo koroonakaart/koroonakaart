@@ -17,13 +17,13 @@ var path = d3.geoPath()
 
 function drawCounties() {
     // Colour
-    var population_domain = [0, 1000, 5000, 10000, 20000, 50000, 100000, 500000];
+    var population_domain = [0, 50, 250, 500, 1000, 5000];
     var population_colour = d3.scaleThreshold()
         .domain(population_domain)
         .range(d3.schemeBlues[9]);
 
     // Population data
-    var population_data = d3.map();
+    var prevalence_data = d3.map();
 
     var svg = d3.select("svg.map_population");
 
@@ -36,24 +36,26 @@ function drawCounties() {
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
         .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
-        // .defer(d3.json, "/koroonakaart/data/json/settlements.json")
-        .defer(d3.csv, "/koroonakaart/data/population_by_county.csv", function (d) {
+        .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
+            // Debug
+            console.log(d);
             if (isNaN(d['pop_' + current_year])) {
-                population_data.set(d.id, 0);
+                prevalence_data.set(d.id, 0);
             } else {
-                population_data.set(d.id, +d['pop_' + current_year]);
+                prevalence_data.set(d.id, +d['pop_' + current_year]);
             }
         })
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "5,000", "20,000", "50,000", "125,000", "500,000"];
+    var legendText = ["0", "50", "250", "500", "1000", "5000"];
     var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
 
     function ready(error, data) {
         if (error) throw error; 
              
         // Debug
+        console.log('data:');
         console.log(data);
 
         // Load population data
@@ -73,7 +75,7 @@ function drawCounties() {
             .append("path")
             .attr("d", path)
             .attr("fill", function(d) {
-                return population_colour(d.population = population_data.get(d.properties.MKOOD));
+                return population_colour(d.population = prevalence_data.get(d.properties.MKOOD));
             })
             .on("click", clicked);
 
@@ -159,7 +161,7 @@ function drawMunicipalities() {
         .range(d3.schemeBlues[9]);
 
     // Population data
-    var population_data = d3.map();
+    var prevalence_data = d3.map();
 
     var svg = d3.select("svg.map_population");
 
@@ -174,9 +176,9 @@ function drawMunicipalities() {
         .defer(d3.json, "/koroonakaart/data/topojson/municipalities.json")
         .defer(d3.csv, "/koroonakaart/data/population_by_municipality.csv", function (d) {
             if (isNaN(d['pop_2018'])) {
-                population_data.set(d.id, 0);
+                prevalence_data.set(d.id, 0);
             } else {
-                population_data.set(d.id, +d['pop_2018']);
+                prevalence_data.set(d.id, +d['pop_2018']);
                 
             }
         })
@@ -210,7 +212,7 @@ function drawMunicipalities() {
             .append("path")
             .attr("d", path)
             .attr("fill", function(d) {
-                return population_colour(d.population = population_data.get(d.properties.OKOOD));
+                return population_colour(d.population = prevalence_data.get(d.properties.OKOOD));
             })
             .on("click", clicked);
 
