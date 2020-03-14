@@ -151,25 +151,6 @@ function drawCounties() {
 }
 
 
-function updatePopulationByYear(current_year) {
-    d3.queue()
-    .defer(d3.csv, "/koroonakaart/data/population_by_country.csv", function (d) {
-        console.log("old one: "+current_place_population)
-        population_data = {}
-        population_data.current_year = current_year;
-        population_data.population = parseInt(d['pop_' + current_year]).toLocaleString();
-    })
-    .await(updatePopulationByYearCallBack);
-
-}
-
-
-function updatePopulationByYearCallBack(err,data) {
-    vue_app.current_place_population = population_data['population'];
-    console.log("aaa " + current_place_population)
-}
-
-
 function drawMunicipalities() {
     // Colour
     var population_domain = [0, 1000, 5000, 10000, 20000, 50000, 100000, 500000];
