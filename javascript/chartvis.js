@@ -238,7 +238,6 @@ function regionChart() {
     // reextract x and y
     const new_x = new_arr.map(a => a[0]);
     const new_y = new_arr.map(a => a[1]);
-    /// const max_val = max(...x); // Gradient for olor
     
     var data = [{
         type: 'bar',
@@ -246,7 +245,8 @@ function regionChart() {
         y: new_x,
         orientation: 'h',
         marker: {
-            colors: [blue]
+            color: blue,
+            opacity: [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0]
         }
       }];
 
