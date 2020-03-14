@@ -73,6 +73,9 @@ p, .nav-link {
 
 .headline_number_card {
     text-align: center;
+}
+
+.headline_number_card p {
     font-size: 2.4rem;
 }
 
