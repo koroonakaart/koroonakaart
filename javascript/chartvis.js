@@ -18,6 +18,7 @@ const blue = "#1F77B4";
 const red = "#D62728";      // Confirmed
 const green = "#2CA02C";    // Recovered
 const grey = "#7F7F7F";     // Dead
+const gridColor =  "#E6E6E6"; // Color of grid lines
 
 /**
  * DATA SETUP
@@ -131,7 +132,9 @@ function progressionChart() {
     var layout = {xaxis: {tickfont: {
         size: 14,
         color: 'rgb(107, 107, 107)'
-      }},
+      },
+        gridcolor: gridColor,
+    },
     yaxis: {
       title: 'Juhtumite arv',
       titlefont: {
@@ -141,7 +144,8 @@ function progressionChart() {
       tickfont: {
         size: 14,
         color: 'rgb(107, 107, 107)'
-      }
+      },
+      gridcolor:gridColor,
     }};
     
     Plotly.newPlot('case_graph', data, layout);
@@ -186,8 +190,10 @@ function casesPerDay() {
         title: 'Juhtumid',
         xaxis: {tickfont: {
             size: 14,
-            color: 'rgb(107, 107, 107)'
-          }},
+            color: 'rgb(107, 107, 107)',
+          },
+          gridcolor: gridColor,
+        },
         yaxis: {
           title: 'Juhtumite arv',
           titlefont: {
@@ -197,7 +203,8 @@ function casesPerDay() {
           tickfont: {
             size: 14,
             color: 'rgb(107, 107, 107)'
-          }
+          },
+          gridcolor: gridColor,
         },
         legend: {
           x: 0,
@@ -268,8 +275,12 @@ function regionChart(srt_region) {
 
       var layout = {
         xaxis: {
-                title: 'Juhtumite arv'        
-            }
+                title: 'Juhtumite arv',
+                gridcolor: gridColor,
+            },
+        yaxis: {
+            gridcolor: gridColor
+        }
         };
       
       Plotly.newPlot('region_graph', data, layout);
