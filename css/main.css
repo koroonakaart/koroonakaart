@@ -67,8 +67,8 @@ p, .nav-link {
 }
 
 .tab-content {
-    margin-left: 6rem;
-    margin-right: 6rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
 }
 
 .headline_number {
