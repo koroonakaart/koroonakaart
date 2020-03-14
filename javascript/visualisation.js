@@ -35,9 +35,9 @@ function drawCounties() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/statistics-explorer/data/json/counties.json")
-        // .defer(d3.json, "/statistics-explorer/data/json/settlements.json")
-        .defer(d3.csv, "/statistics-explorer/data/population_by_county.csv", function (d) {
+        .defer(d3.json, "/koroonakaart/data/json/counties.json")
+        // .defer(d3.json, "/koroonakaart/data/json/settlements.json")
+        .defer(d3.csv, "/koroonakaart/data/population_by_county.csv", function (d) {
             if (isNaN(d['pop_' + current_year])) {
                 population_data.set(d.id, 0);
             } else {
@@ -153,7 +153,7 @@ function drawCounties() {
 
 function updatePopulationByYear(current_year) {
     d3.queue()
-    .defer(d3.csv, "/statistics-explorer/data/population_by_country.csv", function (d) {
+    .defer(d3.csv, "/koroonakaart/data/population_by_country.csv", function (d) {
         console.log("old one: "+current_place_population)
         population_data = {}
         population_data.current_year = current_year;
@@ -190,9 +190,9 @@ function drawMunicipalities() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/statistics-explorer/data/json/municipalities.json")
-        // .defer(d3.json, "/statistics-explorer/data/json/settlements.json")
-        .defer(d3.csv, "/statistics-explorer/data/population_by_municipality.csv", function (d) {
+        .defer(d3.json, "/koroonakaart/data/json/municipalities.json")
+        // .defer(d3.json, "/koroonakaart/data/json/settlements.json")
+        .defer(d3.csv, "/koroonakaart/data/population_by_municipality.csv", function (d) {
             if (isNaN(d['pop_2018'])) {
                 population_data.set(d.id, 0);
             } else {
