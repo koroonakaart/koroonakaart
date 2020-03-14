@@ -59,10 +59,6 @@
                                 </label>
                             </div>
                             <div style="float: right; width: 250px;">
-                                <h2 class="year">{{ current_year }}</h2>
-                                <div class="slider">
-                                    <input type="range" min="2012" max="2018" step="1" v-model="current_year" @input="changePyramid();updatePopulation()" style="width: 250px; margin-bottom: 12px !important">
-                                </div>
                                 <div style="height: 40px !important; margin-top: 25px">
                                     <svg id="legend" style="height: 40px !important"></svg>
                                 </div>
@@ -115,8 +111,6 @@
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script> -->
 
     <!-- Other JavaScript -->
-    <!-- Population pyramid -->
-    <!-- <script src="javascript/popPyramid.min.js"></script> -->
     <!-- Custom JavaScript for app -->
     <script src="javascript/vue_app.js"></script>
     <script src="javascript/visualisation.js"></script>

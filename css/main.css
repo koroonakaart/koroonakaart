@@ -99,14 +99,6 @@ path {
     display: none;
 }
 
-#pyramid {
-    width: 600px;
-    height: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-}
-
 #legend text {
     font-size: 0.9em;
     color: #333;

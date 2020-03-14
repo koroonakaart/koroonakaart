@@ -34,16 +34,11 @@ const vue_app = new Vue({
                 drawMunicipalities();
             }
         },
-
-        changePyramid() {
-            document.getElementById("pyramid").innerHTML = "";
-            pyramidBuilder(json.responseJSON[this.current_year], '#pyramid', {height: 400, width: 500});
-        }
     },
     mounted: function () {
         this.$nextTick(function () {
             console.log(json);
-            pyramidBuilder(json.responseJSON["2018"], '#pyramid', {height: 400, width: 500});
+
             console.log("In mounted hook.", this);
         });
     }
