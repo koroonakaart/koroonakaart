@@ -25,7 +25,7 @@
     <div id="wrapper">
         <!-- Header bar -->
         <nav class="navbar navbar-dark bg-inverse" id="navbar">
-            <h1>Koroonakaart</h1>
+            <h1>Koroonaviirus Eestis</h1>
             <span class="navbar-text">
                 <p>Statistika COVID-19 viiruse leviku kohta Eestis · Uuendatud: 13. märtsil 2020 kell 17:32</p>
             </span>
@@ -104,11 +104,6 @@
                                     <svg id="legend"></svg>
                                 </div>
                             </div>
-                            <div id="credits">
-                                <p>Source:<br>
-                                Administrative and settlement data: <a href="https://github.com/buildig/EHAK">Estonian Land Board</a>, version 20180901<br>
-                                Demographic data: <a href="https://www.stat.ee/">Statistics Estonia</a></p>
-                            </div>
                         </div>
                         <!-- Statistics for the selected region -->
                         <div class="col-6" style="padding-left: 50px">
@@ -117,7 +112,6 @@
                             <p><b>Population:</b><br>
                             {{ current_place_population }}</p>
 
-                            <div id="pyramid" v-show="current_place_name === 'Estonia'"></div>
                         </div>
                     </div>
                 </div>
@@ -129,7 +123,7 @@
         </div>
 
         <footer class="footer">
-            <p>Created as part of the Garage48 Hack the Crisis hackathon.</p>
+            <p>Created as part of the Garage48 Hack the Crisis hackathon, March 2020. Administrative and settlement data: <a href="https://github.com/buildig/EHAK">Estonian Land Board</a>, version 20180901. Demographic data: <a href="https://www.stat.ee/">Statistics Estonia</a></p>
         </footer>
     </div>
 
