@@ -71,8 +71,18 @@ p, .nav-link {
     padding-right: 6rem;
 }
 
+.headline_number_card {
+    text-align: center;
+    border: none;
+}
+
+.headline_number_card p {
+    font-size: 2rem;
+    line-height: 1;
+}
+
 .headline_number {
-    font-size: 48px;
+    font-size: 6.6rem;
 }
 
 .row {

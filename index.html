@@ -41,10 +41,10 @@
             <!-- Navigation tabs -->
             <ul class="nav nav-tabs" style="padding-left: 45px">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#prevalence">Prevalence</a>
+                    <a class="nav-link active" data-toggle="tab" href="#prevalence">Statistics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#economics">Lorem ipsum</a>
+                    <a class="nav-link" data-toggle="tab" href="#economics">General information</a>
                 </li>
             </ul>
 
@@ -53,19 +53,19 @@
                 <div id="demographics" class="tab-pane active">
                     <div class="row">
                         <!-- Headline numbers -->
-                        <div class="card col-md-3">
+                        <div class="card col-md-3 headline_number_card">
                             <p>Kinnitatud haigusjuhud<br>
                             <span class="headline_number">71</span></p>
                         </div>
-                        <div class="card col-md-3">
+                        <div class="card col-md-3 headline_number_card">
                             <p>Aktiivsed<br>
                             <span class="headline_number">59</span></p>
                         </div>
-                        <div class="card col-md-3">
+                        <div class="card col-md-3 headline_number_card">
                             <p>Hukkunud<br>
                             <span class="headline_number">0</span></p>
                         </div>
-                        <div class="card col-md-3">
+                        <div class="card col-md-3 headline_number_card">
                             <p>Tervenenud<br>
                             <span class="headline_number">12</span></p>
                         </div>
@@ -97,13 +97,13 @@
                                     <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
                                 </label>
                             </div>
-                            <div style="float: right; width: 250px;">
+                            <!-- Map -->
+                            <svg class="map_population" width="600" height="500"></svg>
+                            <div style="float: left; width: 250px;">
                                 <div style="height: 40px !important; margin-top: 25px">
                                     <svg id="legend" style="height: 40px !important"></svg>
                                 </div>
                             </div>
-                            <!-- Map -->
-                            <svg class="map_population" width="600" height="500"></svg>
                             <div id="credits">
                                 <p>Source:<br>
                                 Administrative and settlement data: <a href="https://github.com/buildig/EHAK">Estonian Land Board</a>, version 20180901<br>
