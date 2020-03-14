@@ -3,7 +3,7 @@ var current_place_name = 'Estonia';
 var current_place_population = 1317762;
 var zoomLevel = 'county';
 // TODO: Is there a way we can import this data without jQuery? Then we could drop jQuery.
-var json = $.getJSON({'url': "/koroonakaart/data/json/population.json", 'async': false});
+// var json = $.getJSON({'url': "/koroonakaart/data/topojson/population.json", 'async': false});
 
 
 // Initialize Vue app
@@ -37,7 +37,7 @@ const vue_app = new Vue({
     },
     mounted: function () {
         this.$nextTick(function () {
-            console.log(json);
+            // console.log(json);
 
             console.log("In mounted hook.", this);
         });
