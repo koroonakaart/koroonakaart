@@ -73,6 +73,7 @@ p, .nav-link {
 
 .headline_number_card {
     text-align: center;
+    border: none;
 }
 
 .headline_number_card p {
