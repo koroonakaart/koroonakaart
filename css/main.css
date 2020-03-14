@@ -66,6 +66,10 @@ p, .nav-link {
     margin-top: 0 !important;
 }
 
+#headline_number {
+    font-size: 36px;
+}
+
 /* Map-related styles */
 rect {
     fill: none;
