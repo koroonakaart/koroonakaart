@@ -37,6 +37,8 @@ function drawCounties() {
     d3.queue()
         .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
         .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
+            // Debug
+            console.log(d);
             if (isNaN(d['pop_' + current_year])) {
                 prevalence_data.set(d.id, 0);
             } else {
