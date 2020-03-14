@@ -31,7 +31,7 @@ h1 {
 }
 
 #navbar {
-    background-image: url('../img/header_dark_right.png'), url('../img/header_dark_left.png');
+    background-color: black;
     background-repeat: no-repeat, no-repeat;
     background-position: right -80px top, -20px 0;
 }
