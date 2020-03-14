@@ -75,6 +75,10 @@ p, .nav-link {
     font-size: 48px;
 }
 
+.row {
+    margin-bottom: 4rem;
+}
+
 /* Map-related styles */
 rect {
     fill: none;
