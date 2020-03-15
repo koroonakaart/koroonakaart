@@ -98,24 +98,28 @@
                             <p><b>Population:</b><br>
                             {{ current_place_population }}</p>
 
+                            <div class="card chart_card">
+                                <h2>Confirmed cases by county</h2>
+                                <div id="region_graph"></div>
+                            </div>
+
                         </div>
                     </div>
 
                     <!-- Other charts -->
                     <div class="row">
                         <div class="card chart_card col-md-6">
+                            <h2>Cumulative cases</h2>
                             <div id="case_graph"></div>
                         </div>
                         <div class="card chart_card col-md-6">
+                            <h2>Daily cases</h2>
                             <div id="cases_day_graph"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="card chart_card col-md-3">
                             <div id="pie_graph"></div>
-                        </div>
-                        <div class="card chart_card col-md-3">
-                            <div id="region_graph"></div>
                         </div>
                     </div>
 
