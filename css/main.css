@@ -32,7 +32,7 @@ h2 {
 
 .navbar {
     padding: 0;
-    height: 57px;    
+    height: 57px;
 }
 
 #navbar {
@@ -63,13 +63,13 @@ h2 {
 }
 
 .navbar-text p {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #fff !important;
     opacity: 0.8;
 }
 
 #language-selector {
-    margin-right: 6rem;
+    margin-right: 5rem;
 }
 
 .bg-inverse {
@@ -235,7 +235,15 @@ footer p {
 }
 
 a {
-    color: #0000CC !important;
+  text-decoration:none;
+  border-bottom: 2px solid #aeb3b0;
+  box-shadow: inset 0 -4px 0 #aeb3b0;
+  color: inherit;
+  transition: background 0.1s cubic-bezier(.33,.66,.66,1);
+}
+
+a:hover {
+  background: #aeb3b0;
 }
 
 #credits {
