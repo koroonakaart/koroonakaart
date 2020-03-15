@@ -2,8 +2,8 @@
 /**
  * Add constants for overview statistics
  */
-var overview_confirmed = 135;
-var overview_active = 134;
+var overview_confirmed = 171;
+var overview_active = 170;
 var overview_in_treatment = 2;
 var overview_deaths = 0;
 var overview_recovered = 1;
