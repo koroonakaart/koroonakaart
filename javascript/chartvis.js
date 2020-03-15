@@ -207,7 +207,6 @@ function casesPerDay() {
       var data = [confirmed, recovered, death];
       
       var layout = {
-        title: 'Juhtumid',
         xaxis: {tickfont: {
             size: 14,
             color: 'rgb(107, 107, 107)',
