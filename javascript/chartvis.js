@@ -51,7 +51,7 @@ const curentLocale = "et" // ru, or undefined? if not using
 }
 
 const plotConfigRegionChart = {
-    modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", 
+    modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
             "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
             "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d"
         ],
@@ -163,12 +163,12 @@ function progressionChart() {
             line: {
                 color: red,
                 width: 1,
-                shape: 'spline', 
+                shape: 'spline',
                 smoothing: smoothingConst
             }
         }
     };
-    
+
     var recovered = {
         x: x_dates,
         y: cumulative_recovered_cases,
@@ -182,7 +182,7 @@ function progressionChart() {
                 line: {
                     color: green,
                     width: 1,
-                    shape: 'spline', 
+                    shape: 'spline',
                     smoothing: smoothingConst
                 }
             },
@@ -199,7 +199,7 @@ function progressionChart() {
                 line: {
                     color: orange,
                     width: 1,
-                    shape: 'spline', 
+                    shape: 'spline',
                     smoothing: smoothingConst
                 }
             },
@@ -216,17 +216,17 @@ function progressionChart() {
                 line: {
                     color: grey,
                     width: 1,
-                    shape: 'spline', 
+                    shape: 'spline',
                     smoothing: smoothingConst
                 }
             },
     };
 
-    
+
     var data = [ confirmed, recovered, active, death ];
-    
-    var layout = {        
-        
+
+    var layout = {
+
         xaxis: {
             tickfont: {
                 size: 14,
@@ -236,7 +236,7 @@ function progressionChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
-            
+
             },
         yaxis: {
             title: 'Juhtumite arv',
@@ -252,7 +252,7 @@ function progressionChart() {
             gridcolor:gridColor,
             rangemode: "tozero",
         },
-        
+
         legend: {
             x: 0.01,
             y: 0.99,
@@ -267,7 +267,7 @@ function progressionChart() {
         },
         margin: marginLineChart
     };
-    
+
     Plotly.newPlot('case_graph', data, layout, plotConfig);
 
 };
@@ -278,7 +278,7 @@ function progressionChart() {
  * Based on: https://plot.ly/javascript/bar-charts/
  */
 function casesPerDay() {
-            
+
     var confirmed = {
         x: x_dates,
         y: daily_confirmed_cases,
@@ -286,15 +286,15 @@ function casesPerDay() {
         marker: {color: red},
         type: 'bar'
       };
-      
+
       var recovered = {
         x: x_dates,
         y: daily_recovered_cases,
-        name: 'Tervenenud"',
+        name: 'Tervenenud',
         marker: {color: green},
         type: 'bar'
       };
-      
+
       var death = {
         x: x_dates,
         y: daily_death,
@@ -303,11 +303,11 @@ function casesPerDay() {
         type: 'bar'
       };
 
-      
+
       var data = [confirmed, recovered, death];
-      
+
       var layout = {
-          
+
         xaxis: {
             tickfont: {
                 size: 14,
@@ -330,7 +330,7 @@ function casesPerDay() {
           },
           gridcolor: gridColor,
         },
-        
+
         legend: {
             x: 0.01,
             y: 0.99,
@@ -342,7 +342,7 @@ function casesPerDay() {
                size: legendFontSize,
                color: legendFontColor,
             }
-          
+
         },
         barmode: 'group',
         bargap: 0.15,
@@ -350,7 +350,7 @@ function casesPerDay() {
         margin: marginDailyCases
 
       };
-      
+
       Plotly.newPlot('cases_day_graph', data, layout, plotConfig);
 }
 
@@ -399,7 +399,7 @@ function regionChart(srt_region) {
         },
         margin: marginBarChart
     };
-      
+
     Plotly.newPlot('region_graph', data, layout, plotConfigRegionChart);
 }
 
@@ -418,12 +418,12 @@ function pieChart() {
         },
         type: 'pie'
       }];
-      
+
 
       var layout = {
       //    title: 'Show Edit in Chart Studio Button'
       };
-      
+
       Plotly.newPlot('pie_graph', data, layout);
 };
 */
