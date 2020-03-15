@@ -7,7 +7,7 @@ var overview_active = 170;
 var overview_in_treatment = 2;
 var overview_deaths = 0;
 var overview_recovered = 1;
-var overview_tests_done = 971;
+var overview_tests_done = 1133;
 
 var current_place_name = 'Eesti';
 var current_place_confirmed = 135;
