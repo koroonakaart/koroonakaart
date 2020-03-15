@@ -30,6 +30,7 @@ const vue_app = new Vue({
         overview_in_treatment: overview_in_treatment.toLocaleString(),
         overview_deaths: overview_deaths.toLocaleString(),
         overview_recovered: overview_recovered.toLocaleString(),
+        overview_tests_done: overview_tests_done.toLocaleString(),
         current_place_name: current_place_name,
         current_place_confirmed: current_place_confirmed.toLocaleString(),
         current_place_active: current_place_active.toLocaleString(),
