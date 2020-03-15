@@ -119,6 +119,9 @@ function drawCounties() {
             vue_app.current_place_name = d.properties.MNIMI;
             vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
             vue_app.current_place_active = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_in_treatment = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_deaths = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_recovered = parseInt(d.population,10).toLocaleString();
 
         };
 
@@ -154,6 +157,9 @@ function drawCounties() {
         vue_app.current_place_name = 'Eesti';
         vue_app.current_place_confirmed = parseInt('135').toLocaleString();
         vue_app.current_place_active = parseInt('134').toLocaleString();
+        vue_app.current_place_in_treatment = parseInt('2').toLocaleString();
+        vue_app.current_place_deaths = parseInt('0').toLocaleString();
+        vue_app.current_place_recovered = parseInt('1').toLocaleString();
     }
 }
 
@@ -260,6 +266,9 @@ function drawMunicipalities() {
             vue_app.current_place_name = d.properties.ONIMI;
             vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
             vue_app.current_place_active = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_in_treatment = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_deaths = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_recovered = parseInt(d.population,10).toLocaleString();
         };
 
         if (active.node() === this) return reset();
@@ -294,6 +303,9 @@ function drawMunicipalities() {
         vue_app.current_place_name = 'Eesti';
         vue_app.current_place_confirmed = parseInt('1317762').toLocaleString();
         vue_app.current_place_active = parseInt('134').toLocaleString();
+        vue_app.current_place_in_treatment = parseInt('2').toLocaleString();
+        vue_app.current_place_deaths = parseInt('0').toLocaleString();
+        vue_app.current_place_in_treatment = parseInt('2').toLocaleString()
     }
 }
 
