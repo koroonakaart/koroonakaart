@@ -21,6 +21,10 @@ const grey = "#7F7F7F";     // Dead
 const gridColor =  "#E6E6E6"; // Color of grid lines
 const tickFontColor = "#444";    // Tick font color
 
+const legendFontColor = "#444";
+const legendFontSize = 14;
+
+
 /**
  * Smoothing factor for curves. TODO: Doesn't seem to work at this moment?
  */
@@ -173,7 +177,11 @@ function progressionChart() {
             y: 1.0,
             bgcolor: 'rgba(255, 255, 255, 0)',
             bordercolor: 'rgba(255, 255, 255, 0)',
-          },
+            font: {
+                size: legendFontSize,
+                color: legendFontColor,
+              },
+        },
     };
     
     Plotly.newPlot('case_graph', data, layout);
@@ -237,7 +245,12 @@ function casesPerDay() {
           x: 0.0,
           y: 1.0,
           bgcolor: 'rgba(255, 255, 255, 0)',
-          bordercolor: 'rgba(255, 255, 255, 0)'
+          bordercolor: 'rgba(255, 255, 255, 0)',
+          font: {
+              size: legendFontSize,
+              color: legendFontColor,
+            }
+          
         },
         barmode: 'group',
         bargap: 0.15,
