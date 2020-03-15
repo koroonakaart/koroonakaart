@@ -25,6 +25,10 @@ h1 {
     margin-bottom: 1.6rem !important;
 }
 
+h2 {
+    font-size: 2.4rem;
+}
+
 .navbar {
     padding: 0;
     height: 57px;    
