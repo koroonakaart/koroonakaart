@@ -41,6 +41,7 @@ function drawCounties() {
             // Debug
             console.log(d);
             prevalence_data.set(d.id, +d['confirmed']);
+            test_data.set(d.id, +d['confirmed','active','in_treatment','deaths','recovered','population'])
         })
         .await(ready);
 
@@ -59,6 +60,7 @@ function drawCounties() {
         console.log('prevalence_data:');
         console.log(prevalence_data);
         console.log('');
+        console.log(test_data);
 
         // Load population data
         var counties = topojson.feature(data, {
