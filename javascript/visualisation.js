@@ -114,16 +114,18 @@ function drawCounties() {
 
     function clicked(d) {
         // Debug
+        console.log(d.data);
+        console.log(d.population);
         console.log("Map was clicked.");
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.MNIMI;
-            vue_app.current_place_confirmed = parseInt(d.properties.confirmed,10).toLocaleString();
-            vue_app.current_place_active = parseInt(d.properties.active,10).toLocaleString();
-            vue_app.current_place_in_treatment = parseInt(d.properties.in_treatment,10).toLocaleString();
-            vue_app.current_place_deaths = parseInt(d.properties.deaths,10).toLocaleString();
-            vue_app.current_place_recovered = parseInt(d.properties.recovered,10).toLocaleString();
-            vue_app.current_place_population = parseInt(d.properties.population,10).toLocaleString();
+            vue_app.current_place_confirmed = parseInt(d.id.confirmed,10).toLocaleString();
+            vue_app.current_place_active = parseInt(d.id.active,10).toLocaleString();
+            vue_app.current_place_in_treatment = parseInt(d.id.in_treatment,10).toLocaleString();
+            vue_app.current_place_deaths = parseInt(d.id.deaths,10).toLocaleString();
+            vue_app.current_place_recovered = parseInt(d.id.recovered,10).toLocaleString();
+            vue_app.current_place_population = parseInt(d.id.population,10).toLocaleString();
 
         };
 
@@ -267,12 +269,12 @@ function drawMunicipalities() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.ONIMI;
-            vue_app.current_place_confirmed = parseInt(d.confirmed,10).toLocaleString();
-            vue_app.current_place_active = parseInt(d.active,10).toLocaleString();
-            vue_app.current_place_in_treatment = parseInt(d.in_treatment,10).toLocaleString();
-            vue_app.current_place_deaths = parseInt(d.deaths,10).toLocaleString();
-            vue_app.current_place_recovered = parseInt(d.recovered,10).toLocaleString();
-            vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_confirmed = parseInt(d.id.confirmed,10).toLocaleString();
+            vue_app.current_place_active = parseInt(d.id.active,10).toLocaleString();
+            vue_app.current_place_in_treatment = parseInt(d.id.in_treatment,10).toLocaleString();
+            vue_app.current_place_deaths = parseInt(d.id.deaths,10).toLocaleString();
+            vue_app.current_place_recovered = parseInt(d.id.recovered,10).toLocaleString();
+            vue_app.current_place_population = parseInt(d.id.population,10).toLocaleString();
         };
 
         if (active.node() === this) return reset();
