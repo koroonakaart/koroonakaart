@@ -138,7 +138,7 @@ const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
  */
 
 const sorted_region_data = [
-    ["Teadmata", 36],
+    ["Info puudub", 36],
     ["Viljandi", 0],
     ["Valgamaa", 0],
     ["Raplamaa", 0],
