@@ -81,21 +81,23 @@
 
                     <div class="row">
                         <!-- Column containing map -->
-                        <div class="col-6" style="width:600px; padding-left: 20px; flex: none;">
-                            <!--Details-->
-                            <div style="padding-left: 35px">
-                                <label class="btn">
-                                    <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
-                                </label><br>
-                                <label class="btn">
-                                    <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
-                                </label>
-                            </div>
-                            <!-- Map -->
-                            <svg class="map_population" width="600" height="500"></svg>
-                            <div style="width: 250px; position: relative; top: -75px; left: 30px">
-                                <div style="margin-top: 25px">
-                                    <svg id="legend" style="height: 25px"></svg>
+                        <div class="col-6" style="padding-left: 20px;">
+                            <div style="width: 600px">
+                                <!--Details-->
+                                <div style="padding-left: 35px">
+                                    <label class="btn">
+                                        <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
+                                    </label><br>
+                                    <label class="btn">
+                                        <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
+                                    </label>
+                                </div>
+                                <!-- Map -->
+                                <svg class="map_population" width="600" height="500"></svg>
+                                <div style="width: 250px; position: relative; top: -75px; left: 30px">
+                                    <div style="margin-top: 25px">
+                                        <svg id="legend" style="height: 25px"></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
