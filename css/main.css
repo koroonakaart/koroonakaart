@@ -55,6 +55,11 @@ h1 {
 
 .navbar-text p {
     color: #fff !important;
+    opacity: 0.8;
+}
+
+#language-selector {
+    margin-right: 6rem;
 }
 
 .bg-inverse {
