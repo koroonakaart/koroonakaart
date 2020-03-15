@@ -57,8 +57,14 @@ const vue_app = new Vue({
                 'Viljandi maakond': 46371,
                 'Võru maakond': 35782
             }
-
-            return this.current_place_confirmed / population_by_place[this.current_place_name];
+            let confirmed_percent;
+            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(6);
+            // if (this.current_place_name = 'Eesti') {
+            //     confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(5);
+            // } else {
+            //     confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(2);
+            // }
+            return confirmed_percent;
         }
     },
     mounted: function () {
