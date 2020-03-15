@@ -114,7 +114,7 @@ function drawCounties() {
 
     function clicked(d) {
         // Debug
-        console.log(d.data);
+        console.log(d)
         console.log(d.population);
         console.log("Map was clicked.");
         if (typeof d !== 'undefined') {
@@ -266,7 +266,6 @@ function drawMunicipalities() {
     function clicked(d) {
         // Debug
         console.log("Map was clicked.");
-        console.log(d);
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.ONIMI;
