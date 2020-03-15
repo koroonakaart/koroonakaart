@@ -36,8 +36,8 @@ function drawCounties() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
-        .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
+        .defer(d3.json, "/data/topojson/counties.json")
+        .defer(d3.csv, "/data/counties_dummy.csv", function (d) {
             // Debug
             console.log(d);
             prevalence_data.set(d.id, +d['confirmed']);
@@ -49,8 +49,8 @@ function drawCounties() {
     var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
 
     function ready(error, data) {
-        if (error) throw error; 
-             
+        if (error) throw error;
+
         // Debug
         console.log('');
         console.log('data:');
@@ -119,11 +119,11 @@ function drawCounties() {
             vue_app.current_place_name = d.properties.MNIMI;
             vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
         };
-    
+
         if (active.node() === this) return reset();
         active.classed("active", false);
         active = d3.select(this).classed("active", true);
-    
+
         var bounds = path.bounds(d),
             dx = bounds[1][0] - bounds[0][0],
             dy = bounds[1][1] - bounds[0][1],
@@ -131,7 +131,7 @@ function drawCounties() {
             y = (bounds[0][1] + bounds[1][1]) / 2,
             scale = .9 / Math.max(dx / width, dy / height),
             translate = [width / 2 - scale * x, height / 2 - scale * y];
-    
+
         g.transition()
             .duration(750)
             .style("stroke-width", 1.5 / scale + "px")
@@ -141,12 +141,12 @@ function drawCounties() {
     function reset() {
         active.classed("active", false);
         active = d3.select(null);
-    
+
         g.transition()
             .duration(500)
             .style("stroke-width", "1.5px")
             .attr("transform", "");
-    
+
         // Reset data values to country level
         // TODO: Don't hard-code any values here.
         vue_app.current_place_name = 'Eesti';
@@ -175,13 +175,13 @@ function drawMunicipalities() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/koroonakaart/data/topojson/municipalities.json")
-        .defer(d3.csv, "/koroonakaart/data/population_by_municipality.csv", function (d) {
+        .defer(d3.json, "/data/topojson/municipalities.json")
+        .defer(d3.csv, "/data/population_by_municipality.csv", function (d) {
             if (isNaN(d['pop_2018'])) {
                 prevalence_data.set(d.id, 0);
             } else {
                 prevalence_data.set(d.id, +d['pop_2018']);
-                
+
             }
         })
         .await(ready);
@@ -294,4 +294,3 @@ function drawMunicipalities() {
 
 
 drawCounties();
-
