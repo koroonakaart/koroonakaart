@@ -135,6 +135,7 @@ rect {
     padding-left: 35px;
     position: relative;
     top: 10px;
+    z-index: 1;
 }
 
 #map_prevalence_legend {
