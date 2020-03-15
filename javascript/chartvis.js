@@ -116,28 +116,29 @@ const x_dates = ['2020-02-26','2020-02-27', '2020-02-28', '2020-02-29',
                 '2020-03-01', '2020-03-02', '2020-03-03',
                 '2020-03-04','2020-03-05', '2020-03-06', '2020-03-07',
                 '2020-03-08','2020-03-09', '2020-03-10', '2020-03-11',
-                '2020-03-12','2020-03-13', '2020-03-14'
+                '2020-03-12','2020-03-13', '2020-03-14', '2020-03-15'
             ];
 /**
  * Total cumulative counts (running sum)
  */
-const cumulative_confirmed_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,135];
-const cumulative_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
-const cumulative_active_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,134];
-const cumulative_death_counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const cumulative_confirmed_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,135,171];
+const cumulative_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1];
+const cumulative_active_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,134,170];
+const cumulative_death_counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
  * Daily counts
  */
-const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,26];
-const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
-const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,26,36];
+const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
+const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
  * Region confirmed cases
  */
 
 const sorted_region_data = [
+    ["Teadmata", 36],
     ["Viljandi", 0],
     ["Valgamaa", 0],
     ["Raplamaa", 0],
