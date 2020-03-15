@@ -235,8 +235,8 @@ function progressionChart() {
         },
         
         legend: {
-            x: 0.05,
-            y: 0.90,
+            x: 0.04,
+            y: 0.92,
             bgcolor: '#FFF',
             opacity: 0.7,
             bordercolor: '#000',
@@ -312,8 +312,8 @@ function casesPerDay() {
         },
         
         legend: {
-            x: 0.05,
-            y: 0.90,
+            x: 0.04,
+            y: 0.92,
             bgcolor: '#FFF',
             opacity: 0.7,
             bordercolor: '#000',
