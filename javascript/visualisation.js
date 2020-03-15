@@ -39,11 +39,12 @@ function drawCounties() {
         .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
             // Debug
             console.log(d);
-            if (isNaN(d['pop_' + current_year])) {
-                prevalence_data.set(d.id, 0);
-            } else {
-                prevalence_data.set(d.id, +d['pop_' + current_year]);
-            }
+            prevalence_data.set(d.id, +d['confirmed']);
+            // if (isNaN(d['pop_' + current_year])) {
+            //     prevalence_data.set(d.id, 0);
+            // } else {
+            //     prevalence_data.set(d.id, +d['pop_' + current_year]);
+            // }
         })
         .await(ready);
 
