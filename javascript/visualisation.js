@@ -41,11 +41,6 @@ function drawCounties() {
             // Debug
             console.log(d);
             prevalence_data.set(d.id, +d['confirmed']);
-            // if (isNaN(d['pop_' + current_year])) {
-            //     prevalence_data.set(d.id, 0);
-            // } else {
-            //     prevalence_data.set(d.id, +d['pop_' + current_year]);
-            // }
         })
         .await(ready);
 
@@ -122,7 +117,7 @@ function drawCounties() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.MNIMI;
-            vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
         };
     
         if (active.node() === this) return reset();
@@ -154,7 +149,7 @@ function drawCounties() {
     
         // Reset data values to country level
         vue_app.current_place_name = 'Estonia';
-        vue_app.current_place_population = parseInt('1317762').toLocaleString();
+        vue_app.current_place_confirmed = parseInt('1317762').toLocaleString();
     }
 }
 
@@ -259,7 +254,7 @@ function drawMunicipalities() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.ONIMI;
-            vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
         };
 
         if (active.node() === this) return reset();
@@ -291,7 +286,7 @@ function drawMunicipalities() {
 
         // Reset data values to country level
         vue_app.current_place_name = 'Estonia';
-        vue_app.current_place_population = parseInt('1317762').toLocaleString();
+        vue_app.current_place_confirmed = parseInt('1317762').toLocaleString();
     }
 }
 
