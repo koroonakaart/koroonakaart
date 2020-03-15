@@ -25,6 +25,10 @@ h1 {
     margin-bottom: 1.6rem !important;
 }
 
+h2 {
+    font-size: 2.4rem;
+}
+
 .navbar {
     padding: 0;
     height: 57px;    
@@ -87,6 +91,10 @@ p, .nav-link {
 .tab-content {
     padding-left: 6rem;
     padding-right: 6rem;
+}
+
+#headline_row {
+    margin-top: 2rem;
 }
 
 .headline_number_card {
