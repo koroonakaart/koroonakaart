@@ -117,11 +117,11 @@ function drawCounties() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.MNIMI;
-            vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_active = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_in_treatment = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_deaths = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_recovered = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_confirmed = parseInt(d.confirmed,10).toLocaleString();
+            vue_app.current_place_active = parseInt(d.active,10).toLocaleString();
+            vue_app.current_place_in_treatment = parseInt(d.in_treatment,10).toLocaleString();
+            vue_app.current_place_deaths = parseInt(d.deaths,10).toLocaleString();
+            vue_app.current_place_recovered = parseInt(d.recovered,10).toLocaleString();
             vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
 
         };
@@ -266,11 +266,11 @@ function drawMunicipalities() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.ONIMI;
-            vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_active = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_in_treatment = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_deaths = parseInt(d.population,10).toLocaleString();
-            vue_app.current_place_recovered = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_confirmed = parseInt(d.confirmed,10).toLocaleString();
+            vue_app.current_place_active = parseInt(d.active,10).toLocaleString();
+            vue_app.current_place_in_treatment = parseInt(d.in_treatment,10).toLocaleString();
+            vue_app.current_place_deaths = parseInt(d.deaths,10).toLocaleString();
+            vue_app.current_place_recovered = parseInt(d.recovered,10).toLocaleString();
             vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
         };
 
