@@ -84,7 +84,7 @@
                         <div class="col-6" style="padding-left: 20px;">
                             <div style="width: 600px" class="mx-auto">
                                 <!--Details-->
-                                <div style="padding-left: 35px; position: relative; top: 90px">
+                                <div id="map_prevalence_zoom_level_selector">
                                     <label class="btn">
                                         <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
                                     </label><br>
@@ -93,8 +93,8 @@
                                     </label>
                                 </div>
                                 <!-- Map -->
-                                <svg class="map_population" width="600" height="500"></svg>
-                                <div style="width: 250px; position: relative; top: -75px; left: 30px">
+                                <svg id="map_prevalence" width="600" height="500"></svg>
+                                <div id="map_prevalence_legend">
                                     <div style="margin-top: 25px">
                                         <svg id="legend" style="height: 25px"></svg>
                                     </div>
