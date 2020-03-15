@@ -35,6 +35,15 @@ const plotConfig = {
     displaylogo: false
 }
 
+const plotConfigRegionChart = {
+    modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", 
+            "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
+            "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d"
+        ],
+    displaylogo: false
+
+}
+
 
 // Change margins of plots
 
@@ -367,7 +376,7 @@ function regionChart(srt_region) {
         margin: marginBarChart
     };
       
-    Plotly.newPlot('region_graph', data, layout, plotConfig);
+    Plotly.newPlot('region_graph', data, layout, plotConfigRegionChart);
 }
 
 
