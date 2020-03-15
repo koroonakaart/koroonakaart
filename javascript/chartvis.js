@@ -137,13 +137,12 @@ const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
  */
 
 const sorted_region_data = [
-    ["Jõhvi", 0],
-    ["Virumaa", 3],
-    ["Tartu", 6],
-    ["Võru", 9],
-    ["Pärnu", 12],
-    ["Saaremaa", 31],
-    ["Tallinn/Harjumaa", 54],
+    ["Virumaa", 8],
+    ["Tartumaa", 6],
+    ["Võrumaa", 9],
+    ["Pärnumaa", 13],
+    ["Saaremaa", 37],
+    ["Harjumaa", 62],
 ]
 
 /**
