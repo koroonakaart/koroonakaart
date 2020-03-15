@@ -53,8 +53,8 @@ h1 {
     margin-left: 5rem;
 }
 
-.navbar-text {
-    color: #fff;
+.navbar-text p {
+    color: #fff !important;
 }
 
 .bg-inverse {
