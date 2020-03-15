@@ -305,7 +305,7 @@ function drawMunicipalities() {
         vue_app.current_place_active = parseInt('134').toLocaleString();
         vue_app.current_place_in_treatment = parseInt('2').toLocaleString();
         vue_app.current_place_deaths = parseInt('0').toLocaleString();
-        vue_app.current_place_in_treatment = parseInt('2').toLocaleString()
+        vue_app.current_place_recovered = parseInt('1').toLocaleString()
     }
 }
 
