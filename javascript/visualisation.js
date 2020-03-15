@@ -118,6 +118,8 @@ function drawCounties() {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.MNIMI;
             vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_active = parseInt(d.population,10).toLocaleString();
+
         };
 
         if (active.node() === this) return reset();
@@ -151,6 +153,7 @@ function drawCounties() {
         // TODO: Don't hard-code any values here.
         vue_app.current_place_name = 'Eesti';
         vue_app.current_place_confirmed = parseInt('135').toLocaleString();
+        vue_app.current_place_active = parseInt('134').toLocaleString();
     }
 }
 
@@ -256,6 +259,7 @@ function drawMunicipalities() {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.ONIMI;
             vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_active = parseInt(d.population,10).toLocaleString();
         };
 
         if (active.node() === this) return reset();
@@ -289,6 +293,7 @@ function drawMunicipalities() {
         // TODO: Don't hard-code any values here.
         vue_app.current_place_name = 'Eesti';
         vue_app.current_place_confirmed = parseInt('1317762').toLocaleString();
+        vue_app.current_place_active = parseInt('134').toLocaleString();
     }
 }
 
