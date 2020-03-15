@@ -19,9 +19,10 @@ const red = "#D62728";      // Confirmed
 const green = "#2CA02C";    // Recovered
 const grey = "#7F7F7F";     // Dead
 const gridColor =  "#E6E6E6"; // Color of grid lines
+const tickFontColor = "#444";    // Tick font color
 
 /**
- * Smoothing factor for curves. Doesn't seem to work at this moment?
+ * Smoothing factor for curves. TODO: Doesn't seem to work at this moment?
  */
 
 const smoothingConst = 1.3;
@@ -150,7 +151,7 @@ function progressionChart() {
         xaxis: {
             tickfont: {
                 size: 14,
-                color: 'rgb(107, 107, 107)'
+                color: tickFontColor
             },
             gridcolor: gridColor,
             },
@@ -158,11 +159,11 @@ function progressionChart() {
             title: 'Juhtumite arv',
             titlefont: {
                 size: 16,
-                color: 'rgb(107, 107, 107)'
+                color: tickFontColor
             },
             tickfont: {
                 size: 14,
-                color: 'rgb(107, 107, 107)'
+                color: tickFontColor
             },
             gridcolor:gridColor,
         },
@@ -171,7 +172,7 @@ function progressionChart() {
             x: 0.0,
             y: 1.0,
             bgcolor: 'rgba(255, 255, 255, 0)',
-            bordercolor: 'rgba(255, 255, 255, 0)'
+            bordercolor: 'rgba(255, 255, 255, 0)',
           },
     };
     
@@ -215,7 +216,7 @@ function casesPerDay() {
       var layout = {
         xaxis: {tickfont: {
             size: 14,
-            color: 'rgb(107, 107, 107)',
+            color: tickFontColor,
           },
           gridcolor: gridColor,
         },
@@ -223,11 +224,11 @@ function casesPerDay() {
           title: 'Juhtumite arv',
           titlefont: {
             size: 16,
-            color: 'rgb(107, 107, 107)'
+            color: tickFontColor
           },
           tickfont: {
             size: 14,
-            color: 'rgb(107, 107, 107)'
+            color: tickFontColor
           },
           gridcolor: gridColor,
         },
@@ -303,9 +304,14 @@ function regionChart(srt_region) {
         xaxis: {
             title: 'Juhtumite arv',
             gridcolor: gridColor,
+            tickfont: {
+                color: tickFontColor
+            }
         },
         yaxis: {
-        
+            tickfont: {
+                color: tickFontColor
+            }
         }
     };
       
