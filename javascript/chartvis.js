@@ -360,7 +360,8 @@ function regionChart(srt_region) {
         },
         yaxis: {
             tickfont: {
-                color: tickFontColor
+                color: tickFontColor,
+                size: 14
             }
         },
         margin: marginBarChart
