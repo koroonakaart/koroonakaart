@@ -69,7 +69,7 @@ const plotConfigRegionChart = {
  */
 const marginBarChart = {
     l: 160,
-    r: 100,
+    r: 0,
     b: 50,
     t: 0,
     pad: 10
@@ -563,7 +563,7 @@ function regionChart(srt_region) {
         y: new_y,
         orientation: 'h',
         text: new_x,
-        textposition: 'outside',
+        textposition: 'inside',
         marker: {
             color: blue,
             opacity: 0.9
