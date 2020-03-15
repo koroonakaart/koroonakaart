@@ -92,17 +92,15 @@
                             </div>
                         </div>
                         <!-- Statistics for the selected region -->
-                        <div class="col-6" style="padding-left: 50px">
+                        <div class="col-md-3" style="padding-left: 50px">
                             <h1>{{ current_place_name }}</h1>
 
                             <p><b>Population:</b><br>
                             {{ current_place_population }}</p>
-
-                            <div class="card chart_card">
-                                <h2>Confirmed cases by county</h2>
-                                <div id="region_graph"></div>
-                            </div>
-
+                        </div>
+                        <div class="card chart_card col-md-3">
+                            <h2>Confirmed cases by county</h2>
+                            <div id="region_graph"></div>
                         </div>
                     </div>
 
