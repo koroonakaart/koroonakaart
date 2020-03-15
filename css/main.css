@@ -245,3 +245,8 @@ a:hover {
     padding-left: 30px;
     padding-bottom: 25px;
 }
+
+/* Hide elements until compiled by Vue.js */
+[v-cloak] {
+    display: none;
+}
