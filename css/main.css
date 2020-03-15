@@ -176,9 +176,11 @@ rect {
 
 }
 
-path {
+/* TODO: Enable pointer cursor once interactivity is restored to the map */
+/*path {
     cursor: pointer;
 }
+*/
 
 .hidden {
     display: none;
