@@ -563,6 +563,7 @@ function regionChart(srt_region) {
         y: new_y,
         orientation: 'h',
         text: new_y,
+        textposition: 'auto',
         marker: {
             color: blue,
             opacity: 0.9
