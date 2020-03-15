@@ -137,7 +137,7 @@ rect {
 
 #map_prevalence {
     position: relative;
-    top: -100px;
+    top: -60px;
 }
 
 #map_prevalence_zoom_level_selector {
@@ -150,7 +150,7 @@ rect {
 #map_prevalence_legend {
     width: 250px;
     position: relative;
-    top: -75px;
+    top: -125px;
     left: 30px;
 }
 
