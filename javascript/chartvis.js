@@ -24,6 +24,18 @@ const tickFontColor = "#444";    // Tick font color
 const legendFontColor = "#444";
 const legendFontSize = 14;
 
+/**
+ * Modebar buttons. Interactivity options to be removed.
+ * -'2D', zoom2d, pan2d, select2d, lasso2d, zoomIn2d, zoomOut2d, autoScale2d, resetScale2d
+ *   -'Geo', zoomInGeo, zoomOutGeo, resetGeo, hoverClosestGeo
+ *   -'Other', hoverClosestGl2d, hoverClosestPie, toggleHover, resetViews, toImage, sendDataToCloud, toggleSpikelines, resetViewMapbox
+ */
+const plotConfig = {
+    modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", "toggleSpikelines"],
+    displaylogo: false
+}
+
+
 // Change margins of plots
 
 /**
@@ -226,7 +238,7 @@ function progressionChart() {
         margin: marginLineChart
     };
     
-    Plotly.newPlot('case_graph', data, layout);
+    Plotly.newPlot('case_graph', data, layout, plotConfig);
 
 };
 
@@ -306,7 +318,7 @@ function casesPerDay() {
 
       };
       
-      Plotly.newPlot('cases_day_graph', data, layout);
+      Plotly.newPlot('cases_day_graph', data, layout, plotConfig);
 }
 
 
@@ -354,7 +366,7 @@ function regionChart(srt_region) {
         margin: marginBarChart
     };
       
-    Plotly.newPlot('region_graph', data, layout);
+    Plotly.newPlot('region_graph', data, layout, plotConfig);
 }
 
 
