@@ -562,12 +562,11 @@ function regionChart(srt_region) {
         x: new_x,
         y: new_y,
         orientation: 'h',
-        text=new_y,
+        // text=new_y,
         marker: {
             color: blue,
             opacity: 0.9
-        },
-        hoverinfo: 'none'
+        }
       }];
 
     var layout = {
