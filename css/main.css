@@ -54,6 +54,11 @@ h1 {
 }
 
 .navbar-text p {
+    margin-top: 1rem;
+}
+
+.navbar-text p {
+    font-size: 1.8rem;
     color: #fff !important;
     opacity: 0.8;
 }
