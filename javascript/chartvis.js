@@ -235,10 +235,12 @@ function progressionChart() {
         },
         
         legend: {
-            x: 0.0,
-            y: 1.0,
-            bgcolor: 'rgba(255, 255, 255, 0)',
-            bordercolor: 'rgba(255, 255, 255, 0)',
+            x: 0.01,
+            y: 0.99,
+            bgcolor: '#FFF',
+            opacity: 0.7,
+            bordercolor: '#000',
+            borderwidth: 1,
             font: {
                 size: legendFontSize,
                 color: legendFontColor,
@@ -269,7 +271,7 @@ function casesPerDay() {
       var recovered = {
         x: x_dates,
         y: daily_recovered_cases,
-        name: 'Tervenenud',
+        name: 'Tervenenud"',
         marker: {color: green},
         type: 'bar'
       };
@@ -277,7 +279,7 @@ function casesPerDay() {
       var death = {
         x: x_dates,
         y: daily_death,
-        name: 'Hukkumine',
+        name: 'Hukkunud',
         marker: {color: grey},
         type: 'bar'
       };
@@ -310,13 +312,15 @@ function casesPerDay() {
         },
         
         legend: {
-          x: 0.0,
-          y: 1.0,
-          bgcolor: 'rgba(255, 255, 255, 0)',
-          bordercolor: 'rgba(255, 255, 255, 0)',
-          font: {
-              size: legendFontSize,
-              color: legendFontColor,
+            x: 0.01,
+            y: 0.99,
+            bgcolor: '#FFF',
+            opacity: 0.7,
+            bordercolor: '#000',
+            borderwidth: 1,
+            font: {
+               size: legendFontSize,
+               color: legendFontColor,
             }
           
         },
