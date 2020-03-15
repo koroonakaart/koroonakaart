@@ -14,12 +14,17 @@ Div names for now:
  * Colors for charts
  */
 const orange = "#FF7F0E";   // Active
-const blue = "#1F77B4";
+const blue = "#1F77B4";     // Region charts color
 const red = "#D62728";      // Confirmed
 const green = "#2CA02C";    // Recovered
 const grey = "#7F7F7F";     // Dead
 const gridColor =  "#E6E6E6"; // Color of grid lines
 
+/**
+ * Smoothing factor for curves. Doesn't seem to work at this moment?
+ */
+
+const smoothingConst = 1.3;
 /**
  * DATA SETUP
  */
@@ -69,6 +74,7 @@ function progressionChart() {
     var confirmed = {
         x: x_dates,
         y: cumulative_confirmed_cases,
+        type: "scatter",
         mode: 'lines',
         name: 'Kinnitatud juhud',
         marker: {
@@ -77,7 +83,9 @@ function progressionChart() {
             color: red,
             line: {
                 color: red,
-                width: 1
+                width: 1,
+                shape: 'spline', 
+                smoothing: smoothingConst
             }
         }
     };
@@ -85,6 +93,7 @@ function progressionChart() {
     var recovered = {
         x: x_dates,
         y: cumulative_recovered_cases,
+        type: "scatter",
         mode: 'lines',
         name: 'Taastunud',
         marker: {
@@ -92,8 +101,10 @@ function progressionChart() {
             //    size: 12,
                 color: green,
                 line: {
-                color: green,
-                width: 1
+                    color: green,
+                    width: 1,
+                    shape: 'spline', 
+                    smoothing: smoothingConst
                 }
             },
     }
@@ -101,13 +112,16 @@ function progressionChart() {
     var active = {
         x: x_dates,
         y: cumulative_active_cases,
+        type: "scatter",
         mode: 'lines',
         name: 'Aktiivsed',
         marker: {
                 color: orange,
                 line: {
-                color: orange,
-                width: 1
+                    color: orange,
+                    width: 1,
+                    shape: 'spline', 
+                    smoothing: smoothingConst
                 }
             },
     };
@@ -115,13 +129,16 @@ function progressionChart() {
     var death = {
         x: x_dates,
         y: cumulative_death_counts,
+        type: "scatter",
         mode: 'lines',
         name: 'Hukkunud',
         marker: {
-                color: red,
+                color: grey,
                 line: {
-                color: red,
-                width: 1
+                    color: grey,
+                    width: 1,
+                    shape: 'spline', 
+                    smoothing: smoothingConst
                 }
             },
     };
@@ -129,24 +146,27 @@ function progressionChart() {
     
     var data = [ confirmed, recovered, active, death ];
     
-    var layout = {xaxis: {tickfont: {
-        size: 14,
-        color: 'rgb(107, 107, 107)'
-      },
-        gridcolor: gridColor,
-    },
-    yaxis: {
-      title: 'Juhtumite arv',
-      titlefont: {
-        size: 16,
-        color: 'rgb(107, 107, 107)'
-      },
-      tickfont: {
-        size: 14,
-        color: 'rgb(107, 107, 107)'
-      },
-      gridcolor:gridColor,
-    }};
+    var layout = {        
+        xaxis: {
+            tickfont: {
+                size: 14,
+                color: 'rgb(107, 107, 107)'
+            },
+            gridcolor: gridColor,
+            },
+        yaxis: {
+            title: 'Juhtumite arv',
+            titlefont: {
+                size: 16,
+                color: 'rgb(107, 107, 107)'
+            },
+            tickfont: {
+                size: 14,
+            color: 'rgb(107, 107, 107)'
+            },
+        gridcolor:gridColor,
+        }
+    };
     
     Plotly.newPlot('case_graph', data, layout);
 
@@ -273,17 +293,17 @@ function regionChart(srt_region) {
         }
       }];
 
-      var layout = {
+    var layout = {
         xaxis: {
-                title: 'Juhtumite arv',
-                gridcolor: gridColor,
-            },
+            title: 'Juhtumite arv',
+            gridcolor: gridColor,
+        },
         yaxis: {
-            gridcolor: gridColor
+        
         }
-        };
+    };
       
-      Plotly.newPlot('region_graph', data, layout);
+    Plotly.newPlot('region_graph', data, layout);
 }
 
 
