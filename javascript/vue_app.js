@@ -60,7 +60,7 @@ const vue_app = new Vue({
                 'Võru maakond': 35782
             }
             let confirmed_percent;
-            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(6);
+            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(7);
             // if (this.current_place_name = 'Eesti') {
             //     confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(5);
             // } else {
