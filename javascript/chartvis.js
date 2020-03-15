@@ -103,7 +103,8 @@ const marginDailyCases = {
  * Smoothing factor for curves. TODO: Doesn't seem to work at this moment?
  */
 
-const smoothingConst = 1.3;
+// const smoothingConst = 1.3;
+const smoothingConst = 1;
 /**
  * DATA SETUP
  */
