@@ -120,15 +120,15 @@ const x_dates = ['2020-02-26','2020-02-27', '2020-02-28', '2020-02-29',
 /**
  * Total cumulative counts (running sum)
  */
-const cumulative_confirmed_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,115];
+const cumulative_confirmed_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,135];
 const cumulative_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
-const cumulative_active_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,114];
+const cumulative_active_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,134];
 const cumulative_death_counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
  * Daily counts
  */
-const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,6];
+const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,26];
 const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
 const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
@@ -137,13 +137,125 @@ const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
  */
 
 const sorted_region_data = [
-    ["Virumaa", 8],
     ["Tartumaa", 6],
+    ["Virumaa", 8],
     ["Võrumaa", 9],
     ["Pärnumaa", 13],
     ["Saaremaa", 37],
     ["Harjumaa", 62],
 ]
+
+/**
+ * tests done
+ */
+const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,464,584,843,971]
+const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128]
+
+
+/**
+ * Plots tests done line chart.
+ */
+function testsDoneCumulativeChart() {
+    var cumulative_tests = {
+        x: x_dates,
+        y: cumulative_tests_done,
+        type: "scatter",
+        mode: 'lines+markers',
+        //name: 'Teste tehtud',
+        marker: {
+            color: blue,
+            line: {
+                color: blue,
+                width: 1,
+                shape: 'spline',
+                smoothing: smoothingConst
+            },
+        }
+    };
+
+    var data = [ cumulative_tests ];
+
+    var layout = {
+
+        xaxis: {
+            tickfont: {
+                size: 14,
+                color: tickFontColor
+            },
+            gridcolor: gridColor,
+            ticks: 'outside',
+            zeroline: true,
+            tickformat: tickDateFormat,
+
+            },
+        yaxis: {
+            title: 'Testide arv',
+            titlefont: {
+                size: 16,
+                color: tickFontColor
+            },
+            tickfont: {
+                size: 14,
+                color: tickFontColor
+            },
+            showline: false,
+            gridcolor:gridColor,
+            rangemode: "tozero",
+        },
+        margin: marginLineChart
+    };
+
+    Plotly.newPlot('tests_graph', data, layout, plotConfig);
+
+};
+
+
+function testsDoneDailyChart() {
+    
+    var daily_tests = {
+        x: x_dates,
+        y: daily_tests_done,
+        type: "bar",
+        //mode: 'lines',
+        //name: 'Teste tehtud',
+        marker: {
+            color: blue
+        }
+    };
+    var data = [ daily_tests ];
+
+    var layout = {
+
+        xaxis: {
+            tickfont: {
+                size: 14,
+                color: tickFontColor
+            },
+            gridcolor: gridColor,
+            ticks: 'outside',
+            zeroline: true,
+            tickformat: tickDateFormat,
+
+            },
+        yaxis: {
+            title: 'Testide arv',
+            titlefont: {
+                size: 16,
+                color: tickFontColor
+            },
+            tickfont: {
+                size: 14,
+                color: tickFontColor
+            },
+            showline: false,
+            gridcolor:gridColor,
+            rangemode: "tozero",
+        },
+        margin: marginLineChart
+    };
+
+    Plotly.newPlot('daily_tests_graph', data, layout, plotConfig);
+}
 
 /**
  * Plots the progression as a line chart.
@@ -431,3 +543,5 @@ progressionChart();
 //pieChart();
 casesPerDay();
 regionChart(sorted_region_data);
+testsDoneCumulativeChart();
+testsDoneDailyChart();
