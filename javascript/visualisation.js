@@ -17,7 +17,7 @@ var path = d3.geoPath()
 
 function drawCounties() {
     // Colour
-    var population_domain = [0, 10, 20, 30, 40, 50];
+    var population_domain = [0, 5, 10, 25, 50, 100, 250, 500];
     // var population_domain = [0, 50, 250, 500, 1000, 5000];
     var population_colour = d3.scaleThreshold()
         .domain(population_domain)
@@ -45,7 +45,7 @@ function drawCounties() {
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "10", "20", "30", "40", "50"];
+    var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
     var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
 
     function ready(error, data) {
@@ -122,6 +122,7 @@ function drawCounties() {
             vue_app.current_place_in_treatment = parseInt(d.population,10).toLocaleString();
             vue_app.current_place_deaths = parseInt(d.population,10).toLocaleString();
             vue_app.current_place_recovered = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
 
         };
 
@@ -160,6 +161,7 @@ function drawCounties() {
         vue_app.current_place_in_treatment = parseInt('2').toLocaleString();
         vue_app.current_place_deaths = parseInt('0').toLocaleString();
         vue_app.current_place_recovered = parseInt('1').toLocaleString();
+        vue_app.current_place_population = parseInt('1317762').toLocaleString();
     }
 }
 
@@ -269,6 +271,7 @@ function drawMunicipalities() {
             vue_app.current_place_in_treatment = parseInt(d.population,10).toLocaleString();
             vue_app.current_place_deaths = parseInt(d.population,10).toLocaleString();
             vue_app.current_place_recovered = parseInt(d.population,10).toLocaleString();
+            vue_app.current_place_population = parseInt(d.population,10).toLocaleString();
         };
 
         if (active.node() === this) return reset();
@@ -301,11 +304,12 @@ function drawMunicipalities() {
         // Reset data values to country level
         // TODO: Don't hard-code any values here.
         vue_app.current_place_name = 'Eesti';
-        vue_app.current_place_confirmed = parseInt('1317762').toLocaleString();
+        vue_app.current_place_confirmed = parseInt('135').toLocaleString();
         vue_app.current_place_active = parseInt('134').toLocaleString();
         vue_app.current_place_in_treatment = parseInt('2').toLocaleString();
         vue_app.current_place_deaths = parseInt('0').toLocaleString();
-        vue_app.current_place_in_treatment = parseInt('2').toLocaleString()
+        vue_app.current_place_recovered = parseInt('1').toLocaleString();
+        vue_app.current_place_population = parseInt('1317762').toLocaleString();
     }
 }
 

@@ -127,7 +127,7 @@
 
                             <p><b>Haigusjuhud</b></p>
 
-                            <p>Kinnitatud: {{ current_place_confirmed }}<br>
+                            <p>Kinnitatud (% rahvaarvust): {{ current_place_confirmed }} ({{ current_place_confirmed_percent }})<br>
                             Aktiivsed: {{ current_place_active }}<br>
                             Haiglas: {{ current_place_in_treatment }}<br>
                             Hukkunud: {{ current_place_deaths }}<br>
@@ -135,12 +135,12 @@
 
                             <p><b>Testimised</b></p>
 
-                            <p>Teste tehtud: info puudub<br></p>
+                            <p>Teste tehtud: --<br></p>
                             <!-- Unique individuals tested: Ootame terviseamtei andmeid</p> -->
 
                             <p><b>Info rahvastiku kohta</b></p>
 
-                            <p>Rahvaarv: TODO<br>
+                            <p>Rahvaarv: {{ current_place_population }}<br>
                             </p>
                         </div>
                         <div class="card chart_card col-md-3">
