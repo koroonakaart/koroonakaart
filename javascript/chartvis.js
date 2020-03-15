@@ -41,13 +41,13 @@ const tickDateFormat = '%d. %b <br>%Y';
 /**
  * Localization: EN, RU, ET
  */
-const curentLocale = "et" // ru, or undefined? if not using
+const currentLocale = "et" // ru, or undefined? if not using
 
 
  const plotConfig = {
     modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", "toggleSpikelines"],
     displaylogo: false,
-    locale: curentLocale
+    locale: currentLocale
 }
 
 const plotConfigRegionChart = {
@@ -56,7 +56,7 @@ const plotConfigRegionChart = {
             "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d"
         ],
     displaylogo: false,
-    locale: curentLocale
+    locale: currentLocale
 
 }
 
