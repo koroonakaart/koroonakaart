@@ -308,7 +308,7 @@ function progressionChart() {
             direction: 'left',
             showactive: true,
             type: 'buttons',
-            x: 0.4,
+            x: 0.3,
             xanchor: 'left',
             y: 0.99,
             yanchor: 'top'
@@ -562,11 +562,12 @@ function regionChart(srt_region) {
         x: new_x,
         y: new_y,
         orientation: 'h',
-        // text=new_y,
+        text: new_y,
         marker: {
             color: blue,
             opacity: 0.9
-        }
+        },
+        hoverinfo: none
       }];
 
     var layout = {
