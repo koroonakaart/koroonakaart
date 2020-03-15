@@ -48,8 +48,23 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
-.navbar-text {
-    color: #fff;
+
+.navbar-brand {
+    margin-left: 5rem;
+}
+
+.navbar-text p {
+    margin-top: 1rem;
+}
+
+.navbar-text p {
+    font-size: 1.8rem;
+    color: #fff !important;
+    opacity: 0.8;
+}
+
+#language-selector {
+    margin-right: 6rem;
 }
 
 .bg-inverse {
