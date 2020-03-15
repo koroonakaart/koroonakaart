@@ -30,8 +30,11 @@ function drawCounties() {
 
     svg.append("rect")
         .attr("width", width)
-        .attr("height", height)
-        .on("click", clicked);
+        .attr("height", height);
+    // svg.append("rect")
+    //     .attr("width", width)
+    //     .attr("height", height)
+    //     .on("click", clicked);
 
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
