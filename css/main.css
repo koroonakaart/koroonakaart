@@ -58,6 +58,10 @@ h2 {
     margin-left: 5rem;
 }
 
+.navbar-text {
+    display: none;
+}
+
 .navbar-text p {
     margin-top: 1rem;
 }
@@ -249,4 +253,36 @@ a:hover {
 /* Hide elements until compiled by Vue.js */
 [v-cloak] {
     display: none;
+}
+
+
+
+/* Media queries */
+
+/* Small devices (landscape phones, 576px wide and up) */
+/* Nav menu is in header (i.e. not collapsed) from the breakpoint and wider */
+@media (min-width: 576px) {
+    .navbar-text {
+        display: inline-block;
+    }
+}
+
+/* Medium devices (tablets, 768px wide and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px wide and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px wide and up) */
+@media (min-width: 1200px) {
+}
+
+
+/* Print styles */
+@media print {
+    body {
+        background: #fff;
+    }
 }
