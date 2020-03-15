@@ -93,6 +93,10 @@ p, .nav-link {
     padding-right: 6rem;
 }
 
+#headline_row {
+    margin-top: 2rem;
+}
+
 .headline_number_card {
     text-align: center;
     border: none;
