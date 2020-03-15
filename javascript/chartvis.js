@@ -567,7 +567,7 @@ function regionChart(srt_region) {
             color: blue,
             opacity: 0.9
         },
-        hoverinfo: none
+        hoverinfo: 'none'
       }];
 
     var layout = {
