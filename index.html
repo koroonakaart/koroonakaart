@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-    <title>Koroonakaart</title>
+    <title>Koroonakaart — Statistika koroonaviiruse leviku kohta Eestis</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap/bootstrap-4.4.1/bootstrap.min.css">
     <!-- Styles -->
@@ -18,25 +18,22 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-locale-et-latest.js"></script>
     <script src="javascript/plotly-locale-et-modified.js"></script>
-
-    <title>Koroonaviirus Eestis</title>
-    <meta name="description" content="Koroonaviirus Eestis" />
-    <meta property="og:title" content="Eesti koroonakaart" />
-    <meta property="og:description" content="Koroonaviirus Eestis" />
-    <meta property="og:site_name" content="Koroonakaart" />
-    <meta property="og:locale" content="et_ET" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/corona-virus.png" />
-    <meta property="og:image:width" content="1920" />
-    <meta property="og:image:height" content="1928" />
-    <meta property="og:url" content="http://koroonakaart.ee/" />
-
-
-
     <!-- Vue.js -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.1/vue.js"></script>
     <!-- Web fonts -->
     <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
+
+    <!-- Meta data -->
+    <meta name="description" content="Statistika koroonaviiruse leviku kohta Eestis">
+    <meta property="og:title" content="Eesti koroonakaart">
+    <meta property="og:description" content="Koroonaviirus Eestis">
+    <meta property="og:site_name" content="Koroonakaart">
+    <meta property="og:locale" content="et_ET">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/images/corona-virus.png">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1928">
+    <meta property="og:url" content="http://koroonakaart.ee/">
 </head>
 <body>
     <div id="wrapper">
@@ -53,7 +50,7 @@
         </nav>
 
         <!-- Page content -->
-        <div class="container-fluid mt-2" id="content">
+        <div class="container-fluid mt-2" id="content" v-cloak>
 
             <div class="card col-md-8 mx-auto" id="data_warning">
                 <p><span style="font-size: 2.4rem; font-weight: 500; line-height: 1.5;">Hoiatus! Andmed on ebatäpsed. Lehte arendadakse aktiivselt.</span></p>
@@ -134,7 +131,7 @@
 
                             <p><b>Testimised</b></p>
 
-                            <p>Teste tehtud: --<br></p>
+                            <p>Teste tehtud: —<br></p>
                             <!-- Unique individuals tested: Ootame terviseamtei andmeid</p> -->
 
                             <p><b>Info rahvastiku kohta</b></p>
