@@ -1,6 +1,6 @@
 # Koroonakaart
 
-Statistics regarding the COVID-19 epidemic in Estonia. Live demo is available at [http://koroonakaart.ee/](http://koroonakaart.ee/).
+Statistics regarding the COVID-19 epidemic in Estonia. Live demo is available at [https://neuroactive.github.io/koroonakaart/](https://neuroactive.github.io/koroonakaart/).
 
 NB! This is a citizen-built app and is not affiliated with any government agency. 
 
