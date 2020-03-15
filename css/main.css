@@ -48,6 +48,9 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
+.navbar-text {
+    color: #fff;
+}
 
 .bg-inverse {
     background-color: #000 !important;
