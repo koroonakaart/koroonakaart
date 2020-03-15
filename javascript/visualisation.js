@@ -25,7 +25,7 @@ function drawCounties() {
     // Population data
     var prevalence_data = d3.map();
 
-    var svg = d3.select("svg.map_population");
+    var svg = d3.select("svg#map_prevalence");
 
     svg.append("rect")
         .attr("width", width)
@@ -167,7 +167,7 @@ function drawMunicipalities() {
     // Population data
     var prevalence_data = d3.map();
 
-    var svg = d3.select("svg.map_population");
+    var svg = d3.select("svg#map_prevalence");
 
     svg.append("rect")
         .attr("width", width)
