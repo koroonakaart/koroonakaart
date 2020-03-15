@@ -29,6 +29,30 @@ const vue_app = new Vue({
             }
         },
     },
+    computed: {
+        current_place_confirmed_percent() {
+            const population_by_place = {
+                'Eesti': 1328000,
+                'Harju maakond': 163497,
+                'Hiiu maakond': 9387,
+                'Ida-Viru maakond': 76519,
+                'Jõgeva maakond': 28734,
+                'Järva maakond': 30286,
+                'Lääne maakond': 20507,
+                'Lääne-Viru maakond': 59325,
+                'Põlva maakond': 25006,
+                'Pärnu maakond': 85938,
+                'Rapla maakond': 33311,
+                'Saare maakond': 33108,
+                'Tartu maakond': 152977,
+                'Valga maakond': 2837,
+                'Viljandi maakond': 46371,
+                'Võru maakond': 35782
+            }
+
+            return this.current_place_confirmed / population_by_place[this.current_place_name];
+        }
+    },
     mounted: function () {
         this.$nextTick(function () {
             // console.log(json);
