@@ -55,8 +55,12 @@ function drawCounties() {
         if (error) throw error; 
              
         // Debug
+        console.log('');
         console.log('data:');
         console.log(data);
+        console.log('prevalence_data:');
+        console.log(prevalence_data);
+        console.log('');
 
         // Load population data
         var counties = topojson.feature(data, {
