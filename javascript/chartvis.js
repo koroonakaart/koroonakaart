@@ -160,7 +160,7 @@ function testsDoneCumulativeChart() {
         x: x_dates,
         y: cumulative_tests_done,
         type: "scatter",
-        mode: 'lines',
+        mode: 'lines+markers',
         //name: 'Teste tehtud',
         marker: {
             color: blue,
@@ -169,7 +169,7 @@ function testsDoneCumulativeChart() {
                 width: 1,
                 shape: 'spline',
                 smoothing: smoothingConst
-            }
+            },
         }
     };
 
