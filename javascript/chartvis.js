@@ -24,15 +24,30 @@ const tickFontColor = "#444";    // Tick font color
 const legendFontColor = "#444";
 const legendFontSize = 14;
 
+const tickDateFormat = '%d %B <br>%Y';
+
+
+
+/**
+ * Plot configuration
+ */
 /**
  * Modebar buttons. Interactivity options to be removed.
  * -'2D', zoom2d, pan2d, select2d, lasso2d, zoomIn2d, zoomOut2d, autoScale2d, resetScale2d
  *   -'Geo', zoomInGeo, zoomOutGeo, resetGeo, hoverClosestGeo
  *   -'Other', hoverClosestGl2d, hoverClosestPie, toggleHover, resetViews, toImage, sendDataToCloud, toggleSpikelines, resetViewMapbox
  */
-const plotConfig = {
+
+/**
+ * Localization: EN, RU, ET
+ */
+const curentLocale = "et" // ru, or undefined? if not using
+
+
+ const plotConfig = {
     modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", "toggleSpikelines"],
-    displaylogo: false
+    displaylogo: false,
+    locale: curentLocale
 }
 
 const plotConfigRegionChart = {
@@ -40,9 +55,11 @@ const plotConfigRegionChart = {
             "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
             "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d"
         ],
-    displaylogo: false
+    displaylogo: false,
+    locale: curentLocale
 
 }
+
 
 
 // Change margins of plots
@@ -218,6 +235,8 @@ function progressionChart() {
             gridcolor: gridColor,
             ticks: 'outside',
             zeroline: true,
+            tickformat: tickDateFormat,
+            
             },
         yaxis: {
             title: 'Juhtumite arv',
@@ -296,6 +315,7 @@ function casesPerDay() {
             },
             gridcolor: gridColor,
             ticks: 'outside',
+            tickformat: tickDateFormat,
         },
 
         yaxis: {
