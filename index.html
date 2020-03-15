@@ -38,6 +38,14 @@
         <!-- Page content -->
         <div class="container-fluid mt-2" id="content">
 
+            <div class="card" style="border: 2px solid red">
+                <p>Andmed on ebatäpsed! Lehte arendadakse aktiivselt!</p>
+
+                <p>Allolev informatsioon põhineb Eesti Vabariigi Terviseameti andmetel, mida uuendatakse uute andmete saabumisel.</p>
+
+                <p><a href="https://www.terviseamet.ee/et/uuskoroonaviirus">Mis on koroonaviirus?</a></p>
+            </div>
+
             <!-- Navigation tabs -->
             <ul class="nav nav-tabs" style="padding-left: 45px">
                 <li class="nav-item">
@@ -92,30 +100,32 @@
                             </div>
                         </div>
                         <!-- Statistics for the selected region -->
-                        <div class="col-6" style="padding-left: 50px">
+                        <div class="col-md-3" style="padding-left: 50px">
                             <h1>{{ current_place_name }}</h1>
 
                             <p><b>Population:</b><br>
                             {{ current_place_population }}</p>
-
+                        </div>
+                        <div class="card chart_card col-md-3">
+                            <h2>Confirmed cases by county</h2>
+                            <div id="region_graph"></div>
                         </div>
                     </div>
 
                     <!-- Other charts -->
                     <div class="row">
                         <div class="card chart_card col-md-6">
+                            <h2>Cumulative cases</h2>
                             <div id="case_graph"></div>
                         </div>
                         <div class="card chart_card col-md-6">
+                            <h2>Daily cases</h2>
                             <div id="cases_day_graph"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="card chart_card col-md-3">
                             <div id="pie_graph"></div>
-                        </div>
-                        <div class="card chart_card col-md-3">
-                            <div id="region_graph"></div>
                         </div>
                     </div>
 
