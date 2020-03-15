@@ -76,7 +76,7 @@ function progressionChart() {
         y: cumulative_confirmed_cases,
         type: "scatter",
         mode: 'lines',
-        name: 'Kinnitatud juhud',
+        name: 'Kinnitatud haigusjuhud',
         marker: {
         //    color: 'rgb(164, 194, 244)',
         //    size: 12,
@@ -95,7 +95,7 @@ function progressionChart() {
         y: cumulative_recovered_cases,
         type: "scatter",
         mode: 'lines',
-        name: 'Taastunud',
+        name: 'Tervenenud',
         marker: {
             //    color: 'rgb(164, 194, 244)',
             //    size: 12,
@@ -162,16 +162,22 @@ function progressionChart() {
             },
             tickfont: {
                 size: 14,
-            color: 'rgb(107, 107, 107)'
+                color: 'rgb(107, 107, 107)'
             },
-        gridcolor:gridColor,
-        }
+            gridcolor:gridColor,
+        },
+        
+        legend: {
+            x: 0.0,
+            y: 1.0,
+            bgcolor: 'rgba(255, 255, 255, 0)',
+            bordercolor: 'rgba(255, 255, 255, 0)'
+          },
     };
     
     Plotly.newPlot('case_graph', data, layout);
 
 };
-
 
 
 /**
@@ -183,7 +189,7 @@ function casesPerDay() {
     var confirmed = {
         x: x_dates,
         y: daily_confirmed_cases,
-        name: 'Kinnitatud haigusjuhtumid',
+        name: 'Kinnitatud haigusjuhud',
         marker: {color: red},
         type: 'bar'
       };
@@ -191,7 +197,7 @@ function casesPerDay() {
       var recovered = {
         x: x_dates,
         y: daily_recovered_cases,
-        name: 'Taastumised',
+        name: 'Tervenenud',
         marker: {color: green},
         type: 'bar'
       };
@@ -225,8 +231,9 @@ function casesPerDay() {
           },
           gridcolor: gridColor,
         },
+        
         legend: {
-          x: 0,
+          x: 0.0,
           y: 1.0,
           bgcolor: 'rgba(255, 255, 255, 0)',
           bordercolor: 'rgba(255, 255, 255, 0)'
