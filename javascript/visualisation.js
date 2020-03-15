@@ -81,8 +81,18 @@ function drawCounties() {
             .attr("d", path)
             .attr("fill", function(d) {
                 return population_colour(d.population = prevalence_data.get(d.properties.MKOOD));
-            })
-            .on("click", clicked);
+            });
+        // g.append("g")
+        //     .attr("id", "counties")
+        //     .selectAll("path")
+        //     .data(counties.features)
+        //     .enter()
+        //     .append("path")
+        //     .attr("d", path)
+        //     .attr("fill", function(d) {
+        //         return population_colour(d.population = prevalence_data.get(d.properties.MKOOD));
+        //     })
+        //     .on("click", clicked);
 
         g.append("path")
             .datum(topojson.mesh(data, data.objects.maakond, function(a, b) { return a !== b; }))
