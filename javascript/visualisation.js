@@ -13,7 +13,9 @@ var projection = d3.geoMercator()
 // Path
 var path = d3.geoPath()
     .projection(projection);
-
+d3.csv("/koroonakaart/data/counties_dummy.csv"), function(corona) {
+  console.log(corona);
+}
 
 function drawCounties() {
     // Colour
