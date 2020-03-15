@@ -24,7 +24,7 @@ const tickFontColor = "#444";    // Tick font color
 const legendFontColor = "#444";
 const legendFontSize = 14;
 
-const tickDateFormat = '%d %B <br>%Y';
+const tickDateFormat = '%d. %b <br>%Y';
 
 
 
