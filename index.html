@@ -38,12 +38,12 @@
         <!-- Page content -->
         <div class="container-fluid mt-2" id="content">
 
-            <div class="card" style="border: 1px solid red; margin-left: 5rem; margin-right: 5rem; margin-bottom: 3rem; padding: 1rem;">
-                <p><span style="font-size: 2.4rem; font-weight: 500;">Hoiatus! Andmed on ebatäpsed. Lehte arendadakse aktiivselt.</span></p>
+            <div class="card col-md-6 mx-auto" style="border: 1px solid red; margin-left: 5rem; margin-right: 5rem; margin-bottom: 3rem; padding: 2rem;">
+                <p><span style="font-size: 2.4rem; font-weight: 500; line-height: 1">Hoiatus! Andmed on ebatäpsed. Lehte arendadakse aktiivselt.</span></p>
 
                 <p>Allolev informatsioon põhineb Eesti Vabariigi Terviseameti andmetel, mida uuendatakse uute andmete saabumisel.</p>
 
-                <p><a href="https://www.terviseamet.ee/et/uuskoroonaviirus">Mis on koroonaviirus?</a></p>
+                <p style="margin-bottom: 0"><a href="https://www.terviseamet.ee/et/uuskoroonaviirus">Mis on koroonaviirus?</a></p>
             </div>
 
             <!-- Navigation tabs -->
@@ -81,21 +81,23 @@
 
                     <div class="row">
                         <!-- Column containing map -->
-                        <div class="col-6" style="width:600px; padding-left: 20px; flex: none;">
-                            <!--Details-->
-                            <div style="padding-left: 35px">
-                                <label class="btn">
-                                    <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
-                                </label><br>
-                                <label class="btn">
-                                    <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
-                                </label>
-                            </div>
-                            <!-- Map -->
-                            <svg class="map_population" width="600" height="500"></svg>
-                            <div style="width: 250px; position: relative; top: -75px; left: 30px">
-                                <div style="margin-top: 25px">
-                                    <svg id="legend" style="height: 25px"></svg>
+                        <div class="col-6" style="padding-left: 20px;">
+                            <div style="width: 600px" class="mx-auto">
+                                <!--Details-->
+                                <div style="padding-left: 35px">
+                                    <label class="btn">
+                                        <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
+                                    </label><br>
+                                    <label class="btn">
+                                        <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
+                                    </label>
+                                </div>
+                                <!-- Map -->
+                                <svg class="map_population" width="600" height="500"></svg>
+                                <div style="width: 250px; position: relative; top: -75px; left: 30px">
+                                    <div style="margin-top: 25px">
+                                        <svg id="legend" style="height: 25px"></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
