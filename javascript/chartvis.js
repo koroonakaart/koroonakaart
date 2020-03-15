@@ -71,7 +71,7 @@ const marginBarChart = {
     l: 160,
     r: 50,
     b: 50,
-    t: 0,
+    t: 25,
     pad: 10
 }
 
