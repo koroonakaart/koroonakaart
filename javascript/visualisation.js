@@ -93,7 +93,7 @@ function drawCounties() {
             .attr("id", "legend");
 
         var legenditem = legend.selectAll(".legenditem")
-            .data(d3.range(6))
+            .data(d3.range(8))
             .enter()
             .append("g")
             .attr("class", "legenditem")
