@@ -41,13 +41,13 @@ const tickDateFormat = '%d. %b <br>%Y';
 /**
  * Localization: EN, RU, ET
  */
-const curentLocale = "et" // ru, or undefined? if not using
+const currentLocale = "et" // ru, or undefined? if not using
 
 
  const plotConfig = {
     modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", "toggleSpikelines"],
     displaylogo: false,
-    locale: curentLocale
+    locale: currentLocale
 }
 
 const plotConfigRegionChart = {
@@ -56,7 +56,7 @@ const plotConfigRegionChart = {
             "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d"
         ],
     displaylogo: false,
-    locale: curentLocale
+    locale: currentLocale
 
 }
 
@@ -104,6 +104,7 @@ const marginDailyCases = {
  */
 
 const smoothingConst = 1.3;
+
 /**
  * DATA SETUP
  */
@@ -137,6 +138,17 @@ const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
  */
 
 const sorted_region_data = [
+    ["Viljandi", 0],
+    ["Valgamaa", 0],
+    ["Raplamaa", 0],
+    ["Põlvamaa", 0],
+    // ["Lääne-Virumaa"],
+    ["Läänemaa", 0],
+    ["Jõgevamaa", 0],
+    ["Järvamaa", 0],
+    ["Hiiumaa", 0],
+
+    // ["Ida-Virumaa", 0],
     ["Tartumaa", 6],
     ["Virumaa", 8],
     ["Võrumaa", 9],
