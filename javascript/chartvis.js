@@ -312,8 +312,8 @@ function casesPerDay() {
         },
         
         legend: {
-            x: 0.01,
-            y: 0.99,
+            x: 0.05,
+            y: 0.90,
             bgcolor: '#FFF',
             opacity: 0.7,
             bordercolor: '#000',
