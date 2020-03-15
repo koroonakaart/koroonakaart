@@ -71,7 +71,7 @@ h2 {
     opacity: 0.8;
 }
 
-#language-selector {
+.navbar-text:last-of-type {
     margin-right: 5rem;
 }
 
