@@ -25,13 +25,41 @@ const legendFontColor = "#444";
 const legendFontSize = 14;
 
 // Change margins of plots
-const margins = {
-        l: 0,
-        r: 0,
-        b: 0,
-        t: 0,
-        pad: 0
-  }
+
+/**
+ * Region margins
+ */
+const marginBarChart = {
+    l: 160,
+    r: 0,
+    b: 50,
+    t: 0,
+    pad: 10
+}
+
+
+/**
+ * Progression margins
+ */
+const marginLineChart = {
+    l: 60,
+    r: 0,
+    b: 60,
+    t: 10,
+    pad: 0
+
+}
+/**
+ * Daily cases margins
+ */
+const marginDailyCases = {
+    l: 60,
+    r: 0,
+    b: 60,
+    t: 10,
+    pad: 0
+}
+
 
 /**
  * Smoothing factor for curves. TODO: Doesn't seem to work at this moment?
@@ -160,12 +188,15 @@ function progressionChart() {
     var data = [ confirmed, recovered, active, death ];
     
     var layout = {        
+        
         xaxis: {
             tickfont: {
                 size: 14,
                 color: tickFontColor
             },
             gridcolor: gridColor,
+            ticks: 'outside',
+            zeroline: true,
             },
         yaxis: {
             title: 'Juhtumite arv',
@@ -177,7 +208,9 @@ function progressionChart() {
                 size: 14,
                 color: tickFontColor
             },
+            showline: false,
             gridcolor:gridColor,
+            rangemode: "tozero",
         },
         
         legend: {
@@ -190,7 +223,7 @@ function progressionChart() {
                 color: legendFontColor,
               },
         },
-        margin: margins
+        margin: marginLineChart
     };
     
     Plotly.newPlot('case_graph', data, layout);
@@ -228,17 +261,20 @@ function casesPerDay() {
         type: 'bar'
       };
 
-      console.log(x_dates);
       
       var data = [confirmed, recovered, death];
       
       var layout = {
-        xaxis: {tickfont: {
-            size: 14,
-            color: tickFontColor,
-          },
-          gridcolor: gridColor,
+          
+        xaxis: {
+            tickfont: {
+                size: 14,
+                color: tickFontColor,
+            },
+            gridcolor: gridColor,
+            ticks: 'outside',
         },
+
         yaxis: {
           title: 'Juhtumite arv',
           titlefont: {
@@ -266,35 +302,13 @@ function casesPerDay() {
         barmode: 'group',
         bargap: 0.15,
         bargroupgap: 0.2,
-        // Change margins of plot
-        margin: margins
+        margin: marginDailyCases
 
       };
       
       Plotly.newPlot('cases_day_graph', data, layout);
 }
 
-
-/**
- * Plots the pie chart of active counts, deaths and recovered.
- */
-function pieChart() {
-    var data = [{
-        values: [115, 1, 0],
-        labels: ['Aktiivsed', 'Tervenenud', 'Hukkunud'],
-        marker: {
-            colors:  [orange, green, grey],
-        },
-        type: 'pie'
-      }];
-      
-
-      var layout = {
-      //    title: 'Show Edit in Chart Studio Button'
-      };
-      
-      Plotly.newPlot('pie_graph', data, layout);
-};
 
 /**
  * Plot for municipalities
@@ -337,13 +351,36 @@ function regionChart(srt_region) {
                 color: tickFontColor
             }
         },
-        margin: margins
+        margin: marginBarChart
     };
       
     Plotly.newPlot('region_graph', data, layout);
 }
 
 
+
+/**
+ * Plots the pie chart of active counts, deaths and recovered.
+ */
+/*
+function pieChart() {
+    var data = [{
+        values: [115, 1, 0],
+        labels: ['Aktiivsed', 'Tervenenud', 'Hukkunud'],
+        marker: {
+            colors:  [orange, green, grey],
+        },
+        type: 'pie'
+      }];
+      
+
+      var layout = {
+      //    title: 'Show Edit in Chart Studio Button'
+      };
+      
+      Plotly.newPlot('pie_graph', data, layout);
+};
+*/
 
 progressionChart();
 //pieChart();
