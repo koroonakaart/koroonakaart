@@ -541,7 +541,7 @@ function casesPerDay() {
 
 
 /**
- * Plot for municipalities
+ * Horizontal bar plot for cases by county
  */
 function regionChart(srt_region) {
 
@@ -562,10 +562,12 @@ function regionChart(srt_region) {
         x: new_x,
         y: new_y,
         orientation: 'h',
+        text=new_y,
         marker: {
             color: blue,
             opacity: 0.9
-        }
+        },
+        hoverinfo: 'none'
       }];
 
     var layout = {
