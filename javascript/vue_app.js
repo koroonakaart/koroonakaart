@@ -7,7 +7,7 @@ var current_place_recovered = 1;
 var current_place_population = 1317762;
 var zoomLevel = 'county';
 // TODO: Is there a way we can import this data without jQuery? Then we could drop jQuery.
-var json = $.getJSON({'url': "/data/topojson/population.json", 'async': false});
+var json = $.getJSON({'url': "/koroonakaart/data/topojson/population.json", 'async': false});
 
 
 // Initialize Vue app
@@ -59,8 +59,13 @@ const vue_app = new Vue({
                 'Viljandi maakond': 46371,
                 'Võru maakond': 35782
             }
+            // console.log('population_by_place: ' + population_by_place);
+            // console.log('this.current_place_confirmed: ' + this.current_place_confirmed);
+            // console.log('this.current_place_name: ' + this.current_place_name);
             let confirmed_percent;
-            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(6);
+            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100000) / 100000).toFixed(5);
+            // console.log('confirmed_percent: ' + confirmed_percent);
+            // console.log('');
             // if (this.current_place_name = 'Eesti') {
             //     confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(5);
             // } else {

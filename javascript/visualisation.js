@@ -17,7 +17,7 @@ var path = d3.geoPath()
 
 function drawCounties() {
     // Colour
-    var population_domain = [0, 10, 20, 30, 40, 50];
+    var population_domain = [0, 5, 10, 25, 50, 100, 250, 500];
     // var population_domain = [0, 50, 250, 500, 1000, 5000];
     var population_colour = d3.scaleThreshold()
         .domain(population_domain)
@@ -36,8 +36,8 @@ function drawCounties() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/data/topojson/counties.json")
-        .defer(d3.csv, "/data/counties_dummy.csv", function (d) {
+        .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
+        .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
             // Debug
             console.log(d);
             prevalence_data.set(d.id, +d['confirmed']);
@@ -45,8 +45,9 @@ function drawCounties() {
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "10", "20", "30", "40", "50"];
-    var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
+    var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
+    // var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
+    var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884","08306b"];
 
     function ready(error, data) {
         if (error) throw error;
@@ -186,8 +187,8 @@ function drawMunicipalities() {
     var g = svg.append("g");
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
-        .defer(d3.json, "/data/topojson/municipalities.json")
-        .defer(d3.csv, "/data/population_by_municipality.csv", function (d) {
+        .defer(d3.json, "/koroonakaart/data/topojson/municipalities.json")
+        .defer(d3.csv, "/koroonakaart/data/population_by_municipality.csv", function (d) {
             if (isNaN(d['pop_2018'])) {
                 prevalence_data.set(d.id, 0);
             } else {
@@ -198,7 +199,7 @@ function drawMunicipalities() {
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "1000", "5000", "10000", "20000", "50000", "100000", "500000"];
+    var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
     var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884","08306b"];
 
     // Callback function

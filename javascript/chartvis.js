@@ -261,6 +261,68 @@ function testsDoneDailyChart() {
  * Plots the progression as a line chart.
  */
 function progressionChart() {
+
+
+    /**
+     * Add buttons for log linear
+     */
+    const updatemenus=[
+        {
+            buttons: [
+                {
+                    args: [{
+                        yaxis: {
+                            type: "linear",
+                            autorange: true,
+                            rangemode: 'nonnegative',
+                        }}, 
+                        
+                    ],
+                    label: 'Lineaarne',
+                    method: 'relayout'
+                },
+                {
+                    args: [{
+                        yaxis: {
+                            type: 'log',
+                            rangemode: 'nonnegative',
+                            autorange: true,
+                        }},
+                    ],
+                    label:'Logaritmiline',
+                    method:'relayout'
+                }
+            ],
+            direction: 'left',
+            showactive: true,
+            type: 'buttons',
+            x: 0.3,
+            xanchor: 'left',
+            y: 0.99,
+            yanchor: 'top'
+        }
+    ]
+        /* 
+        list([
+        dict(active=1,
+             buttons=list([
+                dict(label='Log Scale',
+                     method='update',
+                     args=[{'visible': [True, True]},
+                           {'title': 'Log scale',
+                            'yaxis': {'type': 'log'}}]),
+                dict(label='Linear Scale',
+                     method='update',
+                     args=[{'visible': [True, False]},
+                           {'title': 'Linear scale',
+                            'yaxis': {'type': 'linear'}}])
+                ]),
+            )
+        ])
+        */
+
+
+
     var confirmed = {
         x: x_dates,
         y: cumulative_confirmed_cases,
@@ -337,7 +399,7 @@ function progressionChart() {
     var data = [ confirmed, recovered, active, death ];
 
     var layout = {
-
+        updatemenus: updatemenus,
         xaxis: {
             tickfont: {
                 size: 14,
