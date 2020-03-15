@@ -112,6 +112,15 @@ p, .nav-link {
     font-size: 6.6rem;
 }
 
+#data_warning {
+    border: 1px solid red;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding: 0rem;
+    padding-top: 0.6rem;
+    text-align: center;
+}
+
 .chart_card {
     border: none;
 }
