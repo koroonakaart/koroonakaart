@@ -63,7 +63,7 @@ const vue_app = new Vue({
             console.log('this.current_place_confirmed: ' + this.current_place_confirmed);
             console.log('this.current_place_name: ' + this.current_place_name);
             let confirmed_percent;
-            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 100) / 100).toFixed(7);
+            confirmed_percent = (Math.round(this.current_place_confirmed / population_by_place[this.current_place_name] * 1000000) / 1000000).toFixed(6);
             console.log('confirmed_percent: ' + confirmed_percent);
             console.log('');
             // if (this.current_place_name = 'Eesti') {
