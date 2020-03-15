@@ -308,7 +308,7 @@ function progressionChart() {
             direction: 'left',
             showactive: true,
             type: 'buttons',
-            x: 0.3,
+            x: 0.4,
             xanchor: 'left',
             y: 0.99,
             yanchor: 'top'
