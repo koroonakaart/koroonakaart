@@ -134,6 +134,14 @@ const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
 const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
+ * tests done
+ */
+const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,464,584,843,971,1133]
+const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162]
+
+
+
+/**
  * Region confirmed cases
  */
 
@@ -157,12 +165,6 @@ const sorted_region_data = [
     ["Saaremaa", 37],
     ["Harjumaa", 62],
 ]
-
-/**
- * tests done
- */
-const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,464,584,843,971]
-const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128]
 
 
 /**
