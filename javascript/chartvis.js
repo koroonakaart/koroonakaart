@@ -24,6 +24,14 @@ const tickFontColor = "#444";    // Tick font color
 const legendFontColor = "#444";
 const legendFontSize = 14;
 
+// Change margins of plots
+const margins = {
+        l: 0,
+        r: 0,
+        b: 0,
+        t: 0,
+        pad: 0
+  }
 
 /**
  * Smoothing factor for curves. TODO: Doesn't seem to work at this moment?
@@ -182,6 +190,7 @@ function progressionChart() {
                 color: legendFontColor,
               },
         },
+        margin: margins
     };
     
     Plotly.newPlot('case_graph', data, layout);
@@ -218,6 +227,8 @@ function casesPerDay() {
         marker: {color: grey},
         type: 'bar'
       };
+
+      console.log(x_dates);
       
       var data = [confirmed, recovered, death];
       
@@ -255,9 +266,9 @@ function casesPerDay() {
         barmode: 'group',
         bargap: 0.15,
         bargroupgap: 0.2,
-        grid: {
+        // Change margins of plot
+        margin: margins
 
-        }
       };
       
       Plotly.newPlot('cases_day_graph', data, layout);
@@ -325,7 +336,8 @@ function regionChart(srt_region) {
             tickfont: {
                 color: tickFontColor
             }
-        }
+        },
+        margin: margins
     };
       
     Plotly.newPlot('region_graph', data, layout);
