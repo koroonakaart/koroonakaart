@@ -23,10 +23,15 @@
     <!-- Web fonts -->
     <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
 
+<<<<<<< HEAD
     <!-- Meta data -->
     <meta name="description" content="Koroona viirus Eestis - Kinnitatud: 135 - Tervenenud: 1 - Hukkunud: 0" />
+=======
+    <title>Koroonaviirus Eestis</title>
+    <meta name="description" content="Koroonaviirus Eestis" />
+>>>>>>> a39326914d3055d5876e9bd1b2e62dbf59455cd5
     <meta property="og:title" content="Eesti koroonakaart" />
-    <meta property="og:description" content="Koroona viirus Eestis - Kinnitatud: 135 - Tervenenud: 1 - Hukkunud: 0" />
+    <meta property="og:description" content="Koroonaviirus Eestis" />
     <meta property="og:site_name" content="Koroonakaart" />
     <meta property="og:locale" content="et_ET" />
     <meta property="og:type" content="website" />
@@ -75,23 +80,23 @@
                         <!-- Headline numbers -->
                         <div class="card col-md-2 headline_number_card">
                             <p>Kinnitatud haigusjuhte<br>
-                            <span class="headline_number">135</span></p>
+                            <span class="headline_number">{{ overview_confirmed }}</span></p>
                         </div>
                         <div class="card col-md-2 headline_number_card">
                             <p>Aktiivseid haigusjuhte<br>
-                            <span class="headline_number">134</span></p>
+                            <span class="headline_number">{{ overview_active }}</span></p>
                         </div>
                         <div class="card col-md-2 headline_number_card">
                             <p>Hukkunud<br>
-                            <span class="headline_number">0</span></p>
+                            <span class="headline_number">{{ overview_deaths }}</span></p>
                         </div>
                         <div class="card col-md-2 headline_number_card">
                             <p>Tervenenud<br>
-                            <span class="headline_number">1 </span></p>
+                            <span class="headline_number">{{ overview_recovered  }} </span></p>
                         </div>
                         <div class="card col-md-2 headline_number_card">
                             <p>Tehtud teste<br>
-                            <span class="headline_number">971</span></p>
+                            <span class="headline_number">{{ overview_tests_done }}</span></p>
                         </div>
                     </div>
 

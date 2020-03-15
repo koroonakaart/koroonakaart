@@ -1,3 +1,14 @@
+
+/**
+ * Add constants for overview statistics
+ */
+var overview_confirmed = 135;
+var overview_active = 134;
+var overview_in_treatment = 2;
+var overview_deaths = 0;
+var overview_recovered = 1;
+var overview_tests_done = 971;
+
 var current_place_name = 'Eesti';
 var current_place_confirmed = 135;
 var current_place_active = 134;
@@ -14,6 +25,12 @@ var json = $.getJSON({'url': "/koroonakaart/data/topojson/population.json", 'asy
 const vue_app = new Vue({
     el: '#content',
     data: {
+        overview_confirmed: overview_confirmed.toLocaleString(),
+        overview_active: overview_active.toLocaleString(),
+        overview_in_treatment: overview_in_treatment.toLocaleString(),
+        overview_deaths: overview_deaths.toLocaleString(),
+        overview_recovered: overview_recovered.toLocaleString(),
+        overview_tests_done: overview_tests_done.toLocaleString(),
         current_place_name: current_place_name,
         current_place_confirmed: current_place_confirmed.toLocaleString(),
         current_place_active: current_place_active.toLocaleString(),
