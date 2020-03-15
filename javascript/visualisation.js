@@ -148,8 +148,8 @@ function drawCounties() {
             .attr("transform", "");
     
         // Reset data values to country level
-        vue_app.current_place_name = 'Estonia';
         // TODO: Don't hard-code any values here.
+        vue_app.current_place_name = 'Eesti';
         vue_app.current_place_confirmed = parseInt('71').toLocaleString();
     }
 }
@@ -286,8 +286,8 @@ function drawMunicipalities() {
             .attr("transform", "");
 
         // Reset data values to country level
-        vue_app.current_place_name = 'Estonia';
         // TODO: Don't hard-code any values here.
+        vue_app.current_place_name = 'Eesti';
         vue_app.current_place_confirmed = parseInt('1317762').toLocaleString();
     }
 }
