@@ -242,9 +242,9 @@ a {
   transition: background 0.1s cubic-bezier(.33,.66,.66,1);
 }
 
-a:hover {
+/*a:hover {
   background: #aeb3b0;
-}
+}*/
 
 #credits {
     padding-left: 30px;
