@@ -8,3 +8,9 @@ NB! All data related to county infections has been removed due to data quality i
 
 # Work in progress
 This is a work in progress and was built in ~24 hours as part of the Hack the Crisis hackathon put on by Garage 48 in Estonia. It is developed by @neuroactive, @PuuraJ, and @Keeganmcbride. Data is crowdsourced from press releases and media reports. Please feel free to fork and/or PR. We hope to keep this up-to-date and improve over time. All suggestions and ideas are welcome. 
+
+This application is now supported and run by Open Knowledge Estonia, [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/). For more information please contact:  
+Maarja-Leena Saar -- maarjaleena@okee.ee  
+Keegan McBride -- keegan.mcbride@taltech.ee 
+
+
