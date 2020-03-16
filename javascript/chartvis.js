@@ -45,9 +45,15 @@ const currentLocale = "et" // ru, or undefined? if not using
 
 
  const plotConfig = {
-    modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud", "toggleSpikelines"],
+    modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
+            "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
+            "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
+            "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
+            "hoverCompareCartesian"
+        ],
     displaylogo: false,
-    locale: currentLocale
+    locale: currentLocale,
+    responsive: true
 }
 
 const plotConfigRegionChart = {
@@ -70,6 +76,12 @@ const plotConfigRegionChart = {
  * Region margins
  */
 const marginBarChart = {
+  modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
+          "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
+          "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
+          "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
+          "hoverCompareCartesian"
+      ],
     l: 160,
     r: 0,
     b: 50,
@@ -77,11 +89,19 @@ const marginBarChart = {
     pad: 10
 }
 
+const
+
 
 /**
  * Progression margins
  */
 const marginLineChart = {
+  modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
+          "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
+          "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
+          "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
+          "hoverCompareCartesian"
+      ],
     l: 60,
     r: 0,
     b: 60,
@@ -93,6 +113,12 @@ const marginLineChart = {
  * Daily cases margins
  */
 const marginDailyCases = {
+  modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
+          "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
+          "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
+          "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
+          "hoverCompareCartesian"
+      ],
     l: 60,
     r: 0,
     b: 60,
