@@ -76,11 +76,11 @@ const plotConfigRegionChart = {
  * Region margins
  */
 const marginBarChart = {
-    l: 190,
-    r: 10,
+    l: 125,
+    r: 0,
     b: 50,
     t: 0,
-    pad: 10
+    pad: 5
 }
 
 
@@ -155,8 +155,8 @@ const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 4
 
 const sorted_region_data = [
   ["Info puudulik", 4],
-  ["Elukohandmed puuduvad", 4],
-      ["Viljandimaa", 2],
+  ["Elukoht teadmata", 4],
+    ["Viljandimaa", 2],
     ["Valgamaa", 1],
     ["Raplamaa", 2],
     ["Põlvamaa", 3],
@@ -573,7 +573,7 @@ function regionChart(srt_region) {
         y: new_y,
         orientation: 'h',
         text: new_x,
-        textposition: 'outside',
+        textposition: 'auto',
         marker: {
             color: blue,
             opacity: 0.9
