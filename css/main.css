@@ -239,7 +239,8 @@ footer p {
 }
 
 a {
-  transition: background 0.1s cubic-bezier(.33,.66,.66,1);
+    transition: background 0.1s cubic-bezier(.33,.66,.66,1);
+    color: #0055b1;
 }
 
 /*a:hover {
