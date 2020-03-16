@@ -123,23 +123,23 @@ const x_dates = ['2020-02-26','2020-02-27', '2020-02-28', '2020-02-29',
 /**
  * Total cumulative counts (running sum)
  */
-const cumulative_confirmed_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,135,171];
-const cumulative_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1];
-const cumulative_active_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,134,170];
-const cumulative_death_counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const cumulative_confirmed_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,135,171,205];
+const cumulative_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
+const cumulative_active_cases = [0,1,1,1,1,1,2,2,5,10,10,10,10,13,17,41,109,134,170,204];
+const cumulative_death_counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
  * Daily counts
  */
-const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,26,36];
-const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
-const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,26,36,34];
+const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1];
+const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
  * tests done
  */
-const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,464,584,843,971,1133]
-const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162]
+const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,464,584,843,971,1133,1387]
+const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162, 254]
 
 
 
