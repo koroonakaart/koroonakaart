@@ -40,7 +40,7 @@ function drawCounties() {
     // Load TopoJSON maps and data asynchronously.
     d3.queue()
         .defer(d3.json, "/koroonakaart/data/topojson/counties.json")
-        .defer(d3.csv, "/koroonakaart/data/counties_dummy.csv", function (d) {
+        .defer(d3.csv, "/koroonakaart/data/counties.csv", function (d) {
             // Debug
             console.log(d);
             prevalence_data.set(d.id, +d['confirmed']);
