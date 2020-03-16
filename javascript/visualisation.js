@@ -50,7 +50,7 @@ function drawCounties() {
     // Define legend settings
     var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
     // var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
-    var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884","08306b"];
+    var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884", "#08306b"];
 
     function ready(error, data) {
         if (error) throw error;
@@ -205,7 +205,7 @@ function drawMunicipalities() {
 
     // Define legend settings
     var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
-    var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884","08306b"];
+    var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884", "#08306b"];
 
     // Callback function
     function ready(error, data) {
