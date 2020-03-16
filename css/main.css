@@ -63,10 +63,7 @@ h2 {
 
 .navbar-text p {
     margin-top: 1rem;
-}
-
-.navbar-text p {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     color: #fff !important;
     opacity: 0.8;
 }
@@ -275,6 +272,9 @@ a {
 
 /* Large devices (desktops, 992px wide and up) */
 @media (min-width: 992px) {
+    .navbar-text p {
+        font-size: 1.7rem;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px wide and up) */
