@@ -132,7 +132,7 @@ const cumulative_death_counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
  * Daily counts
  */
 const daily_confirmed_cases = [0,1,0,0,0,0,1,0,3,5,0,0,0,3,4,24,68,26,36,34];
-const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1];
+const daily_recovered_cases = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0];
 const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 /**
