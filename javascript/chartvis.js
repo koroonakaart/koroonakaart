@@ -76,12 +76,6 @@ const plotConfigRegionChart = {
  * Region margins
  */
 const marginBarChart = {
-  modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
-          "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
-          "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
-          "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
-          "hoverCompareCartesian"
-      ],
     l: 160,
     r: 0,
     b: 50,
@@ -94,12 +88,6 @@ const marginBarChart = {
  * Progression margins
  */
 const marginLineChart = {
-  modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
-          "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
-          "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
-          "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
-          "hoverCompareCartesian"
-      ],
     l: 60,
     r: 0,
     b: 60,
@@ -111,12 +99,6 @@ const marginLineChart = {
  * Daily cases margins
  */
 const marginDailyCases = {
-  modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
-          "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
-          "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
-          "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
-          "hoverCompareCartesian"
-      ],
     l: 60,
     r: 0,
     b: 60,
@@ -172,24 +154,21 @@ const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 4
  */
 
 const sorted_region_data = [
-    ["Info puudub", 36],
-    ["Viljandi", 0],
-    ["Valgamaa", 0],
-    ["Raplamaa", 0],
-    ["Põlvamaa", 0],
-    // ["Lääne-Virumaa"],
+    ["Viljandimaa", 2],
+    ["Valgamaa", 1],
+    ["Raplamaa", 2],
+    ["Põlvamaa", 3],
+    ["Lääne-Virumaa", 0],
     ["Läänemaa", 0],
-    ["Jõgevamaa", 0],
-    ["Järvamaa", 0],
-    ["Hiiumaa", 0],
-
-    // ["Ida-Virumaa", 0],
-    ["Tartumaa", 6],
-    ["Virumaa", 8],
-    ["Võrumaa", 9],
-    ["Pärnumaa", 13],
-    ["Saaremaa", 37],
-    ["Harjumaa", 62],
+    ["Jõgevamaa", 1],
+    ["Järvamaa", 1],
+    ["Hiiumaa", 1],
+    ["Ida-Virumaa", 4],
+    ["Tartumaa", 12],
+    ["Võrumaa", 25],
+    ["Pärnumaa", 15],
+    ["Saaremaa", 57],
+    ["Harjumaa", 73],
 ]
 
 
@@ -650,6 +629,6 @@ function pieChart() {
 progressionChart();
 //pieChart();
 casesPerDay();
-// regionChart(sorted_region_data);
+regionChart(sorted_region_data);
 testsDoneCumulativeChart();
 testsDoneDailyChart();

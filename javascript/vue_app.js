@@ -10,12 +10,7 @@ var overview_recovered = 1;
 var overview_tests_done = 1387;
 
 var current_place_name = 'Eesti';
-var current_place_confirmed = 171;
-var current_place_active = 170;
-var current_place_in_treatment = 2;
-var current_place_deaths = 0;
-var current_place_recovered = 1;
-var current_place_population = 1317762;
+var current_place_confirmed = 205;
 var zoomLevel = 'county';
 // TODO: Is there a way we can import this data without jQuery? Then we could drop jQuery.
 var json = $.getJSON({'url': "/koroonakaart/data/topojson/population.json", 'async': false});
@@ -33,11 +28,6 @@ const vue_app = new Vue({
         overview_tests_done: overview_tests_done.toLocaleString('et'),
         current_place_name: current_place_name,
         current_place_confirmed: current_place_confirmed.toLocaleString('et'),
-        current_place_active: current_place_active.toLocaleString('et'),
-        current_place_in_treatment: current_place_in_treatment.toLocaleString('et'),
-        current_place_deaths: current_place_deaths.toLocaleString('et'),
-        current_place_recovered: current_place_recovered.toLocaleString('et'),
-        current_place_population: current_place_population.toLocaleString('et'),
         zoomLevel: zoomLevel
     },
     methods: {
