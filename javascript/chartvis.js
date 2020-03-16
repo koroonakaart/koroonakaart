@@ -76,8 +76,8 @@ const plotConfigRegionChart = {
  * Region margins
  */
 const marginBarChart = {
-    l: 160,
-    r: 0,
+    l: 190,
+    r: 10,
     b: 50,
     t: 0,
     pad: 10
