@@ -287,3 +287,7 @@ a:hover {
         background: #fff;
     }
 }
+
+.js-plotly-plot .plotly .modebar{
+    left: 40%;
+}

@@ -53,7 +53,9 @@ const currentLocale = "et" // ru, or undefined? if not using
 const plotConfigRegionChart = {
     modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
             "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
-            "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d"
+            "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
+            "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian", 
+            "hoverCompareCartesian"
         ],
     displaylogo: false,
     locale: currentLocale
@@ -580,13 +582,15 @@ function regionChart(srt_region) {
             gridcolor: gridColor,
             tickfont: {
                 color: tickFontColor
-            }
+            },
+            fixedrange: true,
         },
         yaxis: {
             tickfont: {
                 color: tickFontColor,
                 size: 14
-            }
+            },
+            fixedrange: true,
         },
         margin: marginBarChart
     };
