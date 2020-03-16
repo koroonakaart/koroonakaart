@@ -167,8 +167,8 @@ const sorted_region_data = [
     ["Elukoht teadmata", 4],
     ["Ida-Virumaa", 4],
     ["Tartumaa", 12],
-    ["Võrumaa", 25],
     ["Pärnumaa", 15],
+    ["Võrumaa", 25],
     ["Saaremaa", 57],
     ["Harjumaa", 73],
 ]
