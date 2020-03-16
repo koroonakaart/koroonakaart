@@ -133,7 +133,7 @@ function drawCounties() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.MNIMI;
-            vue_app.current_place_confirmed = parseInt(d.properties.confirmed,10).toLocaleString('et');
+            vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString('et');
 
         };
 
@@ -272,7 +272,7 @@ function drawMunicipalities() {
         if (typeof d !== 'undefined') {
             console.log(d.properties.MNIMI);
             vue_app.current_place_name = d.properties.ONIMI;
-            vue_app.current_place_confirmed = parseInt(d.properties.confirmed,10).toLocaleString('et');
+            vue_app.current_place_confirmed = parseInt(d.population,10).toLocaleString('et');
         };
 
         if (active.node() === this) return reset();

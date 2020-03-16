@@ -111,15 +111,15 @@
 <div class="col-6" style="padding-left: 20px;">
 <div style="width: 600px" class="mx-auto">
 <!--Details-->
-<div id="map_prevalence_zoom_level_selector">
+<!-- <div id="map_prevalence_zoom_level_selector">
 <label class="btn">
     <input type="radio" name="options" @change="changeMap()" v-model="zoomLevel" value="county"> Maakond
 </label><br>
-<!-- <label class="btn">
+<label class="btn">
     <input type="radio" name="options"  @change="changeMap()" v-model="zoomLevel" value="municipality"> Omavalitsus
-</label> -->
+</label>
 </div>
-<!-- Map -->
+ --><!-- Map -->
 <svg id="map_prevalence" width="600" height="500"></svg>
 <div id="map_prevalence_legend">
 <div style="margin-top: 25px">
@@ -135,10 +135,10 @@
 <p><b>Haigusjuhud</b></p>
 
 <p>Kinnitatud (% rahvaarvust): {{ current_place_confirmed }} ({{ current_place_confirmed_percent }})<br>
-Aktiivsed: -- <br>
-Haiglaravil: -- <br>
-Hukkunud: -- <br>
-Tervenenud: -- </p>
+Aktiivsed: info puudub <br>
+Haiglaravil: info puudub <br>
+Hukkunud: info puudub <br>
+Tervenenud: info puudub </p>
 
 <!-- <p><b>Testimised</b></p>
 <p>Teste tehtud Eestis: {{ overview_tests_done }}<br></p> -->
