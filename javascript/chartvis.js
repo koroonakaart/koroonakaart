@@ -89,8 +89,6 @@ const marginBarChart = {
     pad: 10
 }
 
-const
-
 
 /**
  * Progression margins
