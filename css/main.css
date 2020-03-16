@@ -66,12 +66,12 @@ h2 {
 }
 
 .navbar-text p {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #fff !important;
     opacity: 0.8;
 }
 
-#language-selector {
+.navbar-text:last-of-type {
     margin-right: 5rem;
 }
 
@@ -176,9 +176,11 @@ rect {
 
 }
 
-path {
+/* TODO: Enable pointer cursor once interactivity is restored to the map */
+/*path {
     cursor: pointer;
 }
+*/
 
 .hidden {
     display: none;
@@ -284,4 +286,8 @@ a:hover {
     body {
         background: #fff;
     }
+}
+
+.js-plotly-plot .plotly .modebar{
+    left: 40%;
 }
