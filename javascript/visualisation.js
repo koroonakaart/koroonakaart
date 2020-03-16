@@ -17,7 +17,7 @@ var path = d3.geoPath()
 
 function drawCounties() {
     // Colour
-    var population_domain = [0, 5, 10, 25, 50, 100, 250, 500];
+    var population_domain = [0, 1, 5, 10, 25, 50, 100, 250];
     // var population_domain = [0, 50, 250, 500, 1000, 5000];
     var population_colour = d3.scaleThreshold()
         .domain(population_domain)
@@ -48,7 +48,7 @@ function drawCounties() {
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
+    var legendText = ["0", "1", "5", "10", "25", "50", "100", "250"];
     // var legendColors = ["#C6DBEF","#9ecae1", "#63afd7", "#2171b5", "#08519c", "#08306b"];
     var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884", "#08306b"];
 
@@ -204,7 +204,7 @@ function drawMunicipalities() {
         .await(ready);
 
     // Define legend settings
-    var legendText = ["0", "5", "10", "25", "50", "100", "250", "500"];
+    var legendText = ["0", "1", "5", "10", "25", "50", "100", "250"];
     var legendColors = ["#9ecae1", "#63afd7", "#4ea2d9", "#4292c6", "#2171b5", "#08519c", "#1f4884", "#08306b"];
 
     // Callback function
