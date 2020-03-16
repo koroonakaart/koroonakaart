@@ -54,7 +54,7 @@ const plotConfigRegionChart = {
     modeBarButtonsToRemove: ['lasso2d', "sendDataToCloud",
             "toggleSpikelines", "zoomInGeo", "zoomOutGeo", "resetGeo", "select2d",
             "hoverClosestPie", "zoom2d", "zoomIn2d", "zoomOut2d", "hoverClosestGeo", "hoverClosestGl2d",
-            "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian", 
+            "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
             "hoverCompareCartesian"
         ],
     displaylogo: false,
@@ -228,7 +228,7 @@ function testsDoneCumulativeChart() {
 
 
 function testsDoneDailyChart() {
-    
+
     var daily_tests = {
         x: x_dates,
         y: daily_tests_done,
@@ -292,8 +292,8 @@ function progressionChart() {
                             type: "linear",
                             autorange: true,
                             rangemode: 'nonnegative',
-                        }}, 
-                        
+                        }},
+
                     ],
                     label: 'Lineaarne',
                     method: 'relayout'
@@ -319,7 +319,7 @@ function progressionChart() {
             yanchor: 'top'
         }
     ]
-        /* 
+        /*
         list([
         dict(active=1,
              buttons=list([
@@ -626,6 +626,6 @@ function pieChart() {
 progressionChart();
 //pieChart();
 casesPerDay();
-regionChart(sorted_region_data);
+// regionChart(sorted_region_data);
 testsDoneCumulativeChart();
 testsDoneDailyChart();
