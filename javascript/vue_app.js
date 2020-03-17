@@ -2,15 +2,15 @@
 /**
  * Add constants for overview statistics
  */
-var overview_confirmed = 205;
-var overview_active = 204;
+var overview_confirmed = 225;
+var overview_active = 224;
 var overview_in_treatment = 2;
 var overview_deaths = 0;
 var overview_recovered = 1;
-var overview_tests_done = 1387;
+var overview_tests_done = 1625;
 
 var current_place_name = 'Eesti';
-var current_place_confirmed = 205;
+var current_place_confirmed = 225;
 var zoomLevel = 'county';
 // TODO: Is there a way we can import this data without jQuery? Then we could drop jQuery.
 var json = $.getJSON({'url': "/koroonakaart/data/topojson/population.json", 'async': false});

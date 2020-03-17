@@ -167,7 +167,7 @@ function drawCounties() {
         // Reset data values to country level
         // TODO: Don't hard-code any values here.
         vue_app.current_place_name = 'Eesti';
-        vue_app.current_place_confirmed = parseInt('205').toLocaleString('et');
+        vue_app.current_place_confirmed = parseInt('225').toLocaleString('et');
     }
 }
 
@@ -305,7 +305,7 @@ function drawMunicipalities() {
         // Reset data values to country level
         // TODO: Don't hard-code any values here.
         vue_app.current_place_name = 'Eesti';
-        vue_app.current_place_confirmed = parseInt('205').toLocaleString();
+        vue_app.current_place_confirmed = parseInt('225').toLocaleString();
     }
 }
 
