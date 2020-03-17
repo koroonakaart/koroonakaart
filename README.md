@@ -1,5 +1,7 @@
 # Koroonakaart
 
+Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart)
+
 Statistics regarding the COVID-19 epidemic in Estonia. Live demo is available at [koroonakaart.ee](http://koroonakaart.ee/).
 
 NB! This is a citizen-built app and is not affiliated with any government agency. 
