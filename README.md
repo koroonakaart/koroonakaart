@@ -18,8 +18,11 @@ It is all voluntary work and has no funding.
 You have a proposal what to do or you can help to develop a solution? Take a look here > https://github.com/okestonia/koroonakaart/issues
 
 Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) opened separate bank account to receive support for infrastructure and core maintance. We will publish all supporters and keep costs transparent.
+
 MTÜ Open Knowledge Estonia EE607700771004696794 
 
 For more information please contact:  
+
 Keegan McBride (PO of koroonakaart.ee) ⁠— keegan.mcbride@taltech.ee
-Maarja-Leena Saar (board memmber of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee  
+
+Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee  
