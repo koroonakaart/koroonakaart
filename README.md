@@ -8,9 +8,18 @@ NB! This is a citizen-built app and is not affiliated with any government agency
 
 NB! All data related to county infections has been removed due to data quality issues. This will be re added if/when data is provided by Terviseamet. 
 
-# Work in progress
+# Who we are?
+## How team formed @ [Hack the Crisis] (https://www.facebook.com/events/204692110602347/) and current maintenance
 This is a work in progress and was built in ~24 hours as part of the Hack the Crisis hackathon put on by Garage 48 in Estonia. It is developed and supported by @neuroactive, @PuuraJ, @Keeganmcbride and Sven Illing. Data is crowdsourced from press releases and media reports. Please feel free to fork and/or PR. We hope to keep this up-to-date and improve over time. All suggestions and ideas are welcome. 
 
-This application is now supported and run by Open Knowledge Estonia, [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/). For more information please contact:  
-Maarja-Leena Saar ⁠— maarjaleena@okee.ee  
-Keegan McBride ⁠— keegan.mcbride@taltech.ee
+# How to contribute?
+It is all voluntary work and has no funding.
+
+You have a proposal what to do or you can help to develop a solution? Take a look here > https://github.com/okestonia/koroonakaart/issues
+
+Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) opened separate bank account to receive support for infrastructure and core maintance. We will publish all supporters and keep costs transparent.
+MTÜ Open Knowledge Estonia EE607700771004696794 
+
+For more information please contact:  
+Keegan McBride (PO of koroonakaart.ee) ⁠— keegan.mcbride@taltech.ee
+Maarja-Leena Saar (board memmber of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee  
