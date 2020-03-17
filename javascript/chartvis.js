@@ -154,8 +154,9 @@ const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 4
  */
 
 const sorted_region_data = [
-  ["Info puudulik", 24],
+  ["Info puudulik", 4],
   ["Elukoht teadmata", 4],
+  ["teadmata", 20],
     ["Lääne-Virumaa", 0],
     ["Läänemaa", 0],
     ["Valgamaa", 1],
