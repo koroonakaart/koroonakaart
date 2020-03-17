@@ -147,7 +147,6 @@ const daily_death = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,464,584,843,971,1133,1387,1625]
 const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162, 254, 238]
 
-const daily_confirmed_cases_percentage = daily_tests_done.map((daily_total, i) => (daily_confirmed_cases[i]*100/daily_total).toFixed(2));
 
 
 /**
@@ -239,27 +238,14 @@ function testsDoneDailyChart() {
     var daily_tests = {
         x: x_dates,
         y: daily_tests_done,
-        //type: "bar",
-        type: "scatter",
-        mode: 'lines',
-        yaxis: 'y2',
+        type: "bar",
         //mode: 'lines',
-        name: 'Testide arv',
+        //name: 'Teste tehtud',
         marker: {
             color: blue
         }
     };
-    var percentage_tests = {
-        x: x_dates,
-        y: daily_confirmed_cases_percentage,
-        type: "bar",
-        //mode: 'lines',
-        name: 'Protsent',
-        marker: {
-            color: red
-        }
-    };
-    var data = [ daily_tests , percentage_tests];
+    var data = [ daily_tests ];
 
     var layout = {
 
@@ -274,7 +260,7 @@ function testsDoneDailyChart() {
             tickformat: tickDateFormat,
 
             },
-        yaxis2: {
+        yaxis: {
             title: 'Testide arv',
             titlefont: {
                 size: 16,
@@ -287,38 +273,8 @@ function testsDoneDailyChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
-            anchor: 'x',
-            overlaying: 'y',
-            side: 'left'
         },
-        yaxis: {
-            title: '',
-            titlefont: {
-                size: 16,
-                color: tickFontColor
-            },
-            tickfont: {
-                size: 14,
-                color: tickFontColor
-            },
-            showline: false,
-            showgrid:false,
-            rangemode: "tozero",
-            side: 'right'
-        },
-        legend: {
-            x: 0.01,
-            y: 0.99,
-            bgcolor: '#FFF',
-            opacity: 0.7,
-            bordercolor: '#000',
-            borderwidth: 1,
-            font: {
-                size: legendFontSize,
-                color: legendFontColor,
-              },
-        },
-        margin: marginLineChart,
+        margin: marginLineChart
     };
 
     Plotly.newPlot('daily_tests_graph', data, layout, plotConfig);
