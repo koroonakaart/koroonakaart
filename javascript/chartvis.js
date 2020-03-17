@@ -156,7 +156,7 @@ const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 4
 const sorted_region_data = [
   ["Info puudulik", 4],
   ["Elukoht teadmata", 4],
-  ["teadmata", 20],
+  // ["Teadmata", 0],
     ["Lääne-Virumaa", 0],
     ["Läänemaa", 0],
     ["Valgamaa", 1],
@@ -166,12 +166,12 @@ const sorted_region_data = [
     ["Viljandimaa", 2],
     ["Raplamaa", 2],
     ["Põlvamaa", 3],
-    ["Ida-Virumaa", 4],
+    ["Ida-Virumaa", 5],
     ["Tartumaa", 12],
-    ["Pärnumaa", 15],
-    ["Võrumaa", 25],
+    ["Pärnumaa", 19],
+    ["Võrumaa", 26],
     ["Saaremaa", 57],
-    ["Harjumaa", 73],
+    ["Harjumaa", 87],
 ]
 
 
