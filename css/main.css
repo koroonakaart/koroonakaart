@@ -41,7 +41,8 @@ h2 {
 }
 
 .navbar-brand {
-    margin-left: 5rem;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: 0.6px;
@@ -271,6 +272,10 @@ a {
 /* Small devices (landscape phones, 576px wide and up) */
 /* Nav menu is in header (i.e. not collapsed) from the breakpoint and wider */
 @media (min-width: 576px) {
+    .navbar-brand {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
     .navbar-text#last_updated {
         display: inline-block;
     }
