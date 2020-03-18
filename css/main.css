@@ -90,10 +90,6 @@ p, .nav-link {
     margin-top: 0 !important;
 }
 
-#disclaimer_headline {
-    font-size: 1.8rem;
-}
-
 .tab-content {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -121,16 +117,15 @@ p, .nav-link {
 
 #disclaimer {
     border: 1px solid red;
-    margin-left: 2rem !important;
-    margin-right: 2rem !important;
     padding: 1.5rem;
     text-align: center;
     margin-bottom: 2.8rem;
+    width: 90%;
     max-width: 600px;
 }
 
 #disclaimer_headline {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     line-height: 1.5;
 }
@@ -278,10 +273,6 @@ a {
 @media (min-width: 576px) {
     .navbar-text#last_updated {
         display: inline-block;
-    }
-    #disclaimer {
-        margin-left: auto !important;
-        margin-right: auto !important;
     }
 }
 
