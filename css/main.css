@@ -280,8 +280,8 @@ a {
         display: inline-block;
     }
     #disclaimer {
-        margin-left: unset;
-        margin-right: unset;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
