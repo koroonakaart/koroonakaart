@@ -48,6 +48,26 @@
       gtag('config', 'UA-86124786-3');
     </script>
 
+<!-- Responsive map styling -->
+<style scoped>
+    #map_prevalence {
+        width: 60vw; 
+        height: 60vh;
+    }
+
+    #legend {
+        height: 25px; 
+        width:100%;
+    }
+
+    @media (max-width: 600px) {
+        #map_prevalence {
+        width: 90vw; 
+        height: 50vh;
+        }
+    }
+    </style>
+
 </head>
 <body>
     <div id="wrapper">
@@ -118,7 +138,7 @@
                     <div class="row" style="margin-bottom: 1rem">
 <!-- Column containing map -->
 <div class="col-12 col-xl-6">
-<div style="width: 600px" class="mx-auto">
+<div>
 <!--Details-->
 <!-- <div id="map_prevalence_zoom_level_selector">
 <label class="btn">
@@ -129,10 +149,10 @@
 </label>
 </div>
  --><!-- Map -->
-<svg id="map_prevalence" width="600" height="500"></svg>
+<svg id="map_prevalence"></svg>
 <div id="map_prevalence_legend">
 <div style="margin-top: 25px">
-    <svg id="legend" style="height: 25px"></svg>
+    <svg id="legend"></svg>
 </div>
 </div>
 </div>
