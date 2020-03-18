@@ -96,7 +96,7 @@ p, .nav-link {
 
 #headline_row {
     margin-top: 2rem;
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
 }
 
 .headline_number_card {
@@ -305,6 +305,10 @@ a {
     .tab-content {
         padding-left: 6rem;
         padding-right: 6rem;
+    }
+
+    #headline_row {
+        margin-bottom: 0;
     }
 }
 
