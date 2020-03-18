@@ -44,8 +44,9 @@ h2 {
     margin-left: 5rem;
     font-size: 2.6rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.6px;
     opacity: 0.95;
+    padding-bottom: 7px
 }
 
 #navbar_title_left {
