@@ -146,7 +146,7 @@ function drawCounties() {
 
     legenditem
       .append("text")
-      .attr("x", width - 600)
+      .attr("x", width - 640)
       .attr("y", 20)
       .style("text-anchor", "right")
       .text(function(d, i) {
