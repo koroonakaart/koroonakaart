@@ -290,6 +290,10 @@ a {
         padding-left: 4rem;
         padding-right: 4rem;
     }
+
+    p, .nav-link {
+        font-size: 1.7rem;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px wide and up) */
@@ -305,6 +309,10 @@ a {
     .tab-content {
         padding-left: 6rem;
         padding-right: 6rem;
+    }
+
+    p, .nav-link {
+        font-size: 1.8rem;
     }
 
     #headline_row {
