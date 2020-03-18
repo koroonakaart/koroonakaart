@@ -322,6 +322,10 @@ a {
         font-size: 1.8rem;
     }
 
+    #disclaimer {
+        max-width: 1100px;
+    }
+
     #disclaimer_headline {
         font-size: 2rem;
     }
