@@ -51,6 +51,7 @@ const currentLocale = "et" // ru, or undefined? if not using
             "zoom2d", "pan2d", "toggleHover", "autoScale2d", "resetViewMapbox", "resetAxes", "hoverClosestCartesian",
             "hoverCompareCartesian"
         ],
+    modeBar
     displaylogo: false,
     locale: currentLocale,
     responsive: true
@@ -560,7 +561,7 @@ function ageChart() {
     x: age_groups,
     y: count_age,
     name: "vanus",
-    marker: {color: blue},
+    marker: {color: orange},
     type: 'bar'
   };
 
