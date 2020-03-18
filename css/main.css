@@ -272,6 +272,12 @@ a {
 
 /* Medium devices (tablets, 768px wide and up) */
 @media (min-width: 768px) {
+    #chart_cumulative_cases, #chart_cumulative_tests {
+        padding-right: 3rem;
+    }
+    #chart_cases_by_day, #chart_tests_by_day {
+        padding-left: 3rem;
+    }
 }
 
 /* Large devices (desktops, 992px wide and up) */
