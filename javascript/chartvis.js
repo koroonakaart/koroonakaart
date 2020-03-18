@@ -148,6 +148,10 @@ const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,
 const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162, 254, 238,395]
 
 
+const age_groups = ['0 - 4', '5 - 9', '10 - 14', '15 - 19', '20 - 24',
+'25 - 29', '30 - 34', '35 - 39', '40 - 44', '45 - 49', '50 - 54', '55 - 59', '60 - 64', '65+', 'teadmata']
+const count_age = [2,1,7,6,8,13,31,40,31,38,38,14,16,12,1]
+
 
 /**
  * Region confirmed cases
@@ -551,6 +555,54 @@ function casesPerDay() {
 }
 
 
+function ageChart() {
+  var ages = {
+    x: age_groups,
+    y: count_age,
+    name: "vanus",
+    marker: {color: blue},
+    type: 'bar'
+  };
+
+var data = [ ages ];
+
+  var layout = {
+
+      xaxis: {
+          tickfont: {
+              size: 14,
+              color: tickFontColor
+          },
+          gridcolor: gridColor,
+          ticks: 'outside',
+          zeroline: true,
+          tickformat: tickDateFormat,
+
+          },
+      yaxis: {
+          title: 'Testide arv',
+          titlefont: {
+              size: 16,
+              color: tickFontColor
+          },
+          tickfont: {
+              size: 14,
+              color: tickFontColor
+          },
+          showline: false,
+          gridcolor:gridColor,
+          rangemode: "tozero",
+      },
+      margin: marginLineChart
+  };
+
+  Plotly.newPlot('age_graph', data, layout, plotConfig);
+
+}
+
+
+
+
 /**
  * Horizontal bar plot for cases by county
  */
@@ -635,3 +687,4 @@ casesPerDay();
 regionChart(sorted_region_data);
 testsDoneCumulativeChart();
 testsDoneDailyChart();
+ageChart();
