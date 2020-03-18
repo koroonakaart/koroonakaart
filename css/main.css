@@ -289,10 +289,6 @@ a {
         font-size: 1.7rem;
     }
 
-    #regional_statistics {
-        padding-left: 50px
-    }
-
     #chart_cumulative_cases, #chart_cumulative_tests {
         padding-right: 3rem;
     }
@@ -322,6 +318,10 @@ a {
 
     #headline_row {
         margin-bottom: 1rem;
+    }
+
+    #regional_statistics {
+        padding-left: 50px
     }
 }
 
