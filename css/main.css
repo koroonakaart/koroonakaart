@@ -31,7 +31,8 @@ h2 {
 
 .navbar {
     padding: 0;
-    height: 57px;
+    /*height: 57px;*/
+    height: 80px;
 }
 
 #navbar {
@@ -41,8 +42,7 @@ h2 {
 }
 
 .navbar-brand {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 2rem;
     font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: 0.6px;
@@ -60,7 +60,7 @@ h2 {
 }
 
 .navbar-text {
-    display: none;
+    display: inline-block;
 }
 
 .navbar-text p {
@@ -70,8 +70,8 @@ h2 {
     opacity: 0.9;
 }
 
-.navbar-text:last-of-type {
-    margin-right: 5rem;
+.navbar-text#last_updated {
+    margin-right: 2rem;
 }
 
 .bg-inverse {
@@ -87,7 +87,8 @@ p, .nav-link {
     background: #f8f8f8;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 87px;
+    /*padding-top: 87px;*/
+    padding-top: 110px;
     margin-top: 0 !important;
 }
 
@@ -277,7 +278,7 @@ a {
         margin-right: 0;
     }
     .navbar-text#last_updated {
-        display: inline-block;
+        margin-right: 5rem;
     }
 }
 
