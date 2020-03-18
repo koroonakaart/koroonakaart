@@ -53,7 +53,8 @@ const currentLocale = "et" // ru, or undefined? if not using
         ],
     displaylogo: false,
     locale: currentLocale,
-    responsive: true
+    responsive: true,
+    displayModeBar: true
 }
 
 const plotConfigRegionChart = {
