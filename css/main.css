@@ -274,7 +274,7 @@ a {
 @media (min-width: 576px) {
     .navbar-brand {
         margin-left: 5rem;
-        margin-right: 5rem;
+        margin-right: 0;
     }
     .navbar-text#last_updated {
         display: inline-block;
