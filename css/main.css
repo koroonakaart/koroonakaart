@@ -89,6 +89,10 @@ p, .nav-link {
     margin-top: 0 !important;
 }
 
+#disclaimer_headline {
+    font-size: 1.8rem;
+}
+
 .tab-content {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -114,7 +118,7 @@ p, .nav-link {
     font-size: 6.6rem;
 }
 
-#data_warning {
+#disclaimer {
     border: 1px solid red;
     margin-left: 5rem;
     margin-right: 5rem;
@@ -122,6 +126,12 @@ p, .nav-link {
     padding-top: 0.6rem;
     text-align: center;
     margin-bottom: 2.8rem;
+}
+
+#disclaimer_headline {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .chart_card {
@@ -305,6 +315,10 @@ a {
 
     .navbar-text p {
         font-size: 1.8rem;
+    }
+
+    #disclaimer_headline {
+        font-size: 2rem;
     }
 
     .tab-content {
