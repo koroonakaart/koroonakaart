@@ -121,12 +121,12 @@ p, .nav-link {
 
 #disclaimer {
     border: 1px solid red;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    padding: 0rem;
-    padding-top: 0.6rem;
+    margin-left: 2rem !important;
+    margin-right: 2rem !important;
+    padding: 1.5rem;
     text-align: center;
     margin-bottom: 2.8rem;
+    max-width: 600px;
 }
 
 #disclaimer_headline {
