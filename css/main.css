@@ -279,6 +279,10 @@ a {
     .navbar-text#last_updated {
         display: inline-block;
     }
+    #disclaimer {
+        margin-left: unset;
+        margin-right: unset;
+    }
 }
 
 /* Medium devices (tablets, 768px wide and up) */
