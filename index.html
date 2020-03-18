@@ -8,7 +8,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/main.css">
     <!-- Set viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <!-- D3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
@@ -117,7 +117,7 @@
 
                     <div class="row" style="margin-bottom: 1rem">
 <!-- Column containing map -->
-<div class="col col-xl-6" style="padding-left: 20px;">
+<div class="col-12 col-xl-6" style="padding-left: 20px;">
 <div style="width: 600px" class="mx-auto">
 <!--Details-->
 <!-- <div id="map_prevalence_zoom_level_selector">
@@ -138,7 +138,7 @@
 </div>
 </div>
 <!-- Statistics for the selected region -->
-<div class="col-6 col-xl-3" id="regional_statistics">
+<div class="col-12 col-sm-6 col-xl-3" id="regional_statistics">
 <h1>{{ current_place_name }}</h1>
 
 <p><b>Haigusjuhud</b></p>
@@ -159,7 +159,7 @@ Tervenenud: info puudub  -->
 <p>Rahvaarv: {{ current_place_population }}<br> -->
 </p>
 </div>
-<div class="card chart_card col-6 col-xl-3">
+<div class="card chart_card col-12 col-sm-6 col-xl-3">
 <h2>Kinnitatud haigusjuhud maakonniti</h2>
 <div id="region_graph"></div>
 </div>
