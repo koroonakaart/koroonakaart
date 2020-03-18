@@ -42,6 +42,12 @@ const tickDateFormat = '%d. %b <br>%Y';
  * Localization: EN, RU, ET
  */
 const currentLocale = "et" // ru, or undefined? if not using
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+var static = 'staticPlot: true';
+} else {
+var static = 'staticPlot: false';
+
+}
 
 
  const plotConfig = {
@@ -54,7 +60,8 @@ const currentLocale = "et" // ru, or undefined? if not using
     displaylogo: false,
     locale: currentLocale,
     responsive: true,
-    displayModeBar: true
+    displayModeBar: true,
+    static
 }
 
 const plotConfigRegionChart = {
