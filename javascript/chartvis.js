@@ -206,7 +206,7 @@ function testsDoneCumulativeChart() {
 
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -222,7 +222,7 @@ function testsDoneCumulativeChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             showline: false,
@@ -255,7 +255,7 @@ function testsDoneDailyChart() {
 
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -271,7 +271,7 @@ function testsDoneDailyChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             showline: false,
@@ -429,7 +429,7 @@ function progressionChart() {
         updatemenus: updatemenus,
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -445,7 +445,7 @@ function progressionChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             showline: false,
@@ -510,7 +510,7 @@ function casesPerDay() {
 
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor,
             },
             gridcolor: gridColor,
@@ -525,7 +525,7 @@ function casesPerDay() {
             color: tickFontColor
           },
           tickfont: {
-            size: 14,
+            size: 10,
             color: tickFontColor
           },
           gridcolor: gridColor,
@@ -570,7 +570,7 @@ var data = [ ages ];
 
       xaxis: {
           tickfont: {
-              size: 14,
+              size: 10,
               color: tickFontColor
           },
           gridcolor: gridColor,
@@ -586,7 +586,7 @@ var data = [ ages ];
               color: tickFontColor
           },
           tickfont: {
-              size: 14,
+              size: 10,
               color: tickFontColor
           },
           showline: false,
@@ -646,7 +646,7 @@ function regionChart(srt_region) {
         yaxis: {
             tickfont: {
                 color: tickFontColor,
-                size: 14
+                size: 10
             },
             fixedrange: true,
         },
