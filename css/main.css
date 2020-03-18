@@ -31,7 +31,6 @@ h2 {
 
 .navbar {
     padding: 0;
-    /*height: 57px;*/
     height: 80px;
 }
 
@@ -70,7 +69,7 @@ h2 {
     opacity: 0.9;
 }
 
-.navbar-text#last_updated {
+#last_updated {
     margin-right: 2rem;
 }
 
@@ -87,7 +86,6 @@ p, .nav-link {
     background: #f8f8f8;
     padding-left: 0;
     padding-right: 0;
-    /*padding-top: 87px;*/
     padding-top: 110px;
     margin-top: 0 !important;
 }
@@ -274,16 +272,33 @@ a {
 /* Nav menu is in header (i.e. not collapsed) from the breakpoint and wider */
 @media (min-width: 576px) {
     .navbar-brand {
-        margin-left: 5rem;
+        margin-left: 3rem;
         margin-right: 0;
     }
     .navbar-text#last_updated {
-        margin-right: 5rem;
+        margin-right: 3rem;
     }
 }
 
 /* Medium devices (tablets, 768px wide and up) */
 @media (min-width: 768px) {
+    .navbar {
+        height: 57px;
+    }
+    .navbar-brand {
+        margin-left: 5rem;
+    }
+    #last_updated {
+        margin-right: 5rem;
+    }
+
+    #last_updated_break {
+        display: none;
+    }
+
+    #content {
+        padding-top: 87px;
+    }
 }
 
 /* Large devices (desktops, 992px wide and up) */
