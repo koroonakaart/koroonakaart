@@ -96,11 +96,13 @@ p, .nav-link {
 
 #headline_row {
     margin-top: 2rem;
+    margin-bottom: 0rem;
 }
 
 .headline_number_card {
     text-align: center;
     border: none;
+    margin-bottom: 2rem;
 }
 
 .headline_number_card p {
