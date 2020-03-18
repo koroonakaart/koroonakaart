@@ -288,6 +288,11 @@ a {
     .navbar-brand {
         margin-left: 5rem;
     }
+
+    .navbar-text p {
+        font-size: 1.8rem;
+    }
+
     #last_updated {
         margin-right: 5rem;
     }
@@ -303,10 +308,6 @@ a {
 
 /* Large devices (desktops, 992px wide and up) */
 @media (min-width: 992px) {
-    .navbar-text p {
-        font-size: 1.7rem;
-    }
-
     .tab-content {
         padding-left: 4rem;
         padding-right: 4rem;
@@ -326,14 +327,6 @@ a {
 
 /* Extra large devices (large desktops, 1200px wide and up) */
 @media (min-width: 1200px) {
-    .navbar-text {
-        display: inline-block;
-    }
-
-    .navbar-text p {
-        font-size: 1.8rem;
-    }
-
     #disclaimer {
         max-width: 1100px;
     }
