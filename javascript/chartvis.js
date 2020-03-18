@@ -148,16 +148,20 @@ const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,
 const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162, 254, 238,395]
 
 
+const age_groups = ['0 - 4', '5 - 9', '10 - 14', '15 - 19', '20 - 24',
+'25 - 29', '30 - 34', '35 - 39', '40 - 44', '45 - 49', '50 - 54', '55 - 59', '60 - 64', '65+', 'teadmata']
+const count_age = [2,1,7,6,8,13,31,40,31,38,38,14,16,12,1]
+
 
 /**
  * Region confirmed cases
  */
 
 const sorted_region_data = [
-  ["Info puudulik", 4],
-  ["Elukoht teadmata", 4],
-   ["Teadmata", 33],
-    ["Lääne-Virumaa", 0],
+  ["Info puudulik", 10],
+//  ["Elukoht teadmata", 4],
+  // ["Teadmata", 33],
+    ["Lääne-Virumaa", 1],
     ["Läänemaa", 0],
     ["Valgamaa", 1],
     ["Jõgevamaa", 1],
@@ -167,11 +171,11 @@ const sorted_region_data = [
     ["Raplamaa", 2],
     ["Põlvamaa", 3],
     ["Ida-Virumaa", 5],
-    ["Tartumaa", 12],
-    ["Pärnumaa", 19],
+    ["Tartumaa", 13],
+    ["Pärnumaa", 21],
     ["Võrumaa", 26],
-    ["Saaremaa", 57],
-    ["Harjumaa", 87],
+    ["Saaremaa", 70],
+    ["Harjumaa", 101],
 ]
 
 
@@ -202,7 +206,7 @@ function testsDoneCumulativeChart() {
 
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -218,7 +222,7 @@ function testsDoneCumulativeChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             showline: false,
@@ -251,7 +255,7 @@ function testsDoneDailyChart() {
 
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -267,7 +271,7 @@ function testsDoneDailyChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             showline: false,
@@ -425,7 +429,7 @@ function progressionChart() {
         updatemenus: updatemenus,
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -441,7 +445,7 @@ function progressionChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor
             },
             showline: false,
@@ -506,7 +510,7 @@ function casesPerDay() {
 
         xaxis: {
             tickfont: {
-                size: 14,
+                size: 10,
                 color: tickFontColor,
             },
             gridcolor: gridColor,
@@ -521,7 +525,7 @@ function casesPerDay() {
             color: tickFontColor
           },
           tickfont: {
-            size: 14,
+            size: 10,
             color: tickFontColor
           },
           gridcolor: gridColor,
@@ -549,6 +553,54 @@ function casesPerDay() {
 
       Plotly.newPlot('cases_day_graph', data, layout, plotConfig);
 }
+
+
+function ageChart() {
+  var ages = {
+    x: age_groups,
+    y: count_age,
+    name: "vanus",
+    marker: {color: blue},
+    type: 'bar'
+  };
+
+var data = [ ages ];
+
+  var layout = {
+
+      xaxis: {
+          tickfont: {
+              size: 10,
+              color: tickFontColor
+          },
+          gridcolor: gridColor,
+          ticks: 'outside',
+          zeroline: true,
+          tickformat: tickDateFormat,
+
+          },
+      yaxis: {
+          title: 'Juhtumite arv',
+          titlefont: {
+              size: 16,
+              color: tickFontColor
+          },
+          tickfont: {
+              size: 10,
+              color: tickFontColor
+          },
+          showline: false,
+          gridcolor:gridColor,
+          rangemode: "tozero",
+      },
+      margin: marginLineChart
+  };
+
+  Plotly.newPlot('age_graph', data, layout, plotConfig);
+
+}
+
+
 
 
 /**
@@ -594,7 +646,7 @@ function regionChart(srt_region) {
         yaxis: {
             tickfont: {
                 color: tickFontColor,
-                size: 14
+                size: 10
             },
             fixedrange: true,
         },
@@ -635,3 +687,4 @@ casesPerDay();
 regionChart(sorted_region_data);
 testsDoneCumulativeChart();
 testsDoneDailyChart();
+ageChart();

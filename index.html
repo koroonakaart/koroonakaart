@@ -77,7 +77,7 @@
                 <span id="navbar_title_left">Koroona</span><span id="navbar_title_right">kaart</span>
             </span>
             <span class="navbar-text" id="last_updated">
-                <p>Uuendatud: <span id="last_updated_break"><br></span>18. märtsil 2020 kell 10:30</p>
+                <p>Uuendatud: <span id="last_updated_break"><br></span>18. märtsil 2020 kell 18:30</p>
             </span>
                 <!-- TODO: Enable translations in Russian and English -->
 <!--                 <span class="navbar-text" id="language-selector">
@@ -199,11 +199,15 @@ Tervenenud: info puudub  -->
                     </div>
                     <!-- Daily tests -->
                     <div class="row">
-                        <div class="card chart_card col-lg-6" id="chart_cumulative_tests">
+                        <div class="card chart_card col-lg-4" id="age_graph_total">
+                            <h2>Positiivsete testide vanuseline jaotus</h2>
+                            <div id="age_graph"></div>
+                        </div>
+                        <div class="card chart_card col-lg-4" id="chart_cumulative_tests">
                             <h2>Kumulatiivsed testid</h2>
                             <div id="tests_graph"></div>
                         </div>
-                        <div class="card chart_card col-lg-6" id="chart_tests_by_day">
+                        <div class="card chart_card col-lg-4" id="chart_tests_by_day">
                             <h2>Teste päevas</h2>
                             <div id="daily_tests_graph"></div>
                         </div>
