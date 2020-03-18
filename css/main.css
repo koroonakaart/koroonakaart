@@ -65,7 +65,7 @@ h2 {
     margin-top: 1rem;
     font-size: 1.6rem;
     color: #fff !important;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .navbar-text:last-of-type {
@@ -279,6 +279,9 @@ a {
 
 /* Extra large devices (large desktops, 1200px wide and up) */
 @media (min-width: 1200px) {
+    .navbar-text p {
+        font-size: 1.8rem;
+    }
 }
 
 
