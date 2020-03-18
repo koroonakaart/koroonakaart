@@ -580,7 +580,7 @@ var data = [ ages ];
 
           },
       yaxis: {
-          title: 'Testide arv',
+          title: 'Juhtumite arv',
           titlefont: {
               size: 16,
               color: tickFontColor
