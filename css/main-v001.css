@@ -231,6 +231,11 @@ path {
     fill: #ff69b4 !important;
 }
 
+.modebar-container {
+  width: 0% !important;
+}
+
+
 footer {
     /* position: absolute; */
     bottom: 0;
