@@ -90,8 +90,8 @@ p, .nav-link {
 }
 
 .tab-content {
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 #headline_row {
@@ -279,6 +279,11 @@ a {
     .navbar-text p {
         font-size: 1.7rem;
     }
+
+    .tab-content {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px wide and up) */
@@ -289,6 +294,11 @@ a {
 
     .navbar-text p {
         font-size: 1.8rem;
+    }
+
+    .tab-content {
+        padding-left: 6rem;
+        padding-right: 6rem;
     }
 }
 
