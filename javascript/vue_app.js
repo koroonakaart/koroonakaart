@@ -2,15 +2,15 @@
 /**
  * Add constants for overview statistics
  */
-var overview_confirmed = 258;
-var overview_active = 257;
+var overview_confirmed = 267;
+var overview_active = 266;
 var overview_in_treatment = 3;
 var overview_deaths = 0;
 var overview_recovered = 1;
-var overview_tests_done = 2020;
+var overview_tests_done = 2259;
 
 var current_place_name = 'Eesti';
-var current_place_confirmed = 258;
+var current_place_confirmed = 267;
 var zoomLevel = 'county';
 // TODO: Is there a way we can import this data without jQuery? Then we could drop jQuery.
 var json = $.getJSON({'url': "/data/topojson/population.json", 'async': false});
