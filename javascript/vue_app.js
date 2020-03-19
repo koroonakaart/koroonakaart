@@ -4,7 +4,7 @@
  */
 var overview_confirmed = 267;
 var overview_active = 266;
-var overview_in_treatment = 10;
+var overview_in_treatment = 8;
 var overview_deaths = 0;
 var overview_recovered = 1;
 var overview_tests_done = 2259;
