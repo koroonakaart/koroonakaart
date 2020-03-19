@@ -152,7 +152,7 @@ const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 4
 
 const age_groups = ['0 - 4', '5 - 9', '10 - 14', '15 - 19', '20 - 24',
 '25 - 29', '30 - 34', '35 - 39', '40 - 44', '45 - 49', '50 - 54', '55 - 59', '60 - 64', '65+', 'teadmata']
-const count_age = [2,1,7,6,8,13,31,40,31,38,38,14,16,12,1]
+const count_age = [2,1,8,6,8,13,32,41,33,39,38,16,16,13,1]
 
 
 /**
@@ -160,9 +160,8 @@ const count_age = [2,1,7,6,8,13,31,40,31,38,38,14,16,12,1]
  */
 
 const sorted_region_data = [
-  ["Info puudulik", 19],
-//  ["Elukoht teadmata", 4],
-  // ["Teadmata", 33],
+  ["Info puudulik", 10],
+
     ["Läänemaa", 0],
     ["Lääne-Virumaa", 1],
     ["Valgamaa", 1],
@@ -173,11 +172,11 @@ const sorted_region_data = [
     ["Raplamaa", 2],
     ["Põlvamaa", 3],
     ["Ida-Virumaa", 5],
-    ["Tartumaa", 13],
-    ["Pärnumaa", 21],
-    ["Võrumaa", 26],
-    ["Saaremaa", 70],
-    ["Harjumaa", 101],
+    ["Tartumaa", 14],
+    ["Pärnumaa", 22],
+    ["Võrumaa", 29],
+    ["Saaremaa", 71],
+    ["Harjumaa", 104],
 ]
 
 
