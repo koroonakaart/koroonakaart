@@ -205,6 +205,7 @@ function testsDoneCumulativeChart() {
     var data = [ cumulative_tests ];
 
     var layout = {
+      dragmode: false,
 
         xaxis: {
             tickfont: {
@@ -257,7 +258,7 @@ function testsDoneDailyChart() {
     var data = [ daily_tests ];
 
     var layout = {
-
+      dragmode: false,
         xaxis: {
             tickfont: {
                 size: 10,
@@ -435,6 +436,7 @@ function progressionChart() {
     var data = [ confirmed, recovered, active, death ];
 
     var layout = {
+      dragmode: false,
         updatemenus: updatemenus,
         xaxis: {
             tickfont: {
@@ -519,7 +521,7 @@ function casesPerDay() {
       var data = [confirmed, recovered, death];
 
       var layout = {
-
+        dragmode: false,
         xaxis: {
             tickfont: {
                 size: 10,
@@ -582,6 +584,7 @@ function ageChart() {
 var data = [ ages ];
 
   var layout = {
+    dragmode: false,
 
       xaxis: {
           tickfont: {
@@ -652,6 +655,7 @@ function regionChart(srt_region) {
       }];
 
     var layout = {
+      dragmode: false,
         xaxis: {
             title: 'Juhtumite arv',
             gridcolor: gridColor,
