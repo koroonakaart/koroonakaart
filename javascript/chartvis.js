@@ -205,6 +205,7 @@ function testsDoneCumulativeChart() {
     var data = [ cumulative_tests ];
 
     var layout = {
+      dragmode: false,
 
         xaxis: {
             tickfont: {
@@ -215,6 +216,7 @@ function testsDoneCumulativeChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
+            fixedrange: true,
 
             },
         yaxis: {
@@ -230,6 +232,8 @@ function testsDoneCumulativeChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
+            fixedrange: true,
+
         },
         margin: marginLineChart
     };
@@ -254,7 +258,7 @@ function testsDoneDailyChart() {
     var data = [ daily_tests ];
 
     var layout = {
-
+      dragmode: false,
         xaxis: {
             tickfont: {
                 size: 10,
@@ -264,6 +268,8 @@ function testsDoneDailyChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
+            fixedrange: true,
+
 
             },
         yaxis: {
@@ -279,6 +285,8 @@ function testsDoneDailyChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
+            fixedrange: true,
+
         },
         margin: marginLineChart
     };
@@ -428,6 +436,7 @@ function progressionChart() {
     var data = [ confirmed, recovered, active, death ];
 
     var layout = {
+      dragmode: false,
         updatemenus: updatemenus,
         xaxis: {
             tickfont: {
@@ -438,6 +447,7 @@ function progressionChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
+            fixedrange: true,
 
             },
         yaxis: {
@@ -453,6 +463,8 @@ function progressionChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
+            fixedrange: true,
+
         },
 
         legend: {
@@ -509,7 +521,7 @@ function casesPerDay() {
       var data = [confirmed, recovered, death];
 
       var layout = {
-
+        dragmode: false,
         xaxis: {
             tickfont: {
                 size: 10,
@@ -518,6 +530,8 @@ function casesPerDay() {
             gridcolor: gridColor,
             ticks: 'outside',
             tickformat: tickDateFormat,
+            fixedrange: true,
+
         },
 
         yaxis: {
@@ -531,6 +545,7 @@ function casesPerDay() {
             color: tickFontColor
           },
           gridcolor: gridColor,
+          fixedrange: true,
         },
 
         legend: {
@@ -569,6 +584,7 @@ function ageChart() {
 var data = [ ages ];
 
   var layout = {
+    dragmode: false,
 
       xaxis: {
           tickfont: {
@@ -579,6 +595,7 @@ var data = [ ages ];
           ticks: 'outside',
           zeroline: true,
           tickformat: tickDateFormat,
+          fixedrange: true,
 
           },
       yaxis: {
@@ -594,6 +611,7 @@ var data = [ ages ];
           showline: false,
           gridcolor:gridColor,
           rangemode: "tozero",
+          fixedrange: true,
       },
       margin: marginLineChart
   };
@@ -637,6 +655,7 @@ function regionChart(srt_region) {
       }];
 
     var layout = {
+      dragmode: false,
         xaxis: {
             title: 'Juhtumite arv',
             gridcolor: gridColor,
