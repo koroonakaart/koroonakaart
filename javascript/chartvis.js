@@ -215,6 +215,7 @@ function testsDoneCumulativeChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
+            fixedrange: true,
 
             },
         yaxis: {
@@ -230,6 +231,8 @@ function testsDoneCumulativeChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
+            fixedrange: true,
+
         },
         margin: marginLineChart
     };
@@ -264,6 +267,8 @@ function testsDoneDailyChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
+            fixedrange: true,
+
 
             },
         yaxis: {
@@ -279,6 +284,8 @@ function testsDoneDailyChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
+            fixedrange: true,
+
         },
         margin: marginLineChart
     };
@@ -438,6 +445,7 @@ function progressionChart() {
             ticks: 'outside',
             zeroline: true,
             tickformat: tickDateFormat,
+            fixedrange: true,
 
             },
         yaxis: {
@@ -453,6 +461,8 @@ function progressionChart() {
             showline: false,
             gridcolor:gridColor,
             rangemode: "tozero",
+            fixedrange: true,
+
         },
 
         legend: {
@@ -518,6 +528,8 @@ function casesPerDay() {
             gridcolor: gridColor,
             ticks: 'outside',
             tickformat: tickDateFormat,
+            fixedrange: true,
+
         },
 
         yaxis: {
@@ -531,6 +543,7 @@ function casesPerDay() {
             color: tickFontColor
           },
           gridcolor: gridColor,
+          fixedrange: true,
         },
 
         legend: {
@@ -579,6 +592,7 @@ var data = [ ages ];
           ticks: 'outside',
           zeroline: true,
           tickformat: tickDateFormat,
+          fixedrange: true,
 
           },
       yaxis: {
@@ -594,6 +608,7 @@ var data = [ ages ];
           showline: false,
           gridcolor:gridColor,
           rangemode: "tozero",
+          fixedrange: true,
       },
       margin: marginLineChart
   };
