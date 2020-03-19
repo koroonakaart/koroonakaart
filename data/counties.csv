@@ -1,16 +1,16 @@
 ﻿id,county_et,county_en,county_ru,population,tests,confirmed,active,in_treatment,deaths,recovered
-0037,Harjumaa,Harju County,Харьюмаа,598059,NA,87,86,NA,0,1
+0037,Harjumaa,Harju County,Харьюмаа,598059,NA,101,100,NA,0,1
 0039,Hiiumaa,Hiiu County,Хийумаа,9387,NA,1,1,0,0,0
 0045,Ida-Virumaa,Ida-Viru County,Ида-Вирумаа,136240,NA,5,5,0,0,0
 0052,Järvamaa,Järva County,Ярвамаа,30286,NA,1,1,0,0,0
 0050,Jõgevamaa,Jõgeva County,Йыгевамаа,28734,NA,1,1,0,0,0
 0056,Läänemaa,Lääne County,Ляэнемаа,20507,NA,0,0,0,0,0
-0060,Lääne-Virumaa,Lääne-Viru County,Ляэне-Вирумаа,59325,NA,0,0,0,0,0
-0068,Pärnumaa,Pärnu County,Пярнумаа,85938,NA,19,19,0,0,0
+0060,Lääne-Virumaa,Lääne-Viru County,Ляэне-Вирумаа,59325,NA,1,1,0,0,0
+0068,Pärnumaa,Pärnu County,Пярнумаа,85938,NA,21,21,0,0,0
 0064,Põlvamaa,Põlva County,Пылвамаа,25006,NA,3,3,0,0,0
 0071,Raplamaa,Rapla County,Рапламаа,85938,NA,2,2,0,0,0
-0074,Saaremaa,Saare County,Сааремаа,33108,NA,57,57,0,0,0
-0079,Tartumaa,Tartu County,Тартумаа,152976,NA,12,12,0,0,0
+0074,Saaremaa,Saare County,Сааремаа,33108,NA,70,70,0,0,0
+0079,Tartumaa,Tartu County,Тартумаа,152976,NA,13,13,0,0,0
 0081,Valgamaa,Valga County,Валгамаа,28370,NA,1,1,0,0,0
 0084,Viljandimaa,Viljandi County,Вильяндимаа,46371,NA,2,2,0,0,0
 0087,Võrumaa,Võru County,Вырумаа,35782,NA,26,26,0,0,0
