@@ -12,7 +12,7 @@
         <a href="https://www.terviseamet.ee" target ="_blank" rel="noopener">{{this.$t("footer4")}}</a>
         {{this.$t("footer5")}}
         <a
-          href="https://github.com/buildig/EHAK"
+          href="https://code.highcharts.com/mapdata/countries/ee/ee-all.geo.json"
           target="_blank"
           rel="noopener"
         >{{this.$t("footer6")}}</a>
