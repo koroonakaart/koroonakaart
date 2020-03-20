@@ -163,11 +163,12 @@ const count_age = [2,1,9,6,10,13,32,41,33,40,40,20,16,19,1]
 const sorted_region_data = [
   ["Info puudulik", 10],
 
-    ["Läänemaa", 2],
+
     ["Lääne-Virumaa", 1],
     ["Valgamaa", 1],
     ["Jõgevamaa", 1],
     ["Järvamaa", 1],
+    ["Läänemaa", 2],
     ["Hiiumaa", 2],
     ["Viljandimaa", 2],
     ["Raplamaa", 2],
