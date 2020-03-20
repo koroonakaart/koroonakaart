@@ -421,7 +421,7 @@ function progressionChart() {
         y: cumulative_death_counts,
         type: "scatter",
         mode: 'lines',
-        name: 'Hukkunud',
+        name: 'Surmad',
         marker: {
                 color: grey,
                 line: {
@@ -513,7 +513,7 @@ function casesPerDay() {
       var death = {
         x: x_dates,
         y: daily_death,
-        name: 'Hukkunud',
+        name: 'Surmad',
         marker: {color: grey},
         type: 'bar'
       };
@@ -687,7 +687,7 @@ function regionChart(srt_region) {
 function pieChart() {
     var data = [{
         values: [115, 1, 0],
-        labels: ['Aktiivsed', 'Tervenenud', 'Hukkunud'],
+        labels: ['Aktiivsed', 'Tervenenud', 'Surmad'],
         marker: {
             colors:  [orange, green, grey],
         },
