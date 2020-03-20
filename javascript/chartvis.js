@@ -150,8 +150,8 @@ const cumulative_tests_done = [6,17,29,38,53,74,100,143,184,242,293,311,350,419,
 const daily_tests_done = [6,11, 12, 9, 15, 21, 26, 43, 41, 58, 51, 18, 39, 69, 45, 120, 259, 128, 162, 254, 238,395,239]
 
 
-const age_groups = ['0 - 4', '5 - 9', '10 - 14', '15 - 19', '20 - 24',
-'25 - 29', '30 - 34', '35 - 39', '40 - 44', '45 - 49', '50 - 54', '55 - 59', '60 - 64', '65+', 'teadmata']
+const age_groups = ['0-4', '5-9', '10-14', '15-19', '20-24',
+'25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65+', 'Teadmata']
 const count_age = [2,1,8,6,8,13,32,41,33,39,38,16,16,13,1]
 
 
@@ -208,7 +208,7 @@ function testsDoneCumulativeChart() {
 
         xaxis: {
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -225,7 +225,7 @@ function testsDoneCumulativeChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor
             },
             showline: false,
@@ -260,7 +260,7 @@ function testsDoneDailyChart() {
       dragmode: false,
         xaxis: {
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -278,7 +278,7 @@ function testsDoneDailyChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor
             },
             showline: false,
@@ -439,7 +439,7 @@ function progressionChart() {
         updatemenus: updatemenus,
         xaxis: {
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor
             },
             gridcolor: gridColor,
@@ -456,7 +456,7 @@ function progressionChart() {
                 color: tickFontColor
             },
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor
             },
             showline: false,
@@ -523,7 +523,7 @@ function casesPerDay() {
         dragmode: false,
         xaxis: {
             tickfont: {
-                size: 10,
+                size: 11,
                 color: tickFontColor,
             },
             gridcolor: gridColor,
@@ -540,7 +540,7 @@ function casesPerDay() {
             color: tickFontColor
           },
           tickfont: {
-            size: 10,
+            size: 11,
             color: tickFontColor
           },
           gridcolor: gridColor,
@@ -587,7 +587,7 @@ var data = [ ages ];
 
       xaxis: {
           tickfont: {
-              size: 10,
+              size: 11,
               color: tickFontColor
           },
           gridcolor: gridColor,
@@ -604,7 +604,7 @@ var data = [ ages ];
               color: tickFontColor
           },
           tickfont: {
-              size: 10,
+              size: 11,
               color: tickFontColor
           },
           showline: false,
@@ -666,7 +666,7 @@ function regionChart(srt_region) {
         yaxis: {
             tickfont: {
                 color: tickFontColor,
-                size: 10
+                size: 11
             },
             fixedrange: true,
         },
