@@ -17,7 +17,7 @@ var path = d3.geoPath().projection(projection);
 function drawCounties() {
   // Colour
   var population_domain = [0, 1, 5, 10, 25, 50, 100, 250];
-  // var population_domain = [0, 50, 250, 500, 1000, 5000];
+  // var population_domain = [0,cd  50, 250, 500, 1000, 5000];
   var population_colour = d3
     .scaleThreshold()
     .domain(population_domain)
@@ -198,7 +198,7 @@ function drawCounties() {
     // Reset data values to country level
     // TODO: Don't hard-code any values here.
     vue_app.current_place_name = "Eesti";
-    vue_app.current_place_confirmed = parseInt("267").toLocaleString("et");
+    vue_app.current_place_confirmed = parseInt("283").toLocaleString("et");
   }
 }
 
@@ -362,7 +362,7 @@ function drawMunicipalities() {
     // Reset data values to country level
     // TODO: Don't hard-code any values here.
     vue_app.current_place_name = "Eesti";
-    vue_app.current_place_confirmed = parseInt("267").toLocaleString();
+    vue_app.current_place_confirmed = parseInt("283").toLocaleString();
   }
 }
 
