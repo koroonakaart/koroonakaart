@@ -12,7 +12,7 @@
         <div class="statsbar-heading">
           <h5>{{ $t("activeCases") }}</h5>
         </div>
-        <h1>282</h1>
+        <h1>281</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
