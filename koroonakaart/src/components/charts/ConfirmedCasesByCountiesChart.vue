@@ -20,6 +20,20 @@ export default {
           height: 470
         },
 
+        exporting: {
+          chartOptions: {
+            // specific options for the exported image
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true
+                }
+              }
+            }
+          },
+          fallbackToExportServer: false
+        },
+
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
@@ -58,13 +72,13 @@ export default {
           }
         },
         plotOptions: {
-    bar: {
-        dataLabels: {
-            enabled: true
+          bar: {
+            dataLabels: {
+              enabled: true
+            },
+            enableMouseTracking: true
+          }
         },
-        enableMouseTracking: true
-    }
-},
 
         series: [
           {

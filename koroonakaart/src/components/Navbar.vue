@@ -21,7 +21,7 @@
           </b-nav-item>
           <b-nav-item id="navbar-interpunct">·</b-nav-item>
           <b-nav-item>
-            <small>{{ $t("navbarUpdated") }}: 20/03/2020, 05:25:54</small>
+            <small>{{ $t("navbarUpdated") }}: 20/03/2020, 11:00</small>
           </b-nav-item>
         </b-navbar-nav>
 
