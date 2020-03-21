@@ -7,7 +7,7 @@
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
-import mapData from "../data/map/ee-all.geo.json";
+import mapData from "../data/map/estonia.geo.json";
 import { infectionsByCounty } from "../data/map/mapData";
 
 HighchartsMapModule(Highcharts);
@@ -67,8 +67,8 @@ export default {
         series: [
           {
             data: infectionsByCounty,
-            keys: ["name", "value"],
-            joinBy: "name",
+            keys: ["MNIMI", "value"],
+            joinBy: "MNIMI",
             name: this.$t("cases"),
             states: {
               hover: {
@@ -85,7 +85,7 @@ export default {
 
             dataLabels: {
               enabled: true,
-              format: "{point.name}",
+              format: "{point.MNIMI}",
               style: {
                 fontWeight: "normal",
                 fontSize: "9px"
