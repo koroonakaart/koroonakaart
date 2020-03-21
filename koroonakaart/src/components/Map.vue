@@ -124,7 +124,7 @@ export default {
 
           dataLabels: {
             enabled: true,
-            format: "{point.name}" + ": " + "{point.value}",
+            format: "{point.name}",
             style: {
               fontWeight: "normal",
               fontSize: "9px"
