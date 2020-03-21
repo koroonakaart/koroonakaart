@@ -117,7 +117,7 @@ export default {
       this.chartOptions.title.text = this.$t("positiveNegativeTitle");
     //  this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("negative");
-      this.chartOptions.series[0].name = this.$t("positive");
+      this.chartOptions.series[1].name = this.$t("positive");
       this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
     }
   }
