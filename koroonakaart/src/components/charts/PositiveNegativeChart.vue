@@ -42,6 +42,12 @@ export default {
                   column: {
                   stacking: 'normal'
                   }
+                  },
+                  yAxis: {
+                  title: {
+                  text: "Abs"
+                  }
+
                   }
                       });
                   }
@@ -54,6 +60,12 @@ export default {
                   column: {
                   stacking: 'percent'
                   }
+                  },
+                  yAxis: {
+                  title: {
+                  text: "%"
+                  }
+
                   }
                   });
                   }
