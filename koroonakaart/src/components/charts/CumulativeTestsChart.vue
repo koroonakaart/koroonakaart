@@ -12,9 +12,29 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("cumulativeTests")
+          text: this.$t("cumulativeTests"),
+          align: "left"
+
         },
 
+        exporting: {
+          buttons: {
+              customButton: {
+                  text: 'Linear',
+                  onclick: function() {
+                      this.yAxis[0].update({
+                          type: 'linear'
+                      });
+                  }
+              },
+              customButton2: {
+                  text: 'Logarithmic',
+                  onclick: function() {
+                      this.yAxis[0].update({
+                          type: 'logarithmic'
+                      });
+                  }
+              }}},
         chart: {
           height: 470
         },
@@ -70,7 +90,7 @@ export default {
 
         yAxis: {
           title: {
-            text: this.$t("numberOfTests")
+            text: this.$t("numberOfTests"),
           }
         },
 
