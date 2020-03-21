@@ -12,7 +12,8 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("positiveNegativeTitle")
+          text: this.$t("positiveNegativeTitle"),
+          align: "left"
         },
 
         chart: {
@@ -21,18 +22,42 @@ export default {
         },
 
         exporting: {
-          chartOptions: {
-            // specific options for the exported image
-            plotOptions: {
-              series: {
-                dataLabels: {
-                  enabled: true
-                }
+        chartOptions: {
+          // specific options for the exported image
+          plotOptions: {
+            series: {
+              dataLabels: {
+                enabled: true
               }
             }
-          },
-          fallbackToExportServer: false
+          }
         },
+        fallbackToExportServer: false,
+          buttons: {
+              customButton: {
+                  text: "Abs",
+                  onclick: function() {
+                  this.update({
+                  plotOptions: {
+                  column: {
+                  stacking: 'normal'
+                  }
+                  }
+                      });
+                  }
+              },
+              customButton2: {
+                  text: "%",
+                  onclick: function() {
+                  this.update({
+                  plotOptions: {
+                  column: {
+                  stacking: 'percent'
+                  }
+                  }
+                  });
+                  }
+              }}},
 
         // Remove Highcharts.com link from bottom right
         credits: {
