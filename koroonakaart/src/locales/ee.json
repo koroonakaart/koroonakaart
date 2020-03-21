@@ -13,6 +13,8 @@
   "insufficientData": "Info puudulik",
   "language": "Eesti",
   "mapTitle": "Haigusjuhud maakonniti",
+  "logarithmic": "Logaritmiline",
+  "linear": "Lineaarne",
   "navbarDescription": "Statistika koroonaviiruse põhjustatud COVID-19 haiguse leviku kohta Eestis. Rakendust haldab OKEE koostöös Terviseametiga.",
   "navbarUpdated": "Uuendatud",
   "newCasesPerDay": "Uusi juhtumeid päevas",

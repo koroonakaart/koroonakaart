@@ -13,6 +13,8 @@
   "insufficientData": "Insufficient data",
   "language": "English",
   "mapTitle": "Infections by county",
+  "logarithmic": "Logarithmic",
+  "linear": "Linear",
   "navbarDescription": "Statistics about COVID-19 disease caused by coronavirus spread in Estonia. The application is being maintained by OKEE in collaboration with Terviseamet",
   "navbarUpdated": "Updated",
   "newCasesPerDay": "New cases per day",

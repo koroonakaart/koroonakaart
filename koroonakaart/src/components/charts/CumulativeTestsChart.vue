@@ -20,7 +20,7 @@ export default {
         exporting: {
           buttons: {
               customButton: {
-                  text: 'Linear',
+                  text: this.$t("linear"),
                   onclick: function() {
                       this.yAxis[0].update({
                           type: 'linear'
@@ -28,7 +28,7 @@ export default {
                   }
               },
               customButton2: {
-                  text: 'Logarithmic',
+                  text: this.$t("logarithmic"),
                   onclick: function() {
                       this.yAxis[0].update({
                           type: 'logarithmic'
@@ -143,6 +143,9 @@ export default {
       this.chartOptions.title.text = this.$t("cumulativeTests");
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("testsAdministered");
+      this.expoting.buttons.customButton.text = this.$t("linear");
+      this.expoting.buttons.customButton2.text = this.$t("logarithmic");
+
     }
   }
 };

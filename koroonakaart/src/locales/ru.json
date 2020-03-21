@@ -13,6 +13,8 @@
   "insufficientData": "Недостаточно данных",
   "language": "Русский",
   "mapTitle": "Заражений по уездам",
+  "logarithmic": "Logaritmiline",
+  "linear": "Lineaarne",
   "navbarDescription": "Статистика о распространении болезни COVID-19 вызванной короновирусом в Эстонии. Данное приложение поддерживает OKEE при сотрудничестве с Terviseamet.",
   "navbarUpdated": "Обновлено",
   "newCasesPerDay": "Новых случаев за день",
