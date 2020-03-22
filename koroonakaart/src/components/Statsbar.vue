@@ -19,7 +19,7 @@
         <div class="statsbar-heading">
           <h5>{{ $t("hospitalised") }}</h5>
         </div>
-        <h1>14</h1>
+        <h1>15</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
