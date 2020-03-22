@@ -1,14 +1,16 @@
 <template>
-  <b-container>
-    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
-  </b-container>
+<b-container>
+  <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
+</b-container>
 </template>
 
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 import mapData from "../data/map/estonia.geo.json";
-import { infectionsByCounty } from "../data/map/mapData";
+import {
+  infectionsByCounty
+} from "../data/map/mapData";
 
 HighchartsMapModule(Highcharts);
 
@@ -25,17 +27,50 @@ export default {
           // Set max height of the map
           height: 470
         },
+        exporting: {
+          buttons: {
+            customButton: {
+              text: this.$t("showValues"),
+              onclick: function() {
+                this.update({
+                series: {
+
+                  dataLabels: {
+                    format: "{point.name}" + ": " + "{point.value}"
+                  }}
+                });
+              }
+            },
+            customButton2: {
+              text: this.$t("hideValues"),
+              onclick: function() {
+                this.update({
+                series: {
+
+                  dataLabels: {
+                    format: "{point.name}"
+                  }}
+                });
+              }
+            }
+          }
+        },
 
         title: {
           text: ""
         },
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15
+        }},
 
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
         },
 
-        /* 
+        /*
         // Navigation controls like zoom etc
           mapNavigation: {
           enabled: true,
@@ -49,7 +84,12 @@ export default {
           tickPixelInterval: 25,
           lineColor: {
             color: {
-              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1
+              },
               stops: [
                 [0, "#003399"], // start
                 [0.5, "#ffffff"], // middle
@@ -76,7 +116,7 @@ export default {
               }
             },
 
-            /* 
+            /*
               // Customise tooltips
               tooltip: {
               headerFormat: "",
@@ -90,13 +130,18 @@ export default {
                 fontWeight: "normal",
                 fontSize: "9px"
               }
-            }
 
-            // This needs to be true for the country map to diplay anything if no data
-            /* allAreas: true, */
+            }
           }
-        ]
-      }
+
+          // This needs to be true for the country map to diplay anything if no data
+          /* allAreas: true, */
+        }]
+      },
+
+
+
+
     };
   },
 

@@ -12,8 +12,28 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("cumulativeCases")
+          text: this.$t("cumulativeCases"),
+          align: "left",
+          y: 30        },
+
+  exporting: {
+    buttons: {
+        customButton: {
+            text: this.$t("linear"),
+            onclick: function() {
+                this.yAxis[0].update({
+                    type: 'linear'
+                });
+            }
         },
+        customButton2: {
+            text: this.$t("logarithmic"),
+            onclick: function() {
+                this.yAxis[0].update({
+                    type: 'logarithmic'
+                });
+            }
+        }}},
 
         chart: {
           height: 470
@@ -37,7 +57,11 @@ export default {
             }
           }
         },
-
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15
+        }},
         xAxis: {
           categories: [
             "2020-02-26",
@@ -63,7 +87,9 @@ export default {
             "2020-03-17",
             "2020-03-18",
             "2020-03-19",
-            "2020-03-20"
+            "2020-03-20",
+            "2020-03-21",
+            "2020-03-22"
           ]
         },
 
@@ -101,7 +127,9 @@ export default {
               225,
               258,
               267,
-              283
+              283,
+              306,
+              326
             ]
           },
           {
@@ -131,7 +159,9 @@ export default {
               1,
               1,
               1,
-              2
+              2,
+              2,
+              4
             ]
           },
           {
@@ -161,13 +191,17 @@ export default {
               224,
               257,
               266,
-              281
+              281,
+              304,
+              322
             ]
           },
           {
             name: this.$t("deceased"),
             color: "#0d233a",
             data: [
+              0,
+              0,
               0,
               0,
               0,
@@ -215,6 +249,9 @@ export default {
       this.chartOptions.series[1].name = this.$t("recovered");
       this.chartOptions.series[2].name = this.$t("active");
       this.chartOptions.series[3].name = this.$t("deceased");
+      this.expoting.buttons.customButton.text = this.$t("linear");
+      this.expoting.buttons.customButton2.text = this.$t("logarithmic");
+
     }
   }
 };

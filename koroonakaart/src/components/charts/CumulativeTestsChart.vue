@@ -12,9 +12,29 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("cumulativeTests")
+          text: this.$t("cumulativeTests"),
+          align: "left",
+          y: 30
         },
 
+        exporting: {
+          buttons: {
+              customButton: {
+                  text: this.$t("linear"),
+                  onclick: function() {
+                      this.yAxis[0].update({
+                          type: 'linear'
+                      });
+                  }
+              },
+              customButton2: {
+                  text: this.$t("logarithmic"),
+                  onclick: function() {
+                      this.yAxis[0].update({
+                          type: 'logarithmic'
+                      });
+                  }
+              }}},
         chart: {
           height: 470
         },
@@ -23,7 +43,11 @@ export default {
         credits: {
           enabled: false
         },
-
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15
+        }},
         legend: {
           layout: "horizontal",
           align: "center",
@@ -63,13 +87,15 @@ export default {
             "2020-03-17",
             "2020-03-18",
             "2020-03-19",
-            "2020-03-20"
+            "2020-03-20",
+            "2020-03-21",
+            "2020-03-22"
           ]
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfTests")
+            text: this.$t("numberOfTests"),
           }
         },
 
@@ -100,7 +126,9 @@ export default {
               1625,
               2020,
               2259,
-              2504
+              2504,
+              2812,
+              3229
             ]
           }
         ]
@@ -121,6 +149,9 @@ export default {
       this.chartOptions.title.text = this.$t("cumulativeTests");
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("testsAdministered");
+      this.expoting.buttons.customButton.text = this.$t("linear");
+      this.expoting.buttons.customButton2.text = this.$t("logarithmic");
+
     }
   }
 };

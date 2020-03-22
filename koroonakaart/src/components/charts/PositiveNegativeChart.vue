@@ -6,17 +6,21 @@
 
 <script>
 export default {
-  name: "PositiveTestsAgeDistributionChart",
+  name: "PositiveNegativeChart",
 
   data() {
     return {
       chartOptions: {
         title: {
-          text: this.$t("distributionOfPositiveTests"),
+          text: this.$t("positiveNegativeTitle"),
           align: "left",
-          y: 30
+          y: 30        },
 
+        chart: {
+          type: "column",
+          height: 470
         },
+
         exporting: {
           buttons: {
               customButton: {
@@ -55,53 +59,46 @@ export default {
                   });
                   }
               }}},
-        chart: {
-          type: "column",
-          height: 470
-        },
-        navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
-            y: -15,
 
-        }},
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
         },
-
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15
+        }},
         xAxis: {
-          title: {
-            text: this.$t("age")
+          labels: {
+            style: {
+              fontSize: "13px",
+              fontWeight: "bold"
+            }
           },
           categories: [
-            "0 - 4",
-            "5 - 9",
-            "10 - 14",
-            "15 - 19",
-            "20 - 24",
-            "25 - 29",
-            "30 - 34",
-            "35 - 39",
-            "40 - 44",
-            "45 - 49",
-            "50 - 54",
-            "55 - 59",
-            "60 - 64",
-            "65+",
-            this.$t("unknown")
+            this.$t("insufficientData"),
+            "Lääne-Virumaa",
+            "Valgamaa",
+            "Jõgevamaa",
+            "Järvamaa",
+            "Läänemaa",
+            "Hiiumaa",
+            "Viljandimaa",
+            "Raplamaa",
+            "Põlvamaa",
+            "Ida-Virumaa",
+            "Tartumaa",
+            "Pärnumaa",
+            "Võrumaa",
+            "Saaremaa",
+            "Harjumaa"
           ]
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfCases")
-          }
-        },
-        plotOptions: {
-          column: {
-          stacking: "normal",
-          enableMouseTracking: true
+            text: "%",
           }
         },
         tooltip: {
@@ -114,19 +111,24 @@ export default {
           shared: true,
           useHTML: true
         },
+        plotOptions: {
+          column: {
+          stacking: "percent",
+          enableMouseTracking: true
+          }
+        },
+
         series: [
           {
-            name:  this.$t("male"),
-            data: [1,1,4,1,9,5,15,18,20,22,24,13,11,10,0]
+            name: this.$t("negative"),
+            data: [165, 47, 23, 21, 18, 21, 17, 44, 69, 20, 40, 183, 189, 85, 345, 1616],
+            color: "#A6C96A"
           },
           {
-            name:  this.$t("female"),
-            data: [1,0,5,6,2,8,18,25,16,25,19,11,11,24,0],
-            color: "#492970"
-          }, {
-            name:  this.$t("unknown"),
-            data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
-            }
+            name: this.$t("positive"),
+            data: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 21, 22, 34, 94, 123],
+            color: "#910000"
+          }
         ]
       }
     };
@@ -142,15 +144,11 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
-      this.chartOptions.title.text = this.$t("distributionOfPositiveTests");
-      this.chartOptions.xAxis.title.text = this.$t("age");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("male");
-      this.chartOptions.series[1].name =  this.$t("female");
-      this.chartOptions.series[2].name =  this.$t("unknown");
-      this.chartOptions.xAxis.categories[
-        this.chartOptions.xAxis.categories.length - 1
-      ] = this.$t("unknown");
+      this.chartOptions.title.text = this.$t("positiveNegativeTitle");
+    //  this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("negative");
+      this.chartOptions.series[1].name = this.$t("positive");
+      this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
     }
   }
 };

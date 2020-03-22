@@ -12,7 +12,9 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("newCasesPerDay")
+          text: this.$t("newCasesPerDay"),
+          align: "left",
+          y: 30
         },
 
         chart: {
@@ -24,7 +26,12 @@ export default {
         credits: {
           enabled: false
         },
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15,
 
+        }},
         xAxis: {
           categories: [
             "2020-02-26",
@@ -50,7 +57,9 @@ export default {
             "2020-03-17",
             "2020-03-18",
             "2020-03-19",
-            "2020-03-20"
+            "2020-03-20",
+            "2020-03-21",
+            "2020-03-22"
           ],
           crosshair: true
         },
@@ -76,7 +85,8 @@ export default {
         plotOptions: {
           column: {
             pointPadding: 0.2,
-            borderWidth: 0
+            borderWidth: 0,
+            stacking: "normal"
           }
         },
 
@@ -108,7 +118,9 @@ export default {
               20,
               33,
               9,
-              16
+              16,
+              23,
+              20
             ]
           },
           {
@@ -138,13 +150,17 @@ export default {
               0,
               0,
               0,
-              1
+              1,
+              0,
+              2
             ]
           },
           {
             name: this.$t("deceased"),
             color: "#434348",
             data: [
+              0,
+              0,
               0,
               0,
               0,

@@ -5,21 +5,21 @@
         <div class="statsbar-heading">
           <h5>{{ $t("confirmedCases") }}</h5>
         </div>
-        <h1>283</h1>
+        <h1>326</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("activeCases") }}</h5>
         </div>
-        <h1>281</h1>
+        <h1>322</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("hospitalised") }}</h5>
         </div>
-        <h1>10</h1>
+        <h1>15</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -33,14 +33,14 @@
         <div class="statsbar-heading">
           <h5>{{ $t("recovered") }}</h5>
         </div>
-        <h1>2</h1>
+        <h1>4</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("testsAdministered") }}</h5>
         </div>
-        <h1>2504</h1>
+        <h1>3229</h1>
       </b-col>
     </b-row>
   </b-container>

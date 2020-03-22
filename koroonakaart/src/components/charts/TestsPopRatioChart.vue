@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: "ConfirmedCasesByCountiesChart",
+  name: "TestsPopRatioChart",
 
   data() {
     return {
       chartOptions: {
         title: {
-          text: this.$t("confirmedCasesByCounties"),
+          text: this.$t("testsPer10000"),
           align: "left",
           y: 30
         },
@@ -54,28 +54,28 @@ export default {
             }
           },
           categories: [
-            "Harjumaa",
-            "Hiiumaa",
-            "Ida-Virumaa",
-            "Jõgevamaa",
-            "Järvamaa",
-            "Lääne-Virumaa",
-            "Läänemaa",
-            "Põlvamaa",
-            "Pärnumaa",
-            "Raplamaa",
-            "Saaremaa",
-            "Tartumaa",
-            "Valgamaa",
-            "Viljandimaa",
-            "Võrumaa",
-            this.$t("insufficientData")
+          "Harjumaa",
+          "Hiiumaa",
+          "Ida-Virumaa",
+          "Jõgevamaa",
+          "Järvamaa",
+          "Lääne-Virumaa",
+          "Läänemaa",
+          "Põlvamaa",
+          "Pärnumaa",
+          "Raplamaa",
+          "Saaremaa",
+          "Tartumaa",
+          "Valgamaa",
+          "Viljandimaa",
+          "Võrumaa"
+
           ]
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfCases")
+            text: this.$t("testsPer10000Axis")
           }
         },
         plotOptions: {
@@ -90,7 +90,21 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: [123, 2, 6, 1, 1, 1, 2, 3, 22, 2, 94, 21, 1, 2, 34, 11]
+            data: [2.06,
+2.13,
+0.44,
+0.35,
+0.33,
+0.17,
+0.98,
+1.20,
+2.56,
+0.60,
+28.39,
+1.37,
+0.35,
+0.43,
+9.50],
           }
         ]
       }

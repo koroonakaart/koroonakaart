@@ -12,7 +12,9 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("testsPerDay")
+          text: this.$t("testsPerDay"),
+          align: "left",
+          y: 30
         },
 
         chart: {
@@ -24,7 +26,12 @@ export default {
         credits: {
           enabled: false
         },
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15,
 
+        }},
         xAxis: {
           categories: [
             "2020-02-26",
@@ -50,7 +57,9 @@ export default {
             "2020-03-17",
             "2020-03-18",
             "2020-03-19",
-            "2020-03-20"
+            "2020-03-20",
+            "2020-03-21",
+            "2020-03-22"
           ],
           crosshair: true
         },
@@ -107,7 +116,9 @@ export default {
               238,
               395,
               239,
-              245
+              245,
+              308,
+              417
             ]
           }
         ]
