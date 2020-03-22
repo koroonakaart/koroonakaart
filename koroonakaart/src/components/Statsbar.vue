@@ -33,7 +33,7 @@
         <div class="statsbar-heading">
           <h5>{{ $t("recovered") }}</h5>
         </div>
-        <h1>2</h1>
+        <h1>4</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
