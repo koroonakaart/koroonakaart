@@ -124,7 +124,7 @@ export default {
       this.chartOptions.title.text = this.$t("testsPer10000");
       this.chartOptions.yAxis.title.text = this.$t("testsPer10000Axis");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
-      this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
+    //  this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
     }
   }
 };

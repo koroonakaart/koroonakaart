@@ -110,7 +110,7 @@ export default {
       this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
-      this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
+      this.chartOptions.xAxis.categories[15] = this.$t("insufficientData");
     }
   }
 };
