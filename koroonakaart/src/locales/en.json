@@ -17,6 +17,8 @@
   "linear": "Linear",
   "showValues": "Show values",
   "hideValues": "Hide values",
+  "male": "Men",
+  "female": "Women",
   "navbarDescription": "Statistics about COVID-19 disease caused by coronavirus spread in Estonia. The application is being maintained by OKEE in collaboration with Terviseamet",
   "navbarUpdated": "Updated",
   "newCasesPerDay": "New cases per day",

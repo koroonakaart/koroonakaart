@@ -14,7 +14,44 @@ export default {
         title: {
           text: this.$t("distributionOfPositiveTests")
         },
+        exporting: {
+          buttons: {
+              customButton: {
+                  text: "Abs",
+                  onclick: function() {
+                  this.update({
+                  plotOptions: {
+                  column: {
+                  stacking: 'normal'
+                  }
+                  },
+                  yAxis: {
+                  title: {
+                  text: "Abs"
+                  }
 
+                  }
+                      });
+                  }
+              },
+              customButton2: {
+                  text: "%",
+                  onclick: function() {
+                  this.update({
+                  plotOptions: {
+                  column: {
+                  stacking: 'percent'
+                  }
+                  },
+                  yAxis: {
+                  title: {
+                  text: "%"
+                  }
+
+                  }
+                  });
+                  }
+              }}},
         chart: {
           type: "column",
           height: 470
@@ -53,12 +90,35 @@ export default {
             text: this.$t("numberOfCases")
           }
         },
-
+        plotOptions: {
+          column: {
+          stacking: "normal",
+          enableMouseTracking: true
+          }
+        },
+        tooltip: {
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat:
+            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+          footerFormat: "</table>",
+          shared: true,
+          useHTML: true
+        },
         series: [
           {
-            name: this.$t("numberOfCases"),
-            data: [2,1,9,7,11,13,33,43,36,47,43,24,22,34,1]
-          }
+            name:  this.$t("male"),
+            data: [1,1,4,1,9,5,15,18,20,22,24,13,11,10,0]
+          },
+          {
+            name:  this.$t("female"),
+            data: [1,0,5,6,2,8,18,25,16,25,19,11,11,24,0],
+            color: "#492970"
+          }, {
+            name:  this.$t("unknown"),
+            data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+            }
         ]
       }
     };
@@ -77,7 +137,9 @@ export default {
       this.chartOptions.title.text = this.$t("distributionOfPositiveTests");
       this.chartOptions.xAxis.title.text = this.$t("age");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("male");
+      this.chartOptions.series[1].name =  this.$t("female");
+      this.chartOptions.series[2].name =  this.$t("unknown");
       this.chartOptions.xAxis.categories[
         this.chartOptions.xAxis.categories.length - 1
       ] = this.$t("unknown");

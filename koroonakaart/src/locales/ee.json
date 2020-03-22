@@ -17,6 +17,8 @@
   "linear": "Lineaarne",
   "showValues": "Kuva arvud",
   "hideValues": "Peida arvud",
+  "male": "Mehed",
+  "female": "Naised",
   "navbarDescription": "Statistika koroonaviiruse põhjustatud COVID-19 haiguse leviku kohta Eestis. Rakendust haldab OKEE koostöös Terviseametiga.",
   "navbarUpdated": "Uuendatud",
   "newCasesPerDay": "Uusi juhtumeid päevas",

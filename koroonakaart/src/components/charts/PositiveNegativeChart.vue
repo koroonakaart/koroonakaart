@@ -22,17 +22,6 @@ export default {
         },
 
         exporting: {
-        chartOptions: {
-          // specific options for the exported image
-          plotOptions: {
-            series: {
-              dataLabels: {
-                enabled: true
-              }
-            }
-          }
-        },
-        fallbackToExportServer: false,
           buttons: {
               customButton: {
                   text: "Abs",
@@ -129,7 +118,7 @@ export default {
           {
             name: this.$t("negative"),
             data: [165, 47, 23, 21, 18, 21, 17, 44, 69, 20, 40, 183, 189, 85, 345, 1616],
-            color: "#90ed7d"
+            color: "#A6C96A"
           },
           {
             name: this.$t("positive"),
