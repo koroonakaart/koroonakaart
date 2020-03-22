@@ -12,7 +12,10 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("distributionOfPositiveTests")
+          text: this.$t("distributionOfPositiveTests"),
+          align: "left",
+          y: 30
+
         },
         exporting: {
           buttons: {
@@ -56,7 +59,12 @@ export default {
           type: "column",
           height: 470
         },
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15,
 
+        }},
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false

@@ -13,8 +13,8 @@ export default {
       chartOptions: {
         title: {
           text: this.$t("cumulativeCases"),
-          align: "left"
-        },
+          align: "left",
+          y: 30        },
 
   exporting: {
     buttons: {
@@ -57,7 +57,11 @@ export default {
             }
           }
         },
-
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15
+        }},
         xAxis: {
           categories: [
             "2020-02-26",

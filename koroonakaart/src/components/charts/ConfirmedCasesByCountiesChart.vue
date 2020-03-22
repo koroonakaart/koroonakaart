@@ -12,9 +12,16 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("confirmedCasesByCounties")
+          text: this.$t("confirmedCasesByCounties"),
+          align: "left",
+          y: 30
         },
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15,
 
+        }},
         chart: {
           type: "bar",
           height: 470

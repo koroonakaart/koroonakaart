@@ -13,8 +13,8 @@ export default {
       chartOptions: {
         title: {
           text: this.$t("cumulativeTests"),
-          align: "left"
-
+          align: "left",
+          y: 30
         },
 
         exporting: {
@@ -43,7 +43,11 @@ export default {
         credits: {
           enabled: false
         },
-
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15
+        }},
         legend: {
           layout: "horizontal",
           align: "center",

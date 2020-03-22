@@ -12,7 +12,9 @@ export default {
     return {
       chartOptions: {
         title: {
-          text: this.$t("newCasesPerDay")
+          text: this.$t("newCasesPerDay"),
+          align: "left",
+          y: 30
         },
 
         chart: {
@@ -24,7 +26,12 @@ export default {
         credits: {
           enabled: false
         },
+        navigation: {
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15,
 
+        }},
         xAxis: {
           categories: [
             "2020-02-26",
