@@ -53,13 +53,14 @@ export default {
     console.log(this.$store.state.dataFromGoogleSheets);
   }, */
   computed: {
-    confirmedCasesNumber: function() {
+    // Disabled until later for data importing
+    /* confirmedCasesNumber: function() {
       if (this.$store?.state?.dataFromGoogleSheets?.entry) {
         return this.$store?.state?.dataFromGoogleSheets?.entry[1].gsx$_d6ua4
           ?.$t;
       }
       return "";
-    }
+    } */
   }
 };
 </script>

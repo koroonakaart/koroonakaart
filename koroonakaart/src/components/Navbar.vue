@@ -51,7 +51,15 @@ export default {
   name: "Navbar",
 
   components: {
+    //Earth icon
     Earth
+  },
+
+  // On Navbar mounted change locale to route param (ee,en or ru).
+  // If route param has unknown language Vue will automatically fall back to ee.
+  mounted() {
+    if (this.$i18n.locale !== this.$route.params.locale)
+      this.changeCurrentLanguage(this.$route.params.locale);
   },
 
   data() {
@@ -63,17 +71,22 @@ export default {
   computed: {
     locales: function() {
       return this.$i18n.availableLocales;
-    },
-    lastUpdated: function() {
+    }
+
+    // Disabled until later for data importing
+    /* lastUpdated: function() {
       const date = new Date(
         this.$store?.state?.dataFromGoogleSheets?.updated?.$t
       );
       return date.toLocaleString();
-    }
+    } */
   },
 
   methods: {
     changeCurrentLanguage: function(targetLanguage) {
+      if (this.$route.params.locale !== targetLanguage) {
+        this.$router.push(targetLanguage);
+      }
       this.$i18n.locale = targetLanguage;
     }
   }
