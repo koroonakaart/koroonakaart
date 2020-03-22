@@ -9,7 +9,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Harju",
+        "MNIMI": "Harjumaa",
         "MKOOD": "0037",
         "AREA": 4312853674.4052744
       },
@@ -455,7 +455,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Hiiu",
+        "MNIMI": "Hiiumaa",
         "MKOOD": "0039",
         "AREA": 1029344259.1724206
       },
@@ -639,7 +639,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Ida-Viru",
+        "MNIMI": "Ida-Virumaa",
         "MKOOD": "0045",
         "AREA": 2962201809.8268647
       },
@@ -798,7 +798,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Järva",
+        "MNIMI": "Järvamaa",
         "MKOOD": "0052",
         "AREA": 2666093148.9736042
       },
@@ -1006,7 +1006,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Jõgeva",
+        "MNIMI": "Jõgevamaa",
         "MKOOD": "0050",
         "AREA": 2537328268.7450557
       },
@@ -1206,7 +1206,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Lääne",
+        "MNIMI": "Läänemaa",
         "MKOOD": "0056",
         "AREA": 1810073156.0463326
       },
@@ -1449,7 +1449,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Lääne-Viru",
+        "MNIMI": "Lääne-Virumaa",
         "MKOOD": "0060",
         "AREA": 3683980454.9397707
       },
@@ -1711,7 +1711,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Pärnu",
+        "MNIMI": "Pärnumaa",
         "MKOOD": "0068",
         "AREA": 5402923410.2378073
       },
@@ -2051,7 +2051,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Põlva",
+        "MNIMI": "Põlvamaa",
         "MKOOD": "0064",
         "AREA": 1818021906.8134685
       },
@@ -2236,7 +2236,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Rapla",
+        "MNIMI": "Raplamaa",
         "MKOOD": "0071",
         "AREA": 2756716173.8045382
       },
@@ -2461,7 +2461,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Saare",
+        "MNIMI": "Saaremaa",
         "MKOOD": "0074",
         "AREA": 2929102196.0518513
       },
@@ -2931,7 +2931,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Tartu",
+        "MNIMI": "Tartumaa",
         "MKOOD": "0079",
         "AREA": 3339569663.659668
       },
@@ -3163,7 +3163,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Valga",
+        "MNIMI": "Valgamaa",
         "MKOOD": "0081",
         "AREA": 1911433007.6285715
       },
@@ -3367,7 +3367,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Viljandi",
+        "MNIMI": "Viljandimaa",
         "MKOOD": "0084",
         "AREA": 3410089758.1757417
       },
@@ -3619,7 +3619,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Võru",
+        "MNIMI": "Võrumaa",
         "MKOOD": "0087",
         "AREA": 2764844031.0593786
       },

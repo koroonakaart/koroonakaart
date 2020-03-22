@@ -1,16 +1,15 @@
 <template>
-<b-container>
-  <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
-</b-container>
+  <b-container>
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
+  </b-container>
 </template>
 
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 import mapData from "../data/map/estonia.geo.json";
-import {
-  infectionsByCounty
-} from "../data/map/mapData";
+
+import { infectionsByCounty } from "../data/map/mapData";
 
 HighchartsMapModule(Highcharts);
 
@@ -33,11 +32,11 @@ export default {
               text: this.$t("showValues"),
               onclick: function() {
                 this.update({
-                series: {
-
-                  dataLabels: {
-                    format: "{point.name}" + ": " + "{point.value}"
-                  }}
+                  series: {
+                    dataLabels: {
+                      format: "{point.MNIMI}" + ": " + "{point.value}"
+                    }
+                  }
                 });
               }
             },
@@ -45,11 +44,11 @@ export default {
               text: this.$t("hideValues"),
               onclick: function() {
                 this.update({
-                series: {
-
-                  dataLabels: {
-                    format: "{point.name}"
-                  }}
+                  series: {
+                    dataLabels: {
+                      format: "{point.MNIMI}"
+                    }
+                  }
                 });
               }
             }
@@ -60,10 +59,11 @@ export default {
           text: ""
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
+          buttonOptions: {
+            verticalAlign: "top",
             y: -15
-        }},
+          }
+        },
 
         // Remove Highcharts.com link from bottom right
         credits: {
@@ -116,12 +116,10 @@ export default {
               }
             },
 
-            /*
-              // Customise tooltips
-              tooltip: {
-              headerFormat: "",
-              pointFormat: "{point.name} Maakond"
-            }, */
+            // Customise tooltips
+            tooltip: {
+              pointFormat: "{point.MNIMI}: {point.value}<br/>"
+            },
 
             dataLabels: {
               enabled: true,
@@ -130,18 +128,13 @@ export default {
                 fontWeight: "normal",
                 fontSize: "9px"
               }
-
             }
           }
 
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
-        }]
-      },
-
-
-
-
+        ]
+      }
     };
   },
 
