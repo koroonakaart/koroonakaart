@@ -3,8 +3,11 @@
   <b-container fluid="lg">
     <Statsbar />
     <b-row class="mb-5">
+    <Map />
+    </b-row>
+    <b-row class="mb-5">
       <b-col cols="12" lg="7">
-        <Map />
+        <TestsPopRatioChart />
       </b-col>
       <b-col cols="12" lg="5">
         <ConfirmedCasesByCountiesChart />
@@ -47,6 +50,7 @@ import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
+import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
 export default {
   name: "Home",
   // Register components you want to use in the page here
@@ -59,7 +63,8 @@ export default {
     TestsPerDayChart,
     PositiveTestsAgeDistributionChart,
     ConfirmedCasesByCountiesChart,
-    PositiveNegativeChart
+    PositiveNegativeChart,
+    TestsPopRatioChart
   }
 };
 </script>

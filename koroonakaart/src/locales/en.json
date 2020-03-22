@@ -19,6 +19,8 @@
   "hideValues": "Hide values",
   "male": "Men",
   "female": "Women",
+  "testsPer10000":"Positive tests per 10,000 population by county",
+  "testsPer10000Axis": "Positive tests per 10,000 residents by county",
   "navbarDescription": "Statistics about COVID-19 disease caused by coronavirus spread in Estonia. The application is being maintained by OKEE in collaboration with Terviseamet",
   "navbarUpdated": "Updated",
   "newCasesPerDay": "New cases per day",

@@ -19,6 +19,8 @@
   "hideValues": "Peida arvud",
   "male": "Mehed",
   "female": "Naised",
+  "testsPer10000": "Positiivsete testide arv 10 000 elaniku kohta",
+  "testsPer10000Axis": "Positiivsete testide arv 10000 elaniku kohta",
   "navbarDescription": "Statistika koroonaviiruse põhjustatud COVID-19 haiguse leviku kohta Eestis. Rakendust haldab OKEE koostöös Terviseametiga.",
   "navbarUpdated": "Uuendatud",
   "newCasesPerDay": "Uusi juhtumeid päevas",
