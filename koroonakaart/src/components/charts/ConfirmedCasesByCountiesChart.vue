@@ -54,22 +54,22 @@ export default {
             }
           },
           categories: [
-            this.$t("insufficientData"),
-            "Lääne-Virumaa",
-            "Valgamaa",
+            "Harjumaa",
+            "Hiiumaa",
+            "Ida-Virumaa",
             "Jõgevamaa",
             "Järvamaa",
+            "Lääne-Virumaa",
             "Läänemaa",
-            "Hiiumaa",
-            "Viljandimaa",
-            "Raplamaa",
             "Põlvamaa",
-            "Ida-Virumaa",
-            "Tartumaa",
             "Pärnumaa",
-            "Võrumaa",
+            "Raplamaa",
             "Saaremaa",
-            "Harjumaa"
+            "Tartumaa",
+            "Valgamaa",
+            "Viljandimaa",
+            "Võrumaa",
+            this.$t("insufficientData")
           ]
         },
 
@@ -90,7 +90,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 21, 22, 34, 94, 123]
+            data: [123, 2, 6, 1, 1, 1, 2, 3, 22, 2, 94, 21, 1, 2, 34, 11]
           }
         ]
       }
