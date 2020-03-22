@@ -4,6 +4,8 @@ Repo now being developed within Open Knowledge Estonia: [https://github.com/okes
 
 Statistics regarding the COVID-19 epidemic in Estonia. Live demo is available at [koroonakaart.ee](http://koroonakaart.ee/).
 
+Url to load localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **ee** (Estonian), **en** (English) and **ru** (Russian).
+
 ## Project setup
 ```
 npm install
