@@ -83,7 +83,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: [10, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 17, 22, 30, 92, 114]
+            data: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 21, 22, 34, 94, 123]
           }
         ]
       }

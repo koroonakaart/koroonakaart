@@ -1,9 +1,9 @@
 export const infectionsByCounty = [
-  ["Harjumaa", 114],
-  ["Saaremaa", 92],
-  ["Võrumaa", 30],
+  ["Harjumaa", 123],
+  ["Saaremaa", 94],
+  ["Võrumaa", 34],
   ["Pärnumaa", 22],
-  ["Tartumaa", 17],
+  ["Tartumaa", 21],
   ["Ida-Virumaa", 6],
   ["Põlvamaa", 3],
   ["Raplamaa", 2],
