@@ -5,11 +5,15 @@
 </template>
 
 <script>
+import { dataNewCasesPerDayChart } from "../../dataConstants";
+
 export default {
   name: "NewCasesPerDayChart",
 
   data() {
     return {
+      dataNewCasesPerDayChart,
+
       chartOptions: {
         title: {
           text: this.$t("newCasesPerDay"),
@@ -27,40 +31,13 @@ export default {
           enabled: false
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
-            y: -15,
-
-        }},
+          buttonOptions: {
+            verticalAlign: "top",
+            y: -15
+          }
+        },
         xAxis: {
-          categories: [
-            "2020-02-26",
-            "2020-02-27",
-            "2020-02-28",
-            "2020-02-29",
-            "2020-03-01",
-            "2020-03-02",
-            "2020-03-03",
-            "2020-03-04",
-            "2020-03-05",
-            "2020-03-06",
-            "2020-03-07",
-            "2020-03-08",
-            "2020-03-09",
-            "2020-03-10",
-            "2020-03-11",
-            "2020-03-12",
-            "2020-03-13",
-            "2020-03-14",
-            "2020-03-15",
-            "2020-03-16",
-            "2020-03-17",
-            "2020-03-18",
-            "2020-03-19",
-            "2020-03-20",
-            "2020-03-21",
-            "2020-03-22"
-          ],
+          categories: dataNewCasesPerDayChart.date,
           crosshair: true
         },
 
@@ -94,98 +71,17 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#7cb5ec",
-            data: [
-              0,
-              1,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
-              3,
-              5,
-              0,
-              0,
-              0,
-              3,
-              4,
-              24,
-              68,
-              26,
-              36,
-              34,
-              20,
-              33,
-              9,
-              16,
-              23,
-              20
-            ]
+            data: dataNewCasesPerDayChart.confirmedCases
           },
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            data: [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
-              2
-            ]
+            data: dataNewCasesPerDayChart.recovered
           },
           {
             name: this.$t("deceased"),
             color: "#434348",
-            data: [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
+            data: dataNewCasesPerDayChart.deceased
           }
         ]
       }

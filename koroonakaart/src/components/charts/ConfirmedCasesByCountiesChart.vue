@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { dataConfirmedCasesByCounties } from "../../dataConstants";
+
 export default {
   name: "ConfirmedCasesByCountiesChart",
 
@@ -17,11 +19,11 @@ export default {
           y: 30
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
-            y: -15,
-
-        }},
+          buttonOptions: {
+            verticalAlign: "top",
+            y: -15
+          }
+        },
         chart: {
           type: "bar",
           height: 470
@@ -90,7 +92,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: [123, 2, 6, 1, 1, 1, 2, 3, 22, 2, 94, 21, 1, 2, 34, 11]
+            data: dataConfirmedCasesByCounties
           }
         ]
       }

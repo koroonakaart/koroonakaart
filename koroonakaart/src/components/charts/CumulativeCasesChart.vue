@@ -5,35 +5,42 @@
 </template>
 
 <script>
+import { dataCumulativeCasesChart } from "../../dataConstants";
+
 export default {
   name: "CumulativeCasesChart",
 
   data() {
     return {
+      dataCumulativeCasesChart,
+
       chartOptions: {
         title: {
           text: this.$t("cumulativeCases"),
           align: "left",
-          y: 30        },
-
-  exporting: {
-    buttons: {
-        customButton: {
-            text: this.$t("linear"),
-            onclick: function() {
-                this.yAxis[0].update({
-                    type: 'linear'
-                });
-            }
+          y: 30
         },
-        customButton2: {
-            text: this.$t("logarithmic"),
-            onclick: function() {
+
+        exporting: {
+          buttons: {
+            customButton: {
+              text: this.$t("linear"),
+              onclick: function() {
                 this.yAxis[0].update({
-                    type: 'logarithmic'
+                  type: "linear"
                 });
+              }
+            },
+            customButton2: {
+              text: this.$t("logarithmic"),
+              onclick: function() {
+                this.yAxis[0].update({
+                  type: "logarithmic"
+                });
+              }
             }
-        }}},
+          }
+        },
 
         chart: {
           height: 470
@@ -58,39 +65,13 @@ export default {
           }
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
+          buttonOptions: {
+            verticalAlign: "top",
             y: -15
-        }},
+          }
+        },
         xAxis: {
-          categories: [
-            "2020-02-26",
-            "2020-02-27",
-            "2020-02-28",
-            "2020-02-29",
-            "2020-03-01",
-            "2020-03-02",
-            "2020-03-03",
-            "2020-03-04",
-            "2020-03-05",
-            "2020-03-06",
-            "2020-03-07",
-            "2020-03-08",
-            "2020-03-09",
-            "2020-03-10",
-            "2020-03-11",
-            "2020-03-12",
-            "2020-03-13",
-            "2020-03-14",
-            "2020-03-15",
-            "2020-03-16",
-            "2020-03-17",
-            "2020-03-18",
-            "2020-03-19",
-            "2020-03-20",
-            "2020-03-21",
-            "2020-03-22"
-          ]
+          categories: dataCumulativeCasesChart.date
         },
 
         yAxis: {
@@ -103,130 +84,22 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#2f7ed8",
-            data: [
-              0,
-              1,
-              1,
-              1,
-              1,
-              1,
-              2,
-              2,
-              5,
-              10,
-              10,
-              10,
-              10,
-              13,
-              17,
-              41,
-              109,
-              135,
-              171,
-              205,
-              225,
-              258,
-              267,
-              283,
-              306,
-              326
-            ]
+            data: dataCumulativeCasesChart.cases
           },
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            data: [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              2,
-              2,
-              4
-            ]
+            data: dataCumulativeCasesChart.recovered
           },
           {
             name: this.$t("active"),
             color: "#f28f43",
-            data: [
-              0,
-              1,
-              1,
-              1,
-              1,
-              1,
-              2,
-              2,
-              5,
-              10,
-              10,
-              10,
-              10,
-              13,
-              17,
-              41,
-              109,
-              134,
-              170,
-              204,
-              224,
-              257,
-              266,
-              281,
-              304,
-              322
-            ]
+            data: dataCumulativeCasesChart.active
           },
           {
             name: this.$t("deceased"),
             color: "#0d233a",
-            data: [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
+            data: dataCumulativeCasesChart.deceased
           }
         ]
       }
@@ -251,7 +124,6 @@ export default {
       this.chartOptions.series[3].name = this.$t("deceased");
       this.expoting.buttons.customButton.text = this.$t("linear");
       this.expoting.buttons.customButton2.text = this.$t("logarithmic");
-
     }
   }
 };

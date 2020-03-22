@@ -5,11 +5,15 @@
 </template>
 
 <script>
+import { dataTestsPerDayChart } from "../../dataConstants";
+
 export default {
   name: "TestsPerDayChart",
 
   data() {
     return {
+      dataTestsPerDayChart,
+
       chartOptions: {
         title: {
           text: this.$t("testsPerDay"),
@@ -27,40 +31,13 @@ export default {
           enabled: false
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
-            y: -15,
-
-        }},
+          buttonOptions: {
+            verticalAlign: "top",
+            y: -15
+          }
+        },
         xAxis: {
-          categories: [
-            "2020-02-26",
-            "2020-02-27",
-            "2020-02-28",
-            "2020-02-29",
-            "2020-03-01",
-            "2020-03-02",
-            "2020-03-03",
-            "2020-03-04",
-            "2020-03-05",
-            "2020-03-06",
-            "2020-03-07",
-            "2020-03-08",
-            "2020-03-09",
-            "2020-03-10",
-            "2020-03-11",
-            "2020-03-12",
-            "2020-03-13",
-            "2020-03-14",
-            "2020-03-15",
-            "2020-03-16",
-            "2020-03-17",
-            "2020-03-18",
-            "2020-03-19",
-            "2020-03-20",
-            "2020-03-21",
-            "2020-03-22"
-          ],
+          categories: dataTestsPerDayChart.date,
           crosshair: true
         },
 
@@ -92,34 +69,7 @@ export default {
         series: [
           {
             name: this.$t("testsPerDay"),
-            data: [
-              6,
-              11,
-              12,
-              9,
-              15,
-              21,
-              26,
-              43,
-              41,
-              58,
-              51,
-              18,
-              39,
-              69,
-              45,
-              120,
-              259,
-              128,
-              162,
-              254,
-              238,
-              395,
-              239,
-              245,
-              308,
-              417
-            ]
+            data: dataTestsPerDayChart.testsPerDay
           }
         ]
       }

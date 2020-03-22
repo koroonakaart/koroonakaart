@@ -5,11 +5,15 @@
 </template>
 
 <script>
+import { dataCumulativeTestsChart } from "../../dataConstants";
+
 export default {
   name: "CumulativeTestsChart",
 
   data() {
     return {
+      dataCumulativeTestsChart,
+
       chartOptions: {
         title: {
           text: this.$t("cumulativeTests"),
@@ -19,22 +23,24 @@ export default {
 
         exporting: {
           buttons: {
-              customButton: {
-                  text: this.$t("linear"),
-                  onclick: function() {
-                      this.yAxis[0].update({
-                          type: 'linear'
-                      });
-                  }
-              },
-              customButton2: {
-                  text: this.$t("logarithmic"),
-                  onclick: function() {
-                      this.yAxis[0].update({
-                          type: 'logarithmic'
-                      });
-                  }
-              }}},
+            customButton: {
+              text: this.$t("linear"),
+              onclick: function() {
+                this.yAxis[0].update({
+                  type: "linear"
+                });
+              }
+            },
+            customButton2: {
+              text: this.$t("logarithmic"),
+              onclick: function() {
+                this.yAxis[0].update({
+                  type: "logarithmic"
+                });
+              }
+            }
+          }
+        },
         chart: {
           height: 470
         },
@@ -44,10 +50,11 @@ export default {
           enabled: false
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
+          buttonOptions: {
+            verticalAlign: "top",
             y: -15
-        }},
+          }
+        },
         legend: {
           layout: "horizontal",
           align: "center",
@@ -63,73 +70,19 @@ export default {
         },
 
         xAxis: {
-          categories: [
-            "2020-02-26",
-            "2020-02-27",
-            "2020-02-28",
-            "2020-02-29",
-            "2020-03-01",
-            "2020-03-02",
-            "2020-03-03",
-            "2020-03-04",
-            "2020-03-05",
-            "2020-03-06",
-            "2020-03-07",
-            "2020-03-08",
-            "2020-03-09",
-            "2020-03-10",
-            "2020-03-11",
-            "2020-03-12",
-            "2020-03-13",
-            "2020-03-14",
-            "2020-03-15",
-            "2020-03-16",
-            "2020-03-17",
-            "2020-03-18",
-            "2020-03-19",
-            "2020-03-20",
-            "2020-03-21",
-            "2020-03-22"
-          ]
+          categories: dataCumulativeTestsChart.date
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfTests"),
+            text: this.$t("numberOfTests")
           }
         },
 
         series: [
           {
             name: this.$t("testsAdministered"),
-            data: [
-              6,
-              17,
-              29,
-              38,
-              53,
-              74,
-              100,
-              143,
-              184,
-              242,
-              293,
-              311,
-              350,
-              419,
-              464,
-              584,
-              843,
-              971,
-              1133,
-              1387,
-              1625,
-              2020,
-              2259,
-              2504,
-              2812,
-              3229
-            ]
+            data: dataCumulativeTestsChart.testsAdministered
           }
         ]
       }
@@ -151,7 +104,6 @@ export default {
       this.chartOptions.series[0].name = this.$t("testsAdministered");
       this.expoting.buttons.customButton.text = this.$t("linear");
       this.expoting.buttons.customButton2.text = this.$t("logarithmic");
-
     }
   }
 };

@@ -5,11 +5,15 @@
 </template>
 
 <script>
+import { dataTestsPopRatio } from "../../dataConstants";
+
 export default {
   name: "TestsPopRatioChart",
 
   data() {
     return {
+      dataTestsPopRatio,
+
       chartOptions: {
         title: {
           text: this.$t("testsPer10000"),
@@ -17,11 +21,11 @@ export default {
           y: 30
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
-            y: -15,
-
-        }},
+          buttonOptions: {
+            verticalAlign: "top",
+            y: -15
+          }
+        },
         chart: {
           type: "bar",
           height: 470
@@ -54,22 +58,21 @@ export default {
             }
           },
           categories: [
-          "Harjumaa",
-          "Hiiumaa",
-          "Ida-Virumaa",
-          "Jõgevamaa",
-          "Järvamaa",
-          "Lääne-Virumaa",
-          "Läänemaa",
-          "Põlvamaa",
-          "Pärnumaa",
-          "Raplamaa",
-          "Saaremaa",
-          "Tartumaa",
-          "Valgamaa",
-          "Viljandimaa",
-          "Võrumaa"
-
+            "Harjumaa",
+            "Hiiumaa",
+            "Ida-Virumaa",
+            "Jõgevamaa",
+            "Järvamaa",
+            "Lääne-Virumaa",
+            "Läänemaa",
+            "Põlvamaa",
+            "Pärnumaa",
+            "Raplamaa",
+            "Saaremaa",
+            "Tartumaa",
+            "Valgamaa",
+            "Viljandimaa",
+            "Võrumaa"
           ]
         },
 
@@ -90,21 +93,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: [2.06,
-2.13,
-0.44,
-0.35,
-0.33,
-0.17,
-0.98,
-1.20,
-2.56,
-0.60,
-28.39,
-1.37,
-0.35,
-0.43,
-9.50],
+            data: dataTestsPopRatio
           }
         ]
       }
@@ -124,7 +113,7 @@ export default {
       this.chartOptions.title.text = this.$t("testsPer10000");
       this.chartOptions.yAxis.title.text = this.$t("testsPer10000Axis");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
-    //  this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
+      //  this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
     }
   }
 };

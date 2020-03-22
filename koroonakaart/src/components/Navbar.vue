@@ -21,7 +21,7 @@
           </b-nav-item>
           <b-nav-item id="navbar-interpunct">·</b-nav-item>
           <b-nav-item>
-            <small>{{ $t("navbarUpdated") }}: 22/03/2020, 11:30</small>
+            <small>{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
           </b-nav-item>
         </b-navbar-nav>
 
@@ -47,6 +47,8 @@
 <script>
 import Earth from "vue-material-design-icons/Earth.vue";
 
+import { updatedOn } from "../dataConstants";
+
 export default {
   name: "Navbar",
 
@@ -64,7 +66,8 @@ export default {
 
   data() {
     return {
-      languageNames: ["Eesti", "English", "Pусский"]
+      languageNames: ["Eesti", "English", "Pусский"],
+      updatedOn
     };
   },
 

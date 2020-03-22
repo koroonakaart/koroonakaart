@@ -5,66 +5,69 @@
 </template>
 
 <script>
+import { dataPositiveTestsByAgeChart } from "../../dataConstants";
+
 export default {
   name: "PositiveTestsAgeDistributionChart",
 
   data() {
     return {
+      dataPositiveTestsByAgeChart,
+
       chartOptions: {
         title: {
           text: this.$t("distributionOfPositiveTests"),
           align: "left",
           y: 30
-
         },
         exporting: {
           buttons: {
-              customButton: {
-                  text: "Abs",
-                  onclick: function() {
-                  this.update({
+            customButton: {
+              text: "Abs",
+              onclick: function() {
+                this.update({
                   plotOptions: {
-                  column: {
-                  stacking: 'normal'
-                  }
+                    column: {
+                      stacking: "normal"
+                    }
                   },
                   yAxis: {
-                  title: {
-                  text: "Abs"
+                    title: {
+                      text: "Abs"
+                    }
                   }
-
-                  }
-                      });
-                  }
-              },
-              customButton2: {
-                  text: "%",
-                  onclick: function() {
-                  this.update({
+                });
+              }
+            },
+            customButton2: {
+              text: "%",
+              onclick: function() {
+                this.update({
                   plotOptions: {
-                  column: {
-                  stacking: 'percent'
-                  }
+                    column: {
+                      stacking: "percent"
+                    }
                   },
                   yAxis: {
-                  title: {
-                  text: "%"
+                    title: {
+                      text: "%"
+                    }
                   }
-
-                  }
-                  });
-                  }
-              }}},
+                });
+              }
+            }
+          }
+        },
         chart: {
           type: "column",
           height: 470
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
-            y: -15,
-
-        }},
+          buttonOptions: {
+            verticalAlign: "top",
+            y: -15
+          }
+        },
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
@@ -100,8 +103,8 @@ export default {
         },
         plotOptions: {
           column: {
-          stacking: "normal",
-          enableMouseTracking: true
+            stacking: "normal",
+            enableMouseTracking: true
           }
         },
         tooltip: {
@@ -116,17 +119,18 @@ export default {
         },
         series: [
           {
-            name:  this.$t("male"),
-            data: [1,1,4,1,9,5,15,18,20,22,24,13,11,10,0]
+            name: this.$t("male"),
+            data: dataPositiveTestsByAgeChart.male
           },
           {
-            name:  this.$t("female"),
-            data: [1,0,5,6,2,8,18,25,16,25,19,11,11,24,0],
+            name: this.$t("female"),
+            data: dataPositiveTestsByAgeChart.female,
             color: "#492970"
-          }, {
-            name:  this.$t("unknown"),
-            data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
-            }
+          },
+          {
+            name: this.$t("unknown"),
+            data: dataPositiveTestsByAgeChart.unknown
+          }
         ]
       }
     };
@@ -146,8 +150,8 @@ export default {
       this.chartOptions.xAxis.title.text = this.$t("age");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("male");
-      this.chartOptions.series[1].name =  this.$t("female");
-      this.chartOptions.series[2].name =  this.$t("unknown");
+      this.chartOptions.series[1].name = this.$t("female");
+      this.chartOptions.series[2].name = this.$t("unknown");
       this.chartOptions.xAxis.categories[
         this.chartOptions.xAxis.categories.length - 1
       ] = this.$t("unknown");

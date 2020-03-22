@@ -3,13 +3,13 @@
   <b-container fluid="lg">
     <Statsbar />
     <b-row class="mb-5">
-    <Map />
+      <Map />
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="7">
+      <b-col cols="12" lg="6">
         <TestsPopRatioChart />
       </b-col>
-      <b-col cols="12" lg="5">
+      <b-col cols="12" lg="6">
         <ConfirmedCasesByCountiesChart />
       </b-col>
     </b-row>
@@ -30,11 +30,11 @@
       </b-col>
     </b-row>
     <b-row class="mb-5">
-      <b-col cols = "12" lg = "6">
+      <b-col cols="12" lg="6">
         <PositiveTestsAgeDistributionChart />
       </b-col>
-      <b-col cols = "12" lg = "6">
-      <PositiveNegativeChart />
+      <b-col cols="12" lg="6">
+        <PositiveNegativeChart />
       </b-col>
     </b-row>
   </b-container>

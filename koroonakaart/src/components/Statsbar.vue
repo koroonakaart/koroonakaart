@@ -5,50 +5,69 @@
         <div class="statsbar-heading">
           <h5>{{ $t("confirmedCases") }}</h5>
         </div>
-        <h1>326</h1>
+        <h1>{{confirmedCasesNumber}}</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("activeCases") }}</h5>
         </div>
-        <h1>322</h1>
+        <h1>{{activeCasesNumber}}</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("hospitalised") }}</h5>
         </div>
-        <h1>15</h1>
+        <h1>{{hospitalisedNumber}}</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("deceased") }}</h5>
         </div>
-        <h1>0</h1>
+        <h1>{{deceasedNumber}}</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("recovered") }}</h5>
         </div>
-        <h1>4</h1>
+        <h1>{{recoveredNumber}}</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("testsAdministered") }}</h5>
         </div>
-        <h1>3229</h1>
+        <h1>{{testsAdministeredNumber}}</h1>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
+import {
+  confirmedCasesNumber,
+  activeCasesNumber,
+  hospitalisedNumber,
+  deceasedNumber,
+  recoveredNumber,
+  testsAdministeredNumber
+} from "../dataConstants";
+
 export default {
   name: "Statsbar",
+  data() {
+    return {
+      confirmedCasesNumber,
+      activeCasesNumber,
+      hospitalisedNumber,
+      deceasedNumber,
+      recoveredNumber,
+      testsAdministeredNumber
+    };
+  },
   /* updated() {
     console.log(this.$store.state.dataFromGoogleSheets);
   }, */

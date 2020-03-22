@@ -5,16 +5,20 @@
 </template>
 
 <script>
+import { dataPositiveNegativeChart } from "../../dataConstants";
 export default {
   name: "PositiveNegativeChart",
 
   data() {
     return {
+      dataPositiveNegativeChart,
+
       chartOptions: {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
-          y: 30        },
+          y: 30
+        },
 
         chart: {
           type: "column",
@@ -23,52 +27,53 @@ export default {
 
         exporting: {
           buttons: {
-              customButton: {
-                  text: "Abs",
-                  onclick: function() {
-                  this.update({
+            customButton: {
+              text: "Abs",
+              onclick: function() {
+                this.update({
                   plotOptions: {
-                  column: {
-                  stacking: 'normal'
-                  }
+                    column: {
+                      stacking: "normal"
+                    }
                   },
                   yAxis: {
-                  title: {
-                  text: "Abs"
+                    title: {
+                      text: "Abs"
+                    }
                   }
-
-                  }
-                      });
-                  }
-              },
-              customButton2: {
-                  text: "%",
-                  onclick: function() {
-                  this.update({
+                });
+              }
+            },
+            customButton2: {
+              text: "%",
+              onclick: function() {
+                this.update({
                   plotOptions: {
-                  column: {
-                  stacking: 'percent'
-                  }
+                    column: {
+                      stacking: "percent"
+                    }
                   },
                   yAxis: {
-                  title: {
-                  text: "%"
+                    title: {
+                      text: "%"
+                    }
                   }
-
-                  }
-                  });
-                  }
-              }}},
+                });
+              }
+            }
+          }
+        },
 
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
         },
         navigation: {
-        buttonOptions: {
-            verticalAlign: 'top',
+          buttonOptions: {
+            verticalAlign: "top",
             y: -15
-        }},
+          }
+        },
         xAxis: {
           labels: {
             style: {
@@ -98,7 +103,7 @@ export default {
 
         yAxis: {
           title: {
-            text: "%",
+            text: "%"
           }
         },
         tooltip: {
@@ -113,20 +118,20 @@ export default {
         },
         plotOptions: {
           column: {
-          stacking: "percent",
-          enableMouseTracking: true
+            stacking: "percent",
+            enableMouseTracking: true
           }
         },
 
         series: [
           {
             name: this.$t("negative"),
-            data: [165, 47, 23, 21, 18, 21, 17, 44, 69, 20, 40, 183, 189, 85, 345, 1616],
+            data: dataPositiveNegativeChart.negative,
             color: "#A6C96A"
           },
           {
             name: this.$t("positive"),
-            data: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 21, 22, 34, 94, 123],
+            data: dataPositiveNegativeChart.positive,
             color: "#910000"
           }
         ]
@@ -145,7 +150,7 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("positiveNegativeTitle");
-    //  this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      //  this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("negative");
       this.chartOptions.series[1].name = this.$t("positive");
       this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");

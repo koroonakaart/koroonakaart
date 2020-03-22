@@ -9,7 +9,7 @@ import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 import mapData from "../data/map/estonia.geo.json";
 
-import { infectionsByCounty } from "../data/map/mapData";
+import { dataInfectionsByCounty } from "../dataConstants";
 
 HighchartsMapModule(Highcharts);
 
@@ -106,7 +106,7 @@ export default {
 
         series: [
           {
-            data: infectionsByCounty,
+            data: dataInfectionsByCounty,
             keys: ["MNIMI", "value"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
