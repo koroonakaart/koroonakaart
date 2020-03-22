@@ -9,7 +9,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Harju",
+        "MNIMI": "Harjumaa",
         "MKOOD": "0037",
         "AREA": 4312853674.4052744
       },
@@ -455,9 +455,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Hiiu",
+        "MNIMI": "Hiiumaa",
         "MKOOD": "0039",
-        "AREA": 1029344259.1724206
+        "AREA": 1029344259.1724206,
+        "hc-middle-x": 0.61,
+        "hc-middle-y": 0.47
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -639,9 +641,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Ida-Viru",
+        "MNIMI": "Ida-Virumaa",
         "MKOOD": "0045",
-        "AREA": 2962201809.8268647
+        "AREA": 2962201809.8268647,
+        "hc-middle-x": 0.51,
+        "hc-middle-y": 0.4
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -798,9 +802,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Järva",
+        "MNIMI": "Järvamaa",
         "MKOOD": "0052",
-        "AREA": 2666093148.9736042
+        "AREA": 2666093148.9736042,
+        "hc-middle-x": 0.6,
+        "hc-middle-y": 0.4
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1006,7 +1012,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Jõgeva",
+        "MNIMI": "Jõgevamaa",
         "MKOOD": "0050",
         "AREA": 2537328268.7450557
       },
@@ -1206,9 +1212,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Lääne",
+        "MNIMI": "Läänemaa",
         "MKOOD": "0056",
-        "AREA": 1810073156.0463326
+        "AREA": 1810073156.0463326,
+        "hc-middle-x": 0.56,
+        "hc-middle-y": 0.43
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1449,9 +1457,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Lääne-Viru",
+        "MNIMI": "Lääne-Virumaa",
         "MKOOD": "0060",
-        "AREA": 3683980454.9397707
+        "AREA": 3683980454.9397707,
+        "hc-middle-x": 0.44,
+        "hc-middle-y": 0.52
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1711,9 +1721,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Pärnu",
+        "MNIMI": "Pärnumaa",
         "MKOOD": "0068",
-        "AREA": 5402923410.2378073
+        "AREA": 5402923410.2378073,
+        "hc-middle-x": 0.53,
+        "hc-middle-y": 0.35
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2051,9 +2063,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Põlva",
+        "MNIMI": "Põlvamaa",
         "MKOOD": "0064",
-        "AREA": 1818021906.8134685
+        "AREA": 1818021906.8134685,
+        "hc-middle-x": 0.49,
+        "hc-middle-y": 0.62
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2236,7 +2250,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Rapla",
+        "MNIMI": "Raplamaa",
         "MKOOD": "0071",
         "AREA": 2756716173.8045382
       },
@@ -2461,9 +2475,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Saare",
+        "MNIMI": "Saaremaa",
         "MKOOD": "0074",
-        "AREA": 2929102196.0518513
+        "AREA": 2929102196.0518513,
+        "hc-middle-x": 0.46,
+        "hc-middle-y": 0.29
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2931,7 +2947,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Tartu",
+        "MNIMI": "Tartumaa",
         "MKOOD": "0079",
         "AREA": 3339569663.659668
       },
@@ -3163,9 +3179,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Valga",
+        "MNIMI": "Valgamaa",
         "MKOOD": "0081",
-        "AREA": 1911433007.6285715
+        "AREA": 1911433007.6285715,
+        "hc-middle-x": 0.53,
+        "hc-middle-y": 0.33
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3367,7 +3385,7 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Viljandi",
+        "MNIMI": "Viljandimaa",
         "MKOOD": "0084",
         "AREA": 3410089758.1757417
       },
@@ -3619,9 +3637,11 @@
     {
       "type": "Feature",
       "properties": {
-        "MNIMI": "Võru",
+        "MNIMI": "Võrumaa",
         "MKOOD": "0087",
-        "AREA": 2764844031.0593786
+        "AREA": 2764844031.0593786,
+        "hc-middle-x": 0.44,
+        "hc-middle-y": 0.54
       },
       "geometry": {
         "type": "MultiPolygon",
