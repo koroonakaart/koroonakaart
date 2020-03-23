@@ -57,6 +57,12 @@ export default {
     Earth
   },
 
+  mounted() {
+  if (this.$i18n.locale !== this.$route.params.locale)
+    this.changeCurrentLanguage(this.$route.params.locale);
+},
+
+
   data() {
     return {
       languageNames: ["Eesti", "English", "Pусский"],
@@ -76,7 +82,6 @@ export default {
         this.$router.push(targetLanguage);
       }
       this.$i18n.locale = targetLanguage;
-      window.location.reload();
     }
   }
 };
