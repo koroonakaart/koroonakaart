@@ -165,6 +165,8 @@ export default {
   watch: {
     currentLocale() {
       this.mapOptions.series[0].name = this.$t("cases");
+      this.mapOptions.exporting.buttons.customButton.text = this.$t("per10000");
+      this.mapOptions.exporting.buttons.customButton2.text = this.$t("absolute");
     }
   }
 };
