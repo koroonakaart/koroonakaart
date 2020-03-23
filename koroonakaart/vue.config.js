@@ -7,6 +7,13 @@ module.exports = {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(data));
       });
+    },
+    proxy: {
+      "^/api": {
+        target: "/api",
+        ws: true,
+        changeOrigin: true
+      }
     }
   },
 
