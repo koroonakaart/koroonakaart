@@ -1,10 +1,17 @@
 # Koroonakaart
 
-Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart) and in cooperation with Terviseamet. Data is updated every day between 10 and 12 Estonian time. 
-
-Statistics regarding the COVID-19 epidemic in Estonia. Live demo is available at [koroonakaart.ee](http://koroonakaart.ee/).
+Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart) and in cooperation with Terviseamet. Data is updated every day between 10 and 12 Estonian time. Live demo is available at [koroonakaart.ee](http://koroonakaart.ee/).
 
 Url to load localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **ee** (Estonian), **en** (English) and **ru** (Russian).
+
+
+This project is co-developed by a team of researchers and open government data activists from Open Knowledge Estonia, Tallinn University of Technology (Keegan McBride, Project Manager, @keeganmcbride), University of Tartu (Joonas Puura, @PuuraJ), and other civic activists (Harry Sild, @Kypsis; Chris Thompson @neuroactive) who took part in the Garage 48 Hack The Crisis Hackathon.
+
+For more information please contact:  
+
+Keegan McBride (PO of koroonakaart.ee) ⁠— keegan.mcbride@taltech.ee
+
+Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee 
 
 ## Project setup
 ```
@@ -45,8 +52,3 @@ Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.faceboo
 
 MTÜ Open Knowledge Estonia EE607700771004696794 
 
-For more information please contact:  
-
-Keegan McBride (PO of koroonakaart.ee) ⁠— keegan.mcbride@taltech.ee
-
-Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee 
