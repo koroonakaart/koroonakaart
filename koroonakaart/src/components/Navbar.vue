@@ -76,6 +76,7 @@ export default {
         this.$router.push(targetLanguage);
       }
       this.$i18n.locale = targetLanguage;
+      window.location.reload();
     }
   }
 };
