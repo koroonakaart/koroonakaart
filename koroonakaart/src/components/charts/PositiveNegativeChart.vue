@@ -82,23 +82,23 @@ export default {
             }
           },
           categories: [
-          this.$t("insufficientData",
-          "Harjumaa",
-          "Hiiumaa",
-          "Ida-Virumaa",
-          "Jõgevamaa",
-          "Järvamaa",
-          "Läänemaa",
-          "Lääne-Virumaa",
-          "Põlvamaa",
-          "Pärnumaa",
-          "Raplamaa",
-          "Saaremaa",
-          "Tartumaa",
-          "Valgamaa",
-          "Viljandimaa",
-          "Võrumaa"
-          ];
+            this.$t("insufficientData"),
+            "Harjumaa",
+            "Hiiumaa",
+            "Ida-Virumaa",
+            "Jõgevamaa",
+            "Järvamaa",
+            "Läänemaa",
+            "Lääne-Virumaa",
+            "Põlvamaa",
+            "Pärnumaa",
+            "Raplamaa",
+            "Saaremaa",
+            "Tartumaa",
+            "Valgamaa",
+            "Viljandimaa",
+            "Võrumaa"
+          ]
         },
 
         yAxis: {

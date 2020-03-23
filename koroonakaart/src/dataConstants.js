@@ -486,26 +486,8 @@ export const dataPositiveTestsByAgeChart = {
   female: [1, 0, 5, 7, 2, 10, 19, 25, 20, 27, 19, 18, 11, 25, 0],
   unknown: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 };
-
-
-this.$t("insufficientData",
-"Harjumaa",
-"Hiiumaa",
-"Ida-Virumaa",
-"Jõgevamaa",
-"Järvamaa",
-"Läänemaa",
-"Lääne-Virumaa",
-"Põlvamaa",
-"Pärnumaa",
-"Raplamaa",
-"Saaremaa",
-"Tartumaa",
-"Valgamaa",
-"Viljandimaa",
-"Võrumaa"
 // Positive and negative tests by county chart
 export const dataPositiveNegativeChart = {
-  negative: [173, 1785, 20, 65, 26, 30, 23, 54, 34, 213, 72, 406, 230, 30, 59, 151],
-  positive: [11, 128, 2, 6, 1, 1, 2, 1, 3, 22, 2, 110, 22, 2, 2, 38]
+  negative: [173, 1785, 20, 65, 26, 30, 23, 54, 34, 214, 72, 406, 230, 30, 59, 151],
+  positive: [11,   128, 2,  6,  1,  1,  2,  1,  3,  22,  2,  110, 22,  1,  2,    38]
 };
