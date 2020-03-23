@@ -138,7 +138,7 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
-      this.chartOptions.title.text = this.$t("newCasesPerDay");
+      this.chartOptions.title.text = this.$t("confirmedasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
     }
   }
