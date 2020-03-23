@@ -16,8 +16,24 @@ export default {
     Navbar,
     Footer
   },
+
   created() {
-    this.$store.dispatch("fetchDataFromGoogleSheets");
+    if (this.$i18n.locale !== this.$route.params.locale)
+      this.changeCurrentLanguage(this.$route.params.locale);
+  },
+
+  updated() {
+    if (this.$i18n.locale !== this.$route.params.locale)
+      this.changeCurrentLanguage(this.$route.params.locale);
+  },
+
+  methods: {
+    changeCurrentLanguage: function(targetLanguage) {
+      if (this.$route.params.locale !== targetLanguage) {
+        this.$router.push(targetLanguage);
+      }
+      this.$i18n.locale = targetLanguage;
+    }
   }
 };
 </script>

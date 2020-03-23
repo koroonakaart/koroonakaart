@@ -57,13 +57,6 @@ export default {
     Earth
   },
 
-  // On Navbar mounted change locale to route param (ee,en or ru).
-  // If route param has unknown language Vue will automatically fall back to ee.
-  mounted() {
-    if (this.$i18n.locale !== this.$route.params.locale)
-      this.changeCurrentLanguage(this.$route.params.locale);
-  },
-
   data() {
     return {
       languageNames: ["Eesti", "English", "Pусский"],
@@ -75,14 +68,6 @@ export default {
     locales: function() {
       return this.$i18n.availableLocales;
     }
-
-    // Disabled until later for data importing
-    /* lastUpdated: function() {
-      const date = new Date(
-        this.$store?.state?.dataFromGoogleSheets?.updated?.$t
-      );
-      return date.toLocaleString();
-    } */
   },
 
   methods: {
