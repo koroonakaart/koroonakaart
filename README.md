@@ -5,7 +5,7 @@ Repo now being developed within Open Knowledge Estonia: [https://github.com/okes
 Url to load localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **ee** (Estonian), **en** (English) and **ru** (Russian).
 
 
-This project is co-developed by a team of researchers and open government data activists from Open Knowledge Estonia, Tallinn University of Technology (Keegan McBride, Project Manager, @keeganmcbride), University of Tarty (Joonas Puura, @PuuraJ), and other civic activists (Harry Sild, @Kypsis; Chris Thompson @neuroactive) who took part in the Garage 48 Hack The Crisis Hackathon.
+This project is co-developed by a team of researchers and open government data activists from Open Knowledge Estonia, Tallinn University of Technology (Keegan McBride, Project Manager, @keeganmcbride), University of Tartu (Joonas Puura, @PuuraJ), and other civic activists (Harry Sild, @Kypsis; Chris Thompson @neuroactive) who took part in the Garage 48 Hack The Crisis Hackathon.
 
 For more information please contact:  
 
