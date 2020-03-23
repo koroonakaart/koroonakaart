@@ -9,7 +9,7 @@ import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 import mapData from "../data/map/estonia.geo.json";
 
-import { dataInfectionsByCounty } from "../dataConstants";
+import { dataInfectionsByCounty, dataInfectionsByCounty10000 } from "../dataConstants";
 
 HighchartsMapModule(Highcharts);
 
@@ -27,32 +27,48 @@ export default {
           height: 470
         },
         exporting: {
+        chartOptions: {
+          // specific options for the exported image
+          plotOptions: {
+            series: {
+              dataLabels: {
+                enabled: true
+              }
+            }
+          }
+        },
           buttons: {
             customButton: {
-              text: this.$t("showValues"),
+              text: this.$t("per10000"),
               onclick: function() {
                 this.update({
                   series: {
-                    dataLabels: {
-                      format: "{point.MNIMI}" + ": " + "{point.value}"
-                    }
+                  data: dataInfectionsByCounty10000,
+                  dataLabels: {
+                  format:  "{point.MNIMI}"
+
+                  }
                   }
                 });
               }
             },
             customButton2: {
-              text: this.$t("hideValues"),
+              text: this.$t("absolute"),
               onclick: function() {
                 this.update({
-                  series: {
-                    dataLabels: {
-                      format: "{point.MNIMI}"
-                    }
-                  }
+                series: {
+                data: dataInfectionsByCounty,
+                dataLabels: {
+                format:  "{point.MNIMI}"
+
+                }
+                }
                 });
               }
             }
-          }
+          },
+
+          fallbackToExportServer: false
         },
 
         title: {

@@ -31,6 +31,8 @@
   "positive": "Positiivne",
   "testsAdministered": "Tehtud teste",
   "testsPerDay": "Teste päevas",
+  "per10000": "10 000 elaniku kohta",
+  "absolute": "Absoluutarv",
   "positiveNegativeTitle": "Positiivsed ja negatiivsed testid maakonniti (%)",
   "unknown": "teadmata",
   "footer1": "Koroonakaart.ee on loodud",

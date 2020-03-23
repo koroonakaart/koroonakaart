@@ -28,6 +28,25 @@ export const dataInfectionsByCounty = [
   ["Võrumaa", 38]
 ];
 
+export const dataInfectionsByCounty10000 = [
+    ["Harjumaa", 2.14], // Harjumaa
+    ["Hiiumaa", 2.13], // Hiiumaa
+    ["Ida-Virumaa",0.44], // Ida-Virumaa
+    ["Jõgevamaa",0.35], // Jõgevamaa
+    ["Järvamaa",0.33], // Järvamaa
+    ["Läänemaa", 0.98], // Läänemaa
+    ["Lääne-Virumaa",0.17], // Lääne-Virumaa
+    ["Põlvamaa", 1.2], // Põlvamaa
+    ["Pärnumaa", 2.56], // Pärnumaa
+    ["Raplamaa", 0.6], // Raplamaa
+    ["Saaremaa", 33.22], // Saaremaa
+    ["Tartumaa", 1.44], // Tartumaa
+    ["Valgamaa", 0.35], // Valgamaa
+    ["Viljandimaa", 0.43], // Viljandimaa
+    ["Võrumaa", 10.62] // Võrumaa
+  ];
+
+
 // Positive tests per 10k chart
 export const dataTestsPopRatio = [
   2.14, // Harjumaa
