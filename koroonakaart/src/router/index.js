@@ -12,6 +12,9 @@ const routes = [
     redirect: "/ee" /* `/${defaultLocale}` */
   },
   {
+    path: "/api"
+  },
+  {
     path: "/:locale",
     name: "Home",
     component: Home
