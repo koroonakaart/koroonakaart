@@ -102,8 +102,8 @@ export default {
       this.chartOptions.title.text = this.$t("cumulativeTests");
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("testsAdministered");
-      this.expoting.buttons.customButton.text = this.$t("linear");
-      this.expoting.buttons.customButton2.text = this.$t("logarithmic");
+      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t("logarithmic");
     }
   }
 };
