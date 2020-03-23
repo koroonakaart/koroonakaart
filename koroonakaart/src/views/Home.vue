@@ -5,6 +5,7 @@
     <b-row class="mb-5">
       <Map />
     </b-row>
+
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
         <TestsPopRatioChart />
@@ -20,6 +21,9 @@
       <b-col cols="12" lg="6">
         <NewCasesPerDayChart />
       </b-col>
+    </b-row>
+    <b-row class="mb-5">
+    <DailyCountyCasesChart />
     </b-row>
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
@@ -51,6 +55,7 @@ import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTest
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
+import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 export default {
   name: "Home",
   // Register components you want to use in the page here
@@ -64,7 +69,8 @@ export default {
     PositiveTestsAgeDistributionChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
-    TestsPopRatioChart
+    TestsPopRatioChart,
+    DailyCountyCasesChart
   }
 };
 </script>
