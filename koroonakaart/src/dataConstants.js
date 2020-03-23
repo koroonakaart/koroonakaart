@@ -494,8 +494,8 @@ const dataPositiveNegativeChart = {
     65,
     26,
     30,
-    23,
     54,
+    23,
     34,
     214,
     72,
@@ -505,7 +505,7 @@ const dataPositiveNegativeChart = {
     59,
     151
   ],
-  positive: [11, 128, 2, 6, 1, 1, 2, 1, 3, 22, 2, 110, 22, 1, 2, 38]
+  positive: [11, 128, 2, 6, 1, 1, 1, 2, 3, 22, 2, 110, 22, 1, 2, 38]
 };
 
 module.exports = {
