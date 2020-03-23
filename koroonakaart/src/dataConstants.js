@@ -46,6 +46,33 @@ const dataInfectionsByCounty10000 = [
   ["Võrumaa", 10.62] // Võrumaa
 ];
 
+const countyByDay = {
+  harjumaa: [73,	87,	101,	104,	108,	114,	123,	128],
+  hiuumaa: [1,	1,	1,	1,	2,	2,	2,	2],
+  idavirumaa: [4,	5,	5,	5,	6,	6,	6,	6],
+  jogevamaa: [1,	1,	1,	1,	1,	1,	1,	1],
+  jarvemaa: [1,	1,	1,	1,	1,	1,	1,	1],
+  laanevirumaa: [0,	0,	1,	1,	1,	1,	1,	1],
+  laanemaa: [0,	0,	0,	0,	2,	2,	2,	2],
+  polvamaa: [3,	3,	3,3,	3,	3,	3,	3],
+  parnumaa: [15,	19,	21,	22,	22,	22,	22,	22],
+  raplamaa: [2,	2,	2,	2,	2,	2,	2,	2],
+  saaremaa: [57,	57,	70,	71,	77,	92,	94,	110],
+  tartumaa: [12,	12,	13,	14,	15,	17,	21,	22],
+  valgamaa: [1,	1,	1,	1,	1,	1,	1,	1],
+  viljandimaa: [2,	2,	2,	2, 2,	2,	2,	2],
+  vorumaa: [25,	26,	26,	29,	30,	30,	34,	38],
+  dates: ["2020-03-16",
+    "2020-03-17",
+    "2020-03-18",
+    "2020-03-19",
+    "2020-03-20",
+    "2020-03-21",
+    "2020-03-22",
+    "2020-03-23"]
+
+};
+
 // Positive tests per 10k chart
 const dataTestsPopRatio = [
   2.14, // Harjumaa
@@ -508,6 +535,9 @@ const dataPositiveNegativeChart = {
   positive: [11, 128, 2, 6, 1, 1, 1, 2, 3, 22, 2, 110, 22, 1, 2, 38]
 };
 
+
+
+
 module.exports = {
   updatedOn,
   confirmedCasesNumber,
@@ -525,5 +555,7 @@ module.exports = {
   dataCumulativeTestsChart,
   dataTestsPerDayChart,
   dataPositiveTestsByAgeChart,
-  dataPositiveNegativeChart
+  dataPositiveNegativeChart,
+  countyByDay
+
 };
