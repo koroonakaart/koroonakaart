@@ -1,16 +1,16 @@
 // Updated on Navbar
-export const updatedOn = "23/03/2020, 11:30";
+const updatedOn = "23/03/2020, 11:30";
 
 // Statsbar
-export const confirmedCasesNumber = "352";
-export const activeCasesNumber = "348";
-export const hospitalisedNumber = "15";
-export const deceasedNumber = "0";
-export const recoveredNumber = "4";
-export const testsAdministeredNumber = "3724";
+const confirmedCasesNumber = "352";
+const activeCasesNumber = "348";
+const hospitalisedNumber = "15";
+const deceasedNumber = "0";
+const recoveredNumber = "4";
+const testsAdministeredNumber = "3724";
 
 // Map components
-export const dataInfectionsByCounty = [
+const dataInfectionsByCounty = [
   ["Harjumaa", 128],
   ["Hiiumaa", 2],
   ["Ida-Virumaa", 6],
@@ -28,27 +28,26 @@ export const dataInfectionsByCounty = [
   ["Võrumaa", 38]
 ];
 
-export const dataInfectionsByCounty10000 = [
-    ["Harjumaa", 2.14], // Harjumaa
-    ["Hiiumaa", 2.13], // Hiiumaa
-    ["Ida-Virumaa",0.44], // Ida-Virumaa
-    ["Jõgevamaa",0.35], // Jõgevamaa
-    ["Järvamaa",0.33], // Järvamaa
-    ["Läänemaa", 0.98], // Läänemaa
-    ["Lääne-Virumaa",0.17], // Lääne-Virumaa
-    ["Põlvamaa", 1.2], // Põlvamaa
-    ["Pärnumaa", 2.56], // Pärnumaa
-    ["Raplamaa", 0.6], // Raplamaa
-    ["Saaremaa", 33.22], // Saaremaa
-    ["Tartumaa", 1.44], // Tartumaa
-    ["Valgamaa", 0.35], // Valgamaa
-    ["Viljandimaa", 0.43], // Viljandimaa
-    ["Võrumaa", 10.62] // Võrumaa
-  ];
-
+const dataInfectionsByCounty10000 = [
+  ["Harjumaa", 2.14], // Harjumaa
+  ["Hiiumaa", 2.13], // Hiiumaa
+  ["Ida-Virumaa", 0.44], // Ida-Virumaa
+  ["Jõgevamaa", 0.35], // Jõgevamaa
+  ["Järvamaa", 0.33], // Järvamaa
+  ["Läänemaa", 0.98], // Läänemaa
+  ["Lääne-Virumaa", 0.17], // Lääne-Virumaa
+  ["Põlvamaa", 1.2], // Põlvamaa
+  ["Pärnumaa", 2.56], // Pärnumaa
+  ["Raplamaa", 0.6], // Raplamaa
+  ["Saaremaa", 33.22], // Saaremaa
+  ["Tartumaa", 1.44], // Tartumaa
+  ["Valgamaa", 0.35], // Valgamaa
+  ["Viljandimaa", 0.43], // Viljandimaa
+  ["Võrumaa", 10.62] // Võrumaa
+];
 
 // Positive tests per 10k chart
-export const dataTestsPopRatio = [
+const dataTestsPopRatio = [
   2.14, // Harjumaa
   2.13, // Hiiumaa
   0.44, // Ida-Virumaa
@@ -67,7 +66,7 @@ export const dataTestsPopRatio = [
 ];
 
 // Confirmed cases by counties chart
-export const dataConfirmedCasesByCounties = [
+const dataConfirmedCasesByCounties = [
   128, // Harjumaa
   2, // Hiiumaa
   6, // Ida-Virumaa
@@ -87,7 +86,7 @@ export const dataConfirmedCasesByCounties = [
 ];
 
 // Cumulative cases chart
-export const dataCumulativeCasesChart = {
+const dataCumulativeCasesChart = {
   date: [
     "2020-02-26",
     "2020-02-27",
@@ -236,7 +235,7 @@ export const dataCumulativeCasesChart = {
 };
 
 // New cases per day chart
-export const dataNewCasesPerDayChart = {
+const dataNewCasesPerDayChart = {
   date: [
     "2020-02-26",
     "2020-02-27",
@@ -356,7 +355,7 @@ export const dataNewCasesPerDayChart = {
 };
 
 // Cumulative tests chart
-export const dataCumulativeTestsChart = {
+const dataCumulativeTestsChart = {
   date: [
     "2020-02-26",
     "2020-02-27",
@@ -418,7 +417,7 @@ export const dataCumulativeTestsChart = {
 };
 
 // Tests per day chart
-export const dataTestsPerDayChart = {
+const dataTestsPerDayChart = {
   date: [
     "2020-02-26",
     "2020-02-27",
@@ -480,7 +479,7 @@ export const dataTestsPerDayChart = {
 };
 
 // Positive tests by age chart
-export const dataPositiveTestsByAgeChart = {
+const dataPositiveTestsByAgeChart = {
   // 0 - 4, 5 - 9, 10 - 14, 15 - 19, 20 - 24, 25 - 29, 30 - 34, 35 - 39, 40 - 44, 45 - 49, 50 - 54, 55 - 59, 60 - 64, 65+, unknown
   male: [1, 1, 4, 1, 9, 5, 16, 19, 19, 22, 27, 14, 12, 12, 0],
   female: [1, 0, 5, 7, 2, 10, 19, 25, 20, 27, 19, 18, 11, 25, 0],
@@ -488,7 +487,7 @@ export const dataPositiveTestsByAgeChart = {
 };
 
 // Positive and negative tests by county chart
-export const dataPositiveNegativeChart = {
+const dataPositiveNegativeChart = {
   negative: [
     173, // Insufficient data
     54, // Lääne-Virumaa
@@ -508,4 +507,24 @@ export const dataPositiveNegativeChart = {
     1785 // Harjumaa
   ],
   positive: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 22, 22, 38, 110, 128]
+};
+
+module.exports = {
+  updatedOn,
+  confirmedCasesNumber,
+  activeCasesNumber,
+  hospitalisedNumber,
+  deceasedNumber,
+  recoveredNumber,
+  testsAdministeredNumber,
+  dataInfectionsByCounty,
+  dataInfectionsByCounty10000,
+  dataTestsPopRatio,
+  dataConfirmedCasesByCounties,
+  dataCumulativeCasesChart,
+  dataNewCasesPerDayChart,
+  dataCumulativeTestsChart,
+  dataTestsPerDayChart,
+  dataPositiveTestsByAgeChart,
+  dataPositiveNegativeChart
 };
