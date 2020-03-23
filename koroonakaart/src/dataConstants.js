@@ -3,7 +3,7 @@ const updatedOn = "23/03/2020, 18:30";
 
 // Statsbar
 const confirmedCasesNumber = "352";
-const activeCasesNumber = "348";
+const activeCasesNumber = "345";
 const hospitalisedNumber = "17";
 const deceasedNumber = "0";
 const recoveredNumber = "7";
@@ -201,7 +201,7 @@ const dataCumulativeCasesChart = {
     281,
     304,
     322,
-    348
+    345
   ],
   deceased: [
     0,
