@@ -1,36 +1,36 @@
 // Updated on Navbar
-export const updatedOn = "22/03/2020, 11:30";
+export const updatedOn = "23/03/2020, 11:30";
 
 // Statsbar
-export const confirmedCasesNumber = "326";
-export const activeCasesNumber = "322";
+export const confirmedCasesNumber = "352";
+export const activeCasesNumber = "348";
 export const hospitalisedNumber = "15";
 export const deceasedNumber = "0";
 export const recoveredNumber = "4";
-export const testsAdministeredNumber = "3229";
+export const testsAdministeredNumber = "3724";
 
-// Map component
+// Map components
 export const dataInfectionsByCounty = [
-  ["Harjumaa", 123],
+  ["Harjumaa", 128],
   ["Hiiumaa", 2],
   ["Ida-Virumaa", 6],
   ["Jõgevamaa", 1],
   ["Järvamaa", 1],
-  ["Lääne-Virumaa", 1],
   ["Läänemaa", 2],
+  ["Lääne-Virumaa", 1],
   ["Põlvamaa", 3],
   ["Pärnumaa", 22],
   ["Raplamaa", 2],
-  ["Saaremaa", 94],
-  ["Tartumaa", 21],
+  ["Saaremaa", 110],
+  ["Tartumaa", 22],
   ["Valgamaa", 1],
   ["Viljandimaa", 2],
-  ["Võrumaa", 34]
+  ["Võrumaa", 38]
 ];
 
 // Positive tests per 10k chart
 export const dataTestsPopRatio = [
-  2.06, // Harjumaa
+  2.14, // Harjumaa
   2.13, // Hiiumaa
   0.44, // Ida-Virumaa
   0.35, // Jõgevamaa
@@ -40,16 +40,16 @@ export const dataTestsPopRatio = [
   1.2, // Põlvamaa
   2.56, // Pärnumaa
   0.6, // Raplamaa
-  28.39, // Saaremaa
-  1.37, // Tartumaa
+  33.22, // Saaremaa
+  1.44, // Tartumaa
   0.35, // Valgamaa
   0.43, // Viljandimaa
-  9.5 // Võrumaa
+  10.62 // Võrumaa
 ];
 
 // Confirmed cases by counties chart
 export const dataConfirmedCasesByCounties = [
-  123, // Harjumaa
+  128, // Harjumaa
   2, // Hiiumaa
   6, // Ida-Virumaa
   1, // Jõgevamaa
@@ -59,11 +59,11 @@ export const dataConfirmedCasesByCounties = [
   3, // Põlvamaa
   22, // Pärnumaa
   2, // Raplamaa
-  94, // Saaremaa
-  21, // Tartumaa
+  110, // Saaremaa
+  22, // Tartumaa
   1, // Valgamaa
   2, // Viljandimaa
-  34, // Võrumaa
+  38, // Võrumaa
   11 // Insufficient data
 ];
 
@@ -95,7 +95,8 @@ export const dataCumulativeCasesChart = {
     "2020-03-19",
     "2020-03-20",
     "2020-03-21",
-    "2020-03-22"
+    "2020-03-22",
+    "2020-03-23"
   ],
   cases: [
     0,
@@ -123,7 +124,8 @@ export const dataCumulativeCasesChart = {
     267,
     283,
     306,
-    326
+    326,
+    352
   ],
   recovered: [
     0,
@@ -151,6 +153,7 @@ export const dataCumulativeCasesChart = {
     1,
     2,
     2,
+    4,
     4
   ],
   active: [
@@ -179,9 +182,11 @@ export const dataCumulativeCasesChart = {
     266,
     281,
     304,
-    322
+    322,
+    348
   ],
   deceased: [
+    0,
     0,
     0,
     0,
@@ -239,7 +244,8 @@ export const dataNewCasesPerDayChart = {
     "2020-03-19",
     "2020-03-20",
     "2020-03-21",
-    "2020-03-22"
+    "2020-03-22",
+    "2020-03-23"
   ],
   confirmedCases: [
     0,
@@ -267,7 +273,8 @@ export const dataNewCasesPerDayChart = {
     9,
     16,
     23,
-    20
+    20,
+    26
   ],
   recovered: [
     0,
@@ -295,9 +302,11 @@ export const dataNewCasesPerDayChart = {
     0,
     1,
     0,
-    2
+    2,
+    0
   ],
   deceased: [
+    0,
     0,
     0,
     0,
@@ -355,7 +364,8 @@ export const dataCumulativeTestsChart = {
     "2020-03-19",
     "2020-03-20",
     "2020-03-21",
-    "2020-03-22"
+    "2020-03-22",
+    "2020-03-23"
   ],
   testsAdministered: [
     6,
@@ -383,7 +393,8 @@ export const dataCumulativeTestsChart = {
     2259,
     2504,
     2812,
-    3229
+    3229,
+    3724
   ]
 };
 
@@ -415,7 +426,8 @@ export const dataTestsPerDayChart = {
     "2020-03-19",
     "2020-03-20",
     "2020-03-21",
-    "2020-03-22"
+    "2020-03-22",
+    "2020-03-23"
   ],
   testsPerDay: [
     6,
@@ -443,37 +455,38 @@ export const dataTestsPerDayChart = {
     239,
     245,
     308,
-    417
+    417,
+    495
   ]
 };
 
 // Positive tests by age chart
 export const dataPositiveTestsByAgeChart = {
   // 0 - 4, 5 - 9, 10 - 14, 15 - 19, 20 - 24, 25 - 29, 30 - 34, 35 - 39, 40 - 44, 45 - 49, 50 - 54, 55 - 59, 60 - 64, 65+, unknown
-  male: [1, 1, 4, 1, 9, 5, 15, 18, 20, 22, 24, 13, 11, 10, 0],
-  female: [1, 0, 5, 6, 2, 8, 18, 25, 16, 25, 19, 11, 11, 24, 0],
+  male: [1, 1, 4, 1, 9, 5, 16, 19, 19, 22, 27, 14, 12, 12, 0],
+  female: [1, 0, 5, 7, 2, 10, 19, 25, 20, 27, 19, 18, 11, 25, 0],
   unknown: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 };
 
 // Positive and negative tests by county chart
 export const dataPositiveNegativeChart = {
   negative: [
-    165, // Insufficient data
-    47, // Lääne-Virumaa
-    23, // Valgamaa
-    21, // Läänemaa
-    18, // Järvamaa
-    21, // Jõgevamaa
-    17, // Hiiumaa
-    44, // Viljandimaa
-    69, // Raplamaa
-    20, // Põlvamaa
-    40, // Ida-Virumaa
-    183, // Tartumaa
-    189, // Pärnumaa
-    85, // Võrumaa
-    345, // Saaremaa
-    1616 // Harjumaa
+    173, // Insufficient data
+    54, // Lääne-Virumaa
+    30, // Valgamaa
+    23, // Läänemaa
+    30, // Järvamaa
+    26, // Jõgevamaa
+    20, // Hiiumaa
+    59, // Viljandimaa
+    72, // Raplamaa
+    34, // Põlvamaa
+    65, // Ida-Virumaa
+    230, // Tartumaa
+    213, // Pärnumaa
+    151, // Võrumaa
+    406, // Saaremaa
+    1785 // Harjumaa
   ],
-  positive: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 21, 22, 34, 94, 123]
+  positive: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 22, 22, 38, 110, 128]
 };
