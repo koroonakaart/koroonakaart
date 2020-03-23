@@ -485,28 +485,27 @@ const dataPositiveTestsByAgeChart = {
   female: [1, 0, 5, 7, 2, 10, 19, 25, 20, 27, 19, 18, 11, 25, 0],
   unknown: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 };
-
 // Positive and negative tests by county chart
 const dataPositiveNegativeChart = {
   negative: [
-    173, // Insufficient data
-    54, // Lääne-Virumaa
-    30, // Valgamaa
-    23, // Läänemaa
-    30, // Järvamaa
-    26, // Jõgevamaa
-    20, // Hiiumaa
-    59, // Viljandimaa
-    72, // Raplamaa
-    34, // Põlvamaa
-    65, // Ida-Virumaa
-    230, // Tartumaa
-    213, // Pärnumaa
-    151, // Võrumaa
-    406, // Saaremaa
-    1785 // Harjumaa
+    173,
+    1785,
+    20,
+    65,
+    26,
+    30,
+    23,
+    54,
+    34,
+    214,
+    72,
+    406,
+    230,
+    30,
+    59,
+    151
   ],
-  positive: [11, 1, 1, 1, 1, 2, 2, 2, 2, 3, 6, 22, 22, 38, 110, 128]
+  positive: [11, 128, 2, 6, 1, 1, 2, 1, 3, 22, 2, 110, 22, 1, 2, 38]
 };
 
 module.exports = {

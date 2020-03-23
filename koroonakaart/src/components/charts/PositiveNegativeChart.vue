@@ -83,21 +83,21 @@ export default {
           },
           categories: [
             this.$t("insufficientData"),
-            "Lääne-Virumaa",
-            "Valgamaa",
+            "Harjumaa",
+            "Hiiumaa",
+            "Ida-Virumaa",
             "Jõgevamaa",
             "Järvamaa",
             "Läänemaa",
-            "Hiiumaa",
-            "Viljandimaa",
-            "Raplamaa",
+            "Lääne-Virumaa",
             "Põlvamaa",
-            "Ida-Virumaa",
-            "Tartumaa",
             "Pärnumaa",
-            "Võrumaa",
+            "Raplamaa",
             "Saaremaa",
-            "Harjumaa"
+            "Tartumaa",
+            "Valgamaa",
+            "Viljandimaa",
+            "Võrumaa"
           ]
         },
 
