@@ -1,12 +1,12 @@
 // Updated on Navbar
-const updatedOn = "23/03/2020, 11:30";
+const updatedOn = "23/03/2020, 18:30";
 
 // Statsbar
 const confirmedCasesNumber = "352";
-const activeCasesNumber = "348";
-const hospitalisedNumber = "15";
+const activeCasesNumber = "345";
+const hospitalisedNumber = "17";
 const deceasedNumber = "0";
-const recoveredNumber = "4";
+const recoveredNumber = "7";
 const testsAdministeredNumber = "3724";
 
 // Map components
@@ -172,7 +172,7 @@ const dataCumulativeCasesChart = {
     2,
     2,
     4,
-    4
+    7
   ],
   active: [
     0,
@@ -201,7 +201,7 @@ const dataCumulativeCasesChart = {
     281,
     304,
     322,
-    348
+    345
   ],
   deceased: [
     0,
@@ -321,7 +321,7 @@ const dataNewCasesPerDayChart = {
     1,
     0,
     2,
-    0
+    3
   ],
   deceased: [
     0,
