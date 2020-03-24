@@ -5,14 +5,13 @@
 </template>
 
 <script>
-import { dataPositiveNegativeChart } from "../../dataConstants";
+import data from "../../data.json";
+
 export default {
   name: "PositiveNegativeChart",
 
   data() {
     return {
-      dataPositiveNegativeChart,
-
       chartOptions: {
         title: {
           text: this.$t("positiveNegativeTitle"),
@@ -88,8 +87,8 @@ export default {
             "Ida-Virumaa",
             "Jõgevamaa",
             "Järvamaa",
-            "Lääne-Virumaa",
             "Läänemaa",
+            "Lääne-Virumaa",
             "Põlvamaa",
             "Pärnumaa",
             "Raplamaa",
@@ -126,12 +125,12 @@ export default {
         series: [
           {
             name: this.$t("negative"),
-            data: dataPositiveNegativeChart.negative,
+            data: data.dataPositiveNegativeChart.negative,
             color: "#A6C96A"
           },
           {
             name: this.$t("positive"),
-            data: dataPositiveNegativeChart.positive,
+            data: data.dataPositiveNegativeChart.positive,
             color: "#910000"
           }
         ]

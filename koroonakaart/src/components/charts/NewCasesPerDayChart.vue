@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import { dataNewCasesPerDayChart } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "NewCasesPerDayChart",
 
   data() {
     return {
-      dataNewCasesPerDayChart,
-
       chartOptions: {
         title: {
           text: this.$t("newCasesPerDay"),
@@ -37,7 +35,7 @@ export default {
           }
         },
         xAxis: {
-          categories: dataNewCasesPerDayChart.date,
+          categories: data.dates2,
           crosshair: true
         },
 
@@ -70,17 +68,17 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#7cb5ec",
-            data: dataNewCasesPerDayChart.confirmedCases
+            data: data.dataNewCasesPerDayChart.confirmedCases
           },
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            data: dataNewCasesPerDayChart.recovered
+            data: data.dataNewCasesPerDayChart.recovered
           },
           {
             name: this.$t("deceased"),
             color: "#434348",
-            data: dataNewCasesPerDayChart.deceased
+            data: data.dataNewCasesPerDayChart.deceased
           }
         ]
       }

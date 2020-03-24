@@ -47,39 +47,19 @@
 </template>
 
 <script>
-import {
-  confirmedCasesNumber,
-  activeCasesNumber,
-  hospitalisedNumber,
-  deceasedNumber,
-  recoveredNumber,
-  testsAdministeredNumber
-} from "../dataConstants";
+import data from "../data.json";
 
 export default {
   name: "Statsbar",
   data() {
     return {
-      confirmedCasesNumber,
-      activeCasesNumber,
-      hospitalisedNumber,
-      deceasedNumber,
-      recoveredNumber,
-      testsAdministeredNumber
+      confirmedCasesNumber: data.confirmedCasesNumber,
+      activeCasesNumber: data.activeCasesNumber,
+      hospitalisedNumber: data.hospitalisedNumber,
+      deceasedNumber: data.deceasedNumber,
+      recoveredNumber: data.recoveredNumber,
+      testsAdministeredNumber: data.testsAdministeredNumber
     };
-  },
-  /* updated() {
-    console.log(this.$store.state.dataFromGoogleSheets);
-  }, */
-  computed: {
-    // Disabled until later for data importing
-    /* confirmedCasesNumber: function() {
-      if (this.$store?.state?.dataFromGoogleSheets?.entry) {
-        return this.$store?.state?.dataFromGoogleSheets?.entry[1].gsx$_d6ua4
-          ?.$t;
-      }
-      return "";
-    } */
   }
 };
 </script>

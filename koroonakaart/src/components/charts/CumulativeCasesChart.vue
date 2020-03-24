@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import { dataCumulativeCasesChart } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "CumulativeCasesChart",
 
   data() {
     return {
-      dataCumulativeCasesChart,
-
       chartOptions: {
         title: {
           text: this.$t("cumulativeCases"),
@@ -71,7 +69,7 @@ export default {
           }
         },
         xAxis: {
-          categories: dataCumulativeCasesChart.date
+          categories: data.dates2
         },
 
         yAxis: {
@@ -84,22 +82,22 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#2f7ed8",
-            data: dataCumulativeCasesChart.cases
+            data: data.dataCumulativeCasesChart.cases
           },
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            data: dataCumulativeCasesChart.recovered
+            data: data.dataCumulativeCasesChart.recovered
           },
           {
             name: this.$t("active"),
             color: "#f28f43",
-            data: dataCumulativeCasesChart.active
+            data: data.dataCumulativeCasesChart.active
           },
           {
             name: this.$t("deceased"),
             color: "#0d233a",
-            data: dataCumulativeCasesChart.deceased
+            data: data.dataCumulativeCasesChart.deceased
           }
         ]
       }
@@ -123,7 +121,9 @@ export default {
       this.chartOptions.series[2].name = this.$t("active");
       this.chartOptions.series[3].name = this.$t("deceased");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t("logarithmic");
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
+        "logarithmic"
+      );
     }
   }
 };

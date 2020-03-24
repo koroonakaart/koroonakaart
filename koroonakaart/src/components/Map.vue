@@ -8,8 +8,7 @@
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 import mapData from "../data/map/estonia.geo.json";
-
-import { dataInfectionsByCounty, dataInfectionsByCounty10000 } from "../dataConstants";
+import data from "../data.json";
 
 HighchartsMapModule(Highcharts);
 
@@ -27,27 +26,26 @@ export default {
           height: 470
         },
         exporting: {
-        chartOptions: {
-          // specific options for the exported image
-          plotOptions: {
-            series: {
-              dataLabels: {
-                enabled: true
+          chartOptions: {
+            // specific options for the exported image
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true
+                }
               }
             }
-          }
-        },
+          },
           buttons: {
             customButton: {
               text: this.$t("per10000"),
               onclick: function() {
                 this.update({
                   series: {
-                  data: dataInfectionsByCounty10000,
-                  dataLabels: {
-                  format:  "{point.MNIMI}"
-
-                  }
+                    data: data.dataInfectionsByCounty10000,
+                    dataLabels: {
+                      format: "{point.MNIMI}"
+                    }
                   }
                 });
               }
@@ -56,13 +54,12 @@ export default {
               text: this.$t("absolute"),
               onclick: function() {
                 this.update({
-                series: {
-                data: dataInfectionsByCounty,
-                dataLabels: {
-                format:  "{point.MNIMI}"
-
-                }
-                }
+                  series: {
+                    data: data.dataInfectionsByCounty,
+                    dataLabels: {
+                      format: "{point.MNIMI}"
+                    }
+                  }
                 });
               }
             }
@@ -122,7 +119,7 @@ export default {
 
         series: [
           {
-            data: dataInfectionsByCounty,
+            data: data.dataInfectionsByCounty,
             keys: ["MNIMI", "value"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
@@ -166,7 +163,9 @@ export default {
     currentLocale() {
       this.mapOptions.series[0].name = this.$t("cases");
       this.mapOptions.exporting.buttons.customButton.text = this.$t("per10000");
-      this.mapOptions.exporting.buttons.customButton2.text = this.$t("absolute");
+      this.mapOptions.exporting.buttons.customButton2.text = this.$t(
+        "absolute"
+      );
     }
   }
 };

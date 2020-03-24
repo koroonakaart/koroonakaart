@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import { dataCumulativeTestsChart } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "CumulativeTestsChart",
 
   data() {
     return {
-      dataCumulativeTestsChart,
-
       chartOptions: {
         title: {
           text: this.$t("cumulativeTests"),
@@ -70,7 +68,7 @@ export default {
         },
 
         xAxis: {
-          categories: dataCumulativeTestsChart.date
+          categories: data.dates2
         },
 
         yAxis: {
@@ -82,7 +80,7 @@ export default {
         series: [
           {
             name: this.$t("testsAdministered"),
-            data: dataCumulativeTestsChart.testsAdministered
+            data: data.dataCumulativeTestsChart.testsAdministered
           }
         ]
       }
@@ -103,7 +101,9 @@ export default {
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("testsAdministered");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t("logarithmic");
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
+        "logarithmic"
+      );
     }
   }
 };

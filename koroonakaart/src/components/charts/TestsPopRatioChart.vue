@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import { dataTestsPopRatio } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "TestsPopRatioChart",
 
   data() {
     return {
-      dataTestsPopRatio,
-
       chartOptions: {
         title: {
           text: this.$t("testsPer10000"),
@@ -63,8 +61,8 @@ export default {
             "Ida-Virumaa",
             "Jõgevamaa",
             "Järvamaa",
-            "Lääne-Virumaa",
             "Läänemaa",
+            "Lääne-Virumaa",
             "Põlvamaa",
             "Pärnumaa",
             "Raplamaa",
@@ -93,7 +91,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: dataTestsPopRatio
+            data: data.dataTestsPopRatio
           }
         ]
       }

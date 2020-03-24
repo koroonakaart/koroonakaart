@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { dataConfirmedCasesByCounties } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "ConfirmedCasesByCountiesChart",
@@ -18,12 +18,14 @@ export default {
           align: "left",
           y: 30
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
             y: -15
           }
         },
+
         chart: {
           type: "bar",
           height: 470
@@ -61,8 +63,8 @@ export default {
             "Ida-Virumaa",
             "Jõgevamaa",
             "Järvamaa",
-            "Lääne-Virumaa",
             "Läänemaa",
+            "Lääne-Virumaa",
             "Põlvamaa",
             "Pärnumaa",
             "Raplamaa",
@@ -92,7 +94,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: dataConfirmedCasesByCounties
+            data: data.dataConfirmedCasesByCounties
           }
         ]
       }

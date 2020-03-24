@@ -5,22 +5,19 @@
 </template>
 
 <script>
-import { countyByDay } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "DailyCountyCasesChart",
 
   data() {
     return {
-      countyByDay,
-
       chartOptions: {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
           y: 30
         },
-
 
         // Remove Highcharts.com link from bottom right
         credits: {
@@ -33,7 +30,7 @@ export default {
           }
         },
         xAxis: {
-          categories: countyByDay.dates,
+          categories: data.dates1,
           crosshair: true
         },
 
@@ -55,74 +52,73 @@ export default {
           useHTML: true
         },
 
-
         series: [
           {
-            name: "Harjumaa" ,
-            data: countyByDay.harjumaa,
-            color:"#2F7ED8"
+            name: "Harjumaa",
+            data: data.countyByDay.Harjumaa,
+            color: "#2F7ED8"
           },
           {
             name: "Hiiumaa",
-            data: countyByDay.hiiumaa,
+            data: data.countyByDay.Hiiumaa,
             color: "#456990"
           },
           {
             name: "Ida-Virumaa",
-            data: countyByDay.idavirumaa,
+            data: data.countyByDay.IdaVirumaa,
             color: "#49BEAA"
           },
           {
-            name: "Jõgevamaa" ,
-            data: countyByDay.jogevamaa,
+            name: "Jõgevamaa",
+            data: data.countyByDay.Jõgevamaa,
             color: "#49DCB1"
           },
           {
             name: "Järvamaa",
-            data: countyByDay.jarvemaa,
+            data: data.countyByDay.Järvemaa,
             color: "#EEB868"
           },
           {
+            name: "Läänemaa",
+            data: data.countyByDay.Läänemaa
+          },
+          {
             name: "Lääne-Virumaa",
-            data: countyByDay.laanevirumaa,
+            data: data.countyByDay.LääneVirumaa,
             color: "#6684A4"
           },
           {
-            name: "Läänemaa" ,
-            data: countyByDay.laanemaa
-          },
-          {
             name: "Põlvamaa",
-            data: countyByDay.polvamaa
+            data: data.countyByDay.Põlvamaa
           },
           {
             name: "Pärnumaa",
-            data: countyByDay.parnumaa
+            data: data.countyByDay.Pärnumaa
           },
           {
-            name: "Raplamaa" ,
-            data: countyByDay.raplamaa
+            name: "Raplamaa",
+            data: data.countyByDay.Raplamaa
           },
           {
             name: "Saaremaa",
-            data: countyByDay.saaremaa
+            data: data.countyByDay.Saaremaa
           },
           {
             name: "Tartumaa",
-            data: countyByDay.tartumaa
+            data: data.countyByDay.Tartumaa
           },
           {
-            name: "Valgamaa" ,
-            data: countyByDay.valgamaa
+            name: "Valgamaa",
+            data: data.countyByDay.Valgamaa
           },
           {
             name: "Viljandimaa",
-            data: countyByDay.viljandimaa
+            data: data.countyByDay.Viljandimaa
           },
           {
             name: "Võrumaa",
-            data: countyByDay.vorumaa
-          },
+            data: data.countyByDay.Võrumaa
+          }
         ]
       }
     };

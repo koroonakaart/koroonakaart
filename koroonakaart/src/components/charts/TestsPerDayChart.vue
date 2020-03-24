@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import { dataTestsPerDayChart } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "TestsPerDayChart",
 
   data() {
     return {
-      dataTestsPerDayChart,
-
       chartOptions: {
         title: {
           text: this.$t("testsPerDay"),
@@ -37,7 +35,7 @@ export default {
           }
         },
         xAxis: {
-          categories: dataTestsPerDayChart.date,
+          categories: data.dates2,
           crosshair: true
         },
 
@@ -69,7 +67,7 @@ export default {
         series: [
           {
             name: this.$t("testsPerDay"),
-            data: dataTestsPerDayChart.testsPerDay
+            data: data.dataTestsPerDayChart.testsPerDay
           }
         ]
       }

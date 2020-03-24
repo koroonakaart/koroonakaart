@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import { dataPositiveTestsByAgeChart } from "../../dataConstants";
+import data from "../../data.json";
 
 export default {
   name: "PositiveTestsAgeDistributionChart",
 
   data() {
     return {
-      dataPositiveTestsByAgeChart,
-
       chartOptions: {
         title: {
           text: this.$t("distributionOfPositiveTests"),
@@ -119,17 +117,38 @@ export default {
         },
         series: [
           {
-            name: this.$t("male"),
-            data: dataPositiveTestsByAgeChart.male
+            name: this.$t("malePositive"),
+            data: data.dataPositiveTestsByAgeChart.malePositive,
+            stack: "male",
+            color: "#910000"
           },
           {
-            name: this.$t("female"),
-            data: dataPositiveTestsByAgeChart.female,
+            name: this.$t("maleNegative"),
+            data: data.dataPositiveTestsByAgeChart.maleNegative,
+            stack: "male",
+            color: "#d39999"
+          },
+          {
+            name: this.$t("femalePositive"),
+            data: data.dataPositiveTestsByAgeChart.femalePositive,
+            stack: "female",
             color: "#492970"
           },
           {
-            name: this.$t("unknown"),
-            data: dataPositiveTestsByAgeChart.unknown
+            name: this.$t("femaleNegative"),
+            data: data.dataPositiveTestsByAgeChart.femaleNegative,
+            stack: "female",
+            color: "#92A8CD"
+          },
+          {
+            name: this.$t("unknownPositive"),
+            data: data.dataPositiveTestsByAgeChart.unknownPositive,
+            stack: "unknown"
+          },
+          {
+            name: this.$t("unknownNegative"),
+            data: data.dataPositiveTestsByAgeChart.unknownNegative,
+            stack: "unknown"
           }
         ]
       }
