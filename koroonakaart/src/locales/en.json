@@ -20,7 +20,7 @@
   "malePositive": "Men positive",
   "femalePositive": "Women positive",
   "maleNegative": "Men negative",
-  "femaleNegative": "Women positive",
+  "femaleNegative": "Women negative",
   "unknownPositive": "Unknown positive",
   "unknownNegative": "Unknown negative",
   "testsPer10000": "Positive tests per 10,000 population by county",
