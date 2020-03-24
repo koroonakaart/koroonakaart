@@ -98,6 +98,10 @@ export default {
             name: this.$t("deceased"),
             color: "#0d233a",
             data: data.dataCumulativeCasesChart.deceased
+          },
+          {
+            name: this.$t("hospitalised"),
+            data: data.dataCumulativeCasesChart.haiglas
           }
         ]
       }
