@@ -21,6 +21,8 @@
   "femalePositive": "Women positive",
   "maleNegative": "Men negative",
   "femaleNegative": "Women positive",
+  "unknownPositive": "Uknown positive",
+  "unknownNegative": "Unknown negative",
   "testsPer10000":"Positive tests per 10,000 population by county",
   "testsPer10000Axis": "Positive tests per 10,000 population by county",
   "navbarDescription": "Statistics about COVID-19 disease caused by coronavirus spread in Estonia. The application is being maintained by OKEE in collaboration with Terviseamet",
