@@ -47,7 +47,7 @@
 <script>
 import Earth from "vue-material-design-icons/Earth.vue";
 
-import { updatedOn } from "../dataConstants";
+import data from "../data.json";
 
 export default {
   name: "Navbar",
@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       languageNames: ["Eesti", "English", "Pусский"],
-      updatedOn
+      updatedOn: data.updatedOn
     };
   },
 

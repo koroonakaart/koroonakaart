@@ -168,9 +168,12 @@ export default {
       this.chartOptions.title.text = this.$t("distributionOfPositiveTests");
       this.chartOptions.xAxis.title.text = this.$t("age");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("male");
-      this.chartOptions.series[1].name = this.$t("female");
-      this.chartOptions.series[2].name = this.$t("unknown");
+      this.chartOptions.series[0].name = this.$t("malePositive");
+      this.chartOptions.series[1].name = this.$t("maleNegative");
+      this.chartOptions.series[2].name = this.$t("femalePositive");
+      this.chartOptions.series[3].name = this.$t("femaleNegative");
+      this.chartOptions.series[4].name = this.$t("unknownPositive");
+      this.chartOptions.series[5].name = this.$t("unknownNegative");
       this.chartOptions.xAxis.categories[
         this.chartOptions.xAxis.categories.length - 1
       ] = this.$t("unknown");
