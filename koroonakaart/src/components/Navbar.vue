@@ -57,12 +57,6 @@ export default {
     Earth
   },
 
-  mounted() {
-  if (this.$i18n.locale !== this.$route.params.locale)
-    this.changeCurrentLanguage(this.$route.params.locale);
-},
-
-
   data() {
     return {
       languageNames: ["Eesti", "English", "Pусский"],
@@ -70,12 +64,20 @@ export default {
     };
   },
 
+  // On navbar update change locale to current route suffix (ee, en or ru)
+  updated() {
+    if (this.$i18n.locale !== this.$route.params.locale)
+      this.changeCurrentLanguage(this.$route.params.locale);
+  },
+
+  // Get available locales
   computed: {
     locales: function() {
       return this.$i18n.availableLocales;
     }
   },
 
+  // Change current locale to targetLanguage and change route to the targetLanguage
   methods: {
     changeCurrentLanguage: function(targetLanguage) {
       if (this.$route.params.locale !== targetLanguage) {

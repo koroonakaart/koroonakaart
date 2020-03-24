@@ -15,8 +15,22 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+
+  // When app loads change language to specified language suffix (ee, en or ru)
+  created() {
+    if (this.$i18n.locale !== this.$route.params.locale)
+      this.changeCurrentLanguage(this.$route.params.locale);
+  },
+
+  methods: {
+    changeCurrentLanguage: function(targetLanguage) {
+      if (this.$route.params.locale !== targetLanguage) {
+        this.$router.push(targetLanguage);
+      }
+      this.$i18n.locale = targetLanguage;
+    }
   }
-  
 };
 </script>
 
