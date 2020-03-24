@@ -83,13 +83,13 @@ export default {
             color: "#EEB868"
           },
           {
+            name: "Läänemaa" ,
+            data: countyByDay.laanemaa
+          },
+          {
             name: "Lääne-Virumaa",
             data: countyByDay.laanevirumaa,
             color: "#6684A4"
-          },
-          {
-            name: "Läänemaa" ,
-            data: countyByDay.laanemaa
           },
           {
             name: "Põlvamaa",

@@ -5,15 +5,12 @@
 </template>
 
 <script>
-import { dataTestsPopRatio } from "../../dataConstants";
-
+import { dataTestsPopRatio } from "../../dataConstants"
 export default {
   name: "TestsPopRatioChart",
 
   data() {
     return {
-      dataTestsPopRatio,
-
       chartOptions: {
         title: {
           text: this.$t("testsPer10000"),
@@ -21,11 +18,11 @@ export default {
           y: 30
         },
         navigation: {
-          buttonOptions: {
-            verticalAlign: "top",
-            y: -15
-          }
-        },
+        buttonOptions: {
+            verticalAlign: 'top',
+            y: -15,
+
+        }},
         chart: {
           type: "bar",
           height: 470
@@ -58,21 +55,22 @@ export default {
             }
           },
           categories: [
-            "Harjumaa",
-            "Hiiumaa",
-            "Ida-Virumaa",
-            "Jõgevamaa",
-            "Järvamaa",
-            "Lääne-Virumaa",
-            "Läänemaa",
-            "Põlvamaa",
-            "Pärnumaa",
-            "Raplamaa",
-            "Saaremaa",
-            "Tartumaa",
-            "Valgamaa",
-            "Viljandimaa",
-            "Võrumaa"
+          "Harjumaa",
+          "Hiiumaa",
+          "Ida-Virumaa",
+          "Jõgevamaa",
+          "Järvamaa",
+          "Läänemaa",
+          "Lääne-Virumaa",
+          "Põlvamaa",
+          "Pärnumaa",
+          "Raplamaa",
+          "Saaremaa",
+          "Tartumaa",
+          "Valgamaa",
+          "Viljandimaa",
+          "Võrumaa"
+
           ]
         },
 
@@ -93,7 +91,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: dataTestsPopRatio
+            data: dataTestsPopRatio,
           }
         ]
       }
@@ -113,7 +111,7 @@ export default {
       this.chartOptions.title.text = this.$t("testsPer10000");
       this.chartOptions.yAxis.title.text = this.$t("testsPer10000Axis");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
-      //  this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
+    //  this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
     }
   }
 };
