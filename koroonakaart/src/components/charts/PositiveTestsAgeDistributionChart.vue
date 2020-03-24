@@ -120,16 +120,16 @@ export default {
         series: [
           {
             name: this.$t("male"),
-            data: dataPositiveTestsByAgeChart.male
+            data: dataPositiveTestsByAgeChart.malePositive
           },
           {
             name: this.$t("female"),
-            data: dataPositiveTestsByAgeChart.female,
+            data: dataPositiveTestsByAgeChart.femalePositive,
             color: "#492970"
           },
           {
             name: this.$t("unknown"),
-            data: dataPositiveTestsByAgeChart.unknown
+            data: dataPositiveTestsByAgeChart.unknownPositive
           }
         ]
       }
