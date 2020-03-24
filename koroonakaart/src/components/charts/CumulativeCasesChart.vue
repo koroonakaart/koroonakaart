@@ -102,6 +102,11 @@ export default {
           {
             name: this.$t("hospitalised"),
             data: data.dataCumulativeCasesChart.haiglas
+          },
+          {
+            name: this.$t("intensive"),
+            data: data.dataCumulativeCasesChart.intensive,
+            color: "#c42525"
           }
         ]
       }
