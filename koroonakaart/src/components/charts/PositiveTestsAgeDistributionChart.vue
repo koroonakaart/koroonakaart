@@ -119,17 +119,38 @@ export default {
         },
         series: [
           {
-            name: this.$t("male"),
-            data: dataPositiveTestsByAgeChart.malePositive
+            name: this.$t("malePositive"),
+            data: dataPositiveTestsByAgeChart.malePositive,
+            stack: "male",
+            color: "#910000"
           },
           {
-            name: this.$t("female"),
+            name: this.$t("maleNegative"),
+            data: dataPositiveTestsByAgeChart.maleNegative,
+            stack: "male",
+            color: "#d39999"
+          },
+          {
+            name: this.$t("femalePositive"),
             data: dataPositiveTestsByAgeChart.femalePositive,
+            stack: "female",
             color: "#492970"
           },
           {
-            name: this.$t("unknown"),
-            data: dataPositiveTestsByAgeChart.unknownPositive
+            name: this.$t("femaleNegative"),
+            data: dataPositiveTestsByAgeChart.femaleNegative,
+            stack: "female",
+            color: "#92A8CD"
+          },
+          {
+            name: this.$t("unknownPositive"),
+            data: dataPositiveTestsByAgeChart.unknownPositive,
+            stack: "unknown"
+          },
+          {
+            name: this.$t("unknownNegative"),
+            data: dataPositiveTestsByAgeChart.unknownNegative,
+            stack: "unknown"
           }
         ]
       }

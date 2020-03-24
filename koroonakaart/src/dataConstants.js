@@ -531,7 +531,7 @@ const dataPositiveTestsByAgeChart = {
 
 
   unknownPositive: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-  unknownNegative: [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 2]
+  unknownNegative: [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 59]
 
 };
 // Positive and negative tests by county chart
