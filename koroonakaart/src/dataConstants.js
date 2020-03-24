@@ -1,5 +1,5 @@
 // Updated on Navbar
-const updatedOn = "24/03/2020, 18:30";
+const updatedOn = "24/03/2020, 11:30";
 
 // Statsbar
 const confirmedCasesNumber = "369";
