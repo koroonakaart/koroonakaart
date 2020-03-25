@@ -1,5 +1,5 @@
 <template>
-  <div id="chat-container">
+  <div>
     <button class="chat-button" type="button" @click.prevent="openChat">{{ $t("answerbot") }}</button>
   </div>
 </template>
