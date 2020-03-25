@@ -21,7 +21,7 @@ export default {
         exporting: {
           buttons: {
             customButton: {
-              text: "Abs",
+              text: this.$t("abs"),
               onclick: function() {
                 this.update({
                   plotOptions: {
@@ -174,6 +174,7 @@ export default {
       this.chartOptions.series[3].name = this.$t("femaleNegative");
       this.chartOptions.series[4].name = this.$t("unknownPositive");
       this.chartOptions.series[5].name = this.$t("unknownNegative");
+      this.chartOptions.exporting.buttons.customButton.text = this.$t("abs");
       this.chartOptions.xAxis.categories[
         this.chartOptions.xAxis.categories.length - 1
       ] = this.$t("unknown");
