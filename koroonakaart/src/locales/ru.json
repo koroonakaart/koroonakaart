@@ -1,6 +1,7 @@
 {
   "active": "Активных",
   "activeCases": "Активных случаев",
+  "abs": "Абс",
   "age": "Возраст",
   "answerbot": "Чат-бот",
   "cases": "Случаи",
@@ -12,6 +13,7 @@
   "distributionOfPositiveTests": "Распределение тестов по возрасту",
   "hospitalised": "Госпитолизированых",
   "intensive": "В интенсивнoй терапии",
+  "distributionOfAgeSexTests": "Распределение тестов по возрасту",
   "insufficientData": "Недостаточно данных",
   "language": "Русский",
   "mapTitle": "Заражений по уездам",
