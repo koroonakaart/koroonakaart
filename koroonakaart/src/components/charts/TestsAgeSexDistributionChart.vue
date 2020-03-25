@@ -17,44 +17,6 @@ export default {
           align: "left",
           y: 30
         },
-        exporting: {
-          buttons: {
-            customButton: {
-              text: "Abs",
-              onclick: function() {
-                this.update({
-                  plotOptions: {
-                    bar: {
-                      stacking: "normal"
-                    }
-                  },
-                  yAxis: {
-                    title: {
-                      text: "Abs"
-                    }
-                  }
-                });
-              }
-            },
-            customButton2: {
-              text: "%",
-              onclick: function() {
-                this.update({
-                  plotOptions: {
-                    bar: {
-                      stacking: "percent"
-                    }
-                  },
-                  yAxis: {
-                    title: {
-                      text: "%"
-                    }
-                  }
-                });
-              }
-            }
-          }
-        },
         chart: {
           type: "bar",
           height: 470
@@ -103,13 +65,13 @@ export default {
           }
         },
 
-    tooltip: {
-        formatter: function () {
-            return '<b>' + this.series.name  + "  " + this.point.category + '</b><br/>' +
-                Math.abs(this.point.y);
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '  ' + this.point.category + '</b><br/>' +
+                    + Math.abs(this.point.y);
+            }
+        },
 
-        }
-    },
 
         series: [
 	{
@@ -150,10 +112,10 @@ export default {
       this.chartOptions.title.text = this.$t("distributionOfAgeSexTests");
       this.chartOptions.xAxis.title.text = this.$t("age");
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
-      this.chartOptions.series[1].name = this.$t("maleNegative");
-      this.chartOptions.series[0].name = this.$t("malePositive");
-      this.chartOptions.series[3].name = this.$t("femaleNegative");
-      this.chartOptions.series[2].name = this.$t("femalePositive");
+      this.chartOptions.series[0].name = this.$t("maleNegative");
+      this.chartOptions.series[1].name = this.$t("malePositive");
+      this.chartOptions.series[2].name = this.$t("femaleNegative");
+      this.chartOptions.series[3].name = this.$t("femalePositive");
   }
   }
 };
