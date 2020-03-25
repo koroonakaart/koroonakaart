@@ -11,6 +11,7 @@
   "cumulativeTests": "Cumulative tests",
   "deceased": "Deaths",
   "distributionOfPositiveTests": "Distribution of tests by age",
+  "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "hospitalised": "In treatment",
   "intensive": "Intensive care",
   "insufficientData": "Insufficient data",
