@@ -80,11 +80,14 @@ export default {
   border-style: solid;
   border-width: 7px 0 7px 8px;
   border-color: transparent transparent transparent #00698c;
-  position: absolute;
-  left: 100%;
-  top: 13px;
+  position: fixed;
+  right: 132px;
+  bottom: 74px;
+  z-index: 9999;
+
   @media only screen and (max-width: 600px) {
-    top: 10px;
+    bottom: 30px;
+    right: 73px;
   }
 }
 
@@ -93,9 +96,9 @@ export default {
   display: block;
   width: 80px;
   height: 80px;
-  position: absolute;
-  left: calc(100% + 20px);
-  top: -20px;
+  position: fixed;
+  right: 40px;
+  bottom: 42px;
   border-radius: 50%;
   background-image: url(../assets/robot.svg);
   background-repeat: no-repeat;
@@ -103,11 +106,12 @@ export default {
   background-position: center;
   background-color: #00698c;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
 
   @media only screen and (max-width: 600px) {
     background-size: 30px 30px;
-    left: calc(100% + 20px);
-    top: 0px;
+    right: 20px;
+    bottom: 17px;
     height: 40px;
     width: 40px;
   }
