@@ -112,8 +112,8 @@ export default {
     width: 40px;
   }
 
-  #chat-container .TitleBar {
+  /* #chat-container .TitleBar {
     background-color: #00698c !important;
-  }
+  } */
 }
 </style>
