@@ -4,6 +4,8 @@
     <Statsbar />
     <b-row class="mb-5">
       <Map />
+
+          <SuveChatbot />
     </b-row>
 
     <b-row class="mb-5">
@@ -42,7 +44,6 @@
       </b-col>
     </b-row>
 
-    <SuveChatbot />
   </b-container>
 </template>
 
