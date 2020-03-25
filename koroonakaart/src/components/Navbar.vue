@@ -59,7 +59,7 @@ export default {
 
   data() {
     return {
-      languageNames: ["Eesti", "English", "Pусский"],
+      languageNames: ["Eesti", "English", "Русский"],
       updatedOn: data.updatedOn
     };
   },
