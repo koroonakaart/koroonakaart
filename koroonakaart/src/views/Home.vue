@@ -8,10 +8,10 @@
 
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
-        <TestsPopRatioChart />
+        <ConfirmedCasesByCountiesChart />
       </b-col>
       <b-col cols="12" lg="6">
-        <ConfirmedCasesByCountiesChart />
+        <TestsPopRatioChart />
       </b-col>
     </b-row>
     <b-row class="mb-5">
@@ -23,7 +23,7 @@
       </b-col>
     </b-row>
     <b-row class="mb-5">
-    <DailyCountyCasesChart />
+      <DailyCountyCasesChart />
     </b-row>
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
@@ -41,6 +41,8 @@
         <PositiveNegativeChart />
       </b-col>
     </b-row>
+
+    <SuveChatbot />
   </b-container>
 </template>
 
@@ -56,6 +58,8 @@ import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesBy
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
+
+import SuveChatbot from "../components/SuveChatbot";
 export default {
   name: "Home",
   // Register components you want to use in the page here
@@ -70,7 +74,8 @@ export default {
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
     TestsPopRatioChart,
-    DailyCountyCasesChart
+    DailyCountyCasesChart,
+    SuveChatbot
   }
 };
 </script>
