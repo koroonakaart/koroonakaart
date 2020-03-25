@@ -94,7 +94,7 @@ export default {
 
         // Legend bar density
         colorAxis: {
-          tickPixelInterval: 25,
+          tickPixelInterval: 50,
           lineColor: {
             color: {
               linearGradient: {
