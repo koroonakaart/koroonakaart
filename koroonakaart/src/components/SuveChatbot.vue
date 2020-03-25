@@ -1,6 +1,6 @@
 <template>
   <div id="chat-container1">
-    <button class="chat-button1" type="button" @click="openChat">{{ $t("answerbot") }}</button>
+    <button class="chat-button" type="button" @click.prevent="openChat">{{ $t("answerbot") }}</button>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chat-button1 {
+.chat-button {
   border: none;
   position: fixed;
   bottom: 60px;
@@ -64,15 +64,15 @@ export default {
   }
 }
 
-.chat-button1:hover,
-.chat-button1:focus {
+.chat-button:hover,
+.chat-button:focus {
   box-shadow: none;
   background: none;
   background-color: #00698c;
   outline: 0;
 }
 
-.chat-button1:before {
+.chat-button:before {
   content: "";
   display: block;
   width: 0;
@@ -88,7 +88,7 @@ export default {
   }
 }
 
-.chat-button1:after {
+.chat-button:after {
   content: "";
   display: block;
   width: 80px;
