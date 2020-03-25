@@ -96,11 +96,13 @@ export default {
 
 #navbar-headingleft {
   color: black;
+  font-size: 1.2em;
   font-weight: 900;
 }
 
 #navbar-headingright {
   color: #4072cd;
+  font-size: 1.2em;
   font-weight: 900;
 }
 

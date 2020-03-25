@@ -1,5 +1,5 @@
 <template>
-  <div id="chat-container1">
+  <div id="chat-container">
     <button class="chat-button" type="button" @click.prevent="openChat">{{ $t("answerbot") }}</button>
   </div>
 </template>
@@ -110,6 +110,10 @@ export default {
     top: 0px;
     height: 40px;
     width: 40px;
+  }
+
+  #chat-container .TitleBar {
+    background-color: #00698c !important;
   }
 }
 </style>
