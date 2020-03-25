@@ -1,9 +1,9 @@
 {
-  "updatedOn": "25/03/2020, 11:30",
+  "updatedOn": "25/03/2020, 18:50",
 
   "confirmedCasesNumber": "404",
   "activeCasesNumber": "395",
-  "hospitalisedNumber": "27",
+  "hospitalisedNumber": "29",
   "deceasedNumber": "1",
   "recoveredNumber": "8",
   "testsAdministeredNumber": "4809",
@@ -270,7 +270,7 @@
       0,
       1
     ],
-    "haiglas": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 27],
+    "haiglas": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 29],
     "intensive": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2, 4, 6, 7, 7]
   },
 
