@@ -9,8 +9,6 @@ import data from "../../data.json";
 
 export default {
   name: "TestsAgeSexDistributionChart",
-
-  categories: ["0 - 4", "5 - 9", "10 - 14", "15 - 19", "20 - 24", "25 - 29", "30 - 34", "35 - 39", "40 - 44", "45 - 49", "50 - 54", "55 - 59", "60 - 64", "65+",],
   data() {
     return {
       chartOptions: {
@@ -26,7 +24,7 @@ export default {
               onclick: function() {
                 this.update({
                   plotOptions: {
-                    column: {
+                    bar: {
                       stacking: "normal"
                     }
                   },
@@ -43,7 +41,7 @@ export default {
               onclick: function() {
                 this.update({
                   plotOptions: {
-                    column: {
+                    bar: {
                       stacking: "percent"
                     }
                   },
@@ -58,7 +56,7 @@ export default {
           }
         },
         chart: {
-          type: "column",
+          type: "bar",
           height: 470
         },
         navigation: {
@@ -73,7 +71,7 @@ export default {
         },
 
         xAxis: [{
-          categories: this.categories,
+        categories: ["0 - 4", "5 - 9", "10 - 14", "15 - 19", "20 - 24", "25 - 29", "30 - 34", "35 - 39", "40 - 44", "45 - 49", "50 - 54", "55 - 59", "60 - 64", "65+"],
           reversed: false,
           labels: {
              step:1
@@ -81,7 +79,7 @@ export default {
           {
             opposite: true,
             reversed: false,
-            categories: this.categories,
+            categories: ["0 - 4", "5 - 9", "10 - 14", "15 - 19", "20 - 24", "25 - 29", "30 - 34", "35 - 39", "40 - 44", "45 - 49", "50 - 54", "55 - 59", "60 - 64", "65+"],
             linkedTo: 0,
             labels: {
                 step: 1
@@ -99,28 +97,30 @@ export default {
       }
         },
         plotOptions: {
-          column: {
+          bar: {
             stacking: "normal",
             enableMouseTracking: true
           }
         },
-        
+
     tooltip: {
         formatter: function () {
-            return '<b>' + this.series.name + ', this.$t("age") ' + this.point.category + '</b><br/>' +
-                'this.$t("numberOfTests")' + ': ' + Math.abs(this.point.y);
+            return '<b>' + this.series.name  + "  " + this.point.category + '</b><br/>' +
+                Math.abs(this.point.y);
+
         }
     },
+
         series: [
 	{
     name: this.$t("maleNegative"),
             data: data.dataPositiveTestsByAgeChart.maleNegative.map(x => x * (-1)),
-            color: "#97beeb" 
+            color: "#97beeb"
           },
           {
             name: this.$t("malePositive"),
             data: data.dataPositiveTestsByAgeChart.malePositive.map(x => x * (-1)),
-            color: "#2f7ed8" 
+            color: "#2f7ed8"
           },
            {
             name: this.$t("femaleNegative"),
@@ -149,12 +149,12 @@ export default {
     currentLocale() {
       this.chartOptions.title.text = this.$t("distributionOfAgeSexTests");
       this.chartOptions.xAxis.title.text = this.$t("age");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfTests"); 
+      this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[1].name = this.$t("maleNegative");
       this.chartOptions.series[0].name = this.$t("malePositive");
       this.chartOptions.series[3].name = this.$t("femaleNegative");
       this.chartOptions.series[2].name = this.$t("femalePositive");
-    }
+  }
   }
 };
 </script>
