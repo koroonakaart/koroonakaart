@@ -57,11 +57,12 @@ export default {
           useHTML: true
         },
 
+
         plotOptions: {
           column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-          }
+          pointWidth: 10,
+          pointPadding: -0.2,
+          borderWidth: 0          }
         },
 
         series: [
