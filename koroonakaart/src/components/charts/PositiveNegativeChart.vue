@@ -12,6 +12,8 @@ export default {
 
   data() {
     return {
+      chartType: "percent",
+
       chartOptions: {
         title: {
           text: this.$t("positiveNegativeTitle"),
@@ -21,7 +23,21 @@ export default {
 
         chart: {
           type: "column",
-          height: 470
+          height: 470,
+          events: {
+            load: function() {
+              // Buttons have indexes go in even numbers (button1 [0], button2 [2])
+              // Odd indexes are button symbols
+              const button = this.exportSVGElements[4];
+
+              // States:
+              // 0 - normal
+              // 1 - hover
+              // 2 - selected
+              // 3 - disabled
+              button.setState(2);
+            }
+          }
         },
 
         exporting: {
@@ -29,6 +45,13 @@ export default {
             customButton: {
               text: this.$t("abs"),
               onclick: function() {
+                this.chartType = "abs";
+                const button1 = this.exportSVGElements[2];
+                const button2 = this.exportSVGElements[4];
+
+                button1.setState(this.chartType === "abs" ? 2 : 0);
+                button2.setState(this.chartType === "percent" ? 2 : 0);
+
                 this.update({
                   plotOptions: {
                     column: {
@@ -46,6 +69,13 @@ export default {
             customButton2: {
               text: "%",
               onclick: function() {
+                this.chartType = "percent";
+                const button1 = this.exportSVGElements[2];
+                const button2 = this.exportSVGElements[4];
+
+                button1.setState(this.chartType === "abs" ? 2 : 0);
+                button2.setState(this.chartType === "percent" ? 2 : 0);
+
                 this.update({
                   plotOptions: {
                     column: {
@@ -70,7 +100,31 @@ export default {
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
+            y: -15,
+            theme: {
+              fill: "none",
+              stroke: "none",
+              "stroke-width": 0,
+              r: 4,
+
+              states: {
+                hover: {
+                  /* fill: "#f5f5f5" */
+                },
+                select: {
+                  fill: "none",
+                  style: {
+                    fontWeight: "bold",
+                    textDecoration: "underline"
+                  }
+                }
+              },
+              style: {
+                /* color: "#039", */
+                /* fontWeight: "bold", */
+                textDecoration: "none"
+              }
+            }
           }
         },
         xAxis: {

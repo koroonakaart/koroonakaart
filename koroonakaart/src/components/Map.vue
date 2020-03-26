@@ -17,10 +17,6 @@ Highcharts.maps["mapEstonia"] = mapData;
 export default {
   name: "Map",
 
-  mounted() {
-    console.log(this.mapOptions.series);
-  },
-
   data() {
     return {
       chartType: "absolute",
@@ -35,13 +31,12 @@ export default {
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               const button = this.exportSVGElements[4];
-              console.log("loaded");
+
               // States:
               // 0 - normal
               // 1 - hover
               // 2 - selected
               // 3 - disabled
-              /* if (this.mapOptions.series) */
               button.setState(2);
             }
           }
@@ -61,7 +56,6 @@ export default {
           buttons: {
             customButton: {
               text: this.$t("per10000"),
-              className: "test",
               onclick: function() {
                 this.chartType = "absolute";
                 const button1 = this.exportSVGElements[2];
@@ -116,12 +110,12 @@ export default {
               fill: "none",
               stroke: "none",
               "stroke-width": 0,
-              r: 8,
+              r: 4,
 
               states: {
-                /* hover: {
-                  fill: "#a4edba"
-                }, */
+                hover: {
+                  /* fill: "#f5f5f5" */
+                },
                 select: {
                   fill: "none",
                   style: {
@@ -134,8 +128,7 @@ export default {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
                 textDecoration: "none"
-              },
-              selected: 1
+              }
             }
           }
         },
@@ -233,9 +226,5 @@ export default {
 };
 </script>
 
-// Border for debugging purposes only
 <style scoped>
-.test {
-  background-color: red;
-}
 </style>
