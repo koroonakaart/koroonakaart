@@ -39,12 +39,18 @@ export default {
           crosshair: true
         },
 
-        yAxis: {
+        yAxis: [{
           min: 0,
           title: {
             text: this.$t("numberOfTests")
           }
+        }, {
+        max: 100,
+        title: {
+          text: this.$t("percentPositiveTests")
         },
+        opposite: true
+        }],
 
         tooltip: {
           headerFormat:
@@ -67,7 +73,15 @@ export default {
         series: [
           {
             name: this.$t("testsPerDay"),
-            data: data.dataTestsPerDayChart.testsPerDay
+            data: data.dataTestsPerDayChart.testsPerDay,
+            type: "column",
+            yAxis: 0
+          },
+          {
+            name: this.$t("percentPositiveTests"),
+            data: data.dataTestsPerDayChart.positiveTestsPercentage,
+            type: "spline",
+            yAxis: 1
           }
         ]
       }
@@ -85,7 +99,8 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("testsPerDay");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
+      this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");
+      this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests")
       this.chartOptions.series[0].name = this.$t("testsPerDay");
     }
   }
