@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal v-model="show" centered id="disclaimer-modal">
+    <b-modal v-model="show" id="disclaimer-modal">
       <b-container fluid>{{this.$t("disclaimerModal")}}</b-container>
       <template v-slot:modal-footer>
         <div class="w-100 text-center">
