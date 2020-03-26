@@ -2,10 +2,10 @@
   "updatedOn": "26/03/2020, 10:00",
 
   "confirmedCasesNumber": "538",
-  "activeCasesNumber": "529",
+  "activeCasesNumber": "526",
   "hospitalisedNumber": "34",
   "deceasedNumber": "1",
-  "recoveredNumber": "8",
+  "recoveredNumber": "11",
   "testsAdministeredNumber": "7090",
 
   "dates1": [
@@ -211,7 +211,7 @@
       7,
       8,
       8,
-      null
+      11
     ],
     "active": [
       0,
@@ -344,7 +344,7 @@
       3,
       1,
       0,
-      0
+      3
     ],
     "deceased": [
       0,
