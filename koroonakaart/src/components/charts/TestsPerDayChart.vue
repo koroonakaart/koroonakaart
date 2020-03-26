@@ -39,18 +39,21 @@ export default {
           crosshair: true
         },
 
-        yAxis: [{
-          min: 0,
-          title: {
-            text: this.$t("numberOfTests")
+        yAxis: [
+          {
+            min: 0,
+            title: {
+              text: this.$t("numberOfTests")
+            }
+          },
+          {
+            max: 100,
+            title: {
+              text: this.$t("percentPositiveTests")
+            },
+            opposite: true
           }
-        }, {
-        max: 100,
-        title: {
-          text: this.$t("percentPositiveTests")
-        },
-        opposite: true
-        }],
+        ],
 
         tooltip: {
           headerFormat:
@@ -100,8 +103,9 @@ export default {
     currentLocale() {
       this.chartOptions.title.text = this.$t("testsPerDay");
       this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");
-      this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests")
+      this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
       this.chartOptions.series[0].name = this.$t("testsPerDay");
+      this.chartOptions.series[1].name = this.$t("percentPositiveTests");
     }
   }
 };
