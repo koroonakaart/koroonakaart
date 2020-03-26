@@ -17,7 +17,9 @@ export default {
           align: "left",
           y: 30
         },
+      
         chart: {
+          absolute: true,
           type: "bar",
           height: 470
         },
@@ -110,7 +112,6 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("distributionOfAgeSexTests");
-      this.chartOptions.xAxis.title.text = this.$t("age");
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("maleNegative");
       this.chartOptions.series[1].name = this.$t("malePositive");
