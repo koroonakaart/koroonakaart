@@ -9,9 +9,6 @@ import data from "../../data.json";
 
 export default {
   name: "TestsAgeSexDistributionChart",
-  mounted() {
-    console.log(this.chartOptions);
-  },
 
   data() {
     return {
