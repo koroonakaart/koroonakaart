@@ -10,6 +10,7 @@
   "cumulativeCases": "Cases",
   "cumulativeTests": "Cumulative tests",
   "deceased": "Deaths",
+  "disclaimerModal": "Terviseamet has changed their data collection and release methodology. We are unable to publish new data at this time while they validate the new data.",
   "distributionOfPositiveTests": "Distribution of tests by age",
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "hospitalised": "In treatment",
