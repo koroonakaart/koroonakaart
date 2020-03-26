@@ -17,14 +17,36 @@ Highcharts.maps["mapEstonia"] = mapData;
 export default {
   name: "Map",
 
+  mounted() {
+    console.log(this.mapOptions.series);
+  },
+
   data() {
     return {
+      chartType: "absolute",
+
       mapOptions: {
         chart: {
           map: "mapEstonia",
           // Set max height of the map
-          height: 470
+          height: 470,
+          events: {
+            load: function() {
+              // Buttons have indexes go in even numbers (button1 [0], button2 [2])
+              // Odd indexes are button symbols
+              const button = this.exportSVGElements[4];
+              console.log("loaded");
+              // States:
+              // 0 - normal
+              // 1 - hover
+              // 2 - selected
+              // 3 - disabled
+              /* if (this.mapOptions.series) */
+              button.setState(2);
+            }
+          }
         },
+
         exporting: {
           chartOptions: {
             // specific options for the exported image
@@ -39,7 +61,15 @@ export default {
           buttons: {
             customButton: {
               text: this.$t("per10000"),
+              className: "test",
               onclick: function() {
+                this.chartType = "absolute";
+                const button1 = this.exportSVGElements[2];
+                const button2 = this.exportSVGElements[4];
+
+                button1.setState(this.chartType === "absolute" ? 2 : 0);
+                button2.setState(this.chartType === "per10k" ? 2 : 0);
+
                 this.update({
                   series: {
                     data: data.dataInfectionsByCounty10000,
@@ -53,6 +83,13 @@ export default {
             customButton2: {
               text: this.$t("absolute"),
               onclick: function() {
+                this.chartType = "per10k";
+                const button1 = this.exportSVGElements[2];
+                const button2 = this.exportSVGElements[4];
+
+                button1.setState(this.chartType === "absolute" ? 2 : 0);
+                button2.setState(this.chartType === "per10k" ? 2 : 0);
+
                 this.update({
                   series: {
                     data: data.dataInfectionsByCounty,
@@ -74,7 +111,32 @@ export default {
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
+            y: -15,
+            theme: {
+              fill: "none",
+              stroke: "none",
+              "stroke-width": 0,
+              r: 8,
+
+              states: {
+                /* hover: {
+                  fill: "#a4edba"
+                }, */
+                select: {
+                  fill: "none",
+                  style: {
+                    fontWeight: "bold",
+                    textDecoration: "underline"
+                  }
+                }
+              },
+              style: {
+                /* color: "#039", */
+                /* fontWeight: "bold", */
+                textDecoration: "none"
+              },
+              selected: 1
+            }
           }
         },
 
@@ -173,4 +235,7 @@ export default {
 
 // Border for debugging purposes only
 <style scoped>
+.test {
+  background-color: red;
+}
 </style>
