@@ -30,7 +30,7 @@
   "unknownNegative": "Отрицательные (пол неизвестен)",
   "testsPer10000": "Положительные тесты на 10000 жителей",
   "testsPer10000Axis": "Положительных тестов на 10000 жителей",
-  "percentPositiveTests": "Positiivsete testide %",
+  "percentPositiveTests": "Положительные тесты %",
   "navbarDescription": "Статистика о распространении болезни COVID-19 вызванной короновирусом в Эстонии. Данное приложение разрабатывает OKEE при сотрудничестве с Terviseamet.",
   "navbarUpdated": "Обновлено",
   "newCasesPerDay": "Новых случаев за день",
