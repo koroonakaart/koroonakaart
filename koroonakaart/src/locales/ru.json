@@ -11,6 +11,7 @@
   "cumulativeTests": "Проведенные тесты (кумулятивно)",
   "deceased": "Погибших",
   "distributionOfPositiveTests": "Распределение тестов по возрасту",
+  "disclaimerModal": "Terviseamet muutis andmete kogumise ja avaldamise metoodikat. Andmed avaldatakse pärast uute andmete valideerimist.",
   "hospitalised": "Госпитолизированых",
   "intensive": "В интенсивнoй терапии",
   "distributionOfAgeSexTests": "Распределение тестов по возрасту",
