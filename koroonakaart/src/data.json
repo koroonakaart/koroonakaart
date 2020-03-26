@@ -3,7 +3,7 @@
 
   "confirmedCasesNumber": "538",
   "activeCasesNumber": "529",
-  "hospitalisedNumber": "29",
+  "hospitalisedNumber": "34",
   "deceasedNumber": "1",
   "recoveredNumber": "8",
   "testsAdministeredNumber": "7090",
@@ -273,7 +273,7 @@
       0,
       1
     ],
-    "haiglas": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 29],
+    "haiglas": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 34],
     "intensive": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2, 4, 6, 7, 7]
   },
 
