@@ -146,7 +146,7 @@ export default {
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.xAxis[0].plotLines.text = this.$t("method");
+      this.chartOptions.xAxis.plotLines[0].label.text = this.$t("method");
     }
   }
 };

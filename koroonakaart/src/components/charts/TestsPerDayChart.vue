@@ -125,8 +125,8 @@ export default {
       this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
       this.chartOptions.series[0].name = this.$t("testsPerDay");
       this.chartOptions.series[1].name = this.$t("percentPositiveTests");
-      this.xAxis[0].plotLines.text = this.$t("method");
-      this.xAxis[1].plotLines.text = this.$t("method");
+      this.chartOptions.xAxis.plotLines[0].label.text = this.$t("method");
+      this.chartOptions.xAxis.plotLines[1].label.text = this.$t("method");
 
 
     }

@@ -174,8 +174,8 @@ export default {
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
       );
-      this.xAxis[0].plotLines.text = this.$t("method");
-      this.xAxis[1].plotLines.text = this.$t("method");
+      this.chartOptions.xAxis.plotLines[0].label.text = this.$t("method");
+      this.chartOptions.xAxis.plotLines[1].label.text = this.$t("method");
 
     }
   }
