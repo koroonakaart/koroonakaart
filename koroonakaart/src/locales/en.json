@@ -13,6 +13,7 @@
   "distributionOfPositiveTests": "Distribution of tests by age",
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "hospitalised": "In treatment",
+  "method": "Change in method",
   "intensive": "Intensive care",
   "insufficientData": "Insufficient data",
   "language": "English",
