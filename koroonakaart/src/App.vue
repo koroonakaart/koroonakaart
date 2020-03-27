@@ -12,23 +12,17 @@
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
 
-import DisclaimerModal from "./components/DisclaimerModal";
-
 export default {
   name: "App",
   components: {
     Navbar,
-    Footer,
-    DisclaimerModal
-  },
+    Footer
+      },
 
   // When app loads change language to specified language suffix (ee, en or ru)
   created() {
     if (this.$i18n.locale !== this.$route.params.locale)
       this.changeCurrentLanguage(this.$route.params.locale);
-  },
-  mounted() {
-    this.$bvModal.show("disclaimer-modal");
   },
 
   methods: {

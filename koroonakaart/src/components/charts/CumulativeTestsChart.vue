@@ -45,7 +45,6 @@ export default {
 
                 button1.setState(this.chartType === "linear" ? 2 : 0);
                 button2.setState(this.chartType === "logarithmic" ? 2 : 0);
-
                 this.yAxis[0].update({
                   type: "linear"
                 });
@@ -120,7 +119,26 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2
+          categories: data.dates2,
+          plotLines: [{
+              color: 'red', // Color value
+              value: 18, // Value of where the line will appear
+              width: 1,
+              label: {
+              text: this.$t("method"),
+              align: "left"
+              }
+            }, {
+                color: 'red', // Color value
+                value: 28, // Value of where the line will appear
+                width: 1,
+                label: {
+                text: this.$t("method"),
+                align: "left",
+                x: -20
+
+                }}
+            ]
         },
 
         yAxis: {
@@ -156,6 +174,9 @@ export default {
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
       );
+      this.xAxis[0].plotLines.text = this.$t("method");
+      this.xAxis[1].plotLines.text = this.$t("method");
+
     }
   }
 };

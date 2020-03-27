@@ -36,7 +36,26 @@ export default {
         },
         xAxis: {
           categories: data.dates2,
-          crosshair: true
+          crosshair: true,
+          plotLines: [{
+              color: 'red', // Color value
+              value: 18, // Value of where the line will appear
+              width: 1,
+              label: {
+              text: this.$t("method"),
+              align: "left"
+              }
+            }, {
+                color: 'red', // Color value
+                value: 28, // Value of where the line will appear
+                width: 1,
+                label: {
+                text: this.$t("method"),
+                align: "left",
+                x: -20
+
+                }}
+            ]
         },
 
         yAxis: [
@@ -106,6 +125,10 @@ export default {
       this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
       this.chartOptions.series[0].name = this.$t("testsPerDay");
       this.chartOptions.series[1].name = this.$t("percentPositiveTests");
+      this.xAxis[0].plotLines.text = this.$t("method");
+      this.xAxis[1].plotLines.text = this.$t("method");
+
+
     }
   }
 };
