@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <DisclaimerModal />
+    <!-- <DisclaimerModal /> -->
 
     <Navbar />
     <router-view />
@@ -17,7 +17,7 @@ export default {
   components: {
     Navbar,
     Footer
-      },
+  },
 
   // When app loads change language to specified language suffix (ee, en or ru)
   created() {

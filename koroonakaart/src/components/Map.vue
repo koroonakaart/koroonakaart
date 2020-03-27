@@ -17,6 +17,11 @@ Highcharts.maps["mapEstonia"] = mapData;
 export default {
   name: "Map",
 
+  updated() {
+    this.chartType = "absolute";
+    console.log("Updated");
+  },
+
   data() {
     return {
       chartType: "absolute",
@@ -41,9 +46,16 @@ export default {
             },
             redraw: function() {
               // Redraw seems to be async so setTimeout for the button to update state
+              console.log("Redraw");
+
               setTimeout(() => {
-                this.exportSVGElements[4].setState(2);
-              }, 50);
+                this.exportSVGElements[2].setState(
+                  this.chartType === "absolute" ? 2 : 0
+                );
+                this.exportSVGElements[4].setState(
+                  this.chartType === "per10k" ? 2 : 0
+                );
+              }, 100);
             }
           }
         },
@@ -64,11 +76,6 @@ export default {
               text: this.$t("per10000"),
               onclick: function() {
                 this.chartType = "absolute";
-                const button1 = this.exportSVGElements[2];
-                const button2 = this.exportSVGElements[4];
-
-                button1.setState(this.chartType === "absolute" ? 2 : 0);
-                button2.setState(this.chartType === "per10k" ? 2 : 0);
 
                 this.update({
                   series: {
@@ -84,11 +91,6 @@ export default {
               text: this.$t("absolute"),
               onclick: function() {
                 this.chartType = "per10k";
-                const button1 = this.exportSVGElements[2];
-                const button2 = this.exportSVGElements[4];
-
-                button1.setState(this.chartType === "absolute" ? 2 : 0);
-                button2.setState(this.chartType === "per10k" ? 2 : 0);
 
                 this.update({
                   series: {
@@ -227,11 +229,6 @@ export default {
       this.mapOptions.exporting.buttons.customButton2.text = this.$t(
         "absolute"
       );
-      /* this.$refs.highmap.options.chart.redraw(); */
-      console.log(this.$refs.highmap);
-      console.log(this.$refs.highmap.options.exporting.buttons.customButton);
-
-      /* this.$refs.highmap.update({}); */
     }
   }
 };
