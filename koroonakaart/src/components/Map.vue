@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
 
@@ -38,6 +38,12 @@ export default {
               // 2 - selected
               // 3 - disabled
               button.setState(2);
+            },
+            redraw: function() {
+              // Redraw seems to be async so setTimeout for the button to update state
+              setTimeout(() => {
+                this.exportSVGElements[4].setState(2);
+              }, 50);
             }
           }
         },
@@ -221,6 +227,11 @@ export default {
       this.mapOptions.exporting.buttons.customButton2.text = this.$t(
         "absolute"
       );
+      /* this.$refs.highmap.options.chart.redraw(); */
+      console.log(this.$refs.highmap);
+      console.log(this.$refs.highmap.options.exporting.buttons.customButton);
+
+      /* this.$refs.highmap.update({}); */
     }
   }
 };
