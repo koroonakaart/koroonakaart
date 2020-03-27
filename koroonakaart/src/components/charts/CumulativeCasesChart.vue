@@ -12,49 +12,8 @@ export default {
 
   data() {
     return {
-      chartType: "linear",
-
       chartOptions: {
-        title: {
-          text: this.$t("cumulativeCases"),
-          align: "left",
-          y: 30
-        },
-
-        exporting: {
-          buttons: {
-            customButton: {
-              text: this.$t("logarithmic"),
-              onclick: function() {
-                this.chartType = "logarithmic";
-                const button1 = this.exportSVGElements[4];
-                const button2 = this.exportSVGElements[2];
-
-                button1.setState(this.chartType === "linear" ? 2 : 0);
-                button2.setState(this.chartType === "logarithmic" ? 2 : 0);
-
-                this.yAxis[0].update({
-                  type: "logarithmic"
-                });
-              }
-            },
-            customButton2: {
-              text: this.$t("linear"),
-              onclick: function() {
-                this.chartType = "linear";
-                const button1 = this.exportSVGElements[4];
-                const button2 = this.exportSVGElements[2];
-
-                button1.setState(this.chartType === "linear" ? 2 : 0);
-                button2.setState(this.chartType === "logarithmic" ? 2 : 0);
-
-                this.yAxis[0].update({
-                  type: "linear"
-                });
-              }
-            }
-          }
-        },
+        chartType: "linear",
 
         chart: {
           height: 470,
@@ -74,8 +33,44 @@ export default {
             redraw: function() {
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
-                this.exportSVGElements[4].setState(2);
-              }, 50);
+                this.exportSVGElements[4].setState(
+                  this.options.chartType === "linear" ? 2 : 0
+                );
+                this.exportSVGElements[2].setState(
+                  this.options.chartType === "logarithmic" ? 2 : 0
+                );
+              }, 100);
+            }
+          }
+        },
+
+        title: {
+          text: this.$t("cumulativeCases"),
+          align: "left",
+          y: 30
+        },
+
+        exporting: {
+          buttons: {
+            customButton2: {
+              text: this.$t("logarithmic"),
+              onclick: function() {
+                this.options.chartType = "logarithmic";
+
+                this.yAxis[0].update({
+                  type: "logarithmic"
+                });
+              }
+            },
+            customButton: {
+              text: this.$t("linear"),
+              onclick: function() {
+                this.options.chartType = "linear";
+
+                this.yAxis[0].update({
+                  type: "linear"
+                });
+              }
             }
           }
         },

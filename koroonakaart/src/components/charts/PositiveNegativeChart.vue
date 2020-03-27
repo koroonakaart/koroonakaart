@@ -12,14 +12,14 @@ export default {
 
   data() {
     return {
-      chartType: "percent",
-
       chartOptions: {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
           y: 30
         },
+
+        chartType: "percent",
 
         chart: {
           type: "column",
@@ -36,21 +36,27 @@ export default {
               // 2 - selected
               // 3 - disabled
               button.setState(2);
+            },
+            redraw: function() {
+              // Redraw seems to be async so setTimeout for the button to update state
+              setTimeout(() => {
+                this.exportSVGElements[4].setState(
+                  this.options.chartType === "percent" ? 2 : 0
+                );
+                this.exportSVGElements[2].setState(
+                  this.options.chartType === "abs" ? 2 : 0
+                );
+              }, 100);
             }
           }
         },
 
         exporting: {
           buttons: {
-            customButton: {
+            customButton2: {
               text: this.$t("abs"),
               onclick: function() {
-                this.chartType = "abs";
-                const button1 = this.exportSVGElements[2];
-                const button2 = this.exportSVGElements[4];
-
-                button1.setState(this.chartType === "abs" ? 2 : 0);
-                button2.setState(this.chartType === "percent" ? 2 : 0);
+                this.options.chartType = "abs";
 
                 this.update({
                   plotOptions: {
@@ -66,15 +72,10 @@ export default {
                 });
               }
             },
-            customButton2: {
+            customButton: {
               text: "%",
               onclick: function() {
-                this.chartType = "percent";
-                const button1 = this.exportSVGElements[2];
-                const button2 = this.exportSVGElements[4];
-
-                button1.setState(this.chartType === "abs" ? 2 : 0);
-                button2.setState(this.chartType === "percent" ? 2 : 0);
+                this.options.chartType = "percent";
 
                 this.update({
                   plotOptions: {
@@ -203,11 +204,10 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("positiveNegativeTitle");
-      //  this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("negative");
       this.chartOptions.series[1].name = this.$t("positive");
       this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
-      this.chartOptions.exporting.buttons.customButton.text = this.$t("abs");
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t("abs");
     }
   }
 };
