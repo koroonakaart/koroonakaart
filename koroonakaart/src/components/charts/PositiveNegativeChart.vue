@@ -131,8 +131,10 @@ export default {
         },
         xAxis: {
           labels: {
+            /* padding: "1px", */
+            autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -85, -90],
             style: {
-              fontSize: "13px",
+              fontSize: "11px",
               fontWeight: "bold"
             }
           },
