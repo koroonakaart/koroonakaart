@@ -18,11 +18,46 @@ export default {
           align: "left",
           y: 30
         },
+
+        chartType: "absolute",
+
+        chart: {
+          type: "column",
+          height: 470,
+          events: {
+            load: function() {
+              // Buttons have indexes go in even numbers (button1 [0], button2 [2])
+              // Odd indexes are button symbols
+              const button = this.exportSVGElements[2];
+
+              // States:
+              // 0 - normal
+              // 1 - hover
+              // 2 - selected
+              // 3 - disabled
+              button.setState(2);
+            },
+            redraw: function() {
+              // Redraw seems to be async so setTimeout for the button to update state
+              setTimeout(() => {
+                this.exportSVGElements[4].setState(
+                  this.options.chartType === "percent" ? 2 : 0
+                );
+                this.exportSVGElements[2].setState(
+                  this.options.chartType === "absolute" ? 2 : 0
+                );
+              }, 100);
+            }
+          }
+        },
+
         exporting: {
           buttons: {
             customButton: {
               text: "Abs",
               onclick: function() {
+                this.options.chartType = "absolute";
+
                 this.update({
                   plotOptions: {
                     column: {
@@ -37,9 +72,12 @@ export default {
                 });
               }
             },
+
             customButton2: {
               text: "%",
               onclick: function() {
+                this.options.chartType = "percent";
+
                 this.update({
                   plotOptions: {
                     column: {
@@ -56,14 +94,35 @@ export default {
             }
           }
         },
-        chart: {
-          type: "column",
-          height: 470
-        },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
+            y: -15,
+            theme: {
+              fill: "none",
+              stroke: "none",
+              "stroke-width": 0,
+              r: 4,
+
+              states: {
+                hover: {
+                  /* fill: "#f5f5f5" */
+                },
+                select: {
+                  fill: "none",
+                  style: {
+                    fontWeight: "bold",
+                    textDecoration: "underline"
+                  }
+                }
+              },
+              style: {
+                /* color: "#039", */
+                /* fontWeight: "bold", */
+                textDecoration: "none"
+              }
+            }
           }
         },
         // Remove Highcharts.com link from bottom right
@@ -96,7 +155,7 @@ export default {
 
         yAxis: {
           title: {
-            text: this.$t("numberOfCases")
+            text: this.$t("numberOfTests")
           }
         },
         plotOptions: {
@@ -118,11 +177,11 @@ export default {
         series: [
           {
             name: this.$t("positive"),
-            data: data.dataPositiveTestsByAgeChart.positive,
+            data: data.dataPositiveTestsByAgeChart.positive
           },
           {
             name: this.$t("negative"),
-            data: data.dataPositiveTestsByAgeChart.negative,
+            data: data.dataPositiveTestsByAgeChart.negative
           }
         ]
       }
@@ -141,12 +200,13 @@ export default {
     currentLocale() {
       this.chartOptions.title.text = this.$t("distributionOfPositiveTests");
       this.chartOptions.xAxis.title.text = this.$t("age");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("positive");
       this.chartOptions.series[1].name = this.$t("negative");
       this.chartOptions.xAxis.categories[
         this.chartOptions.xAxis.categories.length - 1
       ] = this.$t("unknown");
+      this.chartOptions.exporting.buttons.customButton.text = this.$t("abs");
     }
   }
 };

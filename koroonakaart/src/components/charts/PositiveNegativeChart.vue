@@ -44,7 +44,7 @@ export default {
                   this.options.chartType === "percent" ? 2 : 0
                 );
                 this.exportSVGElements[2].setState(
-                  this.options.chartType === "abs" ? 2 : 0
+                  this.options.chartType === "absolute" ? 2 : 0
                 );
               }, 100);
             }
@@ -56,7 +56,7 @@ export default {
             customButton2: {
               text: this.$t("abs"),
               onclick: function() {
-                this.options.chartType = "abs";
+                this.options.chartType = "absolute";
 
                 this.update({
                   plotOptions: {
@@ -72,6 +72,7 @@ export default {
                 });
               }
             },
+
             customButton: {
               text: "%",
               onclick: function() {
