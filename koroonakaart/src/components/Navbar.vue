@@ -73,7 +73,13 @@ export default {
   // Get available locales
   computed: {
     locales: function() {
-      return this.$i18n.availableLocales;
+      const initialLocales = this.$i18n.availableLocales;
+      // Swap order of locales so et would become before en
+      [initialLocales[0], initialLocales[1]] = [
+        initialLocales[1],
+        initialLocales[0]
+      ];
+      return initialLocales;
     }
   },
 
@@ -81,7 +87,7 @@ export default {
   methods: {
     changeCurrentLanguage: function(targetLanguage) {
       if (this.$route.params.locale !== targetLanguage) {
-        this.$router.push(targetLanguage);
+        this.$router.replace(targetLanguage);
       }
       this.$i18n.locale = targetLanguage;
     }

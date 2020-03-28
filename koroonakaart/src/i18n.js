@@ -21,7 +21,7 @@ function loadLocaleMessages() {
 }
 
 export default new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || "ee",
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "ee",
+  locale: process.env.VUE_APP_I18N_LOCALE || "et",
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "et",
   messages: loadLocaleMessages()
 });

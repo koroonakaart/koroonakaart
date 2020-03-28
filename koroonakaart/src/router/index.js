@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: `/${navigator?.language?.split("-")[0] ?? "ee"}`
+    redirect: `/${navigator?.language?.split("-")[0] ?? "et"}`
   },
   {
     path: "/api"
@@ -18,6 +18,10 @@ const routes = [
     path: "/:locale",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/:locale/*",
+    redirect: "/"
   }
 ];
 
