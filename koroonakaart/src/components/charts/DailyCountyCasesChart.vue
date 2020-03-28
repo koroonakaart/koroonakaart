@@ -32,16 +32,18 @@ export default {
         xAxis: {
           categories: data.dates1,
           crosshair: true,
-          plotLines: [{
-              color: 'red', // Color value
+          plotLines: [
+            {
+              color: "red", // Color value
               value: 9, // Value of where the line will appear
               width: 2,
               label: {
-              text: this.$t("method"),
-              align: "left",
-              rotation: 360
+                text: this.$t("method"),
+                align: "left",
+                rotation: 360
               }
-            }]
+            }
+          ]
         },
 
         yAxis: {

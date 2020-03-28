@@ -19,9 +19,9 @@ export default {
 
   data() {
     return {
-      chartType: "absolute",
-
       mapOptions: {
+        chartType: "absolute",
+
         chart: {
           map: "mapEstonia",
           // Set max height of the map
@@ -42,8 +42,13 @@ export default {
             redraw: function() {
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
-                this.exportSVGElements[4].setState(2);
-              }, 50);
+                this.exportSVGElements[4].setState(
+                  this.options.chartType === "absolute" ? 2 : 0
+                );
+                this.exportSVGElements[2].setState(
+                  this.options.chartType === "per10k" ? 2 : 0
+                );
+              }, 100);
             }
           }
         },
@@ -63,12 +68,7 @@ export default {
             customButton: {
               text: this.$t("per10000"),
               onclick: function() {
-                this.chartType = "absolute";
-                const button1 = this.exportSVGElements[2];
-                const button2 = this.exportSVGElements[4];
-
-                button1.setState(this.chartType === "absolute" ? 2 : 0);
-                button2.setState(this.chartType === "per10k" ? 2 : 0);
+                this.options.chartType = "per10k";
 
                 this.update({
                   series: {
@@ -83,12 +83,7 @@ export default {
             customButton2: {
               text: this.$t("absolute"),
               onclick: function() {
-                this.chartType = "per10k";
-                const button1 = this.exportSVGElements[2];
-                const button2 = this.exportSVGElements[4];
-
-                button1.setState(this.chartType === "absolute" ? 2 : 0);
-                button2.setState(this.chartType === "per10k" ? 2 : 0);
+                this.options.chartType = "absolute";
 
                 this.update({
                   series: {
@@ -227,11 +222,11 @@ export default {
       this.mapOptions.exporting.buttons.customButton2.text = this.$t(
         "absolute"
       );
-      /* this.$refs.highmap.options.chart.redraw(); */
-      console.log(this.$refs.highmap);
-      console.log(this.$refs.highmap.options.exporting.buttons.customButton);
 
-      /* this.$refs.highmap.update({}); */
+      // Persist chart type selection through language change
+      this.mapOptions.chartType === "absolute"
+        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
+        : (this.mapOptions.series[0] = data.dataInfectionsByCounty10000);
     }
   }
 };
