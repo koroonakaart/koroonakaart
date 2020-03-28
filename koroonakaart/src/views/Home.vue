@@ -17,23 +17,19 @@
       </b-col>
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
-        <CumulativeCasesChart />
-      </b-col>
-      <b-col cols="12" lg="6">
-        <NewCasesPerDayChart />
-      </b-col>
+      <CumulativeCasesChart />
+    </b-row>
+    <b-row class="mb-5">
+      <NewCasesPerDayChart />
     </b-row>
     <b-row class="mb-5">
       <DailyCountyCasesChart />
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
-        <CumulativeTestsChart />
-      </b-col>
-      <b-col cols="12" lg="6">
-        <TestsPerDayChart />
-      </b-col>
+      <CumulativeTestsChart />
+    </b-row>
+    <b-row class="mb-5">
+      <TestsPerDayChart />
     </b-row>
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
