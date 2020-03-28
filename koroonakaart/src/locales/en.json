@@ -10,7 +10,7 @@
   "cumulativeCases": "Cases",
   "cumulativeTests": "Cumulative tests",
   "deceased": "Deaths",
-  "disclaimerNavbar": "Due to the change in methodology there are inaccuracies in the charts. We hope to verify the data in the near future and keep providing the most accurate information available to us.",
+  "disclaimerNavbar": "Due to changes in methodology there may be inaccuracies in time-series based data. We hope to verify the data in the near future and keep providing the most accurate information available to us.",
   "distributionOfPositiveTests": "Distribution of tests by age",
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "hospitalised": "In treatment",
