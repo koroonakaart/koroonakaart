@@ -64,11 +64,6 @@ export default {
     };
   },
 
-  // set default language according to the browser language
-  mounted() {
-    this.changeCurrentLanguage(navigator.language.split('-')[0]);
-  },
-
   // On navbar update change locale to current route suffix (ee, en or ru)
   updated() {
     if (this.$i18n.locale !== this.$route.params.locale)
