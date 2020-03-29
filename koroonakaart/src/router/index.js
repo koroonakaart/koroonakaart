@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/et"
+    redirect: `/${localStorage.getItem("koroonaLang") ?? "et"}`
   },
   {
     path: "/api"
