@@ -90,6 +90,9 @@ export default {
         this.$router.replace(targetLanguage);
       }
       this.$i18n.locale = targetLanguage;
+
+      const language = targetLanguage !== undefined ? targetLanguage : "et";
+      localStorage.setItem("koroonaLang", language);
     }
   }
 };
