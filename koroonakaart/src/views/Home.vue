@@ -9,18 +9,30 @@
     </b-row>
 
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <ConfirmedCasesByCountiesChart />
       </b-col>
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <TestsPopRatioChart />
       </b-col>
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <CumulativeCasesChart />
       </b-col>
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <NewCasesPerDayChart />
       </b-col>
     </b-row>
@@ -28,20 +40,35 @@
       <DailyCountyCasesChart />
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <CumulativeTestsChart />
       </b-col>
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <TestsPerDayChart />
       </b-col>
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
+      <b-col
+        cols="12"
+        lg="6"
+      >
         <TestsAgeSexDistributionChart />
       </b-col>
-      <b-col cols="12" lg="6">
-        <PositiveNegativeChart />
+      <b-col
+        cols="12"
+        lg="6"
+      >
+        <TestsAgeSexRelationalDistributionChart />
       </b-col>
+    </b-row>
+    <b-row class="mb-5">
+      <PositiveNegativeChart />
     </b-row>
   </b-container>
 </template>
@@ -55,6 +82,7 @@ import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
+import TestsAgeSexRelationalDistributionChart from "../components/charts/TestsAgeSexRelationalDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
@@ -73,6 +101,7 @@ export default {
     NewCasesPerDayChart,
     TestsPerDayChart,
     TestsAgeSexDistributionChart,
+    TestsAgeSexRelationalDistributionChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
     TestsPopRatioChart,
