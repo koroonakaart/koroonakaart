@@ -17,7 +17,13 @@ const routes = [
   {
     path: "/:locale",
     name: "Home",
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: "*",
+        redirect: "/:locale"
+      }
+    ]
   }
 ];
 
