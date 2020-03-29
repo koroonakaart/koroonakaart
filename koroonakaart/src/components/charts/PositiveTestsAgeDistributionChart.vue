@@ -58,6 +58,8 @@ export default {
               onclick: function() {
                 this.options.chartType = "absolute";
 
+                console.log(this);
+
                 this.update({
                   plotOptions: {
                     column: {
