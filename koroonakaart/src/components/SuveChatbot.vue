@@ -143,7 +143,7 @@ export default {
     top: 21em;
 
     @media only screen and (max-width: 600px) {
-      right: 0.2em;
+      right: 0.5em;
       top: 7em;
     }
   }
@@ -151,5 +151,9 @@ export default {
   &:before {
     display: none;
   }
+}
+
+#chat-container > * > * {
+  top: 8em;
 }
 </style>
