@@ -131,7 +131,7 @@ export default {
   }
 }
 
-.iframed {
+/* .iframed {
   bottom: auto;
   top: 0em;
 
@@ -156,5 +156,5 @@ export default {
 // Target Suve bots own css
 .jHBfiR {
   top: 8em;
-}
+} */
 </style>
