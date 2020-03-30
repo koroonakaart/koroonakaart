@@ -21,6 +21,8 @@ export default {
             load: function() {
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
+              if (!this.exportSVGElements) return
+
               const button = this.exportSVGElements[4];
 
               // States:
@@ -33,6 +35,8 @@ export default {
             redraw: function() {
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
+                if (!this.exportSVGElements) return;
+
                 this.exportSVGElements[4].setState(
                   this.options.chartType === "linear" ? 2 : 0
                 );

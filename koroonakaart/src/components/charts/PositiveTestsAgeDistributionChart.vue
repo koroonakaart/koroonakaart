@@ -26,6 +26,7 @@ export default {
           height: 470,
           events: {
             load: function() {
+              if(!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               const button = this.exportSVGElements[2];
@@ -38,6 +39,7 @@ export default {
               button.setState(2);
             },
             redraw: function() {
+              if(!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 this.exportSVGElements[4].setState(
