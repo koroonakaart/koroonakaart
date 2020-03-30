@@ -153,7 +153,8 @@ export default {
   }
 }
 
-#chat-container > * > * {
+// Target Suve bots own css
+.jHBfiR {
   top: 8em;
 }
 </style>
