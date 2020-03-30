@@ -1,16 +1,29 @@
 <template>
   <div>
-    <button class="chat-button" type="button" @click.prevent="openChat">{{ $t("answerbot") }}</button>
+    <button
+      v-bind:class="{ iframed: isIframed }"
+      class="chat-button"
+      type="button"
+      @click.prevent="openChat"
+    >{{ $t("answerbot") }}</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "SuveChatbot",
+
   mounted() {
     // Chati avamiseks automaatselt
     //	chatPanel.show();
   },
+
+  data() {
+    return {
+      isIframed: window.self !== window.top
+    };
+  },
+
   computed: {
     chatPanel: function() {
       return window.boostChatPanel({
@@ -28,6 +41,7 @@ export default {
       });
     }
   },
+
   methods: {
     openChat: function() {
       this.chatPanel.show();
@@ -115,9 +129,27 @@ export default {
     height: 40px;
     width: 40px;
   }
+}
 
-  /* #chat-container .TitleBar {
-    background-color: #00698c !important;
-  } */
+.iframed {
+  bottom: auto;
+  top: 0em;
+
+  &:after {
+    background-size: 40px 40px;
+    height: 50px;
+    width: 50px;
+    right: 0.2em;
+    top: 21em;
+
+    @media only screen and (max-width: 600px) {
+      right: 0.2em;
+      top: 7em;
+    }
+  }
+
+  &:before {
+    display: none;
+  }
 }
 </style>
