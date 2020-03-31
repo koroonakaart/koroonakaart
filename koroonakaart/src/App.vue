@@ -3,7 +3,7 @@
     <!-- <DisclaimerModal /> -->
 
     <Navbar />
-    <router-view />
+    <router-view class="router-view" />
     <Footer />
   </div>
 </template>
@@ -43,6 +43,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+.router-view {
+  flex: 1;
 }
 </style>

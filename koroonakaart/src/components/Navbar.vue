@@ -2,25 +2,32 @@
   <b-navbar
     class="shadow-sm p-3 mb-4 bg-white rounded"
     sticky
-    toggleable="lg"
+    toggleable="md"
     type="light"
     variant="light"
   >
     <b-container fluid="lg">
       <b-navbar-brand>
-        <span id="navbar-headingleft">Koroona</span>
-        <span id="navbar-headingright">kaart</span>
+        <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
+        <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item class="navbar-description">
-            <small>{{ $t("disclaimerNavbar") }}</small>
+          <b-nav-item toggle-class="nav-link-custom">
+            <div
+              class="navbar-faq"
+              :class="{ active: this.$store.state.faqActive }"
+              @click.prevent="toggleFaqActive"
+            >{{ $t("faq.faqLong") }}</div>
           </b-nav-item>
+          <!-- <b-nav-item class="navbar-description">
+            <small>{{ $t("disclaimerNavbar") }}</small>
+          </b-nav-item>-->
           <b-nav-item id="navbar-interpunct">·</b-nav-item>
-          <b-nav-item>
+          <b-nav-item class="navbar-updated">
             <small>{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
           </b-nav-item>
         </b-navbar-nav>
@@ -60,7 +67,8 @@ export default {
   data() {
     return {
       languageNames: ["Eesti", "English", "Русский"],
-      updatedOn: data.updatedOn
+      updatedOn: data.updatedOn,
+      faqActive: false
     };
   },
 
@@ -80,19 +88,36 @@ export default {
         initialLocales[0]
       ];
       return initialLocales;
+    },
+    linkToFaq: function() {
+      return `/${this.$i18n.locale}/faq`;
     }
   },
 
   // Change current locale to targetLanguage and change route to the targetLanguage
   methods: {
     changeCurrentLanguage: function(targetLanguage) {
-      if (this.$route.params.locale !== targetLanguage) {
-        this.$router.replace(targetLanguage);
+      if (this.$route.path.includes("faq")) {
+        this.$router.push({ path: `/${targetLanguage}/faq` });
+      } else {
+        this.$router.push(targetLanguage);
       }
+
       this.$i18n.locale = targetLanguage;
 
       const language = targetLanguage !== undefined ? targetLanguage : "et";
       localStorage.setItem("koroonaLang", language);
+    },
+
+    goBackHome: function() {
+      if (this.$route.path === `/${this.$i18n.locale}`) return;
+
+      this.$store.dispatch("toggleFaqInactive");
+      this.$router.push(`/${this.$i18n.locale}`);
+    },
+    toggleFaqActive: function() {
+      this.$store.dispatch("toggleFaqActive");
+      this.$router.push({ path: `/${this.$i18n.locale}/faq` });
     }
   }
 };
@@ -105,12 +130,14 @@ export default {
 
 #navbar-headingleft {
   color: black;
+  cursor: pointer;
   font-size: 1.2em;
   font-weight: 900;
 }
 
 #navbar-headingright {
   color: #4072cd;
+  cursor: pointer;
   font-size: 1.2em;
   font-weight: 900;
 }
@@ -126,5 +153,35 @@ export default {
 #navbar-langselect {
   font-size: 1.2em;
   text-align: center;
+}
+
+.navbar-faq {
+  color: black;
+  font-weight: 500;
+  margin-left: 2em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.menu-item {
+  background-color: #4072cd;
+}
+
+.nav-item.navbar-updated {
+  small {
+    &:hover {
+      cursor: default !important;
+    }
+  }
+
+  &:hover {
+    cursor: default !important;
+  }
 }
 </style>

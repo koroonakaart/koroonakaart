@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import Home from "../views/Home.vue";
+import FrequentlyAskedQuestions from "../views/FrequentlyAskedQuestions.vue";
 
 Vue.use(VueRouter);
 
@@ -9,10 +11,18 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: `/${localStorage.getItem("koroonaLang") ?? "et"}`
+    name: "root",
+    beforeEnter(to, from, next) {
+      next(localStorage.getItem("koroonaLang") ?? "et");
+    }
   },
   {
     path: "/api"
+  },
+  {
+    path: "/:locale/faq",
+    name: "FrequentlyAskedQuestions",
+    component: FrequentlyAskedQuestions
   },
   {
     path: "/:locale",

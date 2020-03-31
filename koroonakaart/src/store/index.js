@@ -6,13 +6,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: () => ({
-    dataFromGoogleSheets: {}
+    dataFromGoogleSheets: {},
+    faqActive: false
   }),
   mutations: {
     fetchDataFromGoogleSheets(state, payload) {
       state.dataFromGoogleSheets = payload;
+    },
+    toggleFaqActive(state) {
+      state.faqActive = true;
+    },
+    toggleFaqInactive(state) {
+      state.faqActive = false;
     }
   },
+
   actions: {
     fetchDataFromGoogleSheets(context) {
       axios
@@ -23,6 +31,12 @@ export default new Vuex.Store({
           context.commit("fetchDataFromGoogleSheets", response.data.feed)
         )
         .catch(error => console.log(error.message));
+    },
+    toggleFaqActive(context) {
+      context.commit("toggleFaqActive");
+    },
+    toggleFaqInactive(context) {
+      context.commit("toggleFaqInactive");
     }
   },
   modules: {}

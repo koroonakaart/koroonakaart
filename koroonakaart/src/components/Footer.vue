@@ -9,7 +9,11 @@
           target="_blank"
         >{{this.$t("footer2")}}</a>
         {{this.$t("footer3")}}
-        <a href="https://www.terviseamet.ee" target ="_blank" rel="noopener">{{this.$t("footer4")}}</a>
+        <a
+          href="https://www.terviseamet.ee"
+          target="_blank"
+          rel="noopener"
+        >{{this.$t("footer4")}}</a>
         {{this.$t("footer5")}}
         <a
           href="https://github.com/buildig/EHAK"

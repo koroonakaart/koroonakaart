@@ -54,5 +54,21 @@
   "footer6": "Maa-ametilt",
   "footer7": " (versioon 20180901), demograafilised andmed",
   "footer8": "Statistikaametilt",
-  "footer9": "Lisafunktsionaalsuse ideed oodatud GitHub'i —"
+  "footer9": "Lisafunktsionaalsuse ideed oodatud GitHub'i —",
+  "faq": {
+    "faqShort": "KKK",
+    "faqLong": "Korduma Kippuvad Küsimused",
+    "q1": "Millal uuendatakse andmeid?",
+    "a1": "Andmed saadakse Terviseametilt hommikuti ning avalikustatakse tavaliselt kella 10-12 vahemikus koos nende pressiteatega.",
+    "q2": "Kust andmed pärinevad?",
+    "a2": "Kõik andmed pärinevad Terviseametilt.",
+    "q3": "Kes arendavad rakendust?",
+    "a3": "Rakendus arendati @Kypsis (Harry Sild), @keeganmcbride (Keegan McBride), @PuuraJ (Joonas Puura) ja @neuroactive (Chris Thompson) poolt Garage48 Hack the Crisis häkatonil. Rakendust haldab ",
+    "q4": "Mul on idee, kuidas rakendust paremaks teha, kuidas ma saan sellest teada anda?",
+    "a4": "Palun sisestada kõik ideed GitHub-is veebiaadressil: ",
+    "q5": "Kus ma saan toetada rakendust?",
+    "a5": "Open Knowledge Estonia on avanud pangakonto, mille kaudu on võimalik aidata katta taristu- ja halduskulusid: MTÜ Open Knowledge Estonia EE607700771004696794. Kõik toetajad avalikustakse ning kulutused hoitakse läbipaistvad",
+    "q6": "Mul on täiendavaid küsimusi, kelle poole pöörduda?",
+    "a6": "Keegan McBride (koroonakaart.ee projektijuht)  keegan.mcbride@taltech.ee, Maarja-Leena Saar (Open Knowledge Estonia juhatuse liige) maarjaleena@okee.ee"
+  }
 }

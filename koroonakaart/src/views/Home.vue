@@ -51,7 +51,7 @@ import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 // import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
-import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart"
+import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
