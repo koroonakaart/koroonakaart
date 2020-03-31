@@ -27,14 +27,6 @@
           rel="noopener"
         >{{this.$t("footer8")}}</a>.
       </p>
-      <p>
-        {{this.$t("footer9")}}
-        <a
-          href="https://github.com/okestonia/koroonakaart/issues"
-          target="_blank"
-          rel="noreferrer"
-        >https://github.com/okestonia/koroonakaart/issues</a>
-      </p>
     </b-container>
   </b-container>
 </template>
