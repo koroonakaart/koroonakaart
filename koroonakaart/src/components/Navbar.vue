@@ -135,18 +135,6 @@ export default {
 
 .navbar-toggle {top:10px}
 
-@media (min-width:768px) {
-
-  .navbar-brand {
-    padding-top:20px;
-  }
-
-  .nav.navbar-nav a {
-    padding-top:30px;
-    padding-bottom:30px;
-  }
-
-}
 .navbar-description {
   word-wrap: break-word;
 }
