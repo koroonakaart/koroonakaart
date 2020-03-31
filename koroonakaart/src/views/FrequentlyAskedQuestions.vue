@@ -111,6 +111,7 @@
           </b-card-body>
         </b-collapse>
       </b-card>
+      <b-button block pill variant="info" :to="{name: 'root'}"> {{ $t("faq.back") }} </b-button>
     </b-container>
   </div>
 </template>
@@ -123,6 +124,8 @@ export default {};
 .accordion-header {
   background-color: #4281b9;
   color: white;
+  text-align: left;
+
 }
 
 .accordion-header:hover {
@@ -130,8 +133,14 @@ export default {};
   color: rgb(251, 251, 251);
 }
 
+.router-link-active {
+margin-top: 20px;
+float: left;
+width: 20%;
+}
 h2 {
   margin-bottom: 0.8em;
   margin-top: 0.2em;
+  text-align: left;
 }
 </style>
