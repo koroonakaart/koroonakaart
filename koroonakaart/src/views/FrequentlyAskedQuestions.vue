@@ -128,6 +128,9 @@ export default {};
 
 }
 
+.card-text {
+text-align: justify;
+}
 .accordion-header:hover {
   background-color: rgb(65, 138, 187);
   color: rgb(251, 251, 251);
