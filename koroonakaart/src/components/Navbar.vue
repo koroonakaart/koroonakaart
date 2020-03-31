@@ -10,30 +10,33 @@
       <b-navbar-brand>
         <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
         <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
+        <small>{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
+
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
+
+        <!--<b-nav-item class="navbar-updated">
+          </b-nav-item>-->
+          <b-nav-item class="navbar-description">
+            <small>{{ $t("disclaimerNavbar") }}</small>
+          </b-nav-item>
+          </b-navbar-nav>
+          <b-navbar-nav class="ml-auto">
           <b-nav-item toggle-class="nav-link-custom">
             <div
               class="navbar-faq"
               :class="{ active: this.$store.state.faqActive }"
               @click.prevent="toggleFaqActive"
-            >{{ $t("faq.faqLong") }}</div>
+            >{{ $t("faq.faqShort") }}</div>
           </b-nav-item>
-          <!-- <b-nav-item class="navbar-description">
-            <small>{{ $t("disclaimerNavbar") }}</small>
-          </b-nav-item>-->
-          <b-nav-item id="navbar-interpunct">·</b-nav-item>
-          <b-nav-item class="navbar-updated">
-            <small>{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
-          </b-nav-item>
-        </b-navbar-nav>
+          </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav>
           <b-nav-item-dropdown id="navbar-langselect" right>
             <template align="center" v-slot:button-content>
               <Earth id="navbar-langicon" />
@@ -124,6 +127,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.navbar-brand small {
+  display:block;
+  font-size:12px;
+}
+
+.navbar-toggle {top:10px}
+
+@media (min-width:768px) {
+
+  .navbar-brand {
+    padding-top:20px;
+  }
+
+  .nav.navbar-nav a {
+    padding-top:30px;
+    padding-bottom:30px;
+  }
+
+}
 .navbar-description {
   word-wrap: break-word;
 }
