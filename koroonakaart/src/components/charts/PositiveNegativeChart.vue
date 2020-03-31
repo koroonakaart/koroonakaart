@@ -174,14 +174,12 @@ export default {
 
         series: [
           {
-            name: this.$t("negative"),
-            data: data.dataPositiveNegativeChart.negative,
-            color: "#A6C96A"
+            name: this.$t("positive"),
+            data: data.dataPositiveNegativeChart.positive
           },
           {
-            name: this.$t("positive"),
-            data: data.dataPositiveNegativeChart.positive,
-            color: "#910000"
+            name: this.$t("negative"),
+            data: data.dataPositiveNegativeChart.negative
           }
         ]
       }
@@ -199,8 +197,8 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("positiveNegativeTitle");
-      this.chartOptions.series[0].name = this.$t("negative");
-      this.chartOptions.series[1].name = this.$t("positive");
+      this.chartOptions.series[0].name = this.$t("positive");
+      this.chartOptions.series[1].name = this.$t("negative");
       this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("abs");
       if (this.chartType === "absolute") {
