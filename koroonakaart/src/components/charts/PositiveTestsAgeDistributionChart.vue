@@ -154,6 +154,7 @@ export default {
           "70 - 74",
           "75 - 79",
           "80 - 85",
+          "85+",
             this.$t("unknown")
           ]
         },
