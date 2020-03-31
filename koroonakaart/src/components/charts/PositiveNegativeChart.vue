@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
   </b-container>
 </template>
 
@@ -12,6 +12,8 @@ export default {
 
   data() {
     return {
+      chartType: "percent",
+
       chartOptions: {
         title: {
           text: this.$t("positiveNegativeTitle"),
@@ -19,79 +21,67 @@ export default {
           y: 30
         },
 
-        chartType: "percent",
-
         chart: {
           type: "column",
           height: 470,
           events: {
-            load: function() {
-              if(!this.exportSVGElements) return;
-              // Buttons have indexes go in even numbers (button1 [0], button2 [2])
-              // Odd indexes are button symbols
-              const button = this.exportSVGElements[4];
-
-              // States:
-              // 0 - normal
-              // 1 - hover
-              // 2 - selected
-              // 3 - disabled
-              button.setState(2);
-            },
-            redraw: function() {
-              if(!this.exportSVGElements) return;
-              // Redraw seems to be async so setTimeout for the button to update state
+            // Use lambda to get the component context
+            load: () => {
+              // setTimeout to be able to access this.$children[0].chart.exportSVGElements
               setTimeout(() => {
-                this.exportSVGElements[4].setState(
-                  this.options.chartType === "percent" ? 2 : 0
+                if (!this.$children[0].chart.exportSVGElements) return;
+
+                // Buttons have indexes go in even numbers (button1 [0], button2 [2])
+                // Odd indexes are button symbols
+                const button = this.$children[0].chart.exportSVGElements[4];
+
+                // States:
+                // 0 - normal
+                // 1 - hover
+                // 2 - selected
+                // 3 - disabled
+                button.setState(2);
+              }, 50);
+            },
+
+            redraw: () => {
+              // Redraw seems to be async aswell so setTimeout for the button to update state
+              setTimeout(() => {
+                if (!this.$children[0].chart.exportSVGElements) return;
+
+                this.$children[0].chart.exportSVGElements[4].setState(
+                  this.chartType === "percent" ? 2 : 0
                 );
-                this.exportSVGElements[2].setState(
-                  this.options.chartType === "absolute" ? 2 : 0
+
+                this.$children[0].chart.exportSVGElements[2].setState(
+                  this.chartType === "absolute" ? 2 : 0
                 );
-              }, 100);
+              }, 50);
             }
           }
         },
 
         exporting: {
           buttons: {
-            customButton2: {
+            customButton: {
               text: this.$t("abs"),
-              onclick: function() {
-                this.options.chartType = "absolute";
+              onclick: () => {
+                this.chartType = "absolute";
 
-                this.update({
-                  plotOptions: {
-                    column: {
-                      stacking: "normal"
-                    }
-                  },
-                  yAxis: {
-                    title: {
-                      text: "Abs"
-                    }
-                  }
-                });
+                this.$refs.thisChart.options.plotOptions.column.stacking =
+                  "normal";
+                this.$refs.thisChart.options.yAxis.title.text = this.$t("abs");
               }
             },
 
-            customButton: {
+            customButton2: {
               text: "%",
-              onclick: function() {
-                this.options.chartType = "percent";
+              onclick: () => {
+                this.chartType = "percent";
 
-                this.update({
-                  plotOptions: {
-                    column: {
-                      stacking: "percent"
-                    }
-                  },
-                  yAxis: {
-                    title: {
-                      text: "%"
-                    }
-                  }
-                });
+                this.$refs.thisChart.options.plotOptions.column.stacking =
+                  "percent";
+                this.$refs.thisChart.options.yAxis.title.text = "%";
               }
             }
           }
@@ -212,7 +202,10 @@ export default {
       this.chartOptions.series[0].name = this.$t("negative");
       this.chartOptions.series[1].name = this.$t("positive");
       this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t("abs");
+      this.chartOptions.exporting.buttons.customButton.text = this.$t("abs");
+      if (this.chartType === "absolute") {
+        this.$refs.thisChart.options.yAxis.title.text = this.$t("abs");
+      }
     }
   }
 };
