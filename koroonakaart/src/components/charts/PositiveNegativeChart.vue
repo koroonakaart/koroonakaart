@@ -175,7 +175,9 @@ export default {
         series: [
           {
             name: this.$t("positive"),
-            data: data.dataPositiveNegativeChart.positive
+            data: data.dataPositiveNegativeChart.positive,
+            color:"#000000"
+
           },
           {
             name: this.$t("negative"),

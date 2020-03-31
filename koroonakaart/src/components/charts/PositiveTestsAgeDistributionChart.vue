@@ -195,11 +195,12 @@ export default {
         series: [
           {
             name: this.$t("positive"),
-            data: data.dataPositiveTestsByAgeChart.positive
+            data: data.dataPositiveTestsByAgeChart.positive,
+            color:"#000000"
           },
           {
             name: this.$t("negative"),
-            data: data.dataPositiveTestsByAgeChart.negative
+            data: data.dataPositiveTestsByAgeChart.negative,
           }
         ]
       }
