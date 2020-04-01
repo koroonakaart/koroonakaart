@@ -142,7 +142,7 @@ export default {
         },
 
         xAxis: {
-          categories: this.cumulativeTests?.map(item => item.ResultTime) ?? [],
+          categories: [],
           plotLines: [
             {
               color: "red", // Color value
@@ -175,7 +175,7 @@ export default {
         series: [
           {
             name: this.$t("testsAdministered"),
-            data: this.cumulativeTests?.map(item => item.n) ?? []
+            data: []
           }
         ]
       }
