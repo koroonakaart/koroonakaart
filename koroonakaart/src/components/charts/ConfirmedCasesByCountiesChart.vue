@@ -16,7 +16,7 @@ export default {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
-          y: 30
+          y: 25
         },
 
         navigation: {
