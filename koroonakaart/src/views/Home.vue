@@ -32,12 +32,12 @@
       <TestsPerDayChart />
     </b-row>
     <b-row class="mb-5">
-      <b-col cols="12" lg="6">
+      <b-col cols="12" lg="12">
         <PositiveTestsAgeDistributionChart />
       </b-col>
-      <b-col cols="12" lg="6">
+      <!--<b-col cols="12" lg="6">
         <PositiveNegativeChart />
-      </b-col>
+      </b-col>-->
     </b-row>
   </b-container>
 </template>
@@ -53,7 +53,7 @@ import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 // import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
 import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
-import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
+// import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 
@@ -71,7 +71,7 @@ export default {
     TestsPerDayChart,
     PositiveTestsAgeDistributionChart,
     ConfirmedCasesByCountiesChart,
-    PositiveNegativeChart,
+    // PositiveNegativeChart,
     TestsPopRatioChart,
     DailyCountyCasesChart,
     SuveChatbot
