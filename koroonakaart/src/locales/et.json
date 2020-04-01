@@ -10,7 +10,7 @@
   "cumulativeCases": "Haigusjuhud",
   "cumulativeTests": "Kumulatiivsed testid",
   "deceased": "Surmad",
-  "disclaimerNavbar": "Hetkel on metoodika muutuste tõttu tekkinud ajajoonte kuvamises ebatäpsusi. Loodame, et saame selgust lähiajal ning saame avalikkusele kõige õigemat teadaolevat infot edasi jagada.",
+  "disclaimerNavbar": "Oleme uuendamas oma rakendust, et võtta kasutusele TEHIK-u andmed. Seetõttu ei pruugi mõned graafikud ajutiselt saadaval olla.",
   "distributionOfPositiveTests": "Testide vanuseline jaotus",
   "distributionOfAgeSexTests": "Testide vanuseline ja sooline jaotus",
   "hospitalised": "Haiglaravil",
@@ -71,6 +71,5 @@
     "q6": "Mul on täiendavaid küsimusi, kelle poole pöörduda?",
     "a6": "Keegan McBride (koroonakaart.ee projektijuht)  keegan.mcbride@taltech.ee, Maarja-Leena Saar (Open Knowledge Estonia juhatuse liige) maarjaleena@okee.ee",
     "back": "Tagasi"
-
   }
 }

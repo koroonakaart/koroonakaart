@@ -10,7 +10,7 @@
   "cumulativeCases": "Cases",
   "cumulativeTests": "Cumulative tests",
   "deceased": "Deaths",
-  "disclaimerNavbar": "Due to changes in methodology there may be inaccuracies in time-series based data. We hope to verify the data in the near future and keep providing the most accurate information available to us.",
+  "disclaimerNavbar": "We are updating our application to work with the data provided by TEHIK. For that reason, some of the charts are temporarily unavailable.",
   "distributionOfPositiveTests": "Distribution of tests by age",
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "hospitalised": "In treatment",
