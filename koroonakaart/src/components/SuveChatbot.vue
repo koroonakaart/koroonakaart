@@ -33,7 +33,8 @@ export default {
             ? "en-US"
             : this.$route.params.locale === "ru"
             ? "ru-RU"
-            : "et-EE"
+            : "et-EE",
+        filterValues: ["kkaart"]
 
         //  eesti keel on vaikimisi aktiivne
         // inglise lehelt avades vajalik määrata tervitusteksti keel 'en-US' ja vene lehelt 'ru-RU'
