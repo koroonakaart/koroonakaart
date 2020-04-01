@@ -5,10 +5,26 @@
 </template>
 
 <script>
-import data from "../../data.json";
+/* import data from "../../data.json"; */
+import tests from "../../data2.json";
+
+import {
+  collateDates,
+  accumulatedTests
+} from "../../utilities/dataCalculations";
 
 export default {
   name: "CumulativeTestsChart",
+
+  mounted() {
+    // Update charts when data has been loaded
+    this.chartOptions.xAxis.categories = this.cumulativeTests.map(
+      item => item.ResultTime
+    );
+    this.chartOptions.series[0].data = this.cumulativeTests?.map(
+      item => item.n
+    );
+  },
 
   data() {
     return {
@@ -25,7 +41,7 @@ export default {
           height: 470,
           events: {
             load: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               const button = this.exportSVGElements[4];
@@ -38,7 +54,7 @@ export default {
               button.setState(2);
             },
             redraw: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 this.exportSVGElements[4].setState(
@@ -126,7 +142,7 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2,
+          categories: this.cumulativeTests?.map(item => item.ResultTime) ?? [],
           plotLines: [
             {
               color: "red", // Color value
@@ -159,7 +175,7 @@ export default {
         series: [
           {
             name: this.$t("testsAdministered"),
-            data: data.dataCumulativeTestsChart.testsAdministered
+            data: this.cumulativeTests?.map(item => item.n) ?? []
           }
         ]
       }
@@ -170,6 +186,12 @@ export default {
   computed: {
     currentLocale: function() {
       return this.$i18n.locale;
+    },
+    collatedDates: function() {
+      return collateDates(tests.tests_by_day);
+    },
+    cumulativeTests: function() {
+      return accumulatedTests(this.collatedDates);
     }
   },
 

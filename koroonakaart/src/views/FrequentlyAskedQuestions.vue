@@ -129,12 +129,14 @@
 
 <script>
 import ArrowLeft from "vue-material-design-icons/ArrowLeft.vue";
-import SuveChatbot from "../components/SuveChatbot";
 
 export default {
   name: "FrequentlyAskedQuestions",
 
-  components: { ArrowLeft, SuveChatbot },
+  components: {
+    ArrowLeft,
+    SuveChatbot: () => import("../components/SuveChatbot")
+  },
 
   methods: {
     goBackHome: function() {

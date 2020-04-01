@@ -57,8 +57,6 @@ import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesBy
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 
-import SuveChatbot from "../components/SuveChatbot";
-
 export default {
   name: "Home",
   // Register components you want to use in the page here
@@ -74,7 +72,7 @@ export default {
     // PositiveNegativeChart,
     TestsPopRatioChart,
     DailyCountyCasesChart,
-    SuveChatbot
+    SuveChatbot: () => import("../components/SuveChatbot")
   }
 };
 </script>
