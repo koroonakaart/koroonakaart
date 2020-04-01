@@ -28,13 +28,14 @@ export default {
     chatPanel: function() {
       return window.boostChatPanel({
         apiUrlBase: "https://316eebot.boost.ai/api",
+        filterValues: ["kkaart"],
+        hyperlinksTargetBlank: true,
         language:
           this.$route.params.locale === "en"
             ? "en-US"
             : this.$route.params.locale === "ru"
             ? "ru-RU"
-            : "et-EE",
-        filterValues: ["kkaart"]
+            : "et-EE"
 
         //  eesti keel on vaikimisi aktiivne
         // inglise lehelt avades vajalik määrata tervitusteksti keel 'en-US' ja vene lehelt 'ru-RU'
