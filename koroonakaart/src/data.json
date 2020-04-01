@@ -1,11 +1,11 @@
 {
-  "updatedOn": "31/03/2020, 11:30",
-  "confirmedCasesNumber": "745",
-  "activeCasesNumber": "715",
+  "updatedOn": "01/04/2020, 11:30",
+  "confirmedCasesNumber": "779",
+  "activeCasesNumber": "749",
   "hospitalisedNumber": "91",
   "deceasedNumber": "4",
   "recoveredNumber": "26",
-  "testsAdministeredNumber": "12401",
+  "testsAdministeredNumber": "14353",
 
   "dates1": [
     "2020-03-16",
@@ -23,7 +23,8 @@
     "2020-03-28",
     "2020-03-29",
     "2020-03-30",
-    "2020-03-31"
+    "2020-03-31",
+    "2020-04-01"
   ],
 
   "dates2": [
@@ -61,7 +62,8 @@
     "2020-03-28",
     "2020-03-29",
     "2020-03-30",
-    "2020-03-31"
+    "2020-03-31",
+    "2020-04-01"
   ],
 
   "dataInfectionsByCounty": [
