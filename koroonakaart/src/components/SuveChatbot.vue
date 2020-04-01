@@ -73,7 +73,7 @@ export default {
   @media only screen and (max-width: 600px) {
     font-size: 12px;
     padding: 7px 10px;
-    bottom: 20px;
+    bottom: 25px;
     right: 80px;
   }
 }
@@ -100,7 +100,7 @@ export default {
   z-index: 9999;
 
   @media only screen and (max-width: 600px) {
-    bottom: 30px;
+    bottom: 35px;
     right: 73px;
   }
 }
@@ -123,11 +123,11 @@ export default {
   z-index: 9999;
 
   @media only screen and (max-width: 600px) {
-    background-size: 30px 30px;
+    background-size: 40px 40px;
     right: 20px;
     bottom: 17px;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
   }
 }
 

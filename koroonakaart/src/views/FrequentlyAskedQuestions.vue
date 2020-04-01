@@ -1,5 +1,7 @@
 <template>
   <div class="mb-4">
+    <SuveChatbot />
+
     <b-container fluid="lg" role="tablist" class="h-100">
       <h2>{{ $t("faq.faqLong") }}</h2>
       <b-card no-body class="mb-1">
@@ -111,13 +113,38 @@
           </b-card-body>
         </b-collapse>
       </b-card>
-      <b-button block pill variant="info" :to="{name: 'root'}"> {{ $t("faq.back") }} </b-button>
+      <b-button
+        block
+        pill
+        variant="outline-primary"
+        class="router-link-active"
+        @click="this.goBackHome"
+      >
+        <ArrowLeft />
+        {{ $t("faq.back") }}
+      </b-button>
     </b-container>
   </div>
 </template>
 
 <script>
-export default {};
+import ArrowLeft from "vue-material-design-icons/ArrowLeft.vue";
+import SuveChatbot from "../components/SuveChatbot";
+
+export default {
+  name: "FrequentlyAskedQuestions",
+
+  components: { ArrowLeft, SuveChatbot },
+
+  methods: {
+    goBackHome: function() {
+      if (this.$route.path === `/${this.$i18n.locale}`) return;
+
+      this.$store.dispatch("toggleFaqInactive");
+      this.$router.push(`/${this.$i18n.locale}`);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -125,11 +152,10 @@ export default {};
   background-color: #4281b9;
   color: white;
   text-align: left;
-
 }
 
 .card-text {
-text-align: justify;
+  text-align: justify;
 }
 .accordion-header:hover {
   background-color: rgb(65, 138, 187);
@@ -137,9 +163,27 @@ text-align: justify;
 }
 
 .router-link-active {
-margin-top: 20px;
-float: left;
-width: 20%;
+  border: 1px solid rgb(65, 138, 187);
+  color: rgb(65, 138, 187);
+  float: left;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 20%;
+
+  & > * {
+    margin-right: 1em;
+  }
+
+  &:hover {
+    background-color: rgb(65, 138, 187);
+    color: white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    float: right;
+    width: 40%;
+  }
 }
 h2 {
   margin-bottom: 0.8em;

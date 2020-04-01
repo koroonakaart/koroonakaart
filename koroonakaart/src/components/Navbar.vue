@@ -10,22 +10,22 @@
       <b-navbar-brand>
         <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
         <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
-        <small>{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
-
+        <small class="navbar-updated">{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-
-        <!--<b-nav-item class="navbar-updated">
+          <!--<b-nav-item class="navbar-updated">
           </b-nav-item>-->
+          <b-dropdown-divider />
           <b-nav-item class="navbar-description">
             <small>{{ $t("disclaimerNavbar") }}</small>
           </b-nav-item>
-          </b-navbar-nav>
-          <b-navbar-nav class="ml-auto">
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-dropdown-divider />
           <b-nav-item toggle-class="nav-link-custom">
             <div
               class="navbar-faq"
@@ -33,7 +33,8 @@
               @click.prevent="toggleFaqActive"
             >{{ $t("faq.faqShort") }}</div>
           </b-nav-item>
-          </b-navbar-nav>
+          <b-dropdown-divider />
+        </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav>
@@ -100,6 +101,8 @@ export default {
   // Change current locale to targetLanguage and change route to the targetLanguage
   methods: {
     changeCurrentLanguage: function(targetLanguage) {
+      if (this.$i18n.locale === targetLanguage) return;
+
       if (this.$route.path.includes("faq")) {
         this.$router.push({ path: `/${targetLanguage}/faq` });
       } else {
@@ -118,7 +121,10 @@ export default {
       this.$store.dispatch("toggleFaqInactive");
       this.$router.push(`/${this.$i18n.locale}`);
     },
+
     toggleFaqActive: function() {
+      if (this.$route.path === `/${this.$i18n.locale}/faq`) return;
+
       this.$store.dispatch("toggleFaqActive");
       this.$router.push({ path: `/${this.$i18n.locale}/faq` });
     }
@@ -127,16 +133,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .navbar-brand small {
-  display:block;
-  font-size:12px;
+  display: block;
+  font-size: 12px;
 }
 
-.navbar-toggle {top:10px}
+.navbar-toggle {
+  top: 10px;
+}
 
 .navbar-description {
   word-wrap: break-word;
+
+  & > *:hover {
+    color: rgba(0, 0, 0, 0.5) !important;
+    cursor: default !important;
+  }
 }
 
 #navbar-headingleft {
@@ -194,5 +206,9 @@ export default {
   &:hover {
     cursor: default !important;
   }
+}
+
+.navbar-updated {
+  cursor: default;
 }
 </style>
