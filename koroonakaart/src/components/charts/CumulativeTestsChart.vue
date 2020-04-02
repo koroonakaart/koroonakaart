@@ -32,7 +32,7 @@ export default {
         title: {
           text: this.$t("cumulativeTests"),
           align: "left",
-          y: 30
+          y: 25
         },
 
         chartType: "linear",

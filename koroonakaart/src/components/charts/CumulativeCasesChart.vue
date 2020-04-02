@@ -51,7 +51,7 @@ export default {
         title: {
           text: this.$t("cumulativeCases"),
           align: "left",
-          y: 30
+          y: 25
         },
 
         exporting: {
