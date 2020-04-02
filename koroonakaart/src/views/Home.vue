@@ -25,15 +25,15 @@
        <b-row class="mb-5">
       <DailyCountyCasesChart />
     </b-row>
-    <!--<b-row class="mb-5">
+    <b-row class="mb-5">
       <CumulativeTestsChart />
-    </b-row>-->
+    </b-row>
     <b-row class="mb-5">
       <TestsPerDayChart />
     </b-row>
    <b-row class="mb-5">
       <b-col cols="12" lg="6">
-        <PositiveTestsAgeDistributionChart />
+        <TestsAgeSexDistributionChart />
     </b-col>
     <b-col cols="12" lg="6">
         <PositiveNegativeChart />
@@ -46,14 +46,14 @@
 import Statsbar from "../components/Statsbar";
 
 import Map from "../components/Map";
-//import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
+import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
 import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 
-import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
+//import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
-// import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
+import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
  import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
@@ -64,11 +64,12 @@ export default {
   components: {
     Statsbar,
      Map,
-  //CumulativeTestsChart,
+  CumulativeTestsChart,
   CumulativeCasesChart,
   NewCasesPerDayChart,
   TestsPerDayChart,
-      PositiveTestsAgeDistributionChart,
+  TestsAgeSexDistributionChart,
+    //  PositiveTestsAgeDistributionChart,
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
      PositiveNegativeChart,

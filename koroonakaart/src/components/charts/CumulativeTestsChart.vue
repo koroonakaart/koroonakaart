@@ -143,28 +143,7 @@ export default {
 
         xAxis: {
           categories: [],
-          plotLines: [
-            {
-              color: "red", // Color value
-              value: 18, // Value of where the line will appear
-              width: 1,
-              label: {
-                text: this.$t("method"),
-                align: "left"
-              }
-            },
-            {
-              color: "red", // Color value
-              value: 28, // Value of where the line will appear
-              width: 1,
-              label: {
-                text: this.$t("method"),
-                align: "left",
-                x: -20
-              }
-            }
-          ]
-        },
+                },
 
         yAxis: {
           title: {
@@ -205,8 +184,6 @@ export default {
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
       );
-      this.chartOptions.xAxis.plotLines[0].label.text = this.$t("method");
-      this.chartOptions.xAxis.plotLines[1].label.text = this.$t("method");
     }
   }
 };

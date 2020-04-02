@@ -114,20 +114,8 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates1,
+          categories: data.dates2,
           crosshair: true,
-          plotLines: [
-            {
-              color: "red", // Color value
-              value: 9, // Value of where the line will appear
-              width: 2,
-              label: {
-                text: this.$t("method"),
-                align: "left",
-                rotation: 360
-              }
-            }
-          ]
         },
 
         yAxis: {
@@ -233,7 +221,6 @@ export default {
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.xAxis.plotLines[0].label.text = this.$t("method");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
