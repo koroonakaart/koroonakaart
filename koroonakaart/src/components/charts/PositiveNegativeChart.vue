@@ -18,7 +18,7 @@ export default {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
-          y: 30
+          y: 25
         },
 
         chart: {
