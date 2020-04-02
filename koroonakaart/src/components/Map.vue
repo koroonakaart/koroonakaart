@@ -28,7 +28,7 @@ export default {
           height: 470,
           events: {
             load: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               const button = this.exportSVGElements[4];
@@ -41,7 +41,7 @@ export default {
               button.setState(2);
             },
             redraw: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 this.exportSVGElements[4].setState(
@@ -153,14 +153,18 @@ export default {
         // Legend bar density
         colorAxis: {
           tickPixelInterval: 50,
+          type: "logarithmic",
+          /* minColor: "#EEEEFF",
+          maxColor: "#000022", */
           lineColor: {
             color: {
-              linearGradient: {
+              /* linearGradient: {
                 x1: 0,
                 x2: 0,
                 y1: 0,
                 y2: 1
-              },
+              }, */
+
               stops: [
                 [0, "#003399"], // start
                 [0.5, "#ffffff"], // middle
