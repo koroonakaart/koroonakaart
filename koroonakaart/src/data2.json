@@ -111,8 +111,8 @@
     { "ResultTime": "2020-03-30", "ResultValue": "P", "n": 56 },
     { "ResultTime": "2020-03-31", "ResultValue": "N", "n": 1346 },
     { "ResultTime": "2020-03-31", "ResultValue": "P", "n": 24 },
-    { "ResultTime": "2020-04-01", "ResultValue": "N", "n": 13 },
-    { "ResultTime": "2020-04-01", "ResultValue": "P", "n": 1 }
+    { "ResultTime": "2020-04-01", "ResultValue": "N", "n": 1293 },
+    { "ResultTime": "2020-04-01", "ResultValue": "P", "n": 79 }
   ],
   "tests_county": [
     { "County": "Harju maakond", "ResultValue": "N", "n": 6681 },
