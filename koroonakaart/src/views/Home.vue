@@ -16,10 +16,10 @@
         <TestsPopRatioChart />
       </b-col>
     </b-row>-->
-    <!-- <b-row class="mb-5">
+     <b-row class="mb-5">
       <CumulativeCasesChart />
     </b-row>
-    <b-row class="mb-5">
+  <!--  <b-row class="mb-5">
       <NewCasesPerDayChart />
     </b-row>
     <b-row class="mb-5">
@@ -45,10 +45,10 @@
 <script>
 import Statsbar from "../components/Statsbar";
 import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
+import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 
 /*import Map from "../components/Map";
 
- import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
@@ -64,9 +64,9 @@ export default {
   components: {
     Statsbar,
     CumulativeTestsChart,
+    CumulativeCasesChart,
 
   /*   Map,
-    CumulativeCasesChart,
     NewCasesPerDayChart,
     TestsPerDayChart,
     PositiveTestsAgeDistributionChart,
