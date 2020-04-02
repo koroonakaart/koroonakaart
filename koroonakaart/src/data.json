@@ -1,11 +1,11 @@
 {
-  "updatedOn": "01/04/2020, 12:00",
-  "confirmedCasesNumber": "779",
-  "activeCasesNumber": "741",
-  "hospitalisedNumber": "95",
-  "deceasedNumber": "5",
-  "recoveredNumber": "33",
-  "testsAdministeredNumber": "14353",
+  "updatedOn": "02/04/2020, 11:00",
+  "confirmedCasesNumber": "858",
+  "activeCasesNumber": "802",
+  "hospitalisedNumber": "85",
+  "deceasedNumber": "11",
+  "recoveredNumber": "45",
+  "testsAdministeredNumber": "15725",
 
   "dates1": [
     "2020-03-16",
