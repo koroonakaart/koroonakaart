@@ -1,6 +1,6 @@
 # Koroonakaart
 
-Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart) and in cooperation with Terviseamet. Data is updated every day between 10 and 12 Estonian time. Live demo is available at [koroonakaart.ee](http://koroonakaart.ee/).
+Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). Data is updated every day around 12 (depends on TEHIK data update). Live version is available at [koroonakaart.ee](http://koroonakaart.ee/).
 
 Url to load localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **et** (Estonian), **en** (English) and **ru** (Russian).
 
