@@ -28,10 +28,10 @@
     <b-row class="mb-5">
       <CumulativeTestsChart />
     </b-row>
-    <!-- <b-row class="mb-5">
+    < <b-row class="mb-5">
       <TestsPerDayChart />
     </b-row>
-    <b-row class="mb-5">
+  !--  <b-row class="mb-5">
       <b-col cols="12" lg="12">
         <PositiveTestsAgeDistributionChart />
     </b-col>-->
@@ -47,10 +47,10 @@ import Statsbar from "../components/Statsbar";
 import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
 import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
+import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 
 /*import Map from "../components/Map";
 
-import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 // import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
@@ -66,9 +66,9 @@ export default {
     CumulativeTestsChart,
     CumulativeCasesChart,
     NewCasesPerDayChart,
+    TestsPerDayChart,
 
   /*   Map,
-    TestsPerDayChart,
     PositiveTestsAgeDistributionChart,
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
