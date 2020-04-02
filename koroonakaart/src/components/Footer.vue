@@ -1,7 +1,7 @@
 <template>
   <b-container id="footer-container" class="shadow-md p-3 text-dark" fluid>
     <b-container id="footer-innercontainer">
-      <p>
+    <!--  <p>
         {{this.$t("footer1")}}
         <a
           href="https://garage48.org/blog/hack-the-crisis-from-an-idea-to-an-execution-in-just-6-hours"
@@ -26,7 +26,7 @@
           target="_blank"
           rel="noopener"
         >{{this.$t("footer8")}}</a>.
-      </p>
+      </p>-->
       <p>
         {{this.$t("footer9")}}
         <a
