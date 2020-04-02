@@ -32,12 +32,11 @@
       <TestsPerDayChart />
     </b-row>
    <b-row class="mb-5">
-      <b-col cols="12" lg="6">
         <TestsAgeSexDistributionChart />
-    </b-col>
-    <b-col cols="12" lg="6">
+        </b-row>
+
+        <b-row class="mb-5">
         <PositiveNegativeChart />
-    </b-col>
      </b-row>
   </b-container>
 </template>
