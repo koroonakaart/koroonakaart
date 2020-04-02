@@ -28,10 +28,10 @@
     <b-row class="mb-5">
       <CumulativeTestsChart />
     </b-row>
-    < <b-row class="mb-5">
+    <b-row class="mb-5">
       <TestsPerDayChart />
     </b-row>
-  !--  <b-row class="mb-5">
+  <!-- <b-row class="mb-5">
       <b-col cols="12" lg="12">
         <PositiveTestsAgeDistributionChart />
     </b-col>-->
