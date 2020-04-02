@@ -18,7 +18,7 @@
     </b-row>
      <b-row class="mb-5">
       <CumulativeCasesChart />
-    </b-row>-->
+    </b-row>
  <b-row class="mb-5">
       <NewCasesPerDayChart />
     </b-row>
