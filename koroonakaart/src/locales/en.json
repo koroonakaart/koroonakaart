@@ -10,7 +10,7 @@
   "cumulativeCases": "Cases",
   "cumulativeTests": "Cumulative tests",
   "deceased": "Deaths",
-  "disclaimerNavbar": "We are updating our application to work with the data provided by TEHIK. For that reason, some of the charts are temporarily unavailable.",
+  "disclaimerNavbar": "All data shown in this application presents the date the test was confirmed. Data shows results up until 7am of the current day.",
   "distributionOfPositiveTests": "Distribution of tests by age",
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "hospitalised": "In treatment",
