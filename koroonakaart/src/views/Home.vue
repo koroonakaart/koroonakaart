@@ -44,12 +44,12 @@
 
 <script>
 import Statsbar from "../components/Statsbar";
+
+/*import Map from "../components/Map";
 import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
 import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
-
-/*import Map from "../components/Map";
 
 import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
@@ -63,12 +63,13 @@ export default {
   // Register components you want to use in the page here
   components: {
     Statsbar,
-    CumulativeTestsChart,
-    CumulativeCasesChart,
-    NewCasesPerDayChart,
-    TestsPerDayChart,
 
   /*   Map,
+  CumulativeTestsChart,
+  CumulativeCasesChart,
+  NewCasesPerDayChart,
+  TestsPerDayChart,
+
     PositiveTestsAgeDistributionChart,
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
