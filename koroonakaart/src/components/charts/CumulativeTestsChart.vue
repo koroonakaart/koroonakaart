@@ -6,10 +6,8 @@
 
 <script>
 import data from "../../data.json";
-
 export default {
   name: "CumulativeTestsChart",
-
   data() {
     return {
       chartOptions: {
@@ -18,18 +16,15 @@ export default {
           align: "left",
           y: 30
         },
-
         chartType: "linear",
-
         chart: {
           height: 470,
           events: {
             load: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               const button = this.exportSVGElements[4];
-
               // States:
               // 0 - normal
               // 1 - hover
@@ -38,7 +33,7 @@ export default {
               button.setState(2);
             },
             redraw: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 this.exportSVGElements[4].setState(
@@ -51,14 +46,12 @@ export default {
             }
           }
         },
-
         exporting: {
           buttons: {
             customButton2: {
               text: this.$t("logarithmic"),
               onclick: function() {
                 this.options.chartType = "logarithmic";
-
                 this.yAxis[0].update({
                   type: "logarithmic"
                 });
@@ -68,7 +61,6 @@ export default {
               text: this.$t("linear"),
               onclick: function() {
                 this.options.chartType = "linear";
-
                 this.yAxis[0].update({
                   type: "linear"
                 });
@@ -76,7 +68,6 @@ export default {
             }
           }
         },
-
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
@@ -90,7 +81,6 @@ export default {
               stroke: "none",
               "stroke-width": 0,
               r: 4,
-
               states: {
                 hover: {
                   /* fill: "#f5f5f5" */
@@ -116,7 +106,6 @@ export default {
           align: "center",
           verticalAlign: "bottom"
         },
-
         plotOptions: {
           series: {
             label: {
@@ -124,10 +113,9 @@ export default {
             }
           }
         },
-
         xAxis: {
-          categories: data.dates2,
-          plotLines: [
+          categories: data.dates2
+          /* plotLines: [
             {
               color: "red", // Color value
               value: 18, // Value of where the line will appear
@@ -147,15 +135,13 @@ export default {
                 x: -20
               }
             }
-          ]
+          ] */
         },
-
         yAxis: {
           title: {
             text: this.$t("numberOfTests")
           }
         },
-
         series: [
           {
             name: this.$t("testsAdministered"),
@@ -165,14 +151,12 @@ export default {
       }
     };
   },
-
   // Get current locale
   computed: {
     currentLocale: function() {
       return this.$i18n.locale;
     }
   },
-
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
