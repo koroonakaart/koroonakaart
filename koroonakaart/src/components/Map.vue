@@ -185,7 +185,9 @@ export default {
             keys: ["MNIMI", "value"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
-            states: {
+            borderColor: "black",
+            borderWidth: 0.3,
+             states: {
               hover: {
                 color: "#a4edba"
               }
