@@ -7,30 +7,30 @@ from helpers import NpEncoder
 
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
-    "updatedOn": "02/04/2020, 12:30",
-    "hospitalisedNumber": 85,
-    "deceasedNumber": 11,
-    "recoveredNumber": 45,
-    "datesEnd": "2020-04-02",
+    "updatedOn": "03/04/2020, 12:30",
+    "hospitalisedNumber": 90,
+    "deceasedNumber": 12,
+    "recoveredNumber": 48,
+    "datesEnd": "2020-04-03",
     "dates1Start": "2020-03-16",
     "dates2Start": "2020-02-26",
     "recovered": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 4, 7, 8, 8, 11, 11, 20, 20,
                   20,
-                  26, 33, 45],
+                  26, 33, 45, 48],
     "deceased": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3,
                  4, 5,
-                 11],
+                 11, 12],
     "hospitalised": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 29, 34,
                      40, 48,
-                     56, 79, 91, 95, 85],
+                     56, 79, 91, 95, 85, 90],
     "intensive": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 6, 7, 7, 7, 7, 10, 10,
                   13,
-                  13, 15, 16]
+                  13, 15, 16, 16]
 }
 
 ######## CONFIGURE IO LOCATIONS ########
 API_ENDPONT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
-OUTPUT_FILE_LOCATION = "../data_new.json"
+OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
 
 def get_json_data(url) -> any:
     # Open data endpoint
