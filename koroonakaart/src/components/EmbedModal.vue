@@ -58,7 +58,7 @@ export default {
   computed: {
     iframeText: function() {
       // prettier-ignore
-      return `<iframe src="https://www.koroonakaart.ee/${this.$route.params.locale}/chart?chart=${this.$store.state.currentChartName}&height=${this.height}&width=${this.width}" scrolling="no" frameborder="0" style="overflow:hidden; height:${Number(this.height) + 25}px; width:${this.width}px;" allowTransparency="true" loading="lazy"></iframe>`;
+      return `<iframe src="https://www.koroonakaart.ee/${this.$route.params.locale}/chart?chart=${this.$store.state.currentChartName}&height=${this.height}&width=${this.width}" scrolling="no" frameborder="0" style="overflow:hidden; height:${this.height}px; width:${this.width}px;" allowTransparency="true" loading="lazy"></iframe>`;
     }
   }
 };

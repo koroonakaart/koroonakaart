@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container fluid>
     <highcharts class="chart" :options="chartOptions"></highcharts>
   </b-container>
 </template>

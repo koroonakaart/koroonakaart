@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <component
-      :is="this.$route.query.chart"
-      :height="this.$route.query.height"
-      :width="this.$route.query.width"
-    />
-  </div>
+  <component
+    :is="this.$route.query.chart"
+    :height="this.$route.query.height"
+    :width="this.$route.query.width"
+  />
 </template>
 
 <script>
@@ -36,9 +34,13 @@ export default {
 
   mounted() {
     console.log(this.$route.query);
+    /* this.classList.remove("container"); */
   }
 };
 </script>
 
 <style lang="scss" scoped>
+#embed-container {
+  width: 100vh;
+}
 </style>
