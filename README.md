@@ -15,7 +15,7 @@ Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@ok
 
 ## To embed any of the charts
 
-You can use the export menu on the charts (hamburger) and copy and paste from the modal or directly link to the chart. Eg *http://localhost:8080/ru/chart?chart=CumulativeCasesChart&height=700&width=1000* Accepts height and width currently as props through query string.
+You can use the export menu on the charts (hamburger) and copy and paste from the modal or directly link to the chart. Eg *https://www.koroonakaart.ee/en/chart?chart=TestsPopRatioChart&height=700&width=1000* Accepts height and width currently as props through query string.
 
 ## Project setup
 ```
