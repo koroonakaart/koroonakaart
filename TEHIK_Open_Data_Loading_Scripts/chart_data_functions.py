@@ -46,7 +46,7 @@ def getCountyByDay(json, dates, county_mapping):
 
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["ResultTime"]).date()
+            date = pd.to_datetime(res["StatisticsDate"]).date()
             county = county_mapping[res["County"]]
             if county in chart_counties:
                 county_date_counts[(county, str(date))] += 1
@@ -86,7 +86,7 @@ def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalise
 
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["ResultTime"]).date()
+            date = pd.to_datetime(res["StatisticsDate"]).date()
             date_counts[str(date)] += 1
 
     confirmed_cases = []
@@ -139,7 +139,7 @@ def getDataCumulativeTestsChart(json, dates):
     count_before_date_range = 0
 
     for res in json:
-        date = str(pd.to_datetime(res["ResultTime"]).date())
+        date = str(pd.to_datetime(res["StatisticsDate"]).date())
         if date in dates_within_range:
             date_counts[date] += 1
         elif date < date_start:
@@ -173,7 +173,7 @@ def getDataTestsPerDayChart(json, dates):
     count_positive_before_date_range = 0
 
     for res in json:
-        date = str(pd.to_datetime(res["ResultTime"]).date())
+        date = str(pd.to_datetime(res["StatisticsDate"]).date())
         if date in dates_within_range:
             date_counts[date] += 1
             if res["ResultValue"] == "P":
