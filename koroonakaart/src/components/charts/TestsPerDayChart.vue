@@ -1,6 +1,10 @@
 <template>
   <b-container>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts
+      class="chart"
+      :options="chartOptions"
+      ref="thisChart"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -10,8 +14,9 @@ import data from "../../data.json";
 export default {
   name: "TestsPerDayChart",
 
-  data() {
+  data () {
     return {
+      chartType: "absolute",
       chartOptions: {
         title: {
           text: this.$t("testsPerDay"),
@@ -21,7 +26,71 @@ export default {
 
         chart: {
           type: "column",
-          height: 470
+          height: 470,
+          events: {
+            // Use lambda to get the component context
+            load: () => {
+              // setTimeout to be able to access this.$children[0].chart.exportSVGElements
+              setTimeout(() => {
+                if (!this.$children[0].chart.exportSVGElements) return;
+
+                // Buttons have indexes go in even numbers (button1 [0], button2 [2])
+                // Odd indexes are button symbols
+                const button = this.$children[0].chart.exportSVGElements[2];
+
+                // States:
+                // 0 - normal
+                // 1 - hover
+                // 2 - selected
+                // 3 - disabled
+                button.setState(2);
+              }, 50)
+            },
+
+            redraw: () => {
+              // Redraw seems to be async aswell so setTimeout for the button to update state
+              setTimeout(() => {
+                if (!this.$children[0].chart.exportSVGElements) return;
+
+                this.$children[0].chart.exportSVGElements[4].setState(
+                  this.chartType === "percent" ? 2 : 0
+                );
+
+                this.$children[0].chart.exportSVGElements[2].setState(
+                  this.chartType === "absolute" ? 2 : 0
+                );
+              }, 50);
+            }
+          }
+        },
+
+        exporting: {
+          buttons: {
+            customButton: {
+              text: this.$t("abs"),
+              onclick: () => {
+                this.chartType = "absolute";
+
+                this.$refs.thisChart.options.plotOptions.column.stacking =
+                  "normal";
+                this.$refs.thisChart.options.yAxis.title.text = this.$t(
+                  "numberOfTests"
+                );
+              }
+            },
+
+            customButton2: {
+              text: "%",
+              onclick: () => {
+                this.chartType = "percent";
+
+                this.$refs.thisChart.options.plotOptions.column.stacking =
+                  "percent";
+                console.log(this.$refs.thisChart);
+                this.$refs.thisChart.options.yAxis.title.text = "%";
+              }
+            }
+          }
         },
 
         // Remove Highcharts.com link from bottom right
@@ -39,52 +108,43 @@ export default {
           crosshair: true,
         },
 
-        yAxis: [
-          {
-            min: 0,
-            title: {
-              text: this.$t("numberOfTests")
-            }
-          },
-          {
-            max: 100,
-            title: {
-              text: this.$t("percentPositiveTests")
-            },
-            opposite: true
+        yAxis: {
+          min: 0,
+          title: {
+            text: this.$t("numberOfTests")
           }
-        ],
+        },
+
+        plotOptions: {
+          column: {
+            stacking: "normal",
+            enableMouseTracking: true
+          }
+        },
 
         tooltip: {
           headerFormat:
             '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-          footerFormat: "</table>",
+            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+          footerFormat:
+            '<tr><td></td>' +
+            '<td style="padding:0"><b>{point.total}</b> (100%)</td></tr>' +
+            '</table>',
           shared: true,
           useHTML: true
         },
 
-        plotOptions: {
-          column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-          }
-        },
-
         series: [
           {
-            name: this.$t("testsPerDay"),
-            data: data.dataTestsPerDayChart.testsPerDay,
-            type: "column",
-            yAxis: 0
+            name: this.$t("positive"),
+            data: data.dataTestsPerDayChart.positiveTestsPerDay,
+            color: "#000000"
           },
           {
-            name: this.$t("percentPositiveTests"),
-            data: data.dataTestsPerDayChart.positiveTestsPercentage,
-            type: "spline",
-            yAxis: 1
+            name: this.$t("negative"),
+            data: data.dataTestsPerDayChart.negativeTestsPerDay,
           }
         ]
       }
@@ -93,19 +153,18 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     }
   },
 
   // Fire when currentLocale computed property changes
   watch: {
-    currentLocale() {
+    currentLocale () {
       this.chartOptions.title.text = this.$t("testsPerDay");
-      this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");
-      this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
-      this.chartOptions.series[0].name = this.$t("testsPerDay");
-      this.chartOptions.series[1].name = this.$t("percentPositiveTests");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
+      this.chartOptions.series[0].name = this.$t("positive");
+      this.chartOptions.series[1].name = this.$t("negative");
     }
   }
 };
