@@ -1,18 +1,20 @@
 <template>
   <b-container>
-    <EmbedModal :chartName="chartName" />
-    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
-    <button @click="showEmbedModal=true">Click</button>
+    <highcharts
+      :constructor-type="'mapChart'"
+      :options="mapOptions"
+      class="map"
+      ref="highmap"
+    ></highcharts>
   </b-container>
 </template>
 
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
+
 import mapData from "../data/map/estonia.geo.json";
 import data from "../data.json";
-
-import EmbedModal from "./EmbedModal";
 
 HighchartsMapModule(Highcharts);
 
@@ -30,12 +32,8 @@ export default {
     }
   },
 
-  components: { EmbedModal },
-
   data() {
     return {
-      chartName: this.$options.name,
-
       mapOptions: {
         chartType: "absolute",
 
@@ -77,6 +75,7 @@ export default {
           menuItemDefinitions: {
             embed: {
               onclick: () => {
+                this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
               text: "Embed Graph"
@@ -93,6 +92,7 @@ export default {
               }
             }
           },
+
           buttons: {
             contextButton: {
               menuItems: [
@@ -103,6 +103,9 @@ export default {
                 "downloadJPEG",
                 "downloadPDF",
                 "downloadSVG",
+                "downloadCSV",
+                "downloadXLS",
+                "separator",
                 "embed"
               ]
             },
@@ -281,5 +284,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

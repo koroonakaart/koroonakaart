@@ -27,12 +27,14 @@ export default {
           align: "left",
           y: 25
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
             y: -15
           }
         },
+
         chart: {
           type: "bar",
           height: this.height,
@@ -40,6 +42,34 @@ export default {
         },
 
         exporting: {
+          menuItemDefinitions: {
+            embed: {
+              onclick: () => {
+                this.$store.dispatch("setCurrentChartName", this.$options.name);
+                this.$bvModal.show("embed-modal");
+              },
+              text: "Embed Graph"
+            }
+          },
+
+          buttons: {
+            contextButton: {
+              menuItems: [
+                "viewFullscreen",
+                "printChart",
+                "separator",
+                "downloadPNG",
+                "downloadJPEG",
+                "downloadPDF",
+                "downloadSVG",
+                "downloadCSV",
+                "downloadXLS",
+                "separator",
+                "embed"
+              ]
+            }
+          },
+
           chartOptions: {
             // specific options for the exported image
             plotOptions: {
@@ -128,5 +158,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

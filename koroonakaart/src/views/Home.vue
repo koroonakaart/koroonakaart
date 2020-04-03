@@ -1,6 +1,7 @@
- //Landing page of the app
+//Landing page of the app
 <template>
   <b-container fluid="lg">
+    <EmbedModal />
     <Statsbar />
     <SuveChatbot />
 
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+import EmbedModal from "../components/EmbedModal";
 import Statsbar from "../components/Statsbar";
 
 import Map from "../components/Map";
@@ -61,6 +63,7 @@ export default {
   name: "Home",
   //Register components you want to use in the page here
   components: {
+    EmbedModal,
     Statsbar,
     Map,
     CumulativeTestsChart,
@@ -78,5 +81,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

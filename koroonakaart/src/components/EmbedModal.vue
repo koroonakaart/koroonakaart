@@ -21,12 +21,19 @@
         </b-col>
       </b-row>
       <div class="modal-code">
-        <code>{{iframeText}}</code>
+        <code>{{ iframeText }}</code>
       </div>
     </div>
 
     <div class="d-block text-center">
-      <b-button align-h="center" size="sm" class="mt-3 w-25" variant="primary" @click="hideModal">OK</b-button>
+      <b-button
+        align-h="center"
+        size="sm"
+        class="mt-3 w-25"
+        variant="primary"
+        @click="hideModal"
+        >OK</b-button
+      >
     </div>
   </b-modal>
 </template>
@@ -34,12 +41,6 @@
 <script>
 export default {
   name: "EmbedModal",
-
-  props: {
-    chartName: {
-      default: null
-    }
-  },
 
   data() {
     return {
@@ -57,7 +58,7 @@ export default {
   computed: {
     iframeText: function() {
       // prettier-ignore
-      return `<iframe src="https://www.koroonakaart.ee/${this.$route.params.locale}/chart?chart=${this.chartName}&height=${this.height}&width=${this.width}" scrolling="no" frameborder="0" style="overflow:hidden; width:${this.width}px; height:${Number(this.height) + 25}px;" allowTransparency="true" loading="lazy"></iframe>`;
+      return `<iframe src="https://www.koroonakaart.ee/${this.$route.params.locale}/chart?chart=${this.$store.state.currentChartName}&height=${this.height}&width=${this.width}" scrolling="no" frameborder="0" style="overflow:hidden; height:${Number(this.height) + 25}px; width:${this.width}px;" allowTransparency="true" loading="lazy"></iframe>`;
     }
   }
 };

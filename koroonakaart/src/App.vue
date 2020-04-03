@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <div v-if="urlIncludesChart" id="app">
-      <router-view class="router-view" />
-    </div>
-    <div v-else id="app">
-      <!-- <DisclaimerModal /> -->
-      <Navbar />
-      <router-view class="router-view" />
-      <Footer />
-    </div>
+  <div v-if="urlIncludesChart" id="app">
+    <router-view class="router-view" />
+  </div>
+
+  <div v-else id="app">
+    <!-- <DisclaimerModal /> -->
+    <Navbar />
+    <router-view class="router-view" />
+    <Footer />
   </div>
 </template>
 

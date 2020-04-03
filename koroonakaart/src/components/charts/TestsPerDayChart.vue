@@ -34,6 +34,36 @@ export default {
           width: this.width
         },
 
+        exporting: {
+          menuItemDefinitions: {
+            embed: {
+              onclick: () => {
+                this.$store.dispatch("setCurrentChartName", this.$options.name);
+                this.$bvModal.show("embed-modal");
+              },
+              text: "Embed Graph"
+            }
+          },
+
+          buttons: {
+            contextButton: {
+              menuItems: [
+                "viewFullscreen",
+                "printChart",
+                "separator",
+                "downloadPNG",
+                "downloadJPEG",
+                "downloadPDF",
+                "downloadSVG",
+                "downloadCSV",
+                "downloadXLS",
+                "separator",
+                "embed"
+              ]
+            }
+          }
+        },
+
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
@@ -123,5 +153,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

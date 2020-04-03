@@ -1,6 +1,10 @@
 <template>
   <b-container>
-    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
+    <highcharts
+      class="chart"
+      :options="chartOptions"
+      ref="thisChart"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -72,7 +76,33 @@ export default {
         },
 
         exporting: {
+          menuItemDefinitions: {
+            embed: {
+              onclick: () => {
+                this.$store.dispatch("setCurrentChartName", this.$options.name);
+                this.$bvModal.show("embed-modal");
+              },
+              text: "Embed Graph"
+            }
+          },
+
           buttons: {
+            contextButton: {
+              menuItems: [
+                "viewFullscreen",
+                "printChart",
+                "separator",
+                "downloadPNG",
+                "downloadJPEG",
+                "downloadPDF",
+                "downloadSVG",
+                "downloadCSV",
+                "downloadXLS",
+                "separator",
+                "embed"
+              ]
+            },
+
             customButton: {
               text: this.$t("abs"),
               onclick: () => {
@@ -245,5 +275,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
