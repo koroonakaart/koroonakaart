@@ -86,7 +86,6 @@ export default {
 
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "percent";
-                console.log(this.$refs.thisChart);
                 this.$refs.thisChart.options.yAxis.title.text = "%";
               }
             }
