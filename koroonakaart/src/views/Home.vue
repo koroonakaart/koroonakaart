@@ -5,39 +5,39 @@
     <SuveChatbot />
 
     <b-row class="mb-5">
-      <Map />
+      <Map :height="470" />
     </b-row>
 
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
-        <ConfirmedCasesByCountiesChart />
+        <ConfirmedCasesByCountiesChart :height="470" />
       </b-col>
       <b-col cols="12" lg="6">
-        <TestsPopRatioChart />
+        <TestsPopRatioChart :height="470" />
       </b-col>
     </b-row>
-     <b-row class="mb-5">
-      <CumulativeCasesChart />
-    </b-row>
- <b-row class="mb-5">
-      <NewCasesPerDayChart />
-    </b-row>
-       <b-row class="mb-5">
-      <DailyCountyCasesChart />
-    </b-row>
-    <b-row class="mb-5">
-      <CumulativeTestsChart />
-    </b-row>
-    <b-row class="mb-5">
-      <TestsPerDayChart />
-    </b-row>
-   <b-row class="mb-5">
-        <TestsAgeSexDistributionChart />
-        </b-row>
 
-        <b-row class="mb-5">
-        <PositiveNegativeChart />
-     </b-row>
+    <b-row class="mb-5">
+      <CumulativeCasesChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
+      <NewCasesPerDayChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
+      <DailyCountyCasesChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
+      <CumulativeTestsChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
+      <TestsPerDayChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
+      <TestsAgeSexDistributionChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
+      <PositiveNegativeChart :height="470" />
+    </b-row>
   </b-container>
 </template>
 
@@ -54,24 +54,24 @@ import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
- import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
+import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
 
 export default {
   name: "Home",
-   //Register components you want to use in the page here
+  //Register components you want to use in the page here
   components: {
     Statsbar,
-     Map,
-  CumulativeTestsChart,
-  CumulativeCasesChart,
-  NewCasesPerDayChart,
-  TestsPerDayChart,
-  TestsAgeSexDistributionChart,
+    Map,
+    CumulativeTestsChart,
+    CumulativeCasesChart,
+    NewCasesPerDayChart,
+    TestsPerDayChart,
+    TestsAgeSexDistributionChart,
     //  PositiveTestsAgeDistributionChart,
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
-     PositiveNegativeChart,
+    PositiveNegativeChart,
     TestsPopRatioChart,
     SuveChatbot: () => import("../components/SuveChatbot")
   }

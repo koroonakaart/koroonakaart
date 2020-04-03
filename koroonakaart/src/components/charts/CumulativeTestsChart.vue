@@ -8,6 +8,16 @@
 import data from "../../data.json";
 export default {
   name: "CumulativeTestsChart",
+
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
@@ -16,9 +26,12 @@ export default {
           align: "left",
           y: 30
         },
+
         chartType: "linear",
+
         chart: {
-          height: 470,
+          height: this.height,
+          width: this.width,
           events: {
             load: function() {
               if (!this.exportSVGElements) return;
@@ -46,6 +59,7 @@ export default {
             }
           }
         },
+
         exporting: {
           buttons: {
             customButton2: {
@@ -68,10 +82,12 @@ export default {
             }
           }
         },
+
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
@@ -101,11 +117,13 @@ export default {
             }
           }
         },
+
         legend: {
           layout: "horizontal",
           align: "center",
           verticalAlign: "bottom"
         },
+
         plotOptions: {
           series: {
             label: {
@@ -113,6 +131,7 @@ export default {
             }
           }
         },
+
         xAxis: {
           categories: data.dates2
           /* plotLines: [
@@ -137,11 +156,13 @@ export default {
             }
           ] */
         },
+
         yAxis: {
           title: {
             text: this.$t("numberOfTests")
           }
         },
+
         series: [
           {
             name: this.$t("testsAdministered"),
@@ -151,12 +172,14 @@ export default {
       }
     };
   },
+
   // Get current locale
   computed: {
     currentLocale: function() {
       return this.$i18n.locale;
     }
   },
+
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {

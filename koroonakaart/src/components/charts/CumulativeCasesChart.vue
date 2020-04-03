@@ -10,18 +10,28 @@ import data from "../../data.json";
 export default {
   name: "CumulativeCasesChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
         chartType: "linear",
 
         chart: {
-          height: 470,
+          height: this.height,
+          width: this.width,
           events: {
             load: function() {
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
-              if (!this.exportSVGElements) return
+              if (!this.exportSVGElements) return;
 
               const button = this.exportSVGElements[4];
 
@@ -97,6 +107,7 @@ export default {
             }
           }
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
@@ -127,8 +138,9 @@ export default {
             }
           }
         },
+
         xAxis: {
-          categories: data.dates2,
+          categories: data.dates2
         },
 
         yAxis: {

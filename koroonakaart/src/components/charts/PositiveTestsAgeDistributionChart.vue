@@ -14,6 +14,15 @@ export default {
     return {
       chartType: "absolute",
 
+      props: {
+        height: {
+          default: null
+        },
+        width: {
+          default: null
+        }
+      },
+
       chartOptions: {
         title: {
           text: this.$t("distributionOfPositiveTests"),
@@ -23,7 +32,8 @@ export default {
 
         chart: {
           type: "column",
-          height: 470,
+          height: this.height,
+          width: this.width,
           events: {
             // Use lambda to get the component context
             load: () => {
@@ -119,6 +129,7 @@ export default {
             }
           }
         },
+
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
@@ -148,6 +159,7 @@ export default {
               fontWeight: "bold"
             }
           },
+
           categories: [
             "0 - 4",
             "5 - 9",
@@ -196,11 +208,11 @@ export default {
           {
             name: this.$t("positive"),
             data: data.dataPositiveTestsByAgeChart.positive,
-            color:"#000000"
+            color: "#000000"
           },
           {
             name: this.$t("negative"),
-            data: data.dataPositiveTestsByAgeChart.negative,
+            data: data.dataPositiveTestsByAgeChart.negative
           }
         ]
       }

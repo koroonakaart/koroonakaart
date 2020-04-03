@@ -1,6 +1,10 @@
 <template>
   <div>
-    <component :is="chartToDisplay" />
+    <component
+      :is="this.$route.query.chart"
+      :height="this.$route.query.height"
+      :width="this.$route.query.width"
+    />
   </div>
 </template>
 
@@ -32,12 +36,6 @@ export default {
 
   mounted() {
     console.log(this.$route.query);
-  },
-
-  data() {
-    return {
-      chartToDisplay: this.$route.query.chart
-    };
   }
 };
 </script>

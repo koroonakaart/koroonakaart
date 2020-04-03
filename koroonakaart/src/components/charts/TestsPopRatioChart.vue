@@ -10,6 +10,15 @@ import data from "../../data.json";
 export default {
   name: "TestsPopRatioChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
@@ -26,7 +35,8 @@ export default {
         },
         chart: {
           type: "bar",
-          height: 470
+          height: this.height,
+          width: this.width
         },
 
         exporting: {
@@ -79,6 +89,7 @@ export default {
             text: this.$t("testsPer10000Axis")
           }
         },
+
         plotOptions: {
           bar: {
             dataLabels: {

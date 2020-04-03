@@ -10,6 +10,15 @@ import data from "../../data.json";
 export default {
   name: "ConfirmedCasesByCountiesChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
@@ -28,7 +37,8 @@ export default {
 
         chart: {
           type: "bar",
-          height: 470
+          height: this.height,
+          width: this.width
         },
 
         exporting: {
@@ -82,6 +92,7 @@ export default {
             text: this.$t("numberOfCases")
           }
         },
+
         plotOptions: {
           bar: {
             dataLabels: {

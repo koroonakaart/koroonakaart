@@ -10,6 +10,15 @@ import data from "../../data.json";
 export default {
   name: "DailyCountyCasesChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
@@ -22,10 +31,11 @@ export default {
         },
 
         chart: {
-          height: 470,
+          hheight: this.height,
+          width: this.width,
           events: {
             load: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               const button = this.exportSVGElements[4];
@@ -38,7 +48,7 @@ export default {
               button.setState(2);
             },
             redraw: function() {
-              if(!this.exportSVGElements) return;
+              if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 this.exportSVGElements[4].setState(
@@ -115,7 +125,7 @@ export default {
 
         xAxis: {
           categories: data.dates2,
-          crosshair: true,
+          crosshair: true
         },
 
         yAxis: {

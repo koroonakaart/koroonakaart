@@ -1,6 +1,8 @@
 <template>
   <b-container>
+    <EmbedModal :chartName="chartName" />
     <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
+    <button @click="showEmbedModal=true">Click</button>
   </b-container>
 </template>
 
@@ -10,6 +12,8 @@ import HighchartsMapModule from "highcharts/modules/map";
 import mapData from "../data/map/estonia.geo.json";
 import data from "../data.json";
 
+import EmbedModal from "./EmbedModal";
+
 HighchartsMapModule(Highcharts);
 
 Highcharts.maps["mapEstonia"] = mapData;
@@ -17,15 +21,29 @@ Highcharts.maps["mapEstonia"] = mapData;
 export default {
   name: "Map",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
+  components: { EmbedModal },
+
   data() {
     return {
+      chartName: this.$options.name,
+
       mapOptions: {
         chartType: "absolute",
 
         chart: {
           map: "mapEstonia",
           // Set max height of the map
-          height: 470,
+          height: this.height,
+          width: this.width,
           events: {
             load: function() {
               if (!this.exportSVGElements) return;
@@ -56,6 +74,15 @@ export default {
         },
 
         exporting: {
+          menuItemDefinitions: {
+            embed: {
+              onclick: () => {
+                this.$bvModal.show("embed-modal");
+              },
+              text: "Embed Graph"
+            }
+          },
+
           chartOptions: {
             // specific options for the exported image
             plotOptions: {
@@ -67,6 +94,19 @@ export default {
             }
           },
           buttons: {
+            contextButton: {
+              menuItems: [
+                "viewFullscreen",
+                "printChart",
+                "separator",
+                "downloadPNG",
+                "downloadJPEG",
+                "downloadPDF",
+                "downloadSVG",
+                "embed"
+              ]
+            },
+
             customButton: {
               text: this.$t("per10000"),
               onclick: function() {
@@ -82,6 +122,7 @@ export default {
                 });
               }
             },
+
             customButton2: {
               text: this.$t("absolute"),
               onclick: function() {
@@ -185,6 +226,8 @@ export default {
             keys: ["MNIMI", "value"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
+            borderColor: "black",
+            borderWidth: 0.3,
             states: {
               hover: {
                 color: "#a4edba"

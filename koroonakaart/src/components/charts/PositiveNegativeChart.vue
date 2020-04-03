@@ -10,6 +10,15 @@ import data from "../../data.json";
 export default {
   name: "PositiveNegativeChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartType: "percent",
@@ -23,7 +32,8 @@ export default {
 
         chart: {
           type: "column",
-          height: 470,
+          height: this.height,
+          width: this.width,
           events: {
             // Use lambda to get the component context
             load: () => {
@@ -91,6 +101,7 @@ export default {
         credits: {
           enabled: false
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
@@ -121,6 +132,7 @@ export default {
             }
           }
         },
+
         xAxis: {
           labels: {
             /* padding: "1px", */
@@ -130,6 +142,7 @@ export default {
               fontWeight: "bold"
             }
           },
+
           categories: [
             this.$t("insufficientData"),
             "Harjumaa",
@@ -155,6 +168,7 @@ export default {
             text: "%"
           }
         },
+
         tooltip: {
           headerFormat:
             '<span style="font-size:10px">{point.key}</span><table>',
@@ -165,6 +179,7 @@ export default {
           shared: true,
           useHTML: true
         },
+
         plotOptions: {
           column: {
             stacking: "percent",
@@ -176,8 +191,7 @@ export default {
           {
             name: this.$t("positive"),
             data: data.dataPositiveNegativeChart.positive,
-            color:"#000000"
-
+            color: "#000000"
           },
           {
             name: this.$t("negative"),

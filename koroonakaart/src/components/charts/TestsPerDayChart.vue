@@ -10,6 +10,15 @@ import data from "../../data.json";
 export default {
   name: "TestsPerDayChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
@@ -21,22 +30,25 @@ export default {
 
         chart: {
           type: "column",
-          height: 470
+          height: this.height,
+          width: this.width
         },
 
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
             y: -15
           }
         },
+
         xAxis: {
           categories: data.dates2,
-          crosshair: true,
+          crosshair: true
         },
 
         yAxis: [

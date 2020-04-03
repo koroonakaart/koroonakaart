@@ -10,6 +10,15 @@ import data from "../../data.json";
 export default {
   name: "TestsAgeSexDistributionChart",
 
+  props: {
+    height: {
+      default: null
+    },
+    width: {
+      default: null
+    }
+  },
+
   data() {
     return {
       chartOptions: {
@@ -22,7 +31,8 @@ export default {
         chart: {
           absolute: true,
           type: "bar",
-          height: 470
+          height: this.height,
+          width: this.width
         },
 
         navigation: {
@@ -40,25 +50,25 @@ export default {
         xAxis: [
           {
             categories: [
-            "0 - 4",
-            "5 - 9",
-            "10 - 14",
-            "15 - 19",
-            "20 - 24",
-            "25 - 29",
-            "30 - 34",
-            "35 - 39",
-            "40 - 44",
-            "45 - 49",
-            "50 - 54",
-            "55 - 59",
-            "60 - 64",
-            "65 - 69",
-            "70 - 74",
-            "75 - 79",
-            "80 - 85",
-            "85+",
-            this.$t("unknown")
+              "0 - 4",
+              "5 - 9",
+              "10 - 14",
+              "15 - 19",
+              "20 - 24",
+              "25 - 29",
+              "30 - 34",
+              "35 - 39",
+              "40 - 44",
+              "45 - 49",
+              "50 - 54",
+              "55 - 59",
+              "60 - 64",
+              "65 - 69",
+              "70 - 74",
+              "75 - 79",
+              "80 - 85",
+              "85+",
+              this.$t("unknown")
             ],
             reversed: false,
             labels: {
@@ -88,8 +98,6 @@ export default {
               "80 - 85",
               "85+",
               this.$t("unknown")
-
-
             ],
             linkedTo: 0,
             labels: {
@@ -108,6 +116,7 @@ export default {
             }
           }
         },
+
         plotOptions: {
           bar: {
             stacking: "normal",
