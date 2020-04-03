@@ -32,6 +32,11 @@ npm run build
 ```
 npm run lint
 ```
+### Get data from TEHIK API
+```
+pip3 install -r requirements.txt
+python3 main.py
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
