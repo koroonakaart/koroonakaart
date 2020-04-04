@@ -196,7 +196,7 @@ export default {
           },
           {
             name: "Järvamaa",
-            data: data.countyByDay.Järvemaa,
+            data: data.countyByDay.Järvamaa,
             color: "#EEB868"
           },
           {
