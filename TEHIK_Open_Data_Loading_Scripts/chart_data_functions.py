@@ -196,9 +196,10 @@ def getDataTestsPerDayChart(json, dates):
     positive_tests[0] += count_positive_before_date_range
 
     return_json = {
-        "testsPerDay": tests,
+        "positiveTestsPerDay": positive_tests,
+        "negativeTestsPerDay": list(np.array(tests) - np.array(positive_tests)),
         "positiveTestsPercentage": list(np.round(np.array(positive_tests) / np.array(tests) * 100, 2))
-    }
+        }
 
     return return_json
 
