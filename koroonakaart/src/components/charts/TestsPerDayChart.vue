@@ -1,10 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
+    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
   </b-container>
 </template>
 
@@ -15,15 +11,18 @@ export default {
   name: "TestsPerDayChart",
   props: {
     height: {
-      default: null,	
+      default: null
     },
     width: {
       default: null
     }
   },
 
+  mounted() {
+    /* console.log(this.chartOptions.yAxis.title.text); */
+  },
 
-  data () {
+  data() {
     return {
       chartType: "absolute",
       chartOptions: {
@@ -54,7 +53,7 @@ export default {
                 // 2 - selected
                 // 3 - disabled
                 button.setState(2);
-              }, 50)
+              }, 50);
             },
 
             redraw: () => {
@@ -138,25 +137,24 @@ export default {
         },
         xAxis: {
           categories: data.dates2,
-          crosshair: true,
+          crosshair: true
         },
 
-
-	yAxis: [
-        {
+        yAxis: [
+          {
             min: 0,
             title: {
               text: this.$t("numberOfTests")
             }
-        },
-        {
+          },
+          {
             max: 100,
-	title: {
-	text: this.$t("percentPositiveTests")
+            title: {
+              text: this.$t("percentPositiveTests")
             },
             opposite: true
-	}
-	],
+          }
+        ],
 
         plotOptions: {
           column: {
@@ -172,9 +170,9 @@ export default {
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
           footerFormat:
-            '<tr><td></td>' +
+            "<tr><td></td>" +
             '<td style="padding:0"><b>{point.total}</b> (100%)</td></tr>' +
-            '</table>',
+            "</table>",
           shared: true,
           useHTML: true
         },
@@ -204,16 +202,17 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function () {
+    currentLocale: function() {
       return this.$i18n.locale;
     }
   },
 
   // Fire when currentLocale computed property changes
   watch: {
-    currentLocale () {
+    currentLocale() {
       this.chartOptions.title.text = this.$t("testsPerDay");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
+      this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");
+      this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
       this.chartOptions.series[0].name = this.$t("positive");
       this.chartOptions.series[1].name = this.$t("negative");
       this.chartOptions.series[2].name = this.$t("percentPositiveTests");
