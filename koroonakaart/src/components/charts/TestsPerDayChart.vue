@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container fluid>
     <highcharts
       class="chart"
       :options="chartOptions"
@@ -13,6 +13,15 @@ import data from "../../data.json";
 
 export default {
   name: "TestsPerDayChart",
+  props: {
+    height: {
+      default: null,	
+    },
+    width: {
+      default: null
+    }
+  },
+
 
   data () {
     return {
@@ -26,7 +35,8 @@ export default {
 
         chart: {
           type: "column",
-          height: 470,
+          height: this.height,
+          width: this.width,
           events: {
             // Use lambda to get the component context
             load: () => {
@@ -65,7 +75,31 @@ export default {
         },
 
         exporting: {
+          menuItemDefinitions: {
+            embed: {
+              onclick: () => {
+                this.$store.dispatch("setCurrentChartName", this.$options.name);
+                this.$bvModal.show("embed-modal");
+              },
+              text: "Embed Graph"
+            }
+          },
           buttons: {
+            contextButton: {
+              menuItems: [
+                "viewFullscreen",
+                "printChart",
+                "separator",
+                "downloadPNG",
+                "downloadJPEG",
+                "downloadPDF",
+                "downloadSVG",
+                "downloadCSV",
+                "downloadXLS",
+                "separator",
+                "embed"
+              ]
+            },
             customButton: {
               text: this.$t("abs"),
               onclick: () => {
@@ -182,6 +216,7 @@ export default {
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       this.chartOptions.series[0].name = this.$t("positive");
       this.chartOptions.series[1].name = this.$t("negative");
+      this.chartOptions.series[2].name = this.$t("percentPositiveTests");
     }
   }
 };
