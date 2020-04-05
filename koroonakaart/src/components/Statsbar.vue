@@ -8,12 +8,12 @@
         <h1>{{confirmedCasesNumber}}</h1>
       </b-col>
 
-      <b-col class="statsbar-item" md>
+      <!--<b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("activeCases") }}</h5>
         </div>
         <h1>{{activeCasesNumber}}</h1>
-      </b-col>
+      </b-col>-->
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">

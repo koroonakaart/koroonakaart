@@ -37,7 +37,7 @@
   "newCasesPerDay": "New cases per day",
   "numberOfCases": "Number of cases",
   "numberOfTests": "Number of tests",
-  "recovered": "Recovered",
+  "recovered": "Discharged from hospital",
   "negative": "Negative",
   "positive": "Positive",
   "testsAdministered": "Tests administered",

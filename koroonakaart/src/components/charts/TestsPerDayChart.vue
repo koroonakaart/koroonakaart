@@ -169,10 +169,6 @@ export default {
           pointFormat:
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
-          footerFormat:
-            "<tr><td></td>" +
-            '<td style="padding:0"><b>{point.total}</b> (100%)</td></tr>' +
-            "</table>",
           shared: true,
           useHTML: true
         },

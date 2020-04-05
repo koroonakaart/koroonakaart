@@ -186,11 +186,11 @@ export default {
             color: "#90ed7d",
             data: data.dataCumulativeCasesChart.recovered
           },
-          {
+      /*    {
             name: this.$t("active"),
             color: "#f28f43",
             data: data.dataCumulativeCasesChart.active
-          },
+          }, */
           {
             name: this.$t("deceased"),
             color: "#0d233a",
