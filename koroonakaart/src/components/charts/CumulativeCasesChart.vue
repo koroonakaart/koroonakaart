@@ -224,10 +224,10 @@ export default {
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("confirmedCases");
       this.chartOptions.series[1].name = this.$t("recovered");
-      this.chartOptions.series[2].name = this.$t("active");
-      this.chartOptions.series[3].name = this.$t("deceased");
-      this.chartOptions.series[4].name = this.$t("hospitalised");
-      this.chartOptions.series[5].name = this.$t("intensive");
+      // this.chartOptions.series[2].name = this.$t("active");
+      this.chartOptions.series[2].name = this.$t("deceased");
+      this.chartOptions.series[3].name = this.$t("hospitalised");
+      this.chartOptions.series[4].name = this.$t("intensive");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
