@@ -6,7 +6,7 @@ county_mapping = {
     "Jõgeva maakond": "Jõgevamaa",
     "Lääne maakond": "Läänemaa",
     "Lääne-Viru maakond": "Lääne-Virumaa",
-    None: "Info puudulik",
+    "": "Info puudulik",
     "Pärnu maakond": "Pärnumaa",
     "Põlva maakond": "Põlvamaa",
     "Rapla maakond": "Raplamaa",
