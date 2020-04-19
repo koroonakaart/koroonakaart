@@ -48,6 +48,9 @@ if __name__ == "__main__":
     hospitalisedNumber = MANUAL_DATA["hospitalisedNumber"]
     deceasedNumber = MANUAL_DATA["deceasedNumber"]
     recoveredNumber = MANUAL_DATA["recoveredNumber"]
+    hospitalChanged = MANUAL_DATA["hospitalised"][-1] - MANUAL_DATA["hospitalised"][-2]
+    deceasedChanged  = MANUAL_DATA["deceased"][-1] - MANUAL_DATA["deceased"][-2]
+    recoveredChanged = MANUAL_DATA["recovered"][-1] - MANUAL_DATA["recovered"][-2]
 
     # Find count of confirmed cases
     confirmedCasesNumber = np.sum([res["ResultValue"] == "P" for res in json_data])
@@ -106,6 +109,9 @@ if __name__ == "__main__":
         "deceasedNumber": str(deceasedNumber),
         "recoveredNumber": str(recoveredNumber),
         "testsAdministeredNumber": str(testsAdministeredNumber),
+        "hospitalChanged": str(hospitalChanged),
+        "deceasedChanged": str(deceasedChanged),
+        "recoveredChanged": str(recoveredChanged),
         "dates1": list(map(lambda x: str(x.date()), dates1)),
         "dates2": list(map(lambda x: str(x.date()), dates2)),
         "dataInfectionsByCounty": dataInfectionsByCounty,
