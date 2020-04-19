@@ -282,12 +282,16 @@ def getDataPositiveTestsByAgeChart(json):
         maleNegative.append(end_df.loc[male_order[i], "Negative"])
         femalePositive.append(end_df.loc[female_order[i], "Positive"])
         femaleNegative.append(end_df.loc[female_order[i], "Negative"])
+    femaleTotal = sum(femalePositive) + sum(femaleNegative)
+    maleTotal = sum(malePositive) + sum(maleNegative)
 
     end_result = {
         "malePositive": malePositive,
         "maleNegative": maleNegative,
         "femalePositive": femalePositive,
-        "femaleNegative": femaleNegative
+        "femaleNegative": femaleNegative,
+        "femaleTotal": femaleTotal,
+        "maleTotal": maleTotal
     }
 
     return end_result
