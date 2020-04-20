@@ -267,7 +267,13 @@ export default {
               name: "Harjumaa",
               id: "Harjumaa",
               keys: ["ONIMI", "value"],
-              data: [["Harku vald", 58]],
+              data: [
+                ["Harku vald", 58],
+                ["Tallinn", 122],
+                ["Jõelähtme vald", 88],
+                ["Viimsi vald", 41],
+                ["Maardu linn", 64]
+              ],
               mapData: Harjumaa,
               joinBy: ["ONIMI"],
               tooltip: {
