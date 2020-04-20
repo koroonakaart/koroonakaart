@@ -230,7 +230,7 @@ export default {
         series: [
           {
             data: data.dataInfectionsByCounty,
-            allowPointSelect: true,
+            /* allowPointSelect: true, */
             keys: ["MNIMI", "value", "drilldown"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
