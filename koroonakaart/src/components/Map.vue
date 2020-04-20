@@ -272,6 +272,16 @@ export default {
               joinBy: ["ONIMI"],
               tooltip: {
                 pointFormat: "{point.ONIMI}: {point.value}<br/>"
+              },
+              dataLabels: {
+                // This needs to be true for the country map to diplay anything if no data
+                allAreas: true,
+                enabled: true,
+                format: "{point.ONIMI}",
+                style: {
+                  fontWeight: "normal",
+                  fontSize: "9px"
+                }
               }
             }
           ]
