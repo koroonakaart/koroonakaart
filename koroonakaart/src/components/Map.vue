@@ -1,5 +1,5 @@
 <template>
-  <b-container @dblclick="handleDoubleClick">
+  <b-container>
     <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
@@ -7,17 +7,18 @@
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
+import dataModule from "highcharts/modules/data";
 import drilldown from "highcharts/modules/drilldown";
 
 import mapData from "../data/map/estonia.geo.json";
-import mapMunicipalities from "../data/map/municipalities.geo.json";
+import Harjumaa from "../data/map/Harju-maakond.geo.json";
 import data from "../data.json";
 
 HighchartsMapModule(Highcharts);
+dataModule(Highcharts);
 drilldown(Highcharts);
 
 Highcharts.maps["mapEstonia"] = mapData;
-Highcharts.maps["municipalities"] = mapMunicipalities;
 
 export default {
   name: "Map",
@@ -33,8 +34,6 @@ export default {
 
   data() {
     return {
-      mapDetailCounty: true,
-
       mapOptions: {
         chartType: "absolute",
 
@@ -44,6 +43,10 @@ export default {
           height: this.height,
           width: this.width,
           events: {
+            drilldown: function(e) {
+              console.log(e);
+            },
+
             load: function() {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
@@ -227,7 +230,8 @@ export default {
         series: [
           {
             data: data.dataInfectionsByCounty,
-            keys: ["MNIMI", "value"],
+            allowPointSelect: true,
+            keys: ["MNIMI", "value", "drilldown"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
             borderColor: "black",
@@ -244,6 +248,7 @@ export default {
             },
 
             dataLabels: {
+              // This needs to be true for the country map to diplay anything if no data
               allAreas: true,
               enabled: true,
               format: "{point.MNIMI}",
@@ -253,24 +258,39 @@ export default {
               }
             }
           }
+        ],
 
-          // This needs to be true for the country map to diplay anything if no data
-        ]
+        drilldown: {
+          //dummy data
+          series: [
+            {
+              name: "Harjumaa",
+              id: "Harjumaa",
+              keys: ["ONIMI", "value"],
+              data: [["Harku vald", 58]],
+              mapData: Harjumaa,
+              joinBy: ["ONIMI"],
+              tooltip: {
+                pointFormat: "{point.ONIMI}: {point.value}<br/>"
+              }
+            }
+          ]
+
+          /* activeDataLabelStyle: {
+            color: "#FFFFFF",
+            textDecoration: "none",
+            textOutline: "1px #000000"
+          },
+          drillUpButton: {
+            relativeTo: "spacingBox",
+            position: {
+              x: 0,
+              y: 60
+            }
+          } */
+        }
       }
     };
-  },
-
-  methods: {
-    handleDoubleClick: function() {
-      console.log(this.mapOptions.chart.map);
-      this.mapDetailCounty = !this.mapDetailCounty;
-      this.mapOptions.chart.map = this.mapDetailCounty
-        ? "mapEstonia"
-        : "municipalities";
-      this.mapOptions.series[0].joinBy = this.mapDetailCounty
-        ? "MNIMI"
-        : "ONIMI";
-    }
   },
 
   // Get current locale
