@@ -1,24 +1,23 @@
 <template>
-  <b-container>
-    <highcharts
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
+  <b-container @dblclick="handleDoubleClick">
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
 
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
+import drilldown from "highcharts/modules/drilldown";
 
 import mapData from "../data/map/estonia.geo.json";
+import mapMunicipalities from "../data/map/municipalities.geo.json";
 import data from "../data.json";
 
 HighchartsMapModule(Highcharts);
+drilldown(Highcharts);
 
 Highcharts.maps["mapEstonia"] = mapData;
+Highcharts.maps["municipalities"] = mapMunicipalities;
 
 export default {
   name: "Map",
@@ -34,6 +33,8 @@ export default {
 
   data() {
     return {
+      mapDetailCounty: true,
+
       mapOptions: {
         chartType: "absolute",
 
@@ -185,14 +186,14 @@ export default {
           enabled: false
         },
 
-        /*
         // Navigation controls like zoom etc
-          mapNavigation: {
-          enabled: true,
+        mapNavigation: {
+          /* enabled: true, */
+          /* enableDoubleClickZoomTo: true, */
           buttonOptions: {
             verticalAlign: "bottom"
           }
-        }, */
+        },
 
         // Legend bar density
         colorAxis: {
@@ -243,6 +244,7 @@ export default {
             },
 
             dataLabels: {
+              allAreas: true,
               enabled: true,
               format: "{point.MNIMI}",
               style: {
@@ -253,10 +255,22 @@ export default {
           }
 
           // This needs to be true for the country map to diplay anything if no data
-          /* allAreas: true, */
         ]
       }
     };
+  },
+
+  methods: {
+    handleDoubleClick: function() {
+      console.log(this.mapOptions.chart.map);
+      this.mapDetailCounty = !this.mapDetailCounty;
+      this.mapOptions.chart.map = this.mapDetailCounty
+        ? "mapEstonia"
+        : "municipalities";
+      this.mapOptions.series[0].joinBy = this.mapDetailCounty
+        ? "MNIMI"
+        : "ONIMI";
+    }
   },
 
   // Get current locale
