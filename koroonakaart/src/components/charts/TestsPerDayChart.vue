@@ -106,7 +106,7 @@ export default {
 
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "normal";
-                this.$refs.thisChart.options.yAxis.title.text = this.$t(
+                this.$refs.thisChart.options.yAxis[0].title.text = this.$t(
                   "numberOfTests"
                 );
               }
@@ -119,7 +119,7 @@ export default {
 
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "percent";
-                this.$refs.thisChart.options.yAxis.title.text = "%";
+                this.$refs.thisChart.options.yAxis[0].title.text = "%";
               }
             }
           }
@@ -129,7 +129,7 @@ export default {
         credits: {
           enabled: false
         },
-        
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
