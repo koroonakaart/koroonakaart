@@ -93,12 +93,16 @@ export default {
         },
         tooltip: {
           pointFormat:
-            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+            '<tr><td style="color:{series.color};padding:0"></td>' +
+            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+          footerFormat: "</table>",
+          shared: true,
+          useHTML: true
         },
 
         series: [
           {
-            name: this.$t("genderChart"),
+            name: "chart",
             colorByPoint: true,
             data: [
               {
@@ -121,7 +125,11 @@ export default {
               id: "MALE",
               tooltip: {
                 pointFormat:
-                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+                  '<tr><td style="color:{series.color};padding:0"></td>' +
+                  '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+                footerFormat: "</table>",
+                shared: true,
+                useHTML: true
               },
               data: [
                 [
@@ -145,7 +153,11 @@ export default {
               id: "FEMALE",
               tooltip: {
                 pointFormat:
-                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+                  '<tr><td style="color:{series.color};padding:0"></td>' +
+                  '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+                footerFormat: "</table>",
+                shared: true,
+                useHTML: true
               },
               data: [
                 [
@@ -179,9 +191,7 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
-      console.log(this.chartOptions);
       this.chartOptions.title.text = this.$t("genderChart");
-      this.chartOptions.series[0].name = this.$t("genderChart");
       this.chartOptions.series[0].data[0].name = this.$t("male");
       this.chartOptions.series[0].data[1].name = this.$t("female");
       this.chartOptions.drilldown.series[0].data[0][0] = this.$t(
@@ -196,6 +206,7 @@ export default {
       this.chartOptions.drilldown.series[1].data[1][0] = this.$t(
         "femalePositive"
       );
+      this.$children[0].chart.drillUp();
 
       this.$children[0].chart.drillUp();
     }

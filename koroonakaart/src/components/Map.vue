@@ -14,7 +14,7 @@ import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 
 import mapData from "../data/map/estonia.geo.json";
-import municipalities from "../data/map/municipalities.geo.json"
+//import municipalities from "../data/map/municipalities.geo.json"
 import data from "../data.json";
 
 HighchartsMapModule(Highcharts);
@@ -141,12 +141,6 @@ export default {
                   }
                 });
               }
-            },
-            customButton3: {
-              text: "TEST",
-              onclick: function() {
-              console.log(this);
-              }
             }
           },
 
@@ -232,9 +226,6 @@ export default {
 
         series: [
           {
-            drilldown: "drilldownId",
-            allowPointSelect: true,
-            id: "test",
             data: data.dataInfectionsByCounty,
             keys: ["MNIMI", "value"],
             joinBy: "MNIMI",
@@ -264,21 +255,7 @@ export default {
 
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
-        ],
-        drilldown: {
-        series: [
-        {
-        id: "drilldownId",
-        data: [
-        [
-
-        'Tapa vald', 10]
-        ],
-        mapData: municipalities,
-        joinBy: "MNIMI"
-        }
         ]
-        }
       }
     };
   },
