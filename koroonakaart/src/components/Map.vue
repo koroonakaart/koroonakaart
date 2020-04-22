@@ -226,9 +226,6 @@ export default {
 
         series: [
           {
-            drilldown: "drilldownId",
-            allowPointSelect: true,
-            id: "test",
             data: data.dataInfectionsByCounty,
             keys: ["MNIMI", "value"],
             joinBy: "MNIMI",
@@ -258,21 +255,7 @@ export default {
 
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
-        ],
-        drilldown: {
-        series: [
-        {
-        id: "drilldownId",
-        data: [
-        [
-
-        'Tapa vald', 10]
-        ],
-        mapData: municipalities,
-        joinBy: "MNIMI"
-        }
         ]
-        }
       }
     };
   },
