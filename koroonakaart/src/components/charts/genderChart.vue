@@ -92,7 +92,7 @@ export default {
 
         series: [
           {
-            name: "Genders",
+            name: this.$t("genderChart"),
             colorByPoint: true,
             data: [
               {
@@ -173,13 +173,16 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
+    console.log(this.chartOptions);
       this.chartOptions.title.text = this.$t("genderChart");
-      this.chartOptions.series[1].name = this.$t("male");
-      this.chartOptions.series[2].name = this.$t("female");
-      this.chartOptions.series[3].name = this.$t("malePositive");
-      this.chartOptions.series[4].name = this.$t("maleNegative");
-      this.chartOptions.series[5].name = this.$t("femalePositive");
-      this.chartOptions.series[6].name = this.$t("femaleNegative");
+      this.chartOptions.series[0].name = this.$t("genderChart");
+      this.chartOptions.series[0].data[0].name = this.$t("male");
+      this.chartOptions.series[0].data[1].name = this.$t("female");
+      this.chartOptions.drilldown.series[0].data[0][0] = this.$t("maleNegative");
+      this.chartOptions.drilldown.series[0].data[1][0] = this.$t("malePositive");
+      this.chartOptions.drilldown.series[1].data[0][0] = this.$t("femaleNegative");
+      this.chartOptions.drilldown.series[1].data[1][0] = this.$t("femalePositive");
+
     }
   }
 };
