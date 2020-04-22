@@ -141,12 +141,6 @@ export default {
                   }
                 });
               }
-            },
-            customButton3: {
-              text: "TEST",
-              onclick: function() {
-              console.log(this);
-              }
             }
           },
 
