@@ -5,16 +5,24 @@
 </template>
 
 <script>
-import data from "../../data.json";
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
 
+import data from "../../data.json";
+
 dataModule(Highcharts);
 drilldown(Highcharts);
 
+Highcharts.setOptions({
+  lang: {
+    drillUpText: this.$t("faq.back")
+  }
+});
+
 export default {
   name: "GenderChart",
+
   props: {
     height: {
       default: null
@@ -26,8 +34,6 @@ export default {
 
   mounted() {
     /* console.log(this.chartOptions.yAxis.title.text); */
-    console.log(data.dataPositiveTestsByAgeChart.maleNegative);
-    console.log(this.chartOptions);
   },
 
   data() {
@@ -173,21 +179,28 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
-    console.log(this.chartOptions);
+      console.log(this.chartOptions);
       this.chartOptions.title.text = this.$t("genderChart");
       this.chartOptions.series[0].name = this.$t("genderChart");
       this.chartOptions.series[0].data[0].name = this.$t("male");
       this.chartOptions.series[0].data[1].name = this.$t("female");
-      this.chartOptions.drilldown.series[0].data[0][0] = this.$t("maleNegative");
-      this.chartOptions.drilldown.series[0].data[1][0] = this.$t("malePositive");
-      this.chartOptions.drilldown.series[1].data[0][0] = this.$t("femaleNegative");
-      this.chartOptions.drilldown.series[1].data[1][0] = this.$t("femalePositive");
+      this.chartOptions.drilldown.series[0].data[0][0] = this.$t(
+        "maleNegative"
+      );
+      this.chartOptions.drilldown.series[0].data[1][0] = this.$t(
+        "malePositive"
+      );
+      this.chartOptions.drilldown.series[1].data[0][0] = this.$t(
+        "femaleNegative"
+      );
+      this.chartOptions.drilldown.series[1].data[1][0] = this.$t(
+        "femalePositive"
+      );
 
+      this.$children[0].chart.drillUp();
     }
   }
 };
-
-// Fire when currentLocale computed property changes
 </script>
 
 <style lang="scss" scoped>
