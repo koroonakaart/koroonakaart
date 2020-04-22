@@ -14,7 +14,7 @@ import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 
 import mapData from "../data/map/estonia.geo.json";
-import municipalities from "../data/map/municipalities.geo.json"
+//import municipalities from "../data/map/municipalities.geo.json"
 import data from "../data.json";
 
 HighchartsMapModule(Highcharts);
