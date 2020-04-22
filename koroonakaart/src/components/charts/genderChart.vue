@@ -6,6 +6,11 @@
 
 <script>
 import data from "../../data.json";
+import Highcharts from "highcharts";
+import drilldown from "highcharts/modules/drilldown";
+import dataModule from "highcharts/modules/data";
+dataModule(Highcharts);
+drilldown(Highcharts);
 
 export default {
   name: "genderChart",
@@ -27,7 +32,7 @@ export default {
       chartType: "pie",
       chartOptions: {
         title: {
-          text: this.$t("testsPerDay"),
+          text: "Test",
           align: "left",
           y: 25
         },
@@ -63,29 +68,6 @@ export default {
                 "separator",
                 "embed"
               ]
-            },
-            customButton: {
-              text: this.$t("abs"),
-              onclick: () => {
-                this.chartType = "absolute";
-
-                this.$refs.thisChart.options.plotOptions.column.stacking =
-                  "normal";
-                this.$refs.thisChart.options.yAxis.title.text = this.$t(
-                  "numberOfTests"
-                );
-              }
-            },
-
-            customButton2: {
-              text: "%",
-              onclick: () => {
-                this.chartType = "percent";
-
-                this.$refs.thisChart.options.plotOptions.column.stacking =
-                  "percent";
-                this.$refs.thisChart.options.yAxis.title.text = "%";
-              }
             }
           }
         },
@@ -100,46 +82,17 @@ export default {
             y: -15
           }
         },
-        xAxis: {
-          categories: data.dates2,
-          crosshair: true
-        },
-
-        yAxis: [
-          {
-            min: 0,
-            title: {
-              text: this.$t("numberOfTests")
-            }
-          },
-          {
-            max: 100,
-            title: {
-              text: this.$t("percentPositiveTests")
-            },
-            opposite: true
-          }
-        ],
-
-        plotOptions: {
-          column: {
-            stacking: "normal",
-            enableMouseTracking: true
-          }
-        },
-
         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
-          shared: true,
-          useHTML: true
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
         },
 
         series: [
-          {
+        {
+        name: "Genders",
+        colorByPoint: true,
+        data: [
+        {
             name: "MALE",
             data: data.dataPositiveTestsByAgeChart.maleTotal,
             drilldown: "MALE"
@@ -149,6 +102,8 @@ export default {
             data: data.dataPositiveTestsByAgeChart.femaleTotal,
             drilldown: "FEMALE"
           }
+          ]
+      }
         ],
         drilldown: {
         series:[
@@ -156,18 +111,16 @@ export default {
         name: "Male",
         id: "MALE",
         data: [
-        ["negative",        data.dataPositiveTestsByAgeChart.maleNegative
-        ],
-        ["positive", data.dataPositiveTestsByAgeChart.malePositive
+        ["negative", data.dataPositiveTestsByAgeChart.maleNegative],
+        ["positive", data.dataPositiveTestsByAgeChart.malePositive]
+        ]
 
-        ]
-        ]
         },
         {
         name: "Female",
         id: "FEMALE",
         data: [
-        ["negative",        data.dataPositiveTestsByAgeChart.femaleNegative
+        ["negative", data.dataPositiveTestsByAgeChart.femaleNegative
         ],
         ["positive", data.dataPositiveTestsByAgeChart.femalePositive
 
@@ -177,28 +130,13 @@ export default {
         }
         ]
       }
+      }
     };
-  },
+  }
+  }
 
-  // Get current locale
-  computed: {
-    currentLocale: function() {
-      return this.$i18n.locale;
-    }
-  },
 
   // Fire when currentLocale computed property changes
-  watch: {
-    currentLocale() {
-      this.chartOptions.title.text = this.$t("testsPerDay");
-      this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");
-      this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
-      this.chartOptions.series[0].name = this.$t("positive");
-      this.chartOptions.series[1].name = this.$t("negative");
-      this.chartOptions.series[2].name = this.$t("percentPositiveTests");
-    }
-  }
-};
 </script>
 
 <style lang="scss" scoped>
