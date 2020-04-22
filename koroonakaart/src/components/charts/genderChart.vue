@@ -9,6 +9,7 @@ import data from "../../data.json";
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
+
 dataModule(Highcharts);
 drilldown(Highcharts);
 
@@ -26,6 +27,7 @@ export default {
   mounted() {
     console.log(this)
     /* console.log(this.chartOptions.yAxis.title.text); */
+    console.log(data.dataPositiveTestsByAgeChart.maleNegative);
   },
 
   data() {
@@ -41,7 +43,7 @@ export default {
         chart: {
           type: "pie",
           height: this.height,
-          width: this.width,
+          width: this.width
         },
 
         exporting: {
@@ -85,7 +87,8 @@ export default {
         },
         tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+          pointFormat:
+            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
         },
 
         series: [
@@ -103,33 +106,59 @@ export default {
             y: data.dataPositiveTestsByAgeChart.femaleTotal,
             drilldown: "Female"
           }
-          ]
-      }
         ],
         drilldown: {
-        series:[
-        {
-        name: "Male",
-        id: "Male",
-        data: [
-        ["negative", data.dataPositiveTestsByAgeChart.maleNegativeTotal],
-        ["positive", data.dataPositiveTestsByAgeChart.malePositiveTotal]
-        ]
-
-        },
-        {
-        name: "Female",
-        id: "Female",
-        data: [
-        ["negative", data.dataPositiveTestsByAgeChart.femaleNegativeTotal],
-        ["positive", data.dataPositiveTestsByAgeChart.femalePositiveTotal
-
-        ]
-        ]
-
+          series: [
+            {
+              name: "Male",
+              id: "MALE",
+              tooltip: {
+                pointFormat:
+                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+              },
+              data: [
+                [
+                  "negative",
+                  data.dataPositiveTestsByAgeChart.maleNegative.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ],
+                [
+                  "positive",
+                  data.dataPositiveTestsByAgeChart.malePositive.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ]
+              ]
+            },
+            {
+              name: "Female",
+              id: "FEMALE",
+              tooltip: {
+                pointFormat:
+                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+              },
+              data: [
+                [
+                  "negative",
+                  data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ],
+                [
+                  "positive",
+                  data.dataPositiveTestsByAgeChart.femalePositive.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ]
+              ]
+            }
+          ]
         }
-        ]
-      }
       }
     };
   },
@@ -151,8 +180,7 @@ export default {
       this.chartOptions.series[2].name = this.$t("deceased");
     }
   }
-  };
+};
 
-
-  // Fire when currentLocale computed property changes
+// Fire when currentLocale computed property changes
 </script>

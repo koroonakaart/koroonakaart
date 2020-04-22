@@ -40,7 +40,7 @@
       <PositiveNegativeChart :height="470" />
     </b-row>
     <b-row class="mb-5">
-      <genderChart :height="470" />
+      <GenderChart :height="470" />
     </b-row>
   </b-container>
 </template>
@@ -54,7 +54,7 @@ import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
 import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
-import genderChart from "../components/charts/genderChart";
+import GenderChart from "../components/charts/GenderChart";
 
 //import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
@@ -76,7 +76,7 @@ export default {
     TestsPerDayChart,
     TestsAgeSexDistributionChart,
     //  PositiveTestsAgeDistributionChart,
-    genderChart,
+    GenderChart,
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
