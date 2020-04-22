@@ -14,7 +14,7 @@ dataModule(Highcharts);
 drilldown(Highcharts);
 
 export default {
-  name: "GenderChart",
+  name: "genderChart",
   props: {
     height: {
       default: null
@@ -25,9 +25,9 @@ export default {
   },
 
   mounted() {
-    console.log(this)
     /* console.log(this.chartOptions.yAxis.title.text); */
     console.log(data.dataPositiveTestsByAgeChart.maleNegative);
+    console.log(this.chartOptions);
   },
 
   data() {
@@ -35,7 +35,7 @@ export default {
       chartType: "pie",
       chartOptions: {
         title: {
-          text: "Test",
+          text: this.$t("genderChart"),
           align: "left",
           y: 25
         },
@@ -86,31 +86,32 @@ export default {
           }
         },
         tooltip: {
-          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat:
-            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
         },
 
         series: [
-        {
-        name: "Gender",
-        colorByPoint: true,
-        data: [
-        {
-            name: "Male",
-            y: data.dataPositiveTestsByAgeChart.maleTotal,
-            drilldown: "Male"
-          },
           {
-            name: "Female",
-            y: data.dataPositiveTestsByAgeChart.femaleTotal,
-            drilldown: "Female"
+            name: "Genders",
+            colorByPoint: true,
+            data: [
+              {
+                name: this.$t("male"),
+                y: data.dataPositiveTestsByAgeChart.maleTotal,
+                drilldown: "MALE"
+              },
+              {
+                name: this.$t("female"),
+                y: data.dataPositiveTestsByAgeChart.femaleTotal,
+                drilldown: "FEMALE"
+              }
+            ]
           }
         ],
         drilldown: {
           series: [
             {
-              name: "Male",
+              name: this.$t("male"),
               id: "MALE",
               tooltip: {
                 pointFormat:
@@ -118,14 +119,14 @@ export default {
               },
               data: [
                 [
-                  "negative",
+                  this.$t("maleNegative"),
                   data.dataPositiveTestsByAgeChart.maleNegative.reduce(
                     (a, b) => a + b,
                     0
                   )
                 ],
                 [
-                  "positive",
+                  this.$t("malePositive"),
                   data.dataPositiveTestsByAgeChart.malePositive.reduce(
                     (a, b) => a + b,
                     0
@@ -134,22 +135,22 @@ export default {
               ]
             },
             {
-              name: "Female",
+              name: this.$t("female"),
               id: "FEMALE",
               tooltip: {
                 pointFormat:
-                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
               },
               data: [
                 [
-                  "negative",
+                  this.$t("femaleNegative"),
                   data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
                     (a, b) => a + b,
                     0
                   )
                 ],
                 [
-                  "positive",
+                  this.$t("femalePositive"),
                   data.dataPositiveTestsByAgeChart.femalePositive.reduce(
                     (a, b) => a + b,
                     0
@@ -162,7 +163,6 @@ export default {
       }
     };
   },
-
   // Get current locale
   computed: {
     currentLocale: function() {
@@ -173,14 +173,18 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
-      this.chartOptions.title.text = this.$t("newCasesPerDay");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("confirmedCases");
-      this.chartOptions.series[1].name = this.$t("recovered");
-      this.chartOptions.series[2].name = this.$t("deceased");
+      this.chartOptions.title.text = this.$t("genderChart");
+      this.chartOptions.series[0].name = this.$t("male");
+      this.chartOptions.series[1].name = this.$t("malePositive");
+      this.chartOptions.series[2].name = this.$t("maleNegative");
+      this.chartOptions.series[3].name = this.$t("femalePositive");
+      this.chartOptions.series[4].name = this.$t("femaleNegative");
     }
   }
 };
 
 // Fire when currentLocale computed property changes
 </script>
+
+<style lang="scss" scoped>
+</style>
