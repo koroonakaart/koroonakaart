@@ -84,9 +84,13 @@ export default {
           }
         },
         tooltip: {
-          pointFormat:
-            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
-        },
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0"></td>' +
+          '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true
+                },
 
         series: [
           {
@@ -112,9 +116,12 @@ export default {
               name: this.$t("male"),
               id: "MALE",
               tooltip: {
-                pointFormat:
-                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
-              },
+              pointFormat:
+                '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+              footerFormat: "</table>",
+              shared: true,
+              useHTML: true              },
               data: [
                 [
                   this.$t("maleNegative"),
@@ -136,9 +143,12 @@ export default {
               name: this.$t("female"),
               id: "FEMALE",
               tooltip: {
-                pointFormat:
-                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
-              },
+              pointFormat:
+                '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+              footerFormat: "</table>",
+              shared: true,
+              useHTML: true                 },
               data: [
                 [
                   this.$t("femaleNegative"),
