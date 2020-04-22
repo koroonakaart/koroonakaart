@@ -87,10 +87,11 @@ export default {
   align-items: center;
   justify-content: center;
   height: 4em;
+  margin-bottom: -.5em;
 }
 
 .statsbar-item {
-  height: 7em;
+//  height: 7em;
 
   @media only screen and (max-width: 766px) {
     margin-bottom: 1em;
