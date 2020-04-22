@@ -28,8 +28,11 @@ export default {
       import("../components/charts/ConfirmedCasesByCountiesChart"),
     PositiveNegativeChart: () =>
       import("../components/charts/PositiveNegativeChart"),
-    TestsPopRatioChart: () => import("../components/charts/TestsPopRatioChart")
+    TestsPopRatioChart: () => import("../components/charts/TestsPopRatioChart"),
     //  PositiveTestsAgeDistributionChart:() => import("../components/charts/PositiveTestsAgeDistributionChart.vue"),
+    GenderChart: () =>
+      import("../components/charts/GenderChart")
+
   },
 
   mounted() {
