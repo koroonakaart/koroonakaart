@@ -14,7 +14,7 @@ dataModule(Highcharts);
 drilldown(Highcharts);
 
 export default {
-  name: "genderChart",
+  name: "GenderChart",
   props: {
     height: {
       default: null
@@ -174,11 +174,12 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("genderChart");
-      this.chartOptions.series[0].name = this.$t("male");
-      this.chartOptions.series[1].name = this.$t("malePositive");
-      this.chartOptions.series[2].name = this.$t("maleNegative");
-      this.chartOptions.series[3].name = this.$t("femalePositive");
-      this.chartOptions.series[4].name = this.$t("femaleNegative");
+      this.chartOptions.series[1].name = this.$t("male");
+      this.chartOptions.series[2].name = this.$t("female");
+      this.chartOptions.series[3].name = this.$t("malePositive");
+      this.chartOptions.series[4].name = this.$t("maleNegative");
+      this.chartOptions.series[5].name = this.$t("femalePositive");
+      this.chartOptions.series[6].name = this.$t("femaleNegative");
     }
   }
 };
