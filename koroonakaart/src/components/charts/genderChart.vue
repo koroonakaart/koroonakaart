@@ -14,11 +14,7 @@ import data from "../../data.json";
 dataModule(Highcharts);
 drilldown(Highcharts);
 
-Highcharts.setOptions({
-  lang: {
-    drillUpText: this.$t("faq.back")
-  }
-});
+Highcharts.setOptions({ lang: { drillUpText: "◁ {series.drillUpText}" } });
 
 export default {
   name: "GenderChart",
@@ -103,6 +99,7 @@ export default {
         series: [
           {
             name: "chart",
+            drillUpText: this.$t("faq.back"),
             colorByPoint: true,
             data: [
               {
@@ -118,6 +115,7 @@ export default {
             ]
           }
         ],
+
         drilldown: {
           series: [
             {
@@ -206,7 +204,6 @@ export default {
       this.chartOptions.drilldown.series[1].data[1][0] = this.$t(
         "femalePositive"
       );
-      this.$children[0].chart.drillUp();
 
       this.$children[0].chart.drillUp();
     }
