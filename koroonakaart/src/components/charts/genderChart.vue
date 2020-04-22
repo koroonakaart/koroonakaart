@@ -14,7 +14,7 @@ dataModule(Highcharts);
 drilldown(Highcharts);
 
 export default {
-  name: "genderChart",
+  name: "GenderChart",
   props: {
     height: {
       default: null
