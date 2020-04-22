@@ -9,6 +9,7 @@ import data from "../../data.json";
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
+
 dataModule(Highcharts);
 drilldown(Highcharts);
 
@@ -25,6 +26,7 @@ export default {
 
   mounted() {
     /* console.log(this.chartOptions.yAxis.title.text); */
+    console.log(data.dataPositiveTestsByAgeChart.maleNegative);
   },
 
   data() {
@@ -40,7 +42,7 @@ export default {
         chart: {
           type: "pie",
           height: this.height,
-          width: this.width,
+          width: this.width
         },
 
         exporting: {
@@ -84,59 +86,86 @@ export default {
         },
         tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+          pointFormat:
+            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
         },
 
         series: [
-        {
-        name: "Genders",
-        colorByPoint: true,
-        data: [
-        {
-            name: "MALE",
-            data: data.dataPositiveTestsByAgeChart.maleTotal,
-            drilldown: "MALE"
-          },
           {
-            name: "FEMALE",
-            data: data.dataPositiveTestsByAgeChart.femaleTotal,
-            drilldown: "FEMALE"
+            name: "Genders",
+            colorByPoint: true,
+            data: [
+              {
+                name: "MALE",
+                y: data.dataPositiveTestsByAgeChart.maleTotal,
+                drilldown: "MALE"
+              },
+              {
+                name: "FEMALE",
+                y: data.dataPositiveTestsByAgeChart.femaleTotal,
+                drilldown: "FEMALE"
+              }
+            ]
           }
-          ]
-      }
         ],
         drilldown: {
-        series:[
-        {
-        name: "Male",
-        id: "MALE",
-        data: [
-        ["negative", data.dataPositiveTestsByAgeChart.maleNegative],
-        ["positive", data.dataPositiveTestsByAgeChart.malePositive]
-        ]
-
-        },
-        {
-        name: "Female",
-        id: "FEMALE",
-        data: [
-        ["negative", data.dataPositiveTestsByAgeChart.femaleNegative
-        ],
-        ["positive", data.dataPositiveTestsByAgeChart.femalePositive
-
-        ]
-        ]
-
+          series: [
+            {
+              name: "Male",
+              id: "MALE",
+              tooltip: {
+                pointFormat:
+                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+              },
+              data: [
+                [
+                  "negative",
+                  data.dataPositiveTestsByAgeChart.maleNegative.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ],
+                [
+                  "positive",
+                  data.dataPositiveTestsByAgeChart.malePositive.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ]
+              ]
+            },
+            {
+              name: "Female",
+              id: "FEMALE",
+              tooltip: {
+                pointFormat:
+                  '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> cases<br/>'
+              },
+              data: [
+                [
+                  "negative",
+                  data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ],
+                [
+                  "positive",
+                  data.dataPositiveTestsByAgeChart.femalePositive.reduce(
+                    (a, b) => a + b,
+                    0
+                  )
+                ]
+              ]
+            }
+          ]
         }
-        ]
-      }
       }
     };
   }
-  }
+};
 
-
-  // Fire when currentLocale computed property changes
+// Fire when currentLocale computed property changes
 </script>
 
 <style lang="scss" scoped>
