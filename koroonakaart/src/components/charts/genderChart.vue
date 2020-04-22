@@ -24,6 +24,7 @@ export default {
   },
 
   mounted() {
+    console.log(this)
     /* console.log(this.chartOptions.yAxis.title.text); */
   },
 
@@ -89,18 +90,18 @@ export default {
 
         series: [
         {
-        name: "Genders",
+        name: "Gender",
         colorByPoint: true,
         data: [
         {
-            name: "MALE",
-            data: data.dataPositiveTestsByAgeChart.maleTotal,
-            drilldown: "MALE"
+            name: "Male",
+            y: data.dataPositiveTestsByAgeChart.maleTotal,
+            drilldown: "Male"
           },
           {
-            name: "FEMALE",
-            data: data.dataPositiveTestsByAgeChart.femaleTotal,
-            drilldown: "FEMALE"
+            name: "Female",
+            y: data.dataPositiveTestsByAgeChart.femaleTotal,
+            drilldown: "Female"
           }
           ]
       }
@@ -109,20 +110,19 @@ export default {
         series:[
         {
         name: "Male",
-        id: "MALE",
+        id: "Male",
         data: [
-        ["negative", data.dataPositiveTestsByAgeChart.maleNegative],
-        ["positive", data.dataPositiveTestsByAgeChart.malePositive]
+        ["negative", data.dataPositiveTestsByAgeChart.maleNegativeTotal],
+        ["positive", data.dataPositiveTestsByAgeChart.malePositiveTotal]
         ]
 
         },
         {
         name: "Female",
-        id: "FEMALE",
+        id: "Female",
         data: [
-        ["negative", data.dataPositiveTestsByAgeChart.femaleNegative
-        ],
-        ["positive", data.dataPositiveTestsByAgeChart.femalePositive
+        ["negative", data.dataPositiveTestsByAgeChart.femaleNegativeTotal],
+        ["positive", data.dataPositiveTestsByAgeChart.femalePositiveTotal
 
         ]
         ]
@@ -132,12 +132,27 @@ export default {
       }
       }
     };
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function() {
+      return this.$i18n.locale;
+    }
+  },
+
+  // Fire when currentLocale computed property changes
+  watch: {
+    currentLocale() {
+      this.chartOptions.title.text = this.$t("newCasesPerDay");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("confirmedCases");
+      this.chartOptions.series[1].name = this.$t("recovered");
+      this.chartOptions.series[2].name = this.$t("deceased");
+    }
   }
-  }
+  };
 
 
   // Fire when currentLocale computed property changes
 </script>
-
-<style lang="scss" scoped>
-</style>
