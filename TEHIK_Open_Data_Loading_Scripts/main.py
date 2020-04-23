@@ -1,28 +1,28 @@
 import json
 import requests
-from constants import county_mapping, county_sizes
+from constants import county_mapping, county_sizes, counties, age_groups
 from chart_data_functions import *
 from helpers import NpEncoder
 
 
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
-    "updatedOn": "23/04/2020, 11:00",
-    "hospitalisedNumber": 114,
-    "deceasedNumber": 44,
-    "recoveredNumber": 184,
+    "updatedOn": "23/04/2020, 11:30",
+    "hospitalisedNumber": 109,
+    "deceasedNumber": 45,
+    "recoveredNumber": 192,
     "datesEnd": "2020-04-22",
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-25",
     "recovered": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 4, 7, 8, 8, 11, 11, 20, 20,
                   20,
-                  26, 33, 45, 48,59, 62, 62, 69, 72, 83, 93, 93,98, 102, 115,117,133,145,162,164,165,169,184,184],
+                  26, 33, 45, 48,59, 62, 62, 69, 72, 83, 93, 93,98, 102, 115,117,133,145,162,164,165,169,184,192],
     "deceased": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3,
                  4, 5,
-                 11, 12,13, 15, 19, 21, 24, 24,24, 24,25, 27,31,35,36,38,38,40,40,43,44,44],
+                 11, 12,13, 15, 19, 21, 24, 24,24, 24,25, 27,31,35,36,38,38,40,40,43,44,45],
     "hospitalised": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 29, 34,
                      40, 48,
-                     56, 79, 91, 95, 85, 90,113, 130, 129, 130, 139, 134,138, 146,153, 157, 146,147,137,129,122,125,128,124, 114,114],
+                     56, 79, 91, 95, 85, 90,113, 130, 129, 130, 139, 134,138, 146,153, 157, 146,147,137,129,122,125,128,124, 114,109],
     "intensive": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 6, 7, 7, 7, 7, 10, 10,
                   13,
                   13, 15, 16, 16,20, 17, 14, 12, 11, 9, 9, 11,11, 9, 11,10,10,11,11,10,9,9, 7,7]
@@ -114,6 +114,8 @@ if __name__ == "__main__":
         "recoveredChanged": str(recoveredChanged),
         "dates1": list(map(lambda x: str(x.date()), dates1)),
         "dates2": list(map(lambda x: str(x.date()), dates2)),
+        "counties": counties,
+        "age_groups": age_groups,
         "dataInfectionsByCounty": dataInfectionsByCounty,
         "dataInfectionsByCounty10000": dataInfectionsByCounty10000,
         "dataTestsPopRatio": dataTestsPopRatio,
