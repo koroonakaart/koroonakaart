@@ -22,7 +22,7 @@
         </div>
         <h1>{{hospitalisedNumber}}</h1>
         <h5
-          :class="rawHospitalisedChanged > 0 ? 'positive' : 'negative'"
+          :class="rawHospitalisedChanged === 0 ? 'neutral' : rawHospitalisedChanged > 0 ? 'positive' : 'negative'"
         >( {{hospitalisedChanged}} )</h5>
       </b-col>
 
@@ -31,7 +31,9 @@
           <h5>{{ $t("deceased") }}</h5>
         </div>
         <h1>{{deceasedNumber}}</h1>
-        <h5 :class="rawDeceasedChanged > 0 ? 'positive' : 'negative'">( {{deceasedChanged}} )</h5>
+        <h5
+          :class="rawDeceasedChanged === 0 ? 'neutral' : rawDeceasedChanged > 0 ? 'positive' : 'negative'"
+        >( {{deceasedChanged}} )</h5>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -39,7 +41,9 @@
           <h5>{{ $t("recovered") }}</h5>
         </div>
         <h1>{{recoveredNumber}}</h1>
-        <h5 :class="rawRecoveredChanged > 0 ? 'negative' : 'positive'">( {{recoveredChanged}} )</h5>
+        <h5
+          :class="rawRecoveredChanged === 0 ? 'neutral' : rawRecoveredChanged > 0 ? 'negative' : 'positive'"
+        >( {{recoveredChanged}} )</h5>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -47,7 +51,9 @@
           <h5>{{ $t("testsAdministered") }}</h5>
         </div>
         <h1>{{testsAdministeredNumber}}</h1>
-        <h5 :class="rawTestsChanged > 0 ? 'negative' : 'positive'">( {{testsChanged}} )</h5>
+        <h5
+          :class="rawTestsChanged === 0 ? 'neutral' : rawTestsChanged > 0 ? 'negative' : 'positive'"
+        >( {{testsChanged}} )</h5>
       </b-col>
     </b-row>
   </b-container>
@@ -58,9 +64,6 @@ import data from "../data.json";
 import { positiveSign } from "../utilities/helper";
 export default {
   name: "Statsbar",
-  mounted() {
-    console.log(this.hospitalisedChanged);
-  },
 
   data() {
     return {
@@ -126,6 +129,10 @@ export default {
 
 .negative {
   color: green;
+}
+
+.neutral {
+  color: rgb(97, 97, 97);
 }
 
 .statsbar-item {
