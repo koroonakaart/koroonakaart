@@ -9,41 +9,12 @@
         <h5 :class="rawConfirmedChanged > 0 ? 'positive' : 'negative'">( {{confirmedChanged}} )</h5>
       </b-col>
 
-      <!--<b-col class="statsbar-item" md>
+      <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("activeCases") }}</h5>
         </div>
         <h1>{{activeCasesNumber}}</h1>
-      </b-col>-->
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("hospitalised") }}</h5>
-        </div>
-        <h1>{{hospitalisedNumber}}</h1>
-        <h5
-          :class="rawHospitalisedChanged === 0 ? 'neutral' : rawHospitalisedChanged > 0 ? 'positive' : 'negative'"
-        >( {{hospitalisedChanged}} )</h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("deceased") }}</h5>
-        </div>
-        <h1>{{deceasedNumber}}</h1>
-        <h5
-          :class="rawDeceasedChanged === 0 ? 'neutral' : rawDeceasedChanged > 0 ? 'positive' : 'negative'"
-        >( {{deceasedChanged}} )</h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("recovered") }}</h5>
-        </div>
-        <h1>{{recoveredNumber}}</h1>
-        <h5
-          :class="rawRecoveredChanged === 0 ? 'neutral' : rawRecoveredChanged > 0 ? 'negative' : 'positive'"
-        >( {{recoveredChanged}} )</h5>
+        <h5 :class="rawActiveChanged > 0 ? 'positive' : 'negative'">( {{activeChanged}} )</h5>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -55,6 +26,44 @@
           :class="rawTestsChanged === 0 ? 'neutral' : rawTestsChanged > 0 ? 'negative' : 'positive'"
         >( {{testsChanged}} )</h5>
       </b-col>
+
+
+</b-row>
+<br>
+<b-row>
+<b-col class="statsbar-item" md>
+  <div class="statsbar-heading">
+    <h5>{{ $t("hospitalised") }}</h5>
+  </div>
+  <h1>{{hospitalisedNumber}}</h1>
+  <h5
+    :class="rawHospitalisedChanged === 0 ? 'neutral' : rawHospitalisedChanged > 0 ? 'positive' : 'negative'"
+  >( {{hospitalisedChanged}} )</h5>
+</b-col>
+
+<b-col class="statsbar-item" md>
+  <div class="statsbar-heading">
+    <h5>{{ $t("recovered") }}</h5>
+  </div>
+  <h1>{{recoveredNumber}}</h1>
+  <h5
+    :class="rawRecoveredChanged === 0 ? 'neutral' : rawRecoveredChanged > 0 ? 'negative' : 'positive'"
+  >( {{recoveredChanged}} )</h5>
+</b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("deceased") }}</h5>
+        </div>
+        <h1>{{deceasedNumber}}</h1>
+        <h5
+          :class="rawDeceasedChanged === 0 ? 'neutral' : rawDeceasedChanged > 0 ? 'positive' : 'negative'"
+        >( {{deceasedChanged}} )</h5>
+      </b-col>
+
+
+
+
     </b-row>
   </b-container>
 </template>
@@ -69,6 +78,13 @@ export default {
     return {
       confirmedCasesNumber: data.confirmedCasesNumber,
       activeCasesNumber: data.activeCasesNumber,
+      activeChanged: positiveSign(data.activeChanged),
+      rawActiveChanged: data.dataCumulativeCasesChart.active[
+        data.dataCumulativeCasesChart.active.length - 1
+      ]  -
+      data.dataCumulativeCasesChart.active[
+        data.dataCumulativeCasesChart.active.length - 2
+      ],
       hospitalisedNumber: data.hospitalisedNumber,
       deceasedNumber: data.deceasedNumber,
       recoveredNumber: data.recoveredNumber,

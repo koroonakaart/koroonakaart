@@ -64,7 +64,6 @@ if __name__ == "__main__":
     testsAdministeredNumber = len(json_data)
 
     # Calculate active number of cases
-    activeCasesNumber = confirmedCasesNumber - (deceasedNumber + recoveredNumber)
 
     # Set date ranges
     dates_range_end = MANUAL_DATA["datesEnd"]
@@ -105,6 +104,9 @@ if __name__ == "__main__":
     dataPositiveTestsByAgeChart = getDataPositiveTestsByAgeChart(json_copy)
     dataPositiveNegativeChart = getDataPositiveNegativeChart(json_copy, county_mapping)
 
+    activeCasesNumber = dataCumulativeCasesChart["active"][-1]
+    activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
+
     # Create dictionary for final json
     finalJson = {
         "updatedOn": updatedOn,
@@ -117,6 +119,7 @@ if __name__ == "__main__":
         "hospitalChanged": str(hospitalChanged),
         "deceasedChanged": str(deceasedChanged),
         "recoveredChanged": str(recoveredChanged),
+        "activeChanged": str(activeChanged),
         "dates1": list(map(lambda x: str(x.date()), dates1)),
         "dates2": list(map(lambda x: str(x.date()), dates2)),
         "counties": counties,

@@ -81,39 +81,6 @@ def getDataConfirmedCasesByCounties(json, county_mapping):
     return [counts[county] for county in chart_counties]
 
 
-def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalised, intensive, dates):
-    date_counts = defaultdict(int)
-
-    for res in json:
-        if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
-            date_counts[str(date)] += 1
-
-    confirmed_cases = []
-
-    for date in dates:
-        confirmed_cases.append(date_counts[str(date.date())])
-
-    cases = np.cumsum(confirmed_cases)
-    recovered = recovered_list
-    deceased = deceased_list
-    intensive = intensive
-    hospitalised = hospitalised
-
-    active = [cases[i] - (recovered[i] + deceased[i]) for i in range(len(cases))]
-
-    dataCumulativeCasesChart = {
-        "cases": list(cases),
-        "recovered": recovered_list,
-        "active": active,
-        "deceased": deceased_list,
-        "haiglas": hospitalised,
-        "intensive": intensive
-    }
-
-    return dataCumulativeCasesChart
-
-
 def getDataNewCasesPerDayChart(data):
     cases = np.diff(data["cases"], prepend=0)
     recovered = np.diff(data["recovered"], prepend=0)
@@ -202,6 +169,46 @@ def getDataTestsPerDayChart(json, dates):
         }
 
     return return_json
+
+def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalised, intensive, dates):
+    date_counts = defaultdict(int)
+    andmed = getDataTestsPerDayChart(json,dates)
+    for res in json:
+        if res["ResultValue"] == "P":
+            date = pd.to_datetime(res["StatisticsDate"]).date()
+            date_counts[str(date)] += 1
+
+    confirmed_cases = []
+
+    for date in dates:
+        confirmed_cases.append(date_counts[str(date.date())])
+
+    cases = np.cumsum(confirmed_cases)
+    recovered = recovered_list
+    deceased = deceased_list
+    intensive = intensive
+    hospitalised = hospitalised
+
+
+    new_cases_14 = [andmed["positiveTestsPerDay"][0]]
+    for i in range(1,14):
+        new_cases_14.append(new_cases_14[i-1] + andmed["positiveTestsPerDay"][i])
+
+    for i in range(14, len(andmed["positiveTestsPerDay"])):
+        new_cases_14.append(new_cases_14[i-1] - andmed["positiveTestsPerDay"][i-14]  + andmed["positiveTestsPerDay"][i])
+
+
+
+    dataCumulativeCasesChart = {
+        "cases": list(cases),
+        "recovered": recovered_list,
+        "active": new_cases_14,
+        "deceased": deceased_list,
+        "haiglas": hospitalised,
+        "intensive": intensive
+    }
+
+    return dataCumulativeCasesChart
 
 
 def getDataPositiveTestsByAgeChart(json):

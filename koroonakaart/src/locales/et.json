@@ -1,7 +1,7 @@
 {
   "abs": "Abs",
-  "active": "Aktiivsed",
-  "activeCases": "Aktiivsed haigusjuhud",
+  "active": "Aktiivsete haigusjuhtude hinnang",
+  "activeCases": "Aktiivsete haigusjuhtude hinnang",
   "age": "Vanus",
   "answerbot": "Vastusrobot",
   "cases": "Haigusjuhud",
