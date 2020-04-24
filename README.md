@@ -13,6 +13,9 @@ Keegan McBride (PO of koroonakaart.ee) ⁠— keegan.mcbride@taltech.ee
 
 Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee 
 
+## Data / API
+All data used by our application can be accessed directly at the following link: https://www.koroonakaart.ee/data.json
+
 ## To embed any of the charts
 
 You can use the export menu on the charts (hamburger menu on the top right), select *Embed Graph* and copy and paste from the modal or directly link to the chart. Eg https://www.koroonakaart.ee/en/chart?chart=TestsPopRatioChart&height=700&width=1000 . 

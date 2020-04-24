@@ -18,6 +18,25 @@ county_mapping = {
     "Eesti": "Info puudulik"
 }
 
+counties = [
+"Harjumaa",
+"Hiiumaa",
+"Ida-Virumaa",
+"Jõgevamaa",
+"Järvamaa",
+"Läänemaa",
+"Lääne-Virumaa",
+"Põlvamaa",
+"Pärnumaa",
+"Raplamaa",
+"Saaremaa",
+"Tartumaa",
+"Valgamaa",
+"Viljandimaa",
+"Võrumaa",
+"Info puudulik"
+]
+
 county_sizes = {
     "Harjumaa": 598059,
     "Hiiumaa": 9387,
@@ -35,3 +54,24 @@ county_sizes = {
     "Viljandimaa": 46371,
     "Võrumaa": 35782
 }
+
+age_groups = [
+        "0-4",
+        "5-9",
+        "10-14",
+        "15-19",
+        "20-24",
+        "25-29",
+        "30-34",
+        "35-39",
+        "40-44",
+        "45-49",
+        "50-54",
+        "55-59",
+        "60-64",
+        "65-69",
+        "70-74",
+        "75-79",
+        "80-84",
+        "üle 85"
+]
