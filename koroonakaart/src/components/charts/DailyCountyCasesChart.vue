@@ -58,7 +58,7 @@ export default {
                   this.options.chartType === "logarithmic" ? 2 : 0
                 );
                 this.exportSVGElements[6].setState(
-                  this.options.chartType === "active" ? 2 : 0
+                  this.options.chartType === "linear" ? 2 : 0
                 );
               }, 100);
             }
@@ -93,18 +93,10 @@ export default {
               ]
             },
 
-            customButton2: {
+            customButton: {
               text: this.$t("logarithmic"),
               onclick: function() {
-              this.options.chartType = "logarithmic";
-
-              this.yAxis[0].update({
-                type: "logarithmic",
-                allowNegativeLog: true
-
-              });
               this.update({
-
               series: [
                 {
                   name: "Harjumaa",
@@ -174,17 +166,19 @@ export default {
                 }
               ]
               });
-
-              }
-            },
-            customButton: {
-              text: this.$t("linear"),
-              onclick: function() {
-              this.options.chartType = "linear";
+              this.options.chartType = "logarithmic";
 
               this.yAxis[0].update({
-                type: "linear"
+                type: "logarithmic",
+                allowNegativeLog: true
+
               });
+              }
+            },
+            customButton2: {
+              text: this.$t("linear"),
+              onclick: function() {
+
                 this.update({
                 series: [
                   {
@@ -255,19 +249,17 @@ export default {
                   }
                 ]
                 });
+                this.options.chartType = "linear";
 
+                this.yAxis[0].update({
+                  type: "linear"
+                });
               }
             }
           ,
           customButton3: {
             text: this.$t("active"),
             onclick: function() {
-            this.options.chartType = "linear";
-
-            this.yAxis[0].update({
-              type: "linear"
-            });
-            this.options.chartType = "active";
               this.update({
               series: [
                 {
@@ -339,6 +331,10 @@ export default {
               ]
               });
 
+                          this.yAxis[0].update({
+                            type: "linear"
+                          });
+                          this.options.chartType = "linear";
             }
           }
           }
@@ -488,10 +484,10 @@ export default {
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
+      this.chartOptions.exporting.buttons.customButton.text = this.$t(
         "logarithmic"
       );
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton3.text = this.$t(
         "active"
       );
