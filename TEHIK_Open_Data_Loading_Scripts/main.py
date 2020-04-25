@@ -106,10 +106,12 @@ if __name__ == "__main__":
     dataCountyDailyActive = getdataCountyDailyActive(json_copy,dates2,county_mapping)
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
+    dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
+
 
     # Create dictionary for final json
     finalJson = {
-        "updatedOn": updatedOn,
+        "updatedOn  ": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
         "activeCasesNumber": str(activeCasesNumber),
         "hospitalisedNumber": str(hospitalisedNumber),
@@ -126,6 +128,7 @@ if __name__ == "__main__":
         "age_groups": age_groups,
         "dataInfectionsByCounty": dataInfectionsByCounty,
         "dataInfectionsByCounty10000": dataInfectionsByCounty10000,
+        "dataActiveInfectionsByCounty": dataActiveInfectionsByCounty,
         "dataTestsPopRatio": dataTestsPopRatio,
         "countyByDay": countyByDay,
         "dataCountyDailyActive": dataCountyDailyActive,
