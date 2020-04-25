@@ -6,7 +6,9 @@
           <h5>{{ $t("confirmedCases") }}</h5>
         </div>
         <h1>{{confirmedCasesNumber}}</h1>
-        <h5 :class="rawConfirmedChanged > 0 ? 'positive' : 'negative'">( {{confirmedChanged}} )</h5>
+        <h5
+          :class="rawConfirmedChanged === 0 ? 'neutral' : rawConfirmedChanged > 0 ? 'positive' : 'positive'"
+        >( {{confirmedChanged}} )</h5>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -14,7 +16,9 @@
           <h5>{{ $t("activeCases") }}</h5>
         </div>
         <h1>{{activeCasesNumber}}</h1>
-        <h5 :class="rawActiveChanged > 0 ? 'positive' : 'negative'">( {{activeChanged}} )</h5>
+        <h5
+          :class="rawActiveChanged === 0 ? 'neutral' : rawActiveChanged > 0 ? 'positive' : 'negative'"
+        >( {{activeChanged}} )</h5>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -26,30 +30,28 @@
           :class="rawTestsChanged === 0 ? 'neutral' : rawTestsChanged > 0 ? 'negative' : 'positive'"
         >( {{testsChanged}} )</h5>
       </b-col>
+    </b-row>
+    <br />
+    <b-row>
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("hospitalised") }}</h5>
+        </div>
+        <h1>{{hospitalisedNumber}}</h1>
+        <h5
+          :class="rawHospitalisedChanged === 0 ? 'neutral' : rawHospitalisedChanged > 0 ? 'positive' : 'negative'"
+        >( {{hospitalisedChanged}} )</h5>
+      </b-col>
 
-
-</b-row>
-<br>
-<b-row>
-<b-col class="statsbar-item" md>
-  <div class="statsbar-heading">
-    <h5>{{ $t("hospitalised") }}</h5>
-  </div>
-  <h1>{{hospitalisedNumber}}</h1>
-  <h5
-    :class="rawHospitalisedChanged === 0 ? 'neutral' : rawHospitalisedChanged > 0 ? 'positive' : 'negative'"
-  >( {{hospitalisedChanged}} )</h5>
-</b-col>
-
-<b-col class="statsbar-item" md>
-  <div class="statsbar-heading">
-    <h5>{{ $t("recovered") }}</h5>
-  </div>
-  <h1>{{recoveredNumber}}</h1>
-  <h5
-    :class="rawRecoveredChanged === 0 ? 'neutral' : rawRecoveredChanged > 0 ? 'negative' : 'positive'"
-  >( {{recoveredChanged}} )</h5>
-</b-col>
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("recovered") }}</h5>
+        </div>
+        <h1>{{recoveredNumber}}</h1>
+        <h5
+          :class="rawRecoveredChanged === 0 ? 'neutral' : rawRecoveredChanged > 0 ? 'negative' : 'positive'"
+        >( {{recoveredChanged}} )</h5>
+      </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
@@ -60,10 +62,6 @@
           :class="rawDeceasedChanged === 0 ? 'neutral' : rawDeceasedChanged > 0 ? 'positive' : 'negative'"
         >( {{deceasedChanged}} )</h5>
       </b-col>
-
-
-
-
     </b-row>
   </b-container>
 </template>
@@ -76,41 +74,47 @@ export default {
 
   data() {
     return {
-      confirmedCasesNumber: data.confirmedCasesNumber,
       activeCasesNumber: data.activeCasesNumber,
-      activeChanged: positiveSign(data.activeChanged),
-      rawActiveChanged: data.dataCumulativeCasesChart.active[
-        data.dataCumulativeCasesChart.active.length - 1
-      ]  -
-      data.dataCumulativeCasesChart.active[
-        data.dataCumulativeCasesChart.active.length - 2
-      ],
-      hospitalisedNumber: data.hospitalisedNumber,
+      confirmedCasesNumber: data.confirmedCasesNumber,
       deceasedNumber: data.deceasedNumber,
+      hospitalisedNumber: data.hospitalisedNumber,
       recoveredNumber: data.recoveredNumber,
       testsAdministeredNumber: data.testsAdministeredNumber,
-      rawHospitalisedChanged: data.hospitalChanged,
-      rawRecoveredChanged: data.recoveredChanged,
-      rawDeceasedChanged: data.deceasedChanged,
-      rawConfirmedChanged:
+
+      rawActiveChanged: Number(
+        data.dataCumulativeCasesChart.active[
+          data.dataCumulativeCasesChart.active.length - 1
+        ] -
+          data.dataCumulativeCasesChart.active[
+            data.dataCumulativeCasesChart.active.length - 2
+          ]
+      ),
+      rawConfirmedChanged: Number(
         data.dataNewCasesPerDayChart.confirmedCases[
           data.dataNewCasesPerDayChart.confirmedCases.length - 1
-        ],
-      rawTestsChanged:
+        ]
+      ),
+      rawDeceasedChanged: Number(data.deceasedChanged),
+      rawHospitalisedChanged: Number(data.hospitalChanged),
+      rawRecoveredChanged: Number(data.recoveredChanged),
+      rawTestsChanged: Number(
         data.dataCumulativeTestsChart.testsAdminstered[
           data.dataCumulativeTestsChart.testsAdminstered.length - 1
         ] -
-        data.dataCumulativeTestsChart.testsAdminstered[
-          data.dataCumulativeTestsChart.testsAdminstered.length - 2
-        ],
-      hospitalisedChanged: positiveSign(data.hospitalChanged),
-      recoveredChanged: positiveSign(data.recoveredChanged),
+          data.dataCumulativeTestsChart.testsAdminstered[
+            data.dataCumulativeTestsChart.testsAdminstered.length - 2
+          ]
+      ),
+
+      activeChanged: positiveSign(data.activeChanged),
       deceasedChanged: positiveSign(data.deceasedChanged),
       confirmedChanged: positiveSign(
         data.dataNewCasesPerDayChart.confirmedCases[
           data.dataNewCasesPerDayChart.confirmedCases.length - 1
         ]
       ),
+      hospitalisedChanged: positiveSign(data.hospitalChanged),
+      recoveredChanged: positiveSign(data.recoveredChanged),
       testsChanged: positiveSign(
         data.dataCumulativeTestsChart.testsAdminstered[
           data.dataCumulativeTestsChart.testsAdminstered.length - 1
