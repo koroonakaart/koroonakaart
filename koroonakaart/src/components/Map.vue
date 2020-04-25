@@ -67,7 +67,7 @@ export default {
                 this.exportSVGElements[2].setState(
                   this.options.chartType === "per10k" ? 2 : 0
                 );
-                this.exportSVGElements[2].setState(
+                this.exportSVGElements[6].setState(
                   this.options.chartType === "active" ? 2 : 0
                 );
               }, 100);
@@ -152,7 +152,7 @@ export default {
 
                 this.update({
                   series: {
-                    data: data.dataCountyDailyActive,
+                    data: data.dataActiveInfectionsByCounty,
                     dataLabels: {
                       format: "{point.MNIMI}"
                     }
@@ -216,7 +216,8 @@ export default {
         // Legend bar density
         colorAxis: {
           tickPixelInterval: 50,
-          type: "logarithmic",
+          type: "linear",
+        //  allowNegativeLog: true,
           /* minColor: "#EEEEFF",
           maxColor: "#000022", */
           lineColor: {
