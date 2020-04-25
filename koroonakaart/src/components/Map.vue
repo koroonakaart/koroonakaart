@@ -299,9 +299,9 @@ export default {
       );
 
       // Persist chart type selection through language change
-      this.mapOptions.chartType === "absolute"
-        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
-        : (this.mapOptions.series[0] = data.dataInfectionsByCounty10000);
+      this.mapOptions.chartType === "absolute" ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
+      : this.mapOptions.chartType === "per10k" ? (this.mapOptions.series[0] = data.dataInfectionsByCounty10000)
+      : (this.mapOptions.series[0] = data.dataActiveInfectionsByCounty);
     }
   }
 };
