@@ -96,8 +96,15 @@ export default {
             customButton2: {
               text: this.$t("logarithmic"),
               onclick: function() {
-              console.log(this);
+              this.options.chartType = "logarithmic";
+
+              this.yAxis[0].update({
+                type: "logarithmic",
+                allowNegativeLog: true
+
+              });
               this.update({
+
               series: [
                 {
                   name: "Harjumaa",
@@ -167,17 +174,17 @@ export default {
                 }
               ]
               });
-                this.options.chartType = "logarithmic";
 
-                this.yAxis[0].update({
-                  type: "logarithmic"
-                });
               }
             },
             customButton: {
               text: this.$t("linear"),
               onclick: function() {
+              this.options.chartType = "linear";
 
+              this.yAxis[0].update({
+                type: "linear"
+              });
                 this.update({
                 series: [
                   {
@@ -248,17 +255,18 @@ export default {
                   }
                 ]
                 });
-                this.options.chartType = "linear";
 
-                this.yAxis[0].update({
-                  type: "linear"
-                });
               }
             }
           ,
           customButton3: {
             text: this.$t("active"),
             onclick: function() {
+            this.options.chartType = "linear";
+
+            this.yAxis[0].update({
+              type: "linear"
+            });
             this.options.chartType = "active";
               this.update({
               series: [
@@ -330,9 +338,7 @@ export default {
                 }
               ]
               });
-              this.yAxis[0].update({
-                type: "linear"
-              });
+
             }
           }
           }
