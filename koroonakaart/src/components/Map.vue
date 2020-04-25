@@ -67,6 +67,9 @@ export default {
                 this.exportSVGElements[2].setState(
                   this.options.chartType === "per10k" ? 2 : 0
                 );
+                this.exportSVGElements[2].setState(
+                  this.options.chartType === "active" ? 2 : 0
+                );
               }, 100);
             }
           }
@@ -135,6 +138,21 @@ export default {
                 this.update({
                   series: {
                     data: data.dataInfectionsByCounty,
+                    dataLabels: {
+                      format: "{point.MNIMI}"
+                    }
+                  }
+                });
+              }
+            },
+            customButton3: {
+              text: this.$t("active"),
+              onclick: function() {
+              this.options.chartType = "active";
+
+                this.update({
+                  series: {
+                    data: data.dataCountyDailyActive,
                     dataLabels: {
                       format: "{point.MNIMI}"
                     }
@@ -274,6 +292,9 @@ export default {
       this.mapOptions.exporting.buttons.customButton.text = this.$t("per10000");
       this.mapOptions.exporting.buttons.customButton2.text = this.$t(
         "absolute"
+      );
+      this.mapOptions.exporting.buttons.customButton3.text = this.$t(
+        "active"
       );
 
       // Persist chart type selection through language change

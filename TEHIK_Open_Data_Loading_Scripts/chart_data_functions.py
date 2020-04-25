@@ -65,6 +65,35 @@ def getCountyByDay(json, dates, county_mapping):
     return countyByDay
 
 
+def getdataCountyDailyActive(json, dates, county_mapping):
+    chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
+                      "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",
+                      "Valgamaa", "Viljandimaa", "Võrumaa"]
+
+    county_date_counts = defaultdict(int)
+
+    for res in json:
+        if res["ResultValue"] == "P":
+            date = pd.to_datetime(res["StatisticsDate"]).date()
+            county = county_mapping[res["County"]]
+            if county in chart_counties:
+                county_date_counts[(county, str(date))] += 1
+
+    countyByDay = {}
+
+    for county in chart_counties:
+        per_day_county = []
+        for date in dates:
+            val = county_date_counts[(county, str(date.date()))]
+            per_day_county.append(val)
+
+
+        # Calculate cumulative
+        countyByDay[county] = list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum()))
+
+
+    return countyByDay
+
 def getDataConfirmedCasesByCounties(json, county_mapping):
     chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
                       "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",

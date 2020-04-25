@@ -103,7 +103,7 @@ if __name__ == "__main__":
     dataTestsPerDayChart = getDataTestsPerDayChart(json_copy, dates2)
     dataPositiveTestsByAgeChart = getDataPositiveTestsByAgeChart(json_copy)
     dataPositiveNegativeChart = getDataPositiveNegativeChart(json_copy, county_mapping)
-
+    dataCountyDailyActive = getdataCountyDailyActive(json_copy,dates2,county_mapping)
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
 
@@ -128,6 +128,7 @@ if __name__ == "__main__":
         "dataInfectionsByCounty10000": dataInfectionsByCounty10000,
         "dataTestsPopRatio": dataTestsPopRatio,
         "countyByDay": countyByDay,
+        "dataCountyDailyActive": dataCountyDailyActive,
         "dataConfirmedCasesByCounties": dataConfirmedCasesByCounties,
         "dataCumulativeCasesChart": dataCumulativeCasesChart,
         "dataNewCasesPerDayChart": dataNewCasesPerDayChart,
