@@ -229,7 +229,7 @@ export default {
           rules: [
             {
               condition: {
-                maxWidth: 380
+                maxWidth: 600
               },
 
               chartOptions: {
