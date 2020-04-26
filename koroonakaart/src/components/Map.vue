@@ -148,7 +148,12 @@ export default {
 
                 this.update({
                   series: {
-                    data: data.dataActiveInfectionsByCounty,
+                    data: data.dataActiveInfectionsByCounty.map(point => {
+                      if (point[1] === 0) {
+                        point[1] = point[1] + 0.000001;
+                        return point;
+                      } else return point;
+                    }),
                     dataLabels: {
                       format: "{point.MNIMI}"
                     }
@@ -212,11 +217,17 @@ export default {
 
         // Legend bar density
         colorAxis: {
+          min: 1,
           tickPixelInterval: 50,
-          type: "linear",
-          //  allowNegativeLog: true,
+          type: "logarithmic",
           /* minColor: "#EEEEFF",
           maxColor: "#000022", */
+          /* labels: {
+            formatter: function() {
+              return this.value - 1;
+            }
+          }, */
+
           lineColor: {
             color: {
               /* linearGradient: {
@@ -256,7 +267,15 @@ export default {
 
             // Customise tooltips
             tooltip: {
-              pointFormat: "{point.MNIMI}: {point.value}<br/>"
+              pointFormat: "{point.MNIMI}: {point.value}<br/>",
+
+              pointFormatter: function() {
+                if (this.value === 0.000001) {
+                  return 0;
+                } else {
+                  return this.value;
+                }
+              }
             },
 
             dataLabels: {
