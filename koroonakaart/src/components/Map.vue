@@ -292,6 +292,16 @@ export default {
                   }
                 }
               }
+            },
+
+            {
+              condition: {
+                minWidth: 1000
+              },
+
+              chartOptions: {
+                chart: { height: 600 }
+              }
             }
           ]
         }
