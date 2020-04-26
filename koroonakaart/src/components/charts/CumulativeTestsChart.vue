@@ -202,10 +202,11 @@ export default {
           rules: [
             {
               condition: {
-                maxWidth: 350
+                maxWidth: 650
               },
 
               chartOptions: {
+                chart: { marginTop: 80 },
                 navigation: {
                   buttonOptions: {
                     y: 20,

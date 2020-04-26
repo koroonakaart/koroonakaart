@@ -223,7 +223,31 @@ export default {
             name: this.$t("negative"),
             data: data.dataPositiveNegativeChart.negative
           }
-        ]
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 380
+              },
+
+              chartOptions: {
+                navigation: {
+                  buttonOptions: {
+                    y: 20,
+                    verticalAlign: "center",
+                    theme: {
+                      style: {
+                        width: "70px"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     };
   },
