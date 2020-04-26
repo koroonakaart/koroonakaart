@@ -495,18 +495,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.statsbar-item {
-  //  height: 7em;
-
-  @media only screen and (max-width: 766px) {
-    margin-bottom: 1em;
-  }
-}.statsbar-item {
-  //  height: 7em;
-
-  @media only screen and (max-width: 766px) {
-    margin-bottom: 1em;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
