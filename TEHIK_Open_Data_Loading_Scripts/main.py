@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
     # Create dictionary for final json
     finalJson = {
-        "updatedOn  ": updatedOn,
+        "updatedOn": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
         "activeCasesNumber": str(activeCasesNumber),
         "hospitalisedNumber": str(hospitalisedNumber),
