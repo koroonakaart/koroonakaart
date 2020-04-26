@@ -1,11 +1,6 @@
 <template>
   <b-container>
-    <highcharts
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
 
@@ -39,6 +34,7 @@ export default {
         chartType: "absolute",
 
         chart: {
+          marginTop: 30,
           map: "mapEstonia",
           // Set max height of the map
           height: this.height,
@@ -148,7 +144,7 @@ export default {
             customButton3: {
               text: this.$t("active"),
               onclick: function() {
-              this.options.chartType = "active";
+                this.options.chartType = "active";
 
                 this.update({
                   series: {
@@ -168,6 +164,7 @@ export default {
         title: {
           text: ""
         },
+
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
@@ -217,7 +214,7 @@ export default {
         colorAxis: {
           tickPixelInterval: 50,
           type: "linear",
-        //  allowNegativeLog: true,
+          //  allowNegativeLog: true,
           /* minColor: "#EEEEFF",
           maxColor: "#000022", */
           lineColor: {
@@ -274,7 +271,30 @@ export default {
 
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
-        ]
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500
+              },
+
+              chartOptions: {
+                navigation: {
+                  buttonOptions: {
+                    verticalAlign: "center",
+                    theme: {
+                      style: {
+                        width: "70px"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     };
   },
@@ -294,14 +314,14 @@ export default {
       this.mapOptions.exporting.buttons.customButton2.text = this.$t(
         "absolute"
       );
-      this.mapOptions.exporting.buttons.customButton3.text = this.$t(
-        "active"
-      );
+      this.mapOptions.exporting.buttons.customButton3.text = this.$t("active");
 
       // Persist chart type selection through language change
-      this.mapOptions.chartType === "absolute" ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
-      : this.mapOptions.chartType === "per10k" ? (this.mapOptions.series[0] = data.dataInfectionsByCounty10000)
-      : (this.mapOptions.series[0] = data.dataActiveInfectionsByCounty);
+      this.mapOptions.chartType === "absolute"
+        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
+        : this.mapOptions.chartType === "per10k"
+        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty10000)
+        : (this.mapOptions.series[0] = data.dataActiveInfectionsByCounty);
     }
   }
 };

@@ -25,7 +25,7 @@ export default {
         title: {
           text: this.$t("distributionOfAgeSexTests"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         chart: {

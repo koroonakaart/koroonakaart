@@ -1,10 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
+    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
   </b-container>
 </template>
 
@@ -31,7 +27,7 @@ export default {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         chart: {

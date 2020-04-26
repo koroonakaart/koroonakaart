@@ -25,7 +25,7 @@ export default {
         title: {
           text: this.$t("cumulativeTests"),
           align: "left",
-          y: 30
+          y: 5
         },
 
         chartType: "linear",
@@ -196,7 +196,31 @@ export default {
             name: this.$t("testsAdministered"),
             data: data.dataCumulativeTestsChart.testsAdminstered
           }
-        ]
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 350
+              },
+
+              chartOptions: {
+                navigation: {
+                  buttonOptions: {
+                    y: 20,
+                    verticalAlign: "center",
+                    theme: {
+                      style: {
+                        width: "70px"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     };
   },

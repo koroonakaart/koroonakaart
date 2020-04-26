@@ -39,7 +39,7 @@ export default {
         title: {
           text: this.$t("genderChart"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         chart: {

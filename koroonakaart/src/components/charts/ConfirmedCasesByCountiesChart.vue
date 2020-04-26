@@ -25,7 +25,7 @@ export default {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         navigation: {
@@ -38,7 +38,8 @@ export default {
         chart: {
           type: "bar",
           height: this.height,
-          width: this.width
+          width: this.width,
+          marginTop: 40
         },
 
         exporting: {

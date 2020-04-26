@@ -61,7 +61,7 @@ export default {
         title: {
           text: this.$t("cumulativeCases"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         exporting: {
@@ -205,7 +205,32 @@ export default {
             data: data.dataCumulativeCasesChart.intensive,
             color: "#c42525"
           }
-        ]
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 350
+              },
+
+              chartOptions: {
+                chart: { marginTop: 70 },
+                navigation: {
+                  buttonOptions: {
+                    y: 10,
+                    verticalAlign: "center",
+                    theme: {
+                      style: {
+                        width: "70px"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     };
   },

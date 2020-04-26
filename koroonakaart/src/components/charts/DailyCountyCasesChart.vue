@@ -27,12 +27,13 @@ export default {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         chart: {
           height: this.height,
           width: this.width,
+          marginTop: 80,
           events: {
             load: function() {
               if (!this.exportSVGElements) return;
@@ -464,7 +465,32 @@ export default {
             name: "Võrumaa",
             data: data.countyByDay.Võrumaa
           }
-        ]
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500
+              },
+
+              chartOptions: {
+                chart: { marginTop: 80 },
+                navigation: {
+                  buttonOptions: {
+                    y: 10,
+                    verticalAlign: "center",
+                    theme: {
+                      style: {
+                        width: "70px"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     };
   },

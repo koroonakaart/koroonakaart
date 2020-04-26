@@ -25,7 +25,7 @@ export default {
         title: {
           text: this.$t("testsPer10000"),
           align: "left",
-          y: 25
+          y: 5
         },
 
         navigation: {
@@ -38,7 +38,8 @@ export default {
         chart: {
           type: "bar",
           height: this.height,
-          width: this.width
+          width: this.width,
+          marginTop: 40
         },
 
         exporting: {
@@ -134,7 +135,21 @@ export default {
             name: this.$t("numberOfCases"),
             data: data.dataTestsPopRatio
           }
-        ]
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 350
+              },
+
+              chartOptions: {
+                chart: { marginTop: 60 }
+              }
+            }
+          ]
+        }
       }
     };
   },
