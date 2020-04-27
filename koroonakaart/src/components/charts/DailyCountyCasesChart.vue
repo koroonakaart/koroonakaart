@@ -101,69 +101,69 @@ export default {
                   series: [
                     {
                       name: "Harjumaa",
-                      data: data.countyByDay.Harjumaa,
+                      data: data.countyByDay.countyByDay.Harjumaa,
                       color: "#2F7ED8"
                     },
                     {
                       name: "Hiiumaa",
-                      data: data.countyByDay.Hiiumaa,
+                      data: data.countyByDay.countyByDay.Hiiumaa,
                       color: "#456990"
                     },
                     {
                       name: "Ida-Virumaa",
-                      data: data.countyByDay.IdaVirumaa,
+                      data: data.countyByDay.countyByDay.IdaVirumaa,
                       color: "#49BEAA"
                     },
                     {
                       name: "Jõgevamaa",
-                      data: data.countyByDay.Jõgevamaa,
+                      data: data.countyByDay.countyByDay.Jõgevamaa,
                       color: "#49DCB1"
                     },
                     {
                       name: "Järvamaa",
-                      data: data.countyByDay.Järvamaa,
+                      data: data.countyByDay.countyByDay.Järvamaa,
                       color: "#EEB868"
                     },
                     {
                       name: "Läänemaa",
-                      data: data.countyByDay.Läänemaa
+                      data: data.countyByDay.countyByDay.Läänemaa
                     },
                     {
                       name: "Lääne-Virumaa",
-                      data: data.countyByDay.LääneVirumaa,
+                      data: data.countyByDay.countyByDay.LääneVirumaa,
                       color: "#6684A4"
                     },
                     {
                       name: "Põlvamaa",
-                      data: data.countyByDay.Põlvamaa
+                      data: data.countyByDay.countyByDay.Põlvamaa
                     },
                     {
                       name: "Pärnumaa",
-                      data: data.countyByDay.Pärnumaa
+                      data: data.countyByDay.countyByDay.Pärnumaa
                     },
                     {
                       name: "Raplamaa",
-                      data: data.countyByDay.Raplamaa
+                      data: data.countyByDay.countyByDay.Raplamaa
                     },
                     {
                       name: "Saaremaa",
-                      data: data.countyByDay.Saaremaa
+                      data: data.countyByDay.countyByDay.Saaremaa
                     },
                     {
                       name: "Tartumaa",
-                      data: data.countyByDay.Tartumaa
+                      data: data.countyByDay.countyByDay.Tartumaa
                     },
                     {
                       name: "Valgamaa",
-                      data: data.countyByDay.Valgamaa
+                      data: data.countyByDay.countyByDay.Valgamaa
                     },
                     {
                       name: "Viljandimaa",
-                      data: data.countyByDay.Viljandimaa
+                      data: data.countyByDay.countyByDay.Viljandimaa
                     },
                     {
                       name: "Võrumaa",
-                      data: data.countyByDay.Võrumaa
+                      data: data.countyByDay.countyByDay.Võrumaa
                     }
                   ]
                 });
@@ -182,69 +182,69 @@ export default {
                   series: [
                     {
                       name: "Harjumaa",
-                      data: data.countyByDay.Harjumaa,
+                      data: data.countyByDay.countyByDay.Harjumaa,
                       color: "#2F7ED8"
                     },
                     {
                       name: "Hiiumaa",
-                      data: data.countyByDay.Hiiumaa,
+                      data: data.countyByDay.countyByDay.Hiiumaa,
                       color: "#456990"
                     },
                     {
                       name: "Ida-Virumaa",
-                      data: data.countyByDay.IdaVirumaa,
+                      data: data.countyByDay.countyByDay.IdaVirumaa,
                       color: "#49BEAA"
                     },
                     {
                       name: "Jõgevamaa",
-                      data: data.countyByDay.Jõgevamaa,
+                      data: data.countyByDay.countyByDay.Jõgevamaa,
                       color: "#49DCB1"
                     },
                     {
                       name: "Järvamaa",
-                      data: data.countyByDay.Järvamaa,
+                      data: data.countyByDay.countyByDay.Järvamaa,
                       color: "#EEB868"
                     },
                     {
                       name: "Läänemaa",
-                      data: data.countyByDay.Läänemaa
+                      data: data.countyByDay.countyByDay.Läänemaa
                     },
                     {
                       name: "Lääne-Virumaa",
-                      data: data.countyByDay.LääneVirumaa,
+                      data: data.countyByDay.countyByDay.LääneVirumaa,
                       color: "#6684A4"
                     },
                     {
                       name: "Põlvamaa",
-                      data: data.countyByDay.Põlvamaa
+                      data: data.countyByDay.countyByDay.Põlvamaa
                     },
                     {
                       name: "Pärnumaa",
-                      data: data.countyByDay.Pärnumaa
+                      data: data.countyByDay.countyByDay.Pärnumaa
                     },
                     {
                       name: "Raplamaa",
-                      data: data.countyByDay.Raplamaa
+                      data: data.countyByDay.countyByDay.Raplamaa
                     },
                     {
                       name: "Saaremaa",
-                      data: data.countyByDay.Saaremaa
+                      data: data.countyByDay.countyByDay.Saaremaa
                     },
                     {
                       name: "Tartumaa",
-                      data: data.countyByDay.Tartumaa
+                      data: data.countyByDay.countyByDay.Tartumaa
                     },
                     {
                       name: "Valgamaa",
-                      data: data.countyByDay.Valgamaa
+                      data: data.countyByDay.countyByDay.Valgamaa
                     },
                     {
                       name: "Viljandimaa",
-                      data: data.countyByDay.Viljandimaa
+                      data: data.countyByDay.countyByDay.Viljandimaa
                     },
                     {
                       name: "Võrumaa",
-                      data: data.countyByDay.Võrumaa
+                      data: data.countyByDay.countyByDay.Võrumaa
                     }
                   ]
                 });
@@ -401,69 +401,69 @@ export default {
         series: [
           {
             name: "Harjumaa",
-            data: data.countyByDay.Harjumaa,
+            data: data.countyByDay.countyByDay.Harjumaa,
             color: "#2F7ED8"
           },
           {
             name: "Hiiumaa",
-            data: data.countyByDay.Hiiumaa,
+            data: data.countyByDay.countyByDay.Hiiumaa,
             color: "#456990"
           },
           {
             name: "Ida-Virumaa",
-            data: data.countyByDay.IdaVirumaa,
+            data: data.countyByDay.countyByDay.IdaVirumaa,
             color: "#49BEAA"
           },
           {
             name: "Jõgevamaa",
-            data: data.countyByDay.Jõgevamaa,
+            data: data.countyByDay.countyByDay.Jõgevamaa,
             color: "#49DCB1"
           },
           {
             name: "Järvamaa",
-            data: data.countyByDay.Järvamaa,
+            data: data.countyByDay.countyByDay.Järvamaa,
             color: "#EEB868"
           },
           {
             name: "Läänemaa",
-            data: data.countyByDay.Läänemaa
+            data: data.countyByDay.countyByDay.Läänemaa
           },
           {
             name: "Lääne-Virumaa",
-            data: data.countyByDay.LääneVirumaa,
+            data: data.countyByDay.countyByDay.LääneVirumaa,
             color: "#6684A4"
           },
           {
             name: "Põlvamaa",
-            data: data.countyByDay.Põlvamaa
+            data: data.countyByDay.countyByDay.Põlvamaa
           },
           {
             name: "Pärnumaa",
-            data: data.countyByDay.Pärnumaa
+            data: data.countyByDay.countyByDay.Pärnumaa
           },
           {
             name: "Raplamaa",
-            data: data.countyByDay.Raplamaa
+            data: data.countyByDay.countyByDay.Raplamaa
           },
           {
             name: "Saaremaa",
-            data: data.countyByDay.Saaremaa
+            data: data.countyByDay.countyByDay.Saaremaa
           },
           {
             name: "Tartumaa",
-            data: data.countyByDay.Tartumaa
+            data: data.countyByDay.countyByDay.Tartumaa
           },
           {
             name: "Valgamaa",
-            data: data.countyByDay.Valgamaa
+            data: data.countyByDay.countyByDay.Valgamaa
           },
           {
             name: "Viljandimaa",
-            data: data.countyByDay.Viljandimaa
+            data: data.countyByDay.countyByDay.Viljandimaa
           },
           {
             name: "Võrumaa",
-            data: data.countyByDay.Võrumaa
+            data: data.countyByDay.countyByDay.Võrumaa
           }
         ],
 
