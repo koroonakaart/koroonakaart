@@ -16,6 +16,7 @@
   "genderChart": "Positive and negative tests by gender",
   "hospitalised": "In treatment",
   "method": "Change in method",
+  "newPositive": "Positive tests in last 24 hours",
   "intensive": "Intensive care",
   "insufficientData": "Insufficient data",
   "language": "English",

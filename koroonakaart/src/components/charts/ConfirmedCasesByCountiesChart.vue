@@ -84,6 +84,18 @@ export default {
           fallbackToExportServer: false
         },
 
+
+                tooltip: {
+                  headerFormat:
+                    '<span style="font-size:10px">{point.key}</span><table>',
+                  pointFormat:
+                    '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></tr>',
+                  footerFormat: "</table>",
+                  shared: true,
+                  useHTML: true
+                },
+
         // Remove Highcharts.com link from bottom right
         credits: {
           enabled: false
@@ -124,17 +136,25 @@ export default {
 
         plotOptions: {
           bar: {
-            dataLabels: {
-              enabled: true
-            },
+//            dataLabels: {
+//              enabled: true
+//            },
             enableMouseTracking: true
           }
         },
 
         series: [
           {
+          dataLabels: {
+                      enabled: true
+                     },
             name: this.$t("numberOfCases"),
             data: data.dataConfirmedCasesByCounties
+
+          },
+          {
+            name: this.$t("newPositive"),
+            data:data.countyByDay.countyByDayNew,
           }
         ]
       }
@@ -154,6 +174,7 @@ export default {
       this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
+      this.chartOptions.series[1].name = this.$t("newPositive");
       this.chartOptions.xAxis.categories[15] = this.$t("insufficientData");
     }
   }

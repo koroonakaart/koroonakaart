@@ -17,6 +17,7 @@
   "hospitalised": "Haiglaravil",
   "intensive": "Intensiivravil",
   "method": "Muutus metoodikas",
+  "newPositive": "Positiivsed testid viimase 24 tunni jooksul",
   "insufficientData": "Info puudulik",
   "language": "Eesti",
   "mapTitle": "Haigusjuhud maakonniti",
