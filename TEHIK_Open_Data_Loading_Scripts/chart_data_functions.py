@@ -52,7 +52,7 @@ def getCountyByDay(json, dates, county_mapping):
                 county_date_counts[(county, str(date))] += 1
 
     countyByDay = {}
-
+    #countyByDayNew = {}
     for county in chart_counties:
         per_day_county = []
         for date in dates:
@@ -61,8 +61,17 @@ def getCountyByDay(json, dates, county_mapping):
 
         # Calculate cumulative
         countyByDay[county] = list(np.cumsum(per_day_county))
+        print(countyByDay[county][-1] - countyByDay[county][-2])
+        countyByDayNew[county] = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
 
-    return countyByDay
+
+
+        countyList = {
+        "countyByDay": countyByDay,
+        "countyByDayNew": countyByDayNew
+        }
+
+    return countyList
 
 
 def getdataCountyDailyActive(json, dates, county_mapping):
