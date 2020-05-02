@@ -43,11 +43,7 @@
         >( {{hospitalisedChanged}} )</h5>
       </b-col>
 
-    <!--
-    This is commented out for now until we have
-     better data about recovered vs released from hospital
-      it changed with the press release on 2nd may-->
-    <!--<b-col class="statsbar-item" md>
+    <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("recovered") }}</h5>
         </div>
@@ -55,7 +51,7 @@
       <h5
           :class="rawRecoveredChanged === 0 ? 'neutral' : rawRecoveredChanged > 0 ? 'negative' : 'positive'"
         >( {{recoveredChanged}} )</h5>
-      </b-col>-->
+      </b-col>
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
