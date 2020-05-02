@@ -41,7 +41,7 @@
   "newCasesPerDay": "Uusi juhtumeid päevas",
   "numberOfCases": "Haigusjuhtude arv",
   "numberOfTests": "Testide arv",
-  "recovered": "Haiglast välja kirjutatud",
+  "recovered": "Lõpetatud haigusjuhtu",
   "negative": "Negatiivne",
   "positive": "Positiivne",
   "testsAdministered": "Tehtud teste",

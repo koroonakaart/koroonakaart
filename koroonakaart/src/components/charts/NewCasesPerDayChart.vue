@@ -113,11 +113,12 @@ export default {
             color: "#7cb5ec",
             data: data.dataNewCasesPerDayChart.confirmedCases
           },
-          {
+        // This is commented out until the data gets a bit better / more clear. Change of methodology from 2nd May
+        /* {
             name: this.$t("recovered"),
             color: "#90ed7d",
             data: data.dataNewCasesPerDayChart.recovered
-          },
+          }, */
           {
             name: this.$t("deceased"),
             color: "#434348",
@@ -141,8 +142,8 @@ export default {
       this.chartOptions.title.text = this.$t("newCasesPerDay");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("confirmedCases");
-      this.chartOptions.series[1].name = this.$t("recovered");
-      this.chartOptions.series[2].name = this.$t("deceased");
+      //this.chartOptions.series[1].name = this.$t("recovered");
+      this.chartOptions.series[1].name = this.$t("deceased");
     }
   }
 };
