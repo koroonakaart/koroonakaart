@@ -7,11 +7,11 @@ from helpers import NpEncoder
 
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
-    "updatedOn": "20/05/2020, 11:00",
+    "updatedOn": "21/05/2020, 11:00",
     "hospitalisedNumber": 37,
     "deceasedNumber": 64,
     "recoveredNumber": 322,
-    "datesEnd": "2020-05-19 ",
+    "datesEnd": "2020-05-20",
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-25",
     "recovered": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
