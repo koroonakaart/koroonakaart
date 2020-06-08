@@ -174,8 +174,18 @@ export default {
         },
 
         xAxis: {
-          /* type: "datetime" */
-          /* categories: data.dates2 */
+          type: "datetime",
+          dateTimeLabelFormats: {
+            day: "%Y<br/>%m-%d",
+            week: "%Y<br/>%m-%d",
+            month: "%Y-%m",
+            year: "%Y"
+          },
+          labels: {
+            style: {
+              fontSize: "11px"
+            }
+          }
         },
 
         yAxis: {
@@ -183,16 +193,18 @@ export default {
             text: this.$t("numberOfCases")
           }
         },
-        tooltip: {
-          /* headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>', */
+
+        /* tooltip: {
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
-          /* footerFormat: "</table>", */
+          footerFormat: "</table>",
           shared: true,
           useHTML: true
-        },
+        }, */
+
         series: [
           {
             name: this.$t("confirmedCases"),
