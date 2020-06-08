@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
   </b-container>
 </template>
 
@@ -23,6 +23,7 @@ export default {
     return {
       chartOptions: {
         chartType: "linear",
+        chartFirstDate: Date.UTC(2020, 1, 25),
 
         chart: {
           height: this.height,
@@ -56,6 +57,10 @@ export default {
               }, 100);
             }
           }
+        },
+
+        rangeSelector: {
+          selected: 1
         },
 
         title: {
@@ -128,6 +133,7 @@ export default {
 
         plotOptions: {
           series: {
+            showInNavigator: true,
             label: {
               connectorAllowed: false
             }
@@ -166,7 +172,8 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2
+          /* type: "datetime" */
+          /* categories: data.dates2 */
         },
 
         yAxis: {
@@ -188,31 +195,43 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#2f7ed8",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.cases
           },
-        {
+          {
             name: this.$t("recovered"),
             color: "#90ed7d",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.recovered
           },
           {
             name: this.$t("active"),
             color: "#f28f43",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.active
           },
           {
             name: this.$t("deceased"),
             color: "#0d233a",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.deceased
           },
           {
             name: this.$t("hospitalised"),
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.haiglas
           },
           {
             name: this.$t("intensive"),
-            data: data.dataCumulativeCasesChart.intensive,
-            color: "#c42525"
+            color: "#c42525",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
+            data: data.dataCumulativeCasesChart.intensive
           }
         ],
 
@@ -250,6 +269,10 @@ export default {
       return this.$i18n.locale;
     }
   },
+
+  /* mounted() {
+    this.chartOptions.
+  }, */
 
   // Fire when currentLocale computed property changes
   watch: {
