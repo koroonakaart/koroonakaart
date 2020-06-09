@@ -60,7 +60,7 @@ export default {
         },
 
         rangeSelector: {
-          selected: 1
+          selected: 5
         },
 
         title: {
