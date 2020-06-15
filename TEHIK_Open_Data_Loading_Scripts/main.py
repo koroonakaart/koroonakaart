@@ -1,17 +1,20 @@
 import json
 import requests
+from datetime import datetime, timedelta, date
 from constants import county_mapping, county_sizes, counties, age_groups
 from chart_data_functions import *
 from helpers import NpEncoder
 
+today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
+yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
-    "updatedOn": "15/06/2020, 10:30",
+    "updatedOn": today,
     "hospitalisedNumber": 14,
     "deceasedNumber": 69,
     "recoveredNumber": 370,
-    "datesEnd": "2020-06-14",
+    "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-25",
     "recovered": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
