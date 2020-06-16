@@ -398,6 +398,15 @@ export default {
           useHTML: true
         },
 
+        plotOptions: {
+          line: {
+            /* or spline, area, series, areaspline etc.*/
+            marker: {
+              enabled: false
+            }
+          }
+        },
+
         series: [
           {
             name: "Harjumaa",
