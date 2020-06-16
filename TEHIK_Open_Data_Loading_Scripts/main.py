@@ -10,7 +10,7 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
-    "updatedOn": today,
+    "updatedOn": today[0],
     "hospitalisedNumber": 15,
     "deceasedNumber": 69,
     "recoveredNumber": 371,
