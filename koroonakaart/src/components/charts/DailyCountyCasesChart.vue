@@ -411,7 +411,7 @@ export default {
           },
           {
             name: "Ida-Virumaa",
-            data: data.countyByDay.countyByDay.IdaVirumaa,
+            data: data.countyByDay.countyByDay["Ida-Virumaa"],
             color: "#49BEAA"
           },
           {
@@ -430,7 +430,7 @@ export default {
           },
           {
             name: "Lääne-Virumaa",
-            data: data.countyByDay.countyByDay.LääneVirumaa,
+            data: data.countyByDay.countyByDay["Lääne-Virumaa"],
             color: "#6684A4"
           },
           {
