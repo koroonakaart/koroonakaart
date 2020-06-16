@@ -111,7 +111,7 @@ export default {
                     },
                     {
                       name: "Ida-Virumaa",
-                      data: data.countyByDay.countyByDay.IdaVirumaa,
+                      data: data.countyByDay.countyByDay["Ida-Virumaa"],
                       color: "#49BEAA"
                     },
                     {
@@ -130,7 +130,7 @@ export default {
                     },
                     {
                       name: "Lääne-Virumaa",
-                      data: data.countyByDay.countyByDay.LääneVirumaa,
+                      data: data.countyByDay.countyByDay["Lääne-Virumaa"],
                       color: "#6684A4"
                     },
                     {
@@ -192,7 +192,7 @@ export default {
                     },
                     {
                       name: "Ida-Virumaa",
-                      data: data.countyByDay.countyByDay.IdaVirumaa,
+                      data: data.countyByDay.countyByDay["Ida-Virumaa"],
                       color: "#49BEAA"
                     },
                     {
@@ -211,7 +211,7 @@ export default {
                     },
                     {
                       name: "Lääne-Virumaa",
-                      data: data.countyByDay.countyByDay.LääneVirumaa,
+                      data: data.countyByDay.countyByDay["Lääne-Virumaa"],
                       color: "#6684A4"
                     },
                     {
@@ -272,7 +272,7 @@ export default {
                     },
                     {
                       name: "Ida-Virumaa",
-                      data: data.dataCountyDailyActive.IdaVirumaa,
+                      data: data.dataCountyDailyActive["Ida-Virumaa"],
                       color: "#49BEAA"
                     },
                     {
@@ -291,7 +291,7 @@ export default {
                     },
                     {
                       name: "Lääne-Virumaa",
-                      data: data.dataCountyDailyActive.LääneVirumaa,
+                      data: data.dataCountyDailyActive["Lääne-Virumaa"],
                       color: "#6684A4"
                     },
                     {
