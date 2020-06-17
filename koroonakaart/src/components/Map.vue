@@ -7,16 +7,17 @@
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
-import dataModule from "highcharts/modules/data";
 import drilldown from "highcharts/modules/drilldown";
+import Harjumaa from "../data/map/Harju-maakond.geo.json";
+import dataModule from "highcharts/modules/data";
 
 import mapData from "../data/map/estonia.geo.json";
-import Harjumaa from "../data/map/Harju-maakond.geo.json";
+//import municipalities from "../data/map/municipalities.geo.json"
 import data from "../data.json";
 
 HighchartsMapModule(Highcharts);
-dataModule(Highcharts);
 drilldown(Highcharts);
+dataModule(Highcharts);
 
 Highcharts.maps["mapEstonia"] = mapData;
 
@@ -44,10 +45,6 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            drilldown: function(e) {
-              console.log(e);
-            },
-
             load: function() {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
@@ -214,14 +211,14 @@ export default {
           enabled: false
         },
 
+        /*
         // Navigation controls like zoom etc
-        mapNavigation: {
-          /* enabled: true, */
-          /* enableDoubleClickZoomTo: true, */
+          mapNavigation: {
+          enabled: true,
           buttonOptions: {
             verticalAlign: "bottom"
           }
-        },
+        }, */
 
         // Legend bar density
         colorAxis: {
@@ -260,19 +257,19 @@ export default {
         },
 
         series: [
-          {
-            data: data.dataInfectionsByCounty,
-            /* allowPointSelect: true, */
-            keys: ["MNIMI", "value", "drilldown"],
-            joinBy: "MNIMI",
-            name: this.$t("cases"),
-            borderColor: "black",
-            borderWidth: 0.3,
-            states: {
-              hover: {
-                color: "#a4edba"
-              }
-            },
+                  {
+                    data: data.dataInfectionsByCounty,
+                    /* allowPointSelect: true, */
+                    keys: ["MNIMI", "value", "drilldown"],
+                    joinBy: "MNIMI",
+                    name: this.$t("cases"),
+                    borderColor: "black",
+                    borderWidth: 0.3,
+                    states: {
+                      hover: {
+                        color: "#a4edba"
+                      }
+                    },
 
             // Customise tooltips
             tooltip: {
@@ -288,8 +285,6 @@ export default {
             },
 
             dataLabels: {
-              // This needs to be true for the country map to diplay anything if no data
-              allAreas: true,
               enabled: true,
               format: "{point.MNIMI}",
               style: {
@@ -298,43 +293,42 @@ export default {
               }
             }
           }
-        ],
-
-        drilldown: {
-          //dummy data
-          series: [
-            {
-              name: "Harjumaa",
-              id: "Harjumaa",
-              keys: ["ONIMI", "value"],
-              data: [
-                ["Harku vald", 58],
-                ["Tallinn", 122],
-                ["Jõelähtme vald", 88],
-                ["Viimsi vald", 41],
-                ["Maardu linn", 64]
-              ],
-              mapData: Harjumaa,
-              joinBy: ["ONIMI"],
-              tooltip: {
-                pointFormat: "{point.ONIMI}: {point.value}<br/>"
-              },
-              dataLabels: {
-                // This needs to be true for the country map to diplay anything if no data
-                allAreas: true,
-                enabled: true,
-                format: "{point.ONIMI}",
-                style: {
-                  fontWeight: "normal",
-                  fontSize: "9px"
-                }
-              }
-            }
-          ]
 
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
         ],
+        drilldown: {
+  //dummy data
+  series: [
+    {
+      name: "Harjumaa",
+      id: "Harjumaa",
+      keys: ["ONIMI", "value"],
+      data: [
+        ["Harku vald", 58],
+        ["Tallinn", 122],
+        ["Jõelähtme vald", 88],
+        ["Viimsi vald", 41],
+        ["Maardu linn", 64]
+      ],
+      mapData: Harjumaa,
+      joinBy: ["ONIMI"],
+      tooltip: {
+        pointFormat: "{point.ONIMI}: {point.value}<br/>"
+      },
+      dataLabels: {
+        // This needs to be true for the country map to diplay anything if no data
+        allAreas: true,
+        enabled: true,
+        format: "{point.ONIMI}",
+        style: {
+          fontWeight: "normal",
+          fontSize: "9px"
+        }
+      }
+    }
+  ]
+  },
 
         responsive: {
           rules: [
@@ -367,7 +361,6 @@ export default {
               }
             }
           ]
-
         }
       }
     };
