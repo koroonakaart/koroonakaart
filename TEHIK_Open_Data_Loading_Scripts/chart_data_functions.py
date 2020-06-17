@@ -8,7 +8,7 @@ def getMunicipalityData(json_municipalities):
     yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
     for result in json_municipalities:
-        if result["StatisticsDate"] == yesterday:
+        if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
             municipalities_array.append([result["County"], result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesRange"]])
     municipalities_json = {
     "muncipalitiesData": municipalities_array
