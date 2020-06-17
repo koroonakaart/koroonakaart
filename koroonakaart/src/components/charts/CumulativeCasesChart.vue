@@ -127,6 +127,12 @@ export default {
         },
 
         plotOptions: {
+          line: {
+            /* or spline, area, series, areaspline etc.*/
+            marker: {
+              enabled: false
+            }
+          },
           series: {
             label: {
               connectorAllowed: false
@@ -174,6 +180,7 @@ export default {
             text: this.$t("numberOfCases")
           }
         },
+
         tooltip: {
           headerFormat:
             '<span style="font-size:10px">{point.key}</span><table>',
@@ -184,13 +191,14 @@ export default {
           shared: true,
           useHTML: true
         },
+
         series: [
           {
             name: this.$t("confirmedCases"),
             color: "#2f7ed8",
             data: data.dataCumulativeCasesChart.cases
           },
-        {
+          {
             name: this.$t("recovered"),
             color: "#90ed7d",
             data: data.dataCumulativeCasesChart.recovered

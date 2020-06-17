@@ -185,6 +185,12 @@ export default {
           column: {
             stacking: "normal",
             enableMouseTracking: true
+          },
+          spline: {
+            /* or spline, area, series, areaspline etc.*/
+            marker: {
+              enabled: false
+            }
           }
         },
 
