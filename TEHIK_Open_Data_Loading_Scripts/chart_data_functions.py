@@ -1,6 +1,19 @@
 import numpy as np
 import pandas as pd
+from datetime import datetime, timedelta, date
 from collections import defaultdict
+
+def getMunicipalityData(json_municipalities):
+    municipalities_array = []
+    yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
+
+    for result in json_municipalities:
+        if result["StatisticsDate"] == yesterday:
+            municipalities_array.append([result["County"], result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesRange"]])
+    municipalities_json = {
+    "muncipalitiesData": municipalities_array
+    }
+    return municipalities_json
 
 
 def getCountInfectionsByCounty(json, county_mapping) -> list:

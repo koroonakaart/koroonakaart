@@ -46,6 +46,7 @@ MANUAL_DATA = {
 
 ######## CONFIGURE IO LOCATIONS ########
 API_ENDPONT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
+MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
 
 def get_json_data(url) -> any:
@@ -56,6 +57,7 @@ def get_json_data(url) -> any:
 if __name__ == "__main__":
     # Get data
     json_data = get_json_data(API_ENDPONT)
+    municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
 
     # Date of update
     updatedOn = MANUAL_DATA["updatedOn"]
@@ -99,6 +101,7 @@ if __name__ == "__main__":
 
     # create copy
     json_copy = json_data
+    municipalities_copy = municipalities
 
 
     # Get data for each chart
@@ -118,7 +121,7 @@ if __name__ == "__main__":
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
     dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
-
+    dataMunicipalities = getMunicipalityData(municipalities_copy)
 
     # Create dictionary for final json
     finalJson = {
@@ -149,7 +152,8 @@ if __name__ == "__main__":
         "dataCumulativeTestsChart": dataCumulativeTestsChart,
         "dataTestsPerDayChart": dataTestsPerDayChart,
         "dataPositiveTestsByAgeChart": dataPositiveTestsByAgeChart,
-        "dataPositiveNegativeChart": dataPositiveNegativeChart
+        "dataPositiveNegativeChart": dataPositiveNegativeChart,
+        "dataMunicipalities": dataMunicipalities
     }
 
     # dump json output
