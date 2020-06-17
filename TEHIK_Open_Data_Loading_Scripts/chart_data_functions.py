@@ -36,18 +36,18 @@ def getCountInfectionsByCounty(json, county_mapping) -> list:
                 counts[county] += 1
 
     # Create list of lists as in current json
-    result_array = [[county, counts[county]] for county in map_counties]
+    result_array = [[county, counts[county], county] for county in map_counties]
 
     return result_array
 
 
 def getDataInfectionsByCount10000(infectionsByCounty, county_sizes):
-    return [[county, round(value / county_sizes[county] * 10000, 2)] for county, value in infectionsByCounty]
+    return [[county, round(value / county_sizes[county] * 10000, 2), county] for county, value, county in infectionsByCounty]
 
 
 def getDataTestsPopRatio(dataInfectionsByCounty10000):
     # Just extract pop ratios
-    return [v for k, v in dataInfectionsByCounty10000]
+    return [v for k, v, k in dataInfectionsByCounty10000]
 
 
 def getCountyByDay(json, dates, county_mapping):
