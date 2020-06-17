@@ -76,23 +76,21 @@ export default {
             },
 
             drilldown: function() {
-              if (this.series[0].options._levelNumber != 1) {
-                /* hide thirdbutton  */
-                this.exportSVGElements[2].hide();
-                this.exportSVGElements[4].hide();
-                this.exportSVGElements[6].hide();
-              }
+              /* if (this.series[0].options._levelNumber != 1) { */
+              this.exportSVGElements[2].hide();
+              this.exportSVGElements[4].hide();
+              this.exportSVGElements[6].hide();
+              /*  }
 
-              //chart.redraw();
+              this.redraw(); */
             },
             drillup: function() {
-              if (this.series[0].options._levelNumber == 1) {
-                /* show thirdbutton  */
-                this.exportSVGElements[2].show();
-                this.exportSVGElements[4].show();
-                this.exportSVGElements[6].show();
-              }
-              //chart.redraw();
+              /* if (this.series[0].options._levelNumber == 1) { */
+              this.exportSVGElements[2].show();
+              this.exportSVGElements[4].show();
+              this.exportSVGElements[6].show();
+              /* }
+              this.redraw(); */
             }
           }
         },
