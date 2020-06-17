@@ -121,7 +121,7 @@ if __name__ == "__main__":
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
     dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
-    dataMunicipalities = getMunicipalityData(municipalities_copy)
+    dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
 
     # Create dictionary for final json
     finalJson = {

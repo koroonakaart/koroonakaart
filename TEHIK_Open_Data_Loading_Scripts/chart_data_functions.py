@@ -3,15 +3,16 @@ import pandas as pd
 from datetime import datetime, timedelta, date
 from collections import defaultdict
 
-def getMunicipalityData(json_municipalities):
+def getMunicipalityData(json_municipalities, county_mapping):
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
     for result in json_municipalities:
         if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
-            municipalities_array.append([result["County"], result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
+            county = county_mapping[result["County"]]
+            municipalities_array.append([county, result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
     municipalities_json = {
-    "muncipalitiesData": municipalities_array
+    "municipalitiesData": municipalities_array
     }
     return municipalities_json
 
