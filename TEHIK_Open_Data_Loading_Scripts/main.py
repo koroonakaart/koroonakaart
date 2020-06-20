@@ -6,7 +6,7 @@ from chart_data_functions import *
 from helpers import NpEncoder
 
 today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
-yesterday = datetime.strftime(datetime.today() - timedelta(2), '%Y-%m-%d')
+yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
