@@ -11,22 +11,17 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
     "updatedOn": today[0],
-    "hospitalisedNumber": 4,
     "deceasedNumber": 69,
-    "recoveredNumber": 392,
     "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-25",
-    "recovered": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                 1, 1, 1, 1, 1, 2, 2, 4, 7, 8, 8, 11, 11, 20, 20,
-                 20, 26, 33, 45, 48,59, 62, 62, 69, 72, 83, 93, 93,98,
-                 102, 115,117,133,145,162,164,165,169,184,192,206,228,233,
-                 233,240, 236, 249, 253, 256, 259,259,261,264,273, 277,285,
-                 285, 287,289, 291,294,297,300,300, 301,309,316,322,325,328,
-                 328,329,333,339,340,341,346,346,346,352,354,354,359,362,362,
-                 362,365,366,368,370,370,370,370,371,374,375,378,383,383,383,
-                 385,385,385,386,388,388,388,389,389,390,391,391,391,391,391,391,
-                 391,391,392,392,392,392,392,392,392],
+    "intensive": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 2, 4, 6, 7, 7, 7, 7, 10, 10,
+                  13, 13, 15, 16, 16,20, 17, 14, 12, 11, 9, 9, 11,11,
+                  9, 11,10,10,11,11,10,9,9, 7,7,6,6,6,7,9, 10, 9, 7,7,
+                   7,6, 6,4,4, 5,5, 5, 5, 5, 5,5,5,5,4, 4,3,2,2,2,1,1,1,1,
+                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,
+                   1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1],
     "deceased": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                  0, 1, 1, 1, 1, 3, 3, 4, 5, 11, 12,13, 15, 19,
@@ -34,28 +29,14 @@ MANUAL_DATA = {
                  47,50,52,52, 52, 54, 54,55, 57,57,57,57,59, 59,60, 60,61, 61,
                   61,62,63,63, 63,64,64,64,64,64,64,64,65,65,66,66,67,67,68,68,
                   68,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
-                  69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69],
-    "hospitalised": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                     1, 0, 2, 3, 3, 3, 8, 10, 14, 15, 17, 28, 29, 34,
-                     40, 48, 56, 79, 91, 95, 85, 90,113, 130, 129,
-                     130, 139, 134,138, 146,153, 157, 146,147,137,129,
-                     122,125,128,124, 114,109,103,99,94,95,91, 89, 75,
-                     72,74, 75,77, 70,67,61, 58,49, 51,48, 48, 47,44,42,
-                     41,43, 43,44,39,37,37,37,39,39,36,29,30,31,26,25,26,
-                     20,19,20,16,13,14,14,14,15,14,14,14,14,14,15,12,12,10,
-                     8,8,8,6,6,7,6,4,4,5,4,4,3,2,3,3,3,3,3,3,5,4,4,4,4,4,4,4],
-    "intensive": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0, 2, 4, 6, 7, 7, 7, 7, 10, 10,
-                  13, 13, 15, 16, 16,20, 17, 14, 12, 11, 9, 9, 11,11,
-                  9, 11,10,10,11,11,10,9,9, 7,7,6,6,6,7,9, 10, 9, 7,7,
-                   7,6, 6,4,4, 5,5, 5, 5, 5, 5,5,5,5,4, 4,3,2,2,2,1,1,1,1,
-                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,
-                   1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1]
+                  69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+                  69,69,69,69,69,69]
 }
 
 ######## CONFIGURE IO LOCATIONS ########
 API_ENDPONT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
+HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
 OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
 
 def get_json_data(url) -> any:
@@ -67,17 +48,15 @@ if __name__ == "__main__":
     # Get data
     json_data = get_json_data(API_ENDPONT)
     municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
-
+    json_hospital = get_json_data(HOSPITAL_ENDPOINT)
     # Date of update
     updatedOn = MANUAL_DATA["updatedOn"]
 
     # Statsbar
-    hospitalisedNumber = MANUAL_DATA["hospitalisedNumber"]
+    #hospitalisedNumber = MANUAL_DATA["hospitalisedNumber"]
     deceasedNumber = MANUAL_DATA["deceasedNumber"]
-    recoveredNumber = MANUAL_DATA["recoveredNumber"]
-    hospitalChanged = MANUAL_DATA["hospitalised"][-1] - MANUAL_DATA["hospitalised"][-2]
+    #recoveredNumber = MANUAL_DATA["recoveredNumber"]
     deceasedChanged  = MANUAL_DATA["deceased"][-1] - MANUAL_DATA["deceased"][-2]
-    recoveredChanged = MANUAL_DATA["recovered"][-1] - MANUAL_DATA["recovered"][-2]
 
     # Find count of confirmed cases
     confirmedCasesNumber = np.sum([res["ResultValue"] == "P" for res in json_data])
@@ -98,11 +77,7 @@ if __name__ == "__main__":
     dates2_range_end = dates_range_end
     # dates2_range_end = "2020-04-02"
 
-    # Set recovered, deceased, hospitalised and ICU time-series
-    recovered = MANUAL_DATA["recovered"]
-    deceased = MANUAL_DATA["deceased"]
-    hospitalised =  MANUAL_DATA["hospitalised"]
-    intensive = MANUAL_DATA["intensive"]
+
 
     # Create date ranges for charts
     dates1 = pd.date_range(start=dates1_range_start, end=dates1_range_end)
@@ -111,6 +86,14 @@ if __name__ == "__main__":
     # create copy
     json_copy = json_data
     municipalities_copy = municipalities
+    hospital_copy = json_hospital
+    hospital = getHospitalData(hospital_copy)
+
+    # Set recovered, deceased, hospitalised and ICU time-series
+    recovered = hospital["discharged"]
+    deceased = MANUAL_DATA["deceased"]
+    hospitalised =  hospital["hospitalizations"]
+    intensive = MANUAL_DATA["intensive"]
 
 
     # Get data for each chart
@@ -132,18 +115,21 @@ if __name__ == "__main__":
     dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
 
+
+
+
     # Create dictionary for final json
     finalJson = {
         "updatedOn": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
         "activeCasesNumber": str(activeCasesNumber),
-        "hospitalisedNumber": str(hospitalisedNumber),
+        "hospitalisedNumber": str(hospital["hospitalizations"][-1]),
         "deceasedNumber": str(deceasedNumber),
-        "recoveredNumber": str(recoveredNumber),
+        "recoveredNumber": str(hospital["discharged"][-1]),
         "testsAdministeredNumber": str(testsAdministeredNumber),
-        "hospitalChanged": str(hospitalChanged),
+        "hospitalChanged": str(hospital["hospitalizations"][-1] - hospital["hospitalizations"][-2]),
         "deceasedChanged": str(deceasedChanged),
-        "recoveredChanged": str(recoveredChanged),
+        "recoveredChanged": str(hospital["discharged"][-1] - hospital["discharged"][-2]),
         "activeChanged": str(activeChanged),
         "dates1": list(map(lambda x: str(x.date()), dates1)),
         "dates2": list(map(lambda x: str(x.date()), dates2)),
@@ -162,7 +148,8 @@ if __name__ == "__main__":
         "dataTestsPerDayChart": dataTestsPerDayChart,
         "dataPositiveTestsByAgeChart": dataPositiveTestsByAgeChart,
         "dataPositiveNegativeChart": dataPositiveNegativeChart,
-        "dataMunicipalities": dataMunicipalities
+        "dataMunicipalities": dataMunicipalities,
+        "hospital": hospital
     }
 
     # dump json output

@@ -77,8 +77,8 @@ export default {
       activeCasesNumber: data.activeCasesNumber,
       confirmedCasesNumber: data.confirmedCasesNumber,
       deceasedNumber: data.deceasedNumber,
-      hospitalisedNumber: data.hospitalisedNumber,
-      recoveredNumber: data.recoveredNumber,
+      hospitalisedNumber: data.hospital.hospitalizations[data.hospital.hospitalizations.length - 1],
+      recoveredNumber: data.hospital.discharged[data.hospital.discharged.length - 1],
       testsAdministeredNumber: data.testsAdministeredNumber,
 
       rawActiveChanged: Number(

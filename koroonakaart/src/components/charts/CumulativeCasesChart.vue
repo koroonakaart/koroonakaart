@@ -201,7 +201,7 @@ export default {
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            data: data.dataCumulativeCasesChart.recovered
+            data: data.hospital.recovered
           },
           {
             name: this.$t("active"),
@@ -215,7 +215,7 @@ export default {
           },
           {
             name: this.$t("hospitalised"),
-            data: data.dataCumulativeCasesChart.haiglas
+            data: data.hospital.hospitalizations
           },
           {
             name: this.$t("intensive"),

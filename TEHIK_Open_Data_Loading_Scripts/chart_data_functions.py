@@ -3,14 +3,42 @@ import pandas as pd
 from datetime import datetime, timedelta, date
 from collections import defaultdict
 
+
+def getHospitalData(json_hospital):
+    hospitalizations = [1]
+    activehospitalizations = [1]
+    intensive = [0]
+    discharged = [0]
+    for result in json_hospital:
+        hospitalizations += [int(result["Hospitalised"])]
+        activehospitalizations += [int(result["ActivelyHospitalised"])]
+        if result["IsInIntensive"] != None:
+            intensive += [int(result["IsInIntensive"])]
+        else:
+            intensive += [result["IsInIntensive"]]
+        discharged += [int(result["TotalCasesDischarged"])]
+    hospital_results = {
+    "hospitalizations": hospitalizations,
+    "activehospitalizations": activehospitalizations,
+    "intensive": intensive,
+    "discharged": discharged
+    }
+    return hospital_results
+
 def getMunicipalityData(json_municipalities, county_mapping):
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
-
+    rangestart = 0
+    rangeend = 0
     for result in json_municipalities:
         if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
-            county = county_mapping[result["County"]]
-            municipalities_array.append([county, result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
+            if result["Commune"] == "Tallinn":
+                rangestart += result["TotalCasesFrom"]
+                rangeend += result["TotalCasesTo"]
+                municipalities_array.append([county, "Tallinn", "",result["ResultValue"],rangestart, rangeend])
+            else:
+                    county = county_mapping[result["County"]]
+                    municipalities_array.append([county, result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
     municipalities_json = {
     "municipalitiesData": municipalities_array
     }
