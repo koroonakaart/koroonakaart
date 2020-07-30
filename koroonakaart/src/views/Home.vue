@@ -3,7 +3,7 @@
   <b-container fluid="lg">
     <EmbedModal />
     <Statsbar />
-    <SuveChatbot />
+   <!--<SuveChatbot />-->
 
     <b-row class="mb-5">
       <Map :height="470" />
