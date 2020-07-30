@@ -80,8 +80,8 @@ export default {
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
-    TestsPopRatioChart,
-    SuveChatbot: () => import("../components/SuveChatbot")
+    TestsPopRatioChart
+   // SuveChatbot: () => import("../components/SuveChatbot")
   }
 };
 </script>
