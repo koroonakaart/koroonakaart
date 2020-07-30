@@ -3,7 +3,6 @@
   <b-container fluid="lg">
     <EmbedModal />
     <Statsbar />
-   <!--<SuveChatbot />-->
 
     <b-row class="mb-5">
       <Map :height="470" />
@@ -81,7 +80,6 @@ export default {
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
     TestsPopRatioChart
-   // SuveChatbot: () => import("../components/SuveChatbot")
   }
 };
 </script>

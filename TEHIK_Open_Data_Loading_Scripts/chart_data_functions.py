@@ -5,10 +5,10 @@ from collections import defaultdict
 
 
 def getHospitalData(json_hospital):
-    hospitalizations = [1]
-    activehospitalizations = [1]
-    intensive = [0]
-    discharged = [0]
+    hospitalizations = []
+    activehospitalizations = []
+    intensive = []
+    discharged = []
     for result in json_hospital:
         hospitalizations += [int(result["Hospitalised"])]
         activehospitalizations += [int(result["ActivelyHospitalised"])]
