@@ -215,7 +215,7 @@ export default {
           },
           {
             name: this.$t("hospitalised"),
-            data: data.hospital.hospitalizations
+            data: data.hospital.activehospitalizations
           },
           {
             name: this.$t("intensive"),
