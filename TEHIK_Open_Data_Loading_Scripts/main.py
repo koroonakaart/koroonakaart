@@ -123,7 +123,7 @@ if __name__ == "__main__":
         "updatedOn": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
         "activeCasesNumber": str(activeCasesNumber),
-        "hospitalisedNumber": str(hospital["hospitalizations"][-1]),
+        "hospitalisedNumber": str(hospital["activehospitalizations"][-1]),
         "deceasedNumber": str(deceasedNumber),
         "recoveredNumber": str(hospital["discharged"][-1]),
         "testsAdministeredNumber": str(testsAdministeredNumber),
