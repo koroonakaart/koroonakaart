@@ -117,6 +117,7 @@ if __name__ == "__main__":
     dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
 
+    perHundred = round(activeCasesNumber / 13.38, 2)
 
 
 
@@ -125,6 +126,7 @@ if __name__ == "__main__":
         "updatedOn": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
         "activeCasesNumber": str(activeCasesNumber),
+        "perHundred": str(perHundred),
         "hospitalisedNumber": str(hospital["activehospitalizations"][-1]),
         "deceasedNumber": str(deceasedNumber),
         "recoveredNumber": str(hospital["discharged"][-1]),

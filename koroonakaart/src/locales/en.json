@@ -5,6 +5,7 @@
   "age": "Age",
   "answerbot": "Answerbot",
   "cases": "Cases",
+  "perHundred": "14-day cumulative number of COVID-19 cases per 100 000",
   "confirmedCases": "Confirmed cases",
   "confirmedCasesByCounties": "Cases by county",
   "cumulativeCases": "Cases",

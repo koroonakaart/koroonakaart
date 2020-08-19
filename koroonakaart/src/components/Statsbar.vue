@@ -23,6 +23,17 @@
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
+          <h5>{{ $t("perHundred") }}</h5>
+        </div>
+        <h1>{{perHundred}}</h1>
+<!--        <h5
+          :class="rawActiveChanged === 0 ? 'neutral' : rawActiveChanged > 0 ? 'positive' : 'negative'"
+        >( {{activeChanged}} )</h5>-->
+      </b-col>
+
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
           <h5>{{ $t("testsAdministered") }}</h5>
         </div>
         <h1>{{testsAdministeredNumber}}</h1>
@@ -77,6 +88,7 @@ export default {
       activeCasesNumber: data.activeCasesNumber,
       confirmedCasesNumber: data.confirmedCasesNumber,
       deceasedNumber: data.deceasedNumber,
+      perHundred: data.perHundred,
       hospitalisedNumber: data.hospital.activehospitalizations[data.hospital.activehospitalizations.length - 1],
       recoveredNumber: data.hospital.discharged[data.hospital.discharged.length - 1],
       testsAdministeredNumber: data.testsAdministeredNumber,
