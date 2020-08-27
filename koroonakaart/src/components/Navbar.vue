@@ -20,9 +20,9 @@
           <!--<b-nav-item class="navbar-updated">
           </b-nav-item>-->
           <b-dropdown-divider />
-        <!--  <b-nav-item class="navbar-description">
-            <small>NB!  Viimase 24h COVID-19 testide tulemused viibivad tehnilisel põhjusel. Probleemiga tegeletakse ja esialgse prognoosi kohaselt peaks andmed laekuma täna pärastlõunal.</small>
-          </b-nav-item>-->
+          <b-nav-item class="navbar-description">
+          <small>{{$t("hoia.me")}} <a href="www.hoia.me" target="_blank" rel="noopener">hoia.me</a></small>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-dropdown-divider />
