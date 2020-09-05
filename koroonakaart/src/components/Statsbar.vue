@@ -1,5 +1,6 @@
 <template>
   <b-container id="statsbar-container" class="mb-5" fluid>
+  <b-row><small style="margin-bottom: 20px;">{{ $t("faq.a5") }}</small></b-row>
     <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">

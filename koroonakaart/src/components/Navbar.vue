@@ -21,8 +21,8 @@
           </b-nav-item>-->
           <b-dropdown-divider />
         <!--  <b-nav-item class="navbar-description"> -->
-        <small>{{ $t("faq.a5") }}</small>
-          <!-- <small>{{$t("hoia.me")}} <a href="https://hoia.me" rel= "noopener" target="_blank">hoia.me</a></small> -->
+        <!-- <small>{{ $t("faq.a5") }}</small> -->
+         <small>{{$t("hoia.me")}} <a href="https://hoia.me" rel= "noopener" target="_blank">hoia.me</a></small>
         <!--  </b-nav-item> -->
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
