@@ -1,6 +1,7 @@
 {
   "abs": "Abs",
   "active": "Aktiivsete haigusjuhtude hinnang",
+  "active100k": "Viimase 14 päeva nakatumised 100 000 inimese kohta",
   "activeCases": "Aktiivsete haigusjuhtude hinnang",
   "age": "Vanus",
   "answerbot": "Vastusrobot",
@@ -10,6 +11,7 @@
   "confirmedCases": "Kinnitatud haigusjuhud",
   "confirmedCasesByCounties": "Haigusjuhud maakonniti",
   "cumulativeCases": "Haigusjuhud",
+  "cumulativeCasesPer100k": "Haigusjuhud 100 000 inimese kohta",
   "cumulativeTests": "Kumulatiivsed testid",
   "deceased": "Surmad",
   "disclaimerNavbar": "Graafikud kasutavad testi kinnitamise aega ja andmed on kella 07:00 seisuga.",

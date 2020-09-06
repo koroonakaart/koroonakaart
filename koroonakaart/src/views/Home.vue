@@ -21,6 +21,9 @@
       <CumulativeCasesChart :height="470" />
     </b-row>
     <b-row class="mb-5">
+      <CumulativeCasesPer100kChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
       <NewCasesPerDayChart :height="470" />
     </b-row>
     <b-row class="mb-5">
@@ -51,6 +54,7 @@ import Statsbar from "../components/Statsbar";
 import Map from "../components/Map";
 import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
 import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
+import CumulativeCasesPer100kChart from "../components/charts/CumulativeCasesPer100kChart";
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import GenderChart from "../components/charts/GenderChart";
@@ -71,6 +75,7 @@ export default {
     Map,
     CumulativeTestsChart,
     CumulativeCasesChart,
+    CumulativeCasesPer100kChart,
     NewCasesPerDayChart,
     TestsPerDayChart,
     TestsAgeSexDistributionChart,

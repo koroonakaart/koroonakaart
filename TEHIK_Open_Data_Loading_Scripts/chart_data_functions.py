@@ -276,12 +276,16 @@ def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalise
     for i in range(14, len(andmed["positiveTestsPerDay"])):
         new_cases_14.append(new_cases_14[i-1] - andmed["positiveTestsPerDay"][i-14]  + andmed["positiveTestsPerDay"][i])
 
+    estonian_population = 1_328_976 # from https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
+    per_100_k_multiplier = 100_000 / estonian_population
+    new_cases_14_per_100_k = [round(active_cases * per_100_k_multiplier, 2) for active_cases in new_cases_14]
 
 
     dataCumulativeCasesChart = {
         "cases": list(cases),
         "recovered": recovered_list,
         "active": new_cases_14,
+        "active100k": new_cases_14_per_100_k,
         "deceased": deceased_list,
         "haiglas": hospitalised,
         "intensive": intensive
