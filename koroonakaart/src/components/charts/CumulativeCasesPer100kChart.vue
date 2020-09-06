@@ -26,36 +26,7 @@ export default {
 
         chart: {
           height: this.height,
-          width: this.width,
-          events: {
-            load: function() {
-              // Buttons have indexes go in even numbers (button1 [0], button2 [2])
-              // Odd indexes are button symbols
-              if (!this.exportSVGElements) return;
-
-              const button = this.exportSVGElements[4];
-
-              // States:
-              // 0 - normal
-              // 1 - hover
-              // 2 - selected
-              // 3 - disabled
-              button.setState(2);
-            },
-            redraw: function() {
-              // Redraw seems to be async so setTimeout for the button to update state
-              setTimeout(() => {
-                if (!this.exportSVGElements) return;
-
-                this.exportSVGElements[4].setState(
-                  this.options.chartType === "linear" ? 2 : 0
-                );
-                this.exportSVGElements[2].setState(
-                  this.options.chartType === "logarithmic" ? 2 : 0
-                );
-              }, 100);
-            }
-          }
+          width: this.width
         },
 
         title: {
@@ -90,27 +61,6 @@ export default {
                 "separator",
                 "embed"
               ]
-            },
-
-            customButton2: {
-              text: this.$t("logarithmic"),
-              onclick: function() {
-                this.options.chartType = "logarithmic";
-
-                this.yAxis[0].update({
-                  type: "logarithmic"
-                });
-              }
-            },
-            customButton: {
-              text: this.$t("linear"),
-              onclick: function() {
-                this.options.chartType = "linear";
-
-                this.yAxis[0].update({
-                  type: "linear"
-                });
-              }
             }
           }
         },
@@ -241,10 +191,6 @@ export default {
       this.chartOptions.title.text = this.$t("cumulativeCasesPer100k");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("active100k");
-      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
-        "logarithmic"
-      );
     }
   }
 };
