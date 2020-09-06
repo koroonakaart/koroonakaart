@@ -119,7 +119,7 @@ if __name__ == "__main__":
     dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
 
-    perHundred = round(activeCasesNumber / 13.38, 2)
+    perHundred = dataCumulativeCasesChart["active100k"][-1]
 
 
 

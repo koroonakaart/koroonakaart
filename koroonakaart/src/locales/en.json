@@ -1,6 +1,7 @@
 {
   "abs": "Abs",
   "active": "Active cases estimate",
+  "active100k": "14-day cumulative number of COVID-19 cases per 100 000",
   "activeCases": "Active cases estimate",
   "age": "Age",
   "answerbot": "Answerbot",
@@ -10,6 +11,7 @@
   "confirmedCases": "Confirmed cases",
   "confirmedCasesByCounties": "Cases by county",
   "cumulativeCases": "Cases",
+  "cumulativeCasesPer100k": "Cases per 100 000 population",
   "cumulativeTests": "Cumulative tests",
   "deceased": "Deaths",
   "disclaimerNavbar": "All data shown in this application presents the date the test was confirmed. Data shows results up until 7am of the current day.",

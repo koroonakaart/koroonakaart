@@ -1,6 +1,7 @@
 {
   "active": "Примерное число активных случаев",
   "activeCases": "Примерное число активных случаев",
+  "active100k": "Viimase 14 päeva nakatumised 100 000 inimese kohta",
   "abs": "Абс",
   "age": "Возраст",
   "answerbot": "Чат-бот",
@@ -10,6 +11,7 @@
   "confirmedCases": "Подтвержденных случаев",
   "confirmedCasesByCounties": "Случаи по уездам",
   "cumulativeCases": "Случаи",
+  "cumulativeCasesPer100k": "Haigusjuhud 100 000 inimese kohta",
   "cumulativeTests": "Проведенные тесты (кумулятивно)",
   "deceased": "Умерших",
   "distributionOfPositiveTests": "Распределение тестов по возрасту",
