@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
+    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
   </b-container>
 </template>
 
@@ -161,8 +161,18 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2,
-          crosshair: true
+          type: "datetime",
+          dateTimeLabelFormats: {
+            day: "%Y<br/>%m-%d",
+            week: "%Y<br/>%m-%d",
+            month: "%Y-%m",
+            year: "%Y"
+          },
+          labels: {
+            style: {
+              fontSize: "11px"
+            }
+          }
         },
 
         yAxis: [
@@ -180,6 +190,14 @@ export default {
             opposite: true
           }
         ],
+
+        legend: {
+          enabled: true,
+          layout: "horizontal",
+          align: "center",
+          verticalAlign: "bottom",
+          y: 0
+        },
 
         plotOptions: {
           column: {
@@ -208,17 +226,23 @@ export default {
           {
             name: this.$t("positive"),
             data: data.dataTestsPerDayChart.positiveTestsPerDay,
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             color: "#000000",
             yAxis: 0
           },
           {
             name: this.$t("negative"),
             data: data.dataTestsPerDayChart.negativeTestsPerDay,
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0
           },
           {
             name: this.$t("percentPositiveTests"),
             data: data.dataTestsPerDayChart.positiveTestsPercentage,
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             type: "spline",
             yAxis: 1
           }
