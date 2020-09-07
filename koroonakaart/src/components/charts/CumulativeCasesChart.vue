@@ -200,7 +200,7 @@ export default {
           }
         },
 
-        /* tooltip: {
+         tooltip: {
           headerFormat:
             '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
@@ -209,7 +209,7 @@ export default {
           footerFormat: "</table>",
           shared: true,
           useHTML: true
-        }, */
+        },
 
         series: [
           {
