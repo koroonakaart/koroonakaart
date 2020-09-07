@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
   </b-container>
 </template>
 
@@ -77,18 +77,28 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2,
-          crosshair: true
+          type: "datetime",
+          dateTimeLabelFormats: {
+            day: "%Y<br/>%m-%d",
+            week: "%Y<br/>%m-%d",
+            month: "%Y-%m",
+            year: "%Y"
+          },
+          labels: {
+            style: {
+              fontSize: "11px"
+            }
+          }
         },
 
         yAxis: {
-          min: 0,
+//          min: 0,
           title: {
             text: this.$t("numberOfCases")
           }
         },
 
-        tooltip: {
+       tooltip: {
           headerFormat:
             '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
@@ -97,6 +107,13 @@ export default {
           footerFormat: "</table>",
           shared: true,
           useHTML: true
+        },
+        legend: {
+          enabled: true,
+          layout: "horizontal",
+          align: "center",
+          verticalAlign: "bottom",
+          y: 0
         },
 
         plotOptions: {
@@ -111,16 +128,22 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#7cb5ec",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataNewCasesPerDayChart.confirmedCases
           },
          {
             name: this.$t("recovered"),
             color: "#90ed7d",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataNewCasesPerDayChart.recovered
           },
           {
             name: this.$t("deceased"),
             color: "#434348",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataNewCasesPerDayChart.deceased
           }
         ]
