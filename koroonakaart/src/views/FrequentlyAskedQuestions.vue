@@ -1,6 +1,5 @@
 <template>
   <div class="mb-4">
-    <SuveChatbot />
 
     <b-container fluid="lg" role="tablist" class="h-100">
       <h2>{{ $t("faq.faqLong") }}</h2>
@@ -134,8 +133,7 @@ export default {
   name: "FrequentlyAskedQuestions",
 
   components: {
-    ArrowLeft,
-    SuveChatbot: () => import("../components/SuveChatbot")
+    ArrowLeft
   },
 
   methods: {

@@ -7,14 +7,19 @@
 <script>
 import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
+import drilldown from "highcharts/modules/drilldown";
+import dataModule from "highcharts/modules/data";
 
 import mapData from "../data/map/estonia.geo.json";
-//import municipalities from "../data/map/municipalities.geo.json"
 import data from "../data.json";
+import importMap from "../utilities/importMap";
 
 HighchartsMapModule(Highcharts);
+drilldown(Highcharts);
+dataModule(Highcharts);
 
 Highcharts.maps["mapEstonia"] = mapData;
+Highcharts.setOptions({ lang: { drillUpText: "◁ {series.drillUpText}" } });
 
 export default {
   name: "Map",
@@ -53,6 +58,7 @@ export default {
               // 3 - disabled
               button.setState(2);
             },
+
             redraw: function() {
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
@@ -67,6 +73,24 @@ export default {
                   this.options.chartType === "active" ? 2 : 0
                 );
               }, 100);
+            },
+
+            drilldown: function() {
+              /* if (this.series[0].options._levelNumber != 1) { */
+              this.exportSVGElements[2].hide();
+              this.exportSVGElements[4].hide();
+              this.exportSVGElements[6].hide();
+              /*  }
+
+              this.redraw(); */
+            },
+            drillup: function() {
+              /* if (this.series[0].options._levelNumber == 1) { */
+              this.exportSVGElements[2].show();
+              this.exportSVGElements[4].show();
+              this.exportSVGElements[6].show();
+              /* }
+              this.redraw(); */
             }
           }
         },
@@ -253,8 +277,10 @@ export default {
 
         series: [
           {
+            drillUpText: this.$t("faq.back"),
             data: data.dataInfectionsByCounty,
-            keys: ["MNIMI", "value"],
+            /* allowPointSelect: true, */
+            keys: ["MNIMI", "value", "drilldown"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
             borderColor: "black",
@@ -291,6 +317,58 @@ export default {
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
         ],
+        drilldown: {
+          series: data.dataMunicipalities.municipalitiesData.map(item => {
+            if (!item[0].length) {
+              return;
+            } else
+              return {
+                name: item[0],
+                id: item[0],
+                keys: ["MNIMI", "ONIMI", "ANIMI", "result", "min", "value"],
+                data: data.dataMunicipalities.municipalitiesData,
+                // evaluate template string to a value to be looked up from importMap
+                // eg item[0] is "Harjumaa"
+                mapData: importMap[`${item[0]}`],
+                joinBy: ["ONIMI"],
+                tooltip: {
+                  pointFormat: "{point.ONIMI}: {point.min} - {point.value}<br/>"
+                },
+                dataLabels: {
+                  allAreas: true,
+                  enabled: true,
+                  format: "{point.ONIMI}",
+                  style: {
+                    fontWeight: "normal",
+                    fontSize: "9px"
+                  }
+                }
+              };
+          })
+          /* [
+            {
+              name: "Harjumaa",
+              id: "Harjumaa",
+              keys: ["MNIMI", "ONIMI", "ANIMI", "result", "min", "value"],
+              data: data.dataMunicipalities.municipalitiesData,
+              mapData: Harjumaa,
+              joinBy: ["ONIMI"],
+              tooltip: {
+                pointFormat: "{point.ONIMI}: {point.min} - {point.value}<br/>"
+              },
+              dataLabels: {
+                // This needs to be true for the country map to diplay anything if no data
+                allAreas: true,
+                enabled: true,
+                format: "{point.ONIMI}",
+                style: {
+                  fontWeight: "normal",
+                  fontSize: "9px"
+                }
+              }
+            }
+          ] */
+        },
 
         responsive: {
           rules: [
@@ -351,6 +429,8 @@ export default {
         : this.mapOptions.chartType === "per10k"
         ? (this.mapOptions.series[0] = data.dataInfectionsByCounty10000)
         : (this.mapOptions.series[0] = data.dataActiveInfectionsByCounty);
+
+      this.$children[0].chart.drillUp();
     }
   }
 };

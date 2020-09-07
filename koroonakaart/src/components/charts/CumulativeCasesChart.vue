@@ -134,6 +134,12 @@ export default {
         },
 
         plotOptions: {
+          line: {
+            /* or spline, area, series, areaspline etc.*/
+            marker: {
+              enabled: false
+            }
+          },
           series: {
             showInNavigator: true,
             label: {

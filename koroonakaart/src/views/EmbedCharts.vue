@@ -17,6 +17,8 @@ export default {
       import("../components/charts/CumulativeTestsChart"),
     CumulativeCasesChart: () =>
       import("../components/charts/CumulativeCasesChart"),
+    CumulativeCasesPer100kChart: () => 
+      import("../components/charts/CumulativeCasesPer100kChart"),
     NewCasesPerDayChart: () =>
       import("../components/charts/NewCasesPerDayChart"),
     TestsPerDayChart: () => import("../components/charts/TestsPerDayChart"),

@@ -170,6 +170,7 @@ export default {
         series: [
           {
             name: this.$t("maleNegative"),
+            visible: false,
             data: data.dataPositiveTestsByAgeChart.maleNegative.map(
               x => x * -1
             ),
@@ -184,6 +185,7 @@ export default {
           },
           {
             name: this.$t("femaleNegative"),
+            visible: false,
             data: data.dataPositiveTestsByAgeChart.femaleNegative,
             color: "#917ea9"
           },

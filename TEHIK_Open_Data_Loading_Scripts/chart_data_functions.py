@@ -1,6 +1,48 @@
 import numpy as np
 import pandas as pd
+from datetime import datetime, timedelta, date
 from collections import defaultdict
+
+
+def getHospitalData(json_hospital):
+    hospitalizations = []
+    activehospitalizations = []
+    intensive = []
+    discharged = []
+    for result in json_hospital:
+        hospitalizations += [int(result["Hospitalised"])]
+        activehospitalizations += [int(result["ActivelyHospitalised"])]
+        if result["IsInIntensive"] != None:
+            intensive += [int(result["IsInIntensive"])]
+        else:
+            intensive += [result["IsInIntensive"]]
+        discharged += [int(result["TotalCasesDischarged"])]
+    hospital_results = {
+    "hospitalizations": hospitalizations,
+    "activehospitalizations": activehospitalizations,
+    "intensive": intensive,
+    "discharged": discharged
+    }
+    return hospital_results
+
+def getMunicipalityData(json_municipalities, county_mapping):
+    municipalities_array = []
+    yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
+    rangestart = 0
+    rangeend = 0
+    for result in json_municipalities:
+        if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
+            if result["Commune"] == "Tallinn":
+                rangestart += result["TotalCasesFrom"]
+                rangeend += result["TotalCasesTo"]
+                municipalities_array.append([county, "Tallinn", "",result["ResultValue"],rangestart, rangeend])
+            else:
+                    county = county_mapping[result["County"]]
+                    municipalities_array.append([county, result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
+    municipalities_json = {
+    "municipalitiesData": municipalities_array
+    }
+    return municipalities_json
 
 
 def getCountInfectionsByCounty(json, county_mapping) -> list:
@@ -23,18 +65,18 @@ def getCountInfectionsByCounty(json, county_mapping) -> list:
                 counts[county] += 1
 
     # Create list of lists as in current json
-    result_array = [[county, counts[county]] for county in map_counties]
+    result_array = [[county, counts[county], county] for county in map_counties]
 
     return result_array
 
 
 def getDataInfectionsByCount10000(infectionsByCounty, county_sizes):
-    return [[county, round(value / county_sizes[county] * 10000, 2)] for county, value in infectionsByCounty]
+    return [[county, round(value / county_sizes[county] * 10000, 2), county] for county, value, county in infectionsByCounty]
 
 
 def getDataTestsPopRatio(dataInfectionsByCounty10000):
     # Just extract pop ratios
-    return [v for k, v in dataInfectionsByCounty10000]
+    return [v for k, v, k in dataInfectionsByCounty10000]
 
 
 def getCountyByDay(json, dates, county_mapping):
@@ -234,12 +276,16 @@ def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalise
     for i in range(14, len(andmed["positiveTestsPerDay"])):
         new_cases_14.append(new_cases_14[i-1] - andmed["positiveTestsPerDay"][i-14]  + andmed["positiveTestsPerDay"][i])
 
+    estonian_population = 1_328_976 # from https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
+    per_100_k_multiplier = 100_000 / estonian_population
+    new_cases_14_per_100_k = [round(active_cases * per_100_k_multiplier, 2) for active_cases in new_cases_14]
 
 
     dataCumulativeCasesChart = {
         "cases": list(cases),
         "recovered": recovered_list,
         "active": new_cases_14,
+        "active100k": new_cases_14_per_100_k,
         "deceased": deceased_list,
         "haiglas": hospitalised,
         "intensive": intensive
