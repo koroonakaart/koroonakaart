@@ -27,9 +27,9 @@
           <h5>{{ $t("perHundred") }}</h5>
         </div>
         <h1>{{perHundred}}</h1>
-<!--        <h5
-          :class="rawActiveChanged === 0 ? 'neutral' : rawActiveChanged > 0 ? 'positive' : 'negative'"
-        >( {{activeChanged}} )</h5>-->
+        <h5
+          :class="rawPerHundredChanged === 0 ? 'neutral' : rawPerHundredChanged > 0 ? 'positive' : 'negative'"
+        >( {{rawPerHundredChanged}} )</h5>
       </b-col>
 
 
@@ -89,7 +89,7 @@ export default {
       activeCasesNumber: data.activeCasesNumber,
       confirmedCasesNumber: data.confirmedCasesNumber,
       deceasedNumber: data.deceasedNumber,
-      perHundred: data.perHundred,
+      perHundred: data.dataCumulativeCasesChart.active100k[data.dataCumulativeCasesChart.active100k.length - 1],
       hospitalisedNumber: data.hospital.activehospitalizations[data.hospital.activehospitalizations.length - 1],
       recoveredNumber: data.hospital.discharged[data.hospital.discharged.length - 1],
       testsAdministeredNumber: data.testsAdministeredNumber,
@@ -107,6 +107,7 @@ export default {
           data.dataNewCasesPerDayChart.confirmedCases.length - 1
         ]
       ),
+      rawPerHundredChanged: positiveSign(Number(data.dataCumulativeCasesChart.active100k[data.dataCumulativeCasesChart.active100k.length - 1] - data.dataCumulativeCasesChart.active100k[data.dataCumulativeCasesChart.active100k.length - 2]).toFixed(2)),
       rawDeceasedChanged: Number(data.deceasedChanged),
       rawHospitalisedChanged: Number(data.hospitalChanged),
       rawRecoveredChanged: Number(data.recoveredChanged),
