@@ -72,6 +72,9 @@ export default {
                 this.exportSVGElements[6].setState(
                   this.options.chartType === "active" ? 2 : 0
                 );
+                this.exportSVGElements[8].setState(
+                this.options.chartType === "active100k" ? 2:0
+                );
               }, 100);
             },
 
@@ -173,6 +176,26 @@ export default {
                 this.update({
                   series: {
                     data: data.dataActiveInfectionsByCounty.map(point => {
+                      if (point[1] === 0) {
+                        point[1] = point[1] + 0.000001;
+                        return point;
+                      } else return point;
+                    }),
+                    dataLabels: {
+                      format: "{point.MNIMI}"
+                    }
+                  }
+                });
+              }
+            },
+            customButton4: {
+              text: this.$t("activeCounty100k"),
+              onclick: function() {
+                this.options.chartType = "active100k";
+
+                this.update({
+                  series: {
+                    data: data.dataActiveInfectionsByCounty100k.map(point => {
                       if (point[1] === 0) {
                         point[1] = point[1] + 0.000001;
                         return point;
@@ -422,6 +445,7 @@ export default {
         "absolute"
       );
       this.mapOptions.exporting.buttons.customButton3.text = this.$t("active");
+      this.mapOptions.exporting.buttons.customButton4.text = this.$t("activeCounty100k");
 
       // Persist chart type selection through language change
       this.mapOptions.chartType === "absolute"

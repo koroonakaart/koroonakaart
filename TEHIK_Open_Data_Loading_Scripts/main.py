@@ -117,6 +117,8 @@ if __name__ == "__main__":
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
     dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
+    dataActiveInfectionsByCounty100k = [[k, round(v[-1] / county_sizes[k] * 100000, 2)] for k,v in dataCountyDailyActive.items()]
+
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
 
     perHundred = dataCumulativeCasesChart["active100k"][-1]
@@ -143,6 +145,7 @@ if __name__ == "__main__":
         "age_groups": age_groups,
         "dataInfectionsByCounty": dataInfectionsByCounty,
         "dataInfectionsByCounty10000": dataInfectionsByCounty10000,
+        "dataActiveInfectionsByCounty100k": dataActiveInfectionsByCounty100k,
         "dataActiveInfectionsByCounty": dataActiveInfectionsByCounty,
         "dataTestsPopRatio": dataTestsPopRatio,
         "countyByDay": countyByDay,
