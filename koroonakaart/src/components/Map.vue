@@ -1,6 +1,11 @@
 <template>
   <b-container>
-    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
+    <highcharts
+      :constructor-type="'mapChart'"
+      :options="mapOptions"
+      class="map"
+      ref="highmap"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -46,7 +51,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function () {
+            load: function() {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -60,7 +65,7 @@ export default {
               //button.setState(2);
             },
 
-            redraw: function () {
+            redraw: function() {
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               let newTitleText;
@@ -81,7 +86,6 @@ export default {
               }
 
               setTimeout(() => {
-                console.log(this);
                 this.setTitle({ text: newTitleText });
 
                 /* this.exportSVGElements[4].setState(
@@ -99,7 +103,10 @@ export default {
               }, 100);
             },
 
-            drilldown: function () {
+            drilldown: function() {
+              if (this.options.chartType !== "absolute")
+                throw "No such chart type... yet";
+
               /* if (this.series[0].options._levelNumber != 1) { */
               this.exportSVGElements[2].hide();
               /* this.exportSVGElements[2].hide();
@@ -109,7 +116,7 @@ export default {
 
               this.redraw(); */
             },
-            drillup: function () {
+            drillup: function() {
               /* if (this.series[0].options._levelNumber == 1) { */
               this.exportSVGElements[2].show();
               /* this.exportSVGElements[2].show();
@@ -176,7 +183,7 @@ export default {
               menuItems: [
                 {
                   text: this.$t("per10000"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "per10k";
 
                     /* this.exportSVGElements[2].attr({
@@ -196,7 +203,7 @@ export default {
 
                 {
                   text: this.$t("absolute"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "absolute";
 
                     this.update({
@@ -212,7 +219,7 @@ export default {
 
                 {
                   text: this.$t("active"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "active";
 
                     this.update({
@@ -233,7 +240,7 @@ export default {
 
                 {
                   text: this.$t("activeCounty100k"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "active100k";
 
                     this.update({
@@ -370,7 +377,7 @@ export default {
             tooltip: {
               pointFormat: "{point.MNIMI}: {point.value}<br/>",
 
-              pointFormatter: function () {
+              pointFormatter: function() {
                 if (this.value === 0.000001) {
                   return 0;
                 } else {
@@ -488,12 +495,8 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function () {
+    currentLocale: function() {
       return this.$i18n.locale;
-    },
-
-    vueRoot() {
-      return this.$root;
     },
   },
 
