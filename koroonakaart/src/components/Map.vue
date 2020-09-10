@@ -87,43 +87,61 @@ export default {
 
               setTimeout(() => {
                 this.setTitle({ text: newTitleText });
-
-                /* this.exportSVGElements[4].setState(
-                  this.options.chartType === "absolute" ? 2 : 0
-                );
-                this.exportSVGElements[2].setState(
-                  this.options.chartType === "per10k" ? 2 : 0
-                );
-                this.exportSVGElements[6].setState(
-                  this.options.chartType === "active" ? 2 : 0
-                );
-                this.exportSVGElements[8].setState(
-                  this.options.chartType === "active100k" ? 2 : 0
-                ); */
               }, 100);
             },
 
-            drilldown: function() {
-              if (this.options.chartType !== "absolute")
-                throw "No such chart type... yet";
+            drilldown: function(e) {
+              if (!e.seriesOptions && this.options.chartType === "absolute") {
+                let chart = this;
+                let drilldowns = data.dataMunicipalities.municipalitiesData.map(
+                  (item) => {
+                    return {
+                      name: item[0],
+                      id: item[0],
+                      keys: [
+                        "MNIMI",
+                        "ONIMI",
+                        "ANIMI",
+                        "result",
+                        "min",
+                        "value",
+                      ],
+                      data: data.dataMunicipalities.municipalitiesData.filter(
+                        (element) => element.MNIMI === item.MNIMI
+                      ),
+                      // evaluate template string to a value to be looked up from importMap
+                      // eg item[0] is "Harjumaa"
+                      mapData: importMap[`${item[0]}`],
+                      joinBy: ["ONIMI"],
+                      tooltip: {
+                        pointFormat:
+                          "{point.ONIMI}: {point.min} - {point.value}<br/>",
+                      },
+                      dataLabels: {
+                        allAreas: true,
+                        enabled: true,
+                        format: "{point.ONIMI}",
+                        style: {
+                          fontWeight: "normal",
+                          fontSize: "9px",
+                        },
+                      },
+                    };
+                  }
+                );
 
-              /* if (this.series[0].options._levelNumber != 1) { */
-              this.exportSVGElements[2].hide();
-              /* this.exportSVGElements[2].hide();
-              this.exportSVGElements[4].hide();
-              this.exportSVGElements[6].hide(); */
-              /*  }
+                let series = drilldowns.find(
+                  (element) => element.name === e.point.MNIMI
+                );
 
-              this.redraw(); */
+                chart.addSeriesAsDrilldown(e.point, series);
+
+                this.exportSVGElements[2].hide();
+              }
             },
+
             drillup: function() {
-              /* if (this.series[0].options._levelNumber == 1) { */
               this.exportSVGElements[2].show();
-              /* this.exportSVGElements[2].show();
-              this.exportSVGElements[4].show();
-              this.exportSVGElements[6].show(); */
-              /* }
-              this.redraw(); */
             },
           },
         },
@@ -360,6 +378,7 @@ export default {
         series: [
           {
             drillUpText: this.$t("faq.back"),
+            drilldown: true,
             data: data.dataInfectionsByCounty,
             /* allowPointSelect: true, */
             keys: ["MNIMI", "value", "drilldown"],
@@ -400,57 +419,7 @@ export default {
           /* allAreas: true, */
         ],
         drilldown: {
-          series: data.dataMunicipalities.municipalitiesData.map((item) => {
-            if (!item[0].length) {
-              return;
-            } else
-              return {
-                name: item[0],
-                id: item[0],
-                keys: ["MNIMI", "ONIMI", "ANIMI", "result", "min", "value"],
-                data: data.dataMunicipalities.municipalitiesData,
-                // evaluate template string to a value to be looked up from importMap
-                // eg item[0] is "Harjumaa"
-                mapData: importMap[`${item[0]}`],
-                joinBy: ["ONIMI"],
-                tooltip: {
-                  pointFormat:
-                    "{point.ONIMI}: {point.min} - {point.value}<br/>",
-                },
-                dataLabels: {
-                  allAreas: true,
-                  enabled: true,
-                  format: "{point.ONIMI}",
-                  style: {
-                    fontWeight: "normal",
-                    fontSize: "9px",
-                  },
-                },
-              };
-          }),
-          /* [
-            {
-              name: "Harjumaa",
-              id: "Harjumaa",
-              keys: ["MNIMI", "ONIMI", "ANIMI", "result", "min", "value"],
-              data: data.dataMunicipalities.municipalitiesData,
-              mapData: Harjumaa,
-              joinBy: ["ONIMI"],
-              tooltip: {
-                pointFormat: "{point.ONIMI}: {point.min} - {point.value}<br/>"
-              },
-              dataLabels: {
-                // This needs to be true for the country map to diplay anything if no data
-                allAreas: true,
-                enabled: true,
-                format: "{point.ONIMI}",
-                style: {
-                  fontWeight: "normal",
-                  fontSize: "9px"
-                }
-              }
-            }
-          ] */
+          series: [],
         },
 
         responsive: {
