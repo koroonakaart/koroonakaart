@@ -50,6 +50,7 @@
   "positive": "Positive",
   "testsAdministered": "Tests administered",
   "testsPerDay": "Tests per day",
+  "typeOfData": "Choose the type of data",
   "per10000": "Per 10,000 population",
   "activeCounty100k": "Infections by county per 100 000 population over the past 14 days",
   "absolute": "Absolute count",
