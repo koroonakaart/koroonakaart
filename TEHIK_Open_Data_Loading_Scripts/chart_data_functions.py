@@ -82,7 +82,7 @@ def getDataTestsPopRatio(dataInfectionsByCounty10000):
 def getCountyByDay(json, dates, county_mapping):
     chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
                       "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",
-                      "Valgamaa", "Viljandimaa", "Võrumaa"]
+                      "Valgamaa", "Viljandimaa", "Võrumaa","Info puudulik"]
 
     county_date_counts = defaultdict(int)
 
