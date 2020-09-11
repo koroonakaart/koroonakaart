@@ -10,6 +10,8 @@ import exportingInit from "highcharts/modules/exporting";
 import stockInit from "highcharts/modules/stock";
 import offlineExporting from "highcharts/modules/offline-exporting";
 import exportData from "highcharts/modules/export-data";
+/* eslint-disable-next-line */
+import motion from "./plugins/motion";
 
 import mapInit from "highcharts/modules/map";
 
@@ -24,6 +26,7 @@ stockInit(Highcharts);
 exportingInit(Highcharts);
 offlineExporting(Highcharts);
 exportData(Highcharts);
+motion(Highcharts);
 
 Vue.use(HighchartsVue);
 

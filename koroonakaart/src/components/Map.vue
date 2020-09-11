@@ -1,11 +1,6 @@
 <template>
   <b-container>
-    <highcharts
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
 
@@ -51,7 +46,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function() {
+            load: function () {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -65,32 +60,32 @@ export default {
               //button.setState(2);
             },
 
-            redraw: function() {
+            redraw: function () {
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
-              let newTitleText;
-
-              switch (this.options.chartType) {
-                case "absolute":
-                  newTitleText = vueRoot.$t("absolute");
-                  break;
-                case "per10k":
-                  newTitleText = vueRoot.$t("per10000");
-                  break;
-                case "active":
-                  newTitleText = vueRoot.$t("active");
-                  break;
-                case "active100k":
-                  newTitleText = vueRoot.$t("active100k");
-                  break;
-              }
-
               setTimeout(() => {
+                let newTitleText;
+
+                switch (this.options.chartType) {
+                  case "absolute":
+                    newTitleText = vueRoot.$t("absolute");
+                    break;
+                  case "per10k":
+                    newTitleText = vueRoot.$t("per10000");
+                    break;
+                  case "active":
+                    newTitleText = vueRoot.$t("active");
+                    break;
+                  case "active100k":
+                    newTitleText = vueRoot.$t("active100k");
+                    break;
+                }
+
                 this.setTitle({ text: newTitleText });
               }, 100);
             },
 
-            drilldown: function(e) {
+            drilldown: function (e) {
               if (!e.seriesOptions && this.options.chartType === "absolute") {
                 let chart = this;
                 let drilldowns = data.dataMunicipalities.municipalitiesData.map(
@@ -140,7 +135,7 @@ export default {
               }
             },
 
-            drillup: function() {
+            drillup: function () {
               this.exportSVGElements[2].show();
             },
           },
@@ -201,7 +196,7 @@ export default {
               menuItems: [
                 {
                   text: this.$t("per10000"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "per10k";
 
                     /* this.exportSVGElements[2].attr({
@@ -221,7 +216,7 @@ export default {
 
                 {
                   text: this.$t("absolute"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "absolute";
 
                     this.update({
@@ -237,7 +232,7 @@ export default {
 
                 {
                   text: this.$t("active"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "active";
 
                     this.update({
@@ -258,7 +253,7 @@ export default {
 
                 {
                   text: this.$t("activeCounty100k"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "active100k";
 
                     this.update({
@@ -341,9 +336,9 @@ export default {
 
         // Legend bar density
         colorAxis: {
-          min: 1,
+          min: 0,
           tickPixelInterval: 50,
-          type: "logarithmic",
+          type: "linear",
           /* minColor: "#EEEEFF",
           maxColor: "#000022", */
           /* labels: {
@@ -360,12 +355,11 @@ export default {
                 y1: 0,
                 y2: 1
               }, */
-
-              stops: [
+              /* stops: [
                 [0, "#003399"], // start
                 [0.5, "#ffffff"], // middle
                 [1, "#3366AA"], // end
-              ],
+              ], */
             },
           },
         },
@@ -375,17 +369,34 @@ export default {
           symbolWidth: 300,
         },
 
+        motion: {
+          enabled: true,
+          axisLabel: "date",
+          labels: data.dates2,
+          loop: false,
+          series: 0, // The series which holds points to update
+          updateInterval: 50,
+          magnet: {
+            round: "round", // ceil / floor / round
+            step: 0.1,
+          },
+        },
+
         series: [
           {
             drillUpText: this.$t("faq.back"),
             drilldown: true,
-            data: data.dataInfectionsByCounty,
-            /* allowPointSelect: true, */
-            keys: ["MNIMI", "value", "drilldown"],
+            data: data.countyByDay.mapPlayback,
+            allowPointSelect: true,
+            //keys: ["MNIMI", "sequence", "drilldown"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
             borderColor: "black",
             borderWidth: 0.3,
+
+            //zMin: 1,
+            //zMax: 1100,
+
             states: {
               hover: {
                 color: "#a4edba",
@@ -394,9 +405,9 @@ export default {
 
             // Customise tooltips
             tooltip: {
-              pointFormat: "{point.MNIMI}: {point.value}<br/>",
+              pointFormat: "{point.MNIMI}: {point.sequence}<br/>",
 
-              pointFormatter: function() {
+              pointFormatter: function () {
                 if (this.value === 0.000001) {
                   return 0;
                 } else {
@@ -464,7 +475,7 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     },
   },
@@ -501,4 +512,23 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style global>
+#play-controls {
+  margin: 0 auto;
+  max-width: 750px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#play-range {
+  min-width: 300px;
+  margin: 0 0.5rem;
+  flex: 1;
+}
+
+#play-output {
+  margin: 0;
+}
+</style>
