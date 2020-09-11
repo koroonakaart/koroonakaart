@@ -54,6 +54,7 @@
   "per10000": "На 10000 жителей",
   "absolute": "Абсолютное число",
   "positiveNegativeTitle": "Положительные и отрицательные тесты по уездам (%)",
+  "typeOfData": "Тип данных",
   "unknown": "Не известно",
   "footer1": "Koroonakaart.ee создано в рамках",
   "footer2": "хакатона Garage48 Hack the Crisis",

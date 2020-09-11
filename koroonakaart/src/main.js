@@ -32,12 +32,12 @@ Vue.config.productionTip = false;
 // Configuration VueAnalytics
 Vue.use(VueAnalytics, {
   id: "UA-86124786-3",
-  router
+  router,
 });
 
-new Vue({
+export default new Vue({
   router,
   store,
   i18n,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
