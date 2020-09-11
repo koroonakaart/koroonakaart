@@ -116,8 +116,8 @@ if __name__ == "__main__":
     dataCountyDailyActive = getdataCountyDailyActive(json_copy,dates2,county_mapping)
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
-    dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive.items()]
-    dataActiveInfectionsByCounty100k = [[k, round(v[-1] / county_sizes[k] * 100000, 2)] for k,v in dataCountyDailyActive.items()]
+    dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive["countyByDayActive"].items()]
+    dataActiveInfectionsByCounty100k = [[k, round(v[-1] / county_sizes[k] * 100000, 2)] for k,v in dataCountyDailyActive["countyByDayActive"].items()]
 
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
 
