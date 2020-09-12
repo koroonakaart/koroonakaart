@@ -207,6 +207,25 @@ export default function(H) {
     this.updateChart(this.playRange.value);
   };
 
+  Motion.prototype.updateToNewData = function() {
+    this.playRange.value = this.playRange.min;
+    this.updateChart(this.playRange.value);
+
+    setTimeout(() => {
+      this.playRange.value = this.playRange.max;
+      this.updateChart(this.playRange.value);
+    }, 500);
+  };
+
+  Motion.prototype.togglePlayControls = function() {
+    const playControls = document.getElementById("play-controls");
+    if (playControls.style.display === "none") {
+      playControls.style.display = "block";
+    } else {
+      playControls.style.display = "none";
+    }
+  };
+
   // Updates a button's title, innerHTML and CSS class to a certain value
   Motion.prototype.changeButtonType = function(value) {
     this.playPauseBtn.title = value;

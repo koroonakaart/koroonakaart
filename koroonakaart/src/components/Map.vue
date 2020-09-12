@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       mapOptions: {
-        chartType: "absolute",
+        chartType: "active",
 
         chart: {
           marginTop: 30,
@@ -87,6 +87,8 @@ export default {
 
             drilldown: function (e) {
               if (!e.seriesOptions && this.options.chartType === "absolute") {
+                this.motion.togglePlayControls();
+
                 let chart = this;
                 let drilldowns = data.dataMunicipalities.municipalitiesData.map(
                   (item) => {
@@ -137,6 +139,7 @@ export default {
 
             drillup: function () {
               this.exportSVGElements[2].show();
+              this.motion.updateToNewData();
             },
           },
         },
@@ -199,18 +202,16 @@ export default {
                   onclick: function () {
                     this.options.chartType = "per10k";
 
-                    /* this.exportSVGElements[2].attr({
-                      text: this.$t("per10000"),
-                    }); */
-
                     this.update({
                       series: {
-                        data: data.dataInfectionsByCounty10000,
+                        data: data.countyByDay.mapPlayback10k,
                         dataLabels: {
-                          format: "{point.MNIMI}",
+                          format: "{point.MNIMI}<br/> {point.value}",
                         },
                       },
                     });
+
+                    this.motion.updateToNewData();
                   },
                 },
 
@@ -221,12 +222,14 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataInfectionsByCounty,
+                        data: data.countyByDay.mapPlayback,
                         dataLabels: {
-                          format: "{point.MNIMI}",
+                          format: "{point.MNIMI}<br/> {point.value}",
                         },
                       },
                     });
+
+                    this.motion.updateToNewData();
                   },
                 },
 
@@ -245,10 +248,12 @@ export default {
                             return point;
                           } else return point;
                         }), */ dataLabels: {
-                          format: "{point.MNIMI}",
+                          format: "{point.MNIMI}<br/> {point.value}",
                         },
                       },
                     });
+
+                    this.motion.updateToNewData();
                   },
                 },
 
@@ -259,7 +264,7 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataActiveInfectionsByCounty100k,
+                        data: data.dataCountyDailyActive.activeMap100kPlayback,
                         // For logarithmic scale
                         /* .map(
                           (point) => {
@@ -269,10 +274,12 @@ export default {
                             } else return point;
                           }
                         ) */ dataLabels: {
-                          format: "{point.MNIMI}",
+                          format: "{point.MNIMI}<br/> {point.value}",
                         },
                       },
                     });
+
+                    this.motion.updateToNewData();
                   },
                 },
               ],
@@ -349,6 +356,7 @@ export default {
             [0.6, "#1C2F71"],
             [1.0, "#071239"],
           ],
+
           /* labels: {
             formatter: function () {
               return this.value - 1;
@@ -367,10 +375,10 @@ export default {
           labels: data.dates2,
           loop: false,
           series: 0, // The series which holds points to update
-          updateInterval: 25,
+          updateInterval: 40,
           magnet: {
             round: "round", // ceil / floor / round
-            step: 0.5,
+            step: 0.2,
           },
         },
 
@@ -378,7 +386,7 @@ export default {
           {
             drillUpText: this.$t("faq.back"),
             drilldown: true,
-            data: data.countyByDay.mapPlayback,
+            data: data.dataActiveInfectionsByCounty,
             // allowPointSelect: true,
             //keys: ["MNIMI", "sequence", "drilldown"],
             joinBy: "MNIMI",

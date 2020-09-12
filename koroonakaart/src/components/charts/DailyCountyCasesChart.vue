@@ -12,11 +12,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -27,7 +27,7 @@ export default {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
@@ -35,7 +35,7 @@ export default {
           width: this.width,
           marginTop: 80,
           events: {
-            load: function() {
+            load: function () {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -48,7 +48,7 @@ export default {
               // 3 - disabled
               button.setState(2);
             },
-            redraw: function() {
+            redraw: function () {
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
@@ -62,8 +62,8 @@ export default {
                   this.options.chartType === "active" ? 2 : 0
                 );
               }, 100);
-            }
-          }
+            },
+          },
         },
 
         exporting: {
@@ -73,8 +73,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed Graph"
-            }
+              text: "Embed Graph",
+            },
           },
 
           buttons: {
@@ -90,257 +90,277 @@ export default {
                 "downloadCSV",
                 "downloadXLS",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
 
             customButton: {
               text: this.$t("logarithmic"),
-              onclick: function() {
+              onclick: function () {
                 this.update({
                   series: [
                     {
                       name: "Harjumaa",
                       data: data.countyByDay.countyByDay.Harjumaa,
-                      color: "#2F7ED8"
+                      color: "#2F7ED8",
                     },
                     {
                       name: "Hiiumaa",
                       data: data.countyByDay.countyByDay.Hiiumaa,
-                      color: "#456990"
+                      color: "#456990",
                     },
                     {
                       name: "Ida-Virumaa",
                       data: data.countyByDay.countyByDay["Ida-Virumaa"],
-                      color: "#49BEAA"
+                      color: "#49BEAA",
                     },
                     {
                       name: "Jõgevamaa",
                       data: data.countyByDay.countyByDay.Jõgevamaa,
-                      color: "#49DCB1"
+                      color: "#49DCB1",
                     },
                     {
                       name: "Järvamaa",
                       data: data.countyByDay.countyByDay.Järvamaa,
-                      color: "#EEB868"
+                      color: "#EEB868",
                     },
                     {
                       name: "Läänemaa",
-                      data: data.countyByDay.countyByDay.Läänemaa
+                      data: data.countyByDay.countyByDay.Läänemaa,
                     },
                     {
                       name: "Lääne-Virumaa",
                       data: data.countyByDay.countyByDay["Lääne-Virumaa"],
-                      color: "#6684A4"
+                      color: "#6684A4",
                     },
                     {
                       name: "Põlvamaa",
-                      data: data.countyByDay.countyByDay.Põlvamaa
+                      data: data.countyByDay.countyByDay.Põlvamaa,
                     },
                     {
                       name: "Pärnumaa",
-                      data: data.countyByDay.countyByDay.Pärnumaa
+                      data: data.countyByDay.countyByDay.Pärnumaa,
                     },
                     {
                       name: "Raplamaa",
-                      data: data.countyByDay.countyByDay.Raplamaa
+                      data: data.countyByDay.countyByDay.Raplamaa,
                     },
                     {
                       name: "Saaremaa",
-                      data: data.countyByDay.countyByDay.Saaremaa
+                      data: data.countyByDay.countyByDay.Saaremaa,
                     },
                     {
                       name: "Tartumaa",
-                      data: data.countyByDay.countyByDay.Tartumaa
+                      data: data.countyByDay.countyByDay.Tartumaa,
                     },
                     {
                       name: "Valgamaa",
-                      data: data.countyByDay.countyByDay.Valgamaa
+                      data: data.countyByDay.countyByDay.Valgamaa,
                     },
                     {
                       name: "Viljandimaa",
-                      data: data.countyByDay.countyByDay.Viljandimaa
+                      data: data.countyByDay.countyByDay.Viljandimaa,
                     },
                     {
                       name: "Võrumaa",
-                      data: data.countyByDay.countyByDay.Võrumaa
-                    }
-                  ]
+                      data: data.countyByDay.countyByDay.Võrumaa,
+                    },
+                  ],
                 });
                 this.options.chartType = "logarithmic";
 
                 this.yAxis[0].update({
                   type: "logarithmic",
-                  allowNegativeLog: true
+                  allowNegativeLog: true,
                 });
-              }
+              },
             },
             customButton2: {
               text: this.$t("linear"),
-              onclick: function() {
+              onclick: function () {
                 this.update({
                   series: [
                     {
                       name: "Harjumaa",
                       data: data.countyByDay.countyByDay.Harjumaa,
-                      color: "#2F7ED8"
+                      color: "#2F7ED8",
                     },
                     {
                       name: "Hiiumaa",
                       data: data.countyByDay.countyByDay.Hiiumaa,
-                      color: "#456990"
+                      color: "#456990",
                     },
                     {
                       name: "Ida-Virumaa",
                       data: data.countyByDay.countyByDay["Ida-Virumaa"],
-                      color: "#49BEAA"
+                      color: "#49BEAA",
                     },
                     {
                       name: "Jõgevamaa",
                       data: data.countyByDay.countyByDay.Jõgevamaa,
-                      color: "#49DCB1"
+                      color: "#49DCB1",
                     },
                     {
                       name: "Järvamaa",
                       data: data.countyByDay.countyByDay.Järvamaa,
-                      color: "#EEB868"
+                      color: "#EEB868",
                     },
                     {
                       name: "Läänemaa",
-                      data: data.countyByDay.countyByDay.Läänemaa
+                      data: data.countyByDay.countyByDay.Läänemaa,
                     },
                     {
                       name: "Lääne-Virumaa",
                       data: data.countyByDay.countyByDay["Lääne-Virumaa"],
-                      color: "#6684A4"
+                      color: "#6684A4",
                     },
                     {
                       name: "Põlvamaa",
-                      data: data.countyByDay.countyByDay.Põlvamaa
+                      data: data.countyByDay.countyByDay.Põlvamaa,
                     },
                     {
                       name: "Pärnumaa",
-                      data: data.countyByDay.countyByDay.Pärnumaa
+                      data: data.countyByDay.countyByDay.Pärnumaa,
                     },
                     {
                       name: "Raplamaa",
-                      data: data.countyByDay.countyByDay.Raplamaa
+                      data: data.countyByDay.countyByDay.Raplamaa,
                     },
                     {
                       name: "Saaremaa",
-                      data: data.countyByDay.countyByDay.Saaremaa
+                      data: data.countyByDay.countyByDay.Saaremaa,
                     },
                     {
                       name: "Tartumaa",
-                      data: data.countyByDay.countyByDay.Tartumaa
+                      data: data.countyByDay.countyByDay.Tartumaa,
                     },
                     {
                       name: "Valgamaa",
-                      data: data.countyByDay.countyByDay.Valgamaa
+                      data: data.countyByDay.countyByDay.Valgamaa,
                     },
                     {
                       name: "Viljandimaa",
-                      data: data.countyByDay.countyByDay.Viljandimaa
+                      data: data.countyByDay.countyByDay.Viljandimaa,
                     },
                     {
                       name: "Võrumaa",
-                      data: data.countyByDay.countyByDay.Võrumaa
-                    }
-                  ]
+                      data: data.countyByDay.countyByDay.Võrumaa,
+                    },
+                  ],
                 });
                 this.options.chartType = "linear";
 
                 this.yAxis[0].update({
-                  type: "linear"
+                  type: "linear",
                 });
-              }
+              },
             },
             customButton3: {
               text: this.$t("active"),
-              onclick: function() {
+              onclick: function () {
                 this.update({
                   series: [
                     {
                       name: "Harjumaa",
-                      data: data.dataCountyDailyActive.Harjumaa,
-                      color: "#2F7ED8"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Harjumaa,
+                      color: "#2F7ED8",
                     },
                     {
                       name: "Hiiumaa",
-                      data: data.dataCountyDailyActive.Hiiumaa,
-                      color: "#456990"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Hiiumaa,
+                      color: "#456990",
                     },
                     {
                       name: "Ida-Virumaa",
-                      data: data.dataCountyDailyActive["Ida-Virumaa"],
-                      color: "#49BEAA"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive[
+                          "Ida-Virumaa"
+                        ],
+                      color: "#49BEAA",
                     },
                     {
                       name: "Jõgevamaa",
-                      data: data.dataCountyDailyActive.Jõgevamaa,
-                      color: "#49DCB1"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Jõgevamaa,
+                      color: "#49DCB1",
                     },
                     {
                       name: "Järvamaa",
-                      data: data.dataCountyDailyActive.Järvamaa,
-                      color: "#EEB868"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Järvamaa,
+                      color: "#EEB868",
                     },
                     {
                       name: "Läänemaa",
-                      data: data.dataCountyDailyActive.Läänemaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Läänemaa,
                     },
                     {
                       name: "Lääne-Virumaa",
-                      data: data.dataCountyDailyActive["Lääne-Virumaa"],
-                      color: "#6684A4"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive[
+                          "Lääne-Virumaa"
+                        ],
+                      color: "#6684A4",
                     },
                     {
                       name: "Põlvamaa",
-                      data: data.dataCountyDailyActive.Põlvamaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Põlvamaa,
                     },
                     {
                       name: "Pärnumaa",
-                      data: data.dataCountyDailyActive.Pärnumaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Pärnumaa,
                     },
                     {
                       name: "Raplamaa",
-                      data: data.dataCountyDailyActive.Raplamaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Raplamaa,
                     },
                     {
                       name: "Saaremaa",
-                      data: data.dataCountyDailyActive.Saaremaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Saaremaa,
                     },
                     {
                       name: "Tartumaa",
-                      data: data.dataCountyDailyActive.Tartumaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Tartumaa,
                     },
                     {
                       name: "Valgamaa",
-                      data: data.dataCountyDailyActive.Valgamaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Valgamaa,
                     },
                     {
                       name: "Viljandimaa",
-                      data: data.dataCountyDailyActive.Viljandimaa
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive
+                          .Viljandimaa,
                     },
                     {
                       name: "Võrumaa",
-                      data: data.dataCountyDailyActive.Võrumaa
-                    }
-                  ]
-                });
-
-                this.yAxis[0].update({
-                  type: "linear"
+                      data:
+                        data.dataCountyDailyActive.countyByDayActive.Võrumaa,
+                    },
+                  ],
                 });
                 this.options.chartType = "active";
-              }
-            }
-          }
+
+                this.yAxis[0].update({
+                  type: "linear",
+                });
+              },
+            },
+          },
         },
 
         // Remove Highcharts.com link from bottom right
         credits: {
-          enabled: false
+          enabled: false,
         },
 
         navigation: {
@@ -361,30 +381,30 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         xAxis: {
           categories: data.dates2,
-          crosshair: true
+          crosshair: true,
         },
 
         yAxis: {
           /* min: 0, */
           allowNegativeLog: true,
           title: {
-            text: this.$t("numberOfCases")
-          }
+            text: this.$t("numberOfCases"),
+          },
         },
 
         tooltip: {
@@ -395,92 +415,92 @@ export default {
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
           footerFormat: "</table>",
           shared: true,
-          useHTML: true
+          useHTML: true,
         },
 
         plotOptions: {
           line: {
             /* or spline, area, series, areaspline etc.*/
             marker: {
-              enabled: false
-            }
-          }
+              enabled: false,
+            },
+          },
         },
 
         series: [
           {
             name: "Harjumaa",
             data: data.countyByDay.countyByDay.Harjumaa,
-            color: "#2F7ED8"
+            color: "#2F7ED8",
           },
           {
             name: "Hiiumaa",
             data: data.countyByDay.countyByDay.Hiiumaa,
-            color: "#456990"
+            color: "#456990",
           },
           {
             name: "Ida-Virumaa",
             data: data.countyByDay.countyByDay["Ida-Virumaa"],
-            color: "#49BEAA"
+            color: "#49BEAA",
           },
           {
             name: "Jõgevamaa",
             data: data.countyByDay.countyByDay.Jõgevamaa,
-            color: "#49DCB1"
+            color: "#49DCB1",
           },
           {
             name: "Järvamaa",
             data: data.countyByDay.countyByDay.Järvamaa,
-            color: "#EEB868"
+            color: "#EEB868",
           },
           {
             name: "Läänemaa",
-            data: data.countyByDay.countyByDay.Läänemaa
+            data: data.countyByDay.countyByDay.Läänemaa,
           },
           {
             name: "Lääne-Virumaa",
             data: data.countyByDay.countyByDay["Lääne-Virumaa"],
-            color: "#6684A4"
+            color: "#6684A4",
           },
           {
             name: "Põlvamaa",
-            data: data.countyByDay.countyByDay.Põlvamaa
+            data: data.countyByDay.countyByDay.Põlvamaa,
           },
           {
             name: "Pärnumaa",
-            data: data.countyByDay.countyByDay.Pärnumaa
+            data: data.countyByDay.countyByDay.Pärnumaa,
           },
           {
             name: "Raplamaa",
-            data: data.countyByDay.countyByDay.Raplamaa
+            data: data.countyByDay.countyByDay.Raplamaa,
           },
           {
             name: "Saaremaa",
-            data: data.countyByDay.countyByDay.Saaremaa
+            data: data.countyByDay.countyByDay.Saaremaa,
           },
           {
             name: "Tartumaa",
-            data: data.countyByDay.countyByDay.Tartumaa
+            data: data.countyByDay.countyByDay.Tartumaa,
           },
           {
             name: "Valgamaa",
-            data: data.countyByDay.countyByDay.Valgamaa
+            data: data.countyByDay.countyByDay.Valgamaa,
           },
           {
             name: "Viljandimaa",
-            data: data.countyByDay.countyByDay.Viljandimaa
+            data: data.countyByDay.countyByDay.Viljandimaa,
           },
           {
             name: "Võrumaa",
-            data: data.countyByDay.countyByDay.Võrumaa
-          }
+            data: data.countyByDay.countyByDay.Võrumaa,
+          },
         ],
 
         responsive: {
           rules: [
             {
               condition: {
-                maxWidth: 670
+                maxWidth: 670,
               },
 
               chartOptions: {
@@ -491,24 +511,24 @@ export default {
                     verticalAlign: "center",
                     theme: {
                       style: {
-                        width: "70px"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+                        width: "70px",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -525,8 +545,8 @@ export default {
       this.chartOptions.exporting.buttons.customButton3.text = this.$t(
         "active"
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
