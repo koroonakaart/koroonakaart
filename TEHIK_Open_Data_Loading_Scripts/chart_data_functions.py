@@ -102,10 +102,10 @@ def getCountyByDay(json, dates, county_mapping, county_sizes):
         for date in dates:
             val = county_date_counts[(county, str(date.date()))]
             per_day_county.append(val)
-            per_day_county_10k.append(round(val/county_sizes[county] * 10000, 4))
+            per_day_county_10k.append((val/county_sizes[county] * 10000))
 
         mapPlayback.append({"MNIMI": county, "sequence": list(np.cumsum(per_day_county)), "drilldown": county})
-        mapPlayback10k.append({"MNIMI": county, "sequence": list(np.cumsum(per_day_county_10k)), "drilldown": county})
+        mapPlayback10k.append({"MNIMI": county, "sequence": list(np.round(np.cumsum(per_day_county_10k),2)), "drilldown": county})
         # Calculate cumulative
         countyByDay[county] = list(np.cumsum(per_day_county))
 
@@ -147,11 +147,11 @@ def getdataCountyDailyActive(json, dates, county_mapping,county_sizes):
         for date in dates:
             val = county_date_counts[(county, str(date.date()))]
             per_day_county.append(val)
-            active_per_day_county_100k.append(round(val/county_sizes[county] * 100000, 4))
+            active_per_day_county_100k.append((val/county_sizes[county] * 100000))
 
         # Calculate cumulative
         countyByDay[county] = list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum()))
-        activeMap100kPlayback.append({"MNIMI": county, "sequence": list(map(int, pd.Series(active_per_day_county_100k).rolling(14, min_periods=0).sum())), "drilldown": county})
+        activeMap100kPlayback.append({"MNIMI": county, "sequence": list(round(pd.Series(active_per_day_county_100k).rolling(14, min_periods=0).sum(),2)), "drilldown": county})
         activeList ={
         "countyByDayActive": countyByDay
         ,
