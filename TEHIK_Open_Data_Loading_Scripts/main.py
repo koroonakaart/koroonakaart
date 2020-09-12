@@ -104,7 +104,7 @@ if __name__ == "__main__":
     dataInfectionsByCounty = getCountInfectionsByCounty(json_copy, county_mapping)
     dataInfectionsByCounty10000 = getDataInfectionsByCount10000(dataInfectionsByCounty, county_sizes)
     dataTestsPopRatio = getDataTestsPopRatio(dataInfectionsByCounty10000)
-    countyByDay = getCountyByDay(json_copy, dates2, county_mapping)
+    countyByDay = getCountyByDay(json_copy, dates2, county_mapping,county_sizes)
     dataConfirmedCasesByCounties = getDataConfirmedCasesByCounties(json_copy, county_mapping)
     dataCumulativeCasesChart = getDataCumulativeCasesChart(json_copy, recovered, deceased, hospitalised, intensive,
                                                            dates2)
@@ -113,10 +113,10 @@ if __name__ == "__main__":
     dataTestsPerDayChart = getDataTestsPerDayChart(json_copy, dates2)
     dataPositiveTestsByAgeChart = getDataPositiveTestsByAgeChart(json_copy)
     dataPositiveNegativeChart = getDataPositiveNegativeChart(json_copy, county_mapping)
-    dataCountyDailyActive = getdataCountyDailyActive(json_copy,dates2,county_mapping)
+    dataCountyDailyActive = getdataCountyDailyActive(json_copy,dates2,county_mapping,county_sizes)
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
-    dataActiveInfectionsByCounty = [[k, v[-1]] for k,v in dataCountyDailyActive["countyByDayActive"].items()]
+    dataActiveInfectionsByCounty = [{"MNIMI": k, "sequence": v, "drilldown": k} for k,v in dataCountyDailyActive["countyByDayActive"].items()]
     dataActiveInfectionsByCounty100k = [[k, round(v[-1] / county_sizes[k] * 100000, 2)] for k,v in dataCountyDailyActive["countyByDayActive"].items()]
 
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)

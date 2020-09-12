@@ -79,47 +79,7 @@ def getDataTestsPopRatio(dataInfectionsByCounty10000):
     return [v for k, v, k in dataInfectionsByCounty10000]
 
 
-def getCountyByDay(json, dates, county_mapping):
-    chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
-                      "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",
-                      "Valgamaa", "Viljandimaa", "Võrumaa","Info puudulik"]
-
-    county_date_counts = defaultdict(int)
-
-    for res in json:
-        if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
-            county = county_mapping[res["County"]]
-            if county in chart_counties:
-                county_date_counts[(county, str(date))] += 1
-
-    countyByDay = {}
-    mapPlayback = []
-    for county in chart_counties:
-        per_day_county = []
-        for date in dates:
-            val = county_date_counts[(county, str(date.date()))]
-            per_day_county.append(val)
-
-        mapPlayback.append({"MNIMI": county, "sequence": list(np.cumsum(per_day_county)), "drilldown": county})
-
-        # Calculate cumulative
-        countyByDay[county] = list(np.cumsum(per_day_county))
-
-    countyByDayNew = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
-
-
-
-    countyList = {
-        "countyByDay": countyByDay,
-        "countyByDayNew": countyByDayNew,
-        "mapPlayback": mapPlayback
-        }
-
-    return countyList
-
-
-def getdataCountyDailyActive(json, dates, county_mapping):
+def getCountyByDay(json, dates, county_mapping, county_sizes):
     chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
                       "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",
                       "Valgamaa", "Viljandimaa", "Võrumaa"]
@@ -134,21 +94,68 @@ def getdataCountyDailyActive(json, dates, county_mapping):
                 county_date_counts[(county, str(date))] += 1
 
     countyByDay = {}
-    activeMapPlayback = []
-
+    mapPlayback = []
+    mapPlayback10k = []
     for county in chart_counties:
         per_day_county = []
+        per_day_county_10k = []
         for date in dates:
             val = county_date_counts[(county, str(date.date()))]
             per_day_county.append(val)
+            per_day_county_10k.append(round(val/county_sizes[county] * 10000, 4))
 
+        mapPlayback.append({"MNIMI": county, "sequence": list(np.cumsum(per_day_county)), "drilldown": county})
+        mapPlayback10k.append({"MNIMI": county, "sequence": list(np.cumsum(per_day_county_10k)), "drilldown": county})
+        # Calculate cumulative
+        countyByDay[county] = list(np.cumsum(per_day_county))
+
+    countyByDayNew = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
+
+
+
+    countyList = {
+        "countyByDay": countyByDay,
+        "countyByDayNew": countyByDayNew,
+        "mapPlayback": mapPlayback
+        ,
+        "mapPlayback10k": mapPlayback10k
+        }
+
+    return countyList
+
+
+def getdataCountyDailyActive(json, dates, county_mapping,county_sizes):
+    chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
+                      "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",
+                      "Valgamaa", "Viljandimaa", "Võrumaa"]
+
+    county_date_counts = defaultdict(int)
+
+    for res in json:
+        if res["ResultValue"] == "P":
+            date = pd.to_datetime(res["StatisticsDate"]).date()
+            county = county_mapping[res["County"]]
+            if county in chart_counties:
+                county_date_counts[(county, str(date))] += 1
+
+    countyByDay = {}
+    activeMap100kPlayback = []
+
+    for county in chart_counties:
+        per_day_county = []
+        active_per_day_county_100k = []
+        for date in dates:
+            val = county_date_counts[(county, str(date.date()))]
+            per_day_county.append(val)
+            active_per_day_county_100k.append(round(val/county_sizes[county] * 100000, 4))
 
         # Calculate cumulative
         countyByDay[county] = list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum()))
-        activeMapPlayback.append({"MNIMI": county, "sequence": list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum())), "drilldown": county})
+        activeMap100kPlayback.append({"MNIMI": county, "sequence": list(map(int, pd.Series(active_per_day_county_100k).rolling(14, min_periods=0).sum())), "drilldown": county})
         activeList ={
-        "countyByDayActive": countyByDay,
-        "activeMapPlayback": activeMapPlayback
+        "countyByDayActive": countyByDay
+        ,
+        "activeMap100kPlayback": activeMap100kPlayback
         }
 
     return activeList
