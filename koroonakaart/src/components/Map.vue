@@ -237,13 +237,14 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataActiveInfectionsByCounty.map((point) => {
+                        data: data.dataActiveInfectionsByCounty,
+                        // For logarithmic scale
+                        /* .map((point) => {
                           if (point[1] === 0) {
                             point[1] = point[1] + 0.000001;
                             return point;
                           } else return point;
-                        }),
-                        dataLabels: {
+                        }), */ dataLabels: {
                           format: "{point.MNIMI}",
                         },
                       },
@@ -258,15 +259,16 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataActiveInfectionsByCounty100k.map(
+                        data: data.dataActiveInfectionsByCounty100k,
+                        // For logarithmic scale
+                        /* .map(
                           (point) => {
                             if (point[1] === 0) {
                               point[1] = point[1] + 0.000001;
                               return point;
                             } else return point;
                           }
-                        ),
-                        dataLabels: {
+                        ) */ dataLabels: {
                           format: "{point.MNIMI}",
                         },
                       },
@@ -336,33 +338,22 @@ export default {
 
         // Legend bar density
         colorAxis: {
-          min: 0,
-            tickPixelInterval: 50,
+          //min: 1,
+          //tickPixelInterval: 50,
           type: "linear",
-          startOnTick: false,
-          /* minColor: "#EEEEFF",
-          maxColor: "#000022", */
+          //minColor: "#EEF1FC",
+          //maxColor: "#011145",
+          stops: [
+            [0, "#E5E8F2"],
+            [0.25, "#3A52A7"],
+            [0.6, "#1C2F71"],
+            [1.0, "#071239"],
+          ],
           /* labels: {
-            formatter: function() {
+            formatter: function () {
               return this.value - 1;
-            }
-          }, */
-
-          lineColor: {
-            color: {
-              /* linearGradient: {
-                x1: 0,
-                x2: 0,
-                y1: 0,
-                y2: 1
-              }, */
-              /* stops: [
-                [0, "#003399"], // start
-                [0.5, "#ffffff"], // middle
-                [1, "#3366AA"], // end
-              ], */
             },
-          },
+          }, */
         },
 
         //Legend max width
@@ -379,7 +370,7 @@ export default {
           updateInterval: 25,
           magnet: {
             round: "round", // ceil / floor / round
-            step: 1,
+            step: 0.5,
           },
         },
 
@@ -388,7 +379,7 @@ export default {
             drillUpText: this.$t("faq.back"),
             drilldown: true,
             data: data.countyByDay.mapPlayback,
-            allowPointSelect: true,
+            // allowPointSelect: true,
             //keys: ["MNIMI", "sequence", "drilldown"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
@@ -406,7 +397,7 @@ export default {
 
             // Customise tooltips
             tooltip: {
-              pointFormat: "{point.MNIMI}: {point.sequence}<br/>",
+              pointFormat: "{point.MNIMI}: {point.value}<br/>",
 
               pointFormatter: function () {
                 if (this.value === 0.000001) {
@@ -419,10 +410,16 @@ export default {
 
             dataLabels: {
               enabled: true,
-              format: "{point.MNIMI} <br> {point.value}",
+              allowOverlap: true,
+              format: "{point.MNIMI}<br/> {point.value}",
+              //shape: "callout",
+              //backgroundColor: "rgba(0, 0, 0, 0.75)",
               style: {
                 fontWeight: "normal",
                 fontSize: "9px",
+                color: "white",
+                "text-anchor": "middle",
+                textOutline: "1px black",
               },
             },
           },
@@ -430,7 +427,14 @@ export default {
           // This needs to be true for the country map to diplay anything if no data
           /* allAreas: true, */
         ],
+
         drilldown: {
+          activeAxisLabelStyle: {
+            color: "black",
+          },
+          activeDataLabelStyle: {
+            color: "white",
+          },
           series: [],
         },
 
