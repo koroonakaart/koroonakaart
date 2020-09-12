@@ -86,7 +86,7 @@ export default {
             },
 
             drilldown: function (e) {
-              if (!e.seriesOptions && this.options.chartType === "absolute") {
+              if (!e.seriesOptions && this.options.chartType === "null") {
                 this.motion.togglePlayControls();
 
                 let chart = this;
