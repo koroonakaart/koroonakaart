@@ -106,7 +106,7 @@ def getCountyByDay(json, dates, county_mapping):
         # Calculate cumulative
         countyByDay[county] = list(np.cumsum(per_day_county))
 
-        countyByDayNew = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
+    countyByDayNew = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
 
 
 
@@ -134,6 +134,7 @@ def getdataCountyDailyActive(json, dates, county_mapping):
                 county_date_counts[(county, str(date))] += 1
 
     countyByDay = {}
+    activeMapPlayback = []
 
     for county in chart_counties:
         per_day_county = []
@@ -144,9 +145,13 @@ def getdataCountyDailyActive(json, dates, county_mapping):
 
         # Calculate cumulative
         countyByDay[county] = list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum()))
+        activeMapPlayback.append({"MNIMI": county, "sequence": list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum())), "drilldown": county})
+        activeList ={
+        "countyByDayActive": countyByDay,
+        "activeMapPlayback": activeMapPlayback
+        }
 
-
-    return countyByDay
+    return activeList
 
 def getDataConfirmedCasesByCounties(json, county_mapping):
     chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",

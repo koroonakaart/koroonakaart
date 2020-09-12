@@ -365,7 +365,7 @@ export default {
           labels: data.dates2,
           loop: false,
           series: 0, // The series which holds points to update
-          updateInterval: 50,
+          updateInterval: 25,
           magnet: {
             round: "round", // ceil / floor / round
             step: 0.5,
