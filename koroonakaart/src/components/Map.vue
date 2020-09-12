@@ -237,13 +237,14 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataActiveInfectionsByCounty.map((point) => {
+                        data: data.dataActiveInfectionsByCounty,
+                        // For logarithmic scale
+                        /* .map((point) => {
                           if (point[1] === 0) {
                             point[1] = point[1] + 0.000001;
                             return point;
                           } else return point;
-                        }),
-                        dataLabels: {
+                        }), */ dataLabels: {
                           format: "{point.MNIMI}",
                         },
                       },
@@ -258,15 +259,16 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataActiveInfectionsByCounty100k.map(
+                        data: data.dataActiveInfectionsByCounty100k,
+                        // For logarithmic scale
+                        /* .map(
                           (point) => {
                             if (point[1] === 0) {
                               point[1] = point[1] + 0.000001;
                               return point;
                             } else return point;
                           }
-                        ),
-                        dataLabels: {
+                        ) */ dataLabels: {
                           format: "{point.MNIMI}",
                         },
                       },
