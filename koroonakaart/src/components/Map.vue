@@ -65,7 +65,12 @@ export default {
               //button.setState(2);
             },
 
-            redraw: function() {
+            redraw: function(e) {
+              const motion = e.target.motion;
+              if (motion) {
+                motion.dataSeries = e.target.series;
+              }
+
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
@@ -91,7 +96,9 @@ export default {
             },
 
             drilldown: function(e) {
-              if (!e.seriesOptions && this.options.chartType === "null") {
+              this.motion.pause();
+
+              if (!e.seriesOptions && this.options.chartType === "absolute") {
                 this.motion.togglePlayControls();
 
                 let chart = this;
@@ -538,10 +545,18 @@ export default {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 6px;
+}
+
+#play-pause-button {
+  border: 1px solid gray;
+  height: 24px;
+  width: 36px;
+  border-radius: 8px;
 }
 
 #play-range {
-  min-width: 300px;
+  min-width: 280px;
   margin: 0 0.5rem;
   flex: 1;
 }
@@ -551,7 +566,7 @@ export default {
 }
 
 $track-color: #eceff1 !default;
-$thumb-color: #607d8b !default;
+$thumb-color: #4072cd !default;
 
 $thumb-radius: 12px !default;
 $thumb-height: 24px !default;
@@ -562,13 +577,13 @@ $thumb-shadow-color: rgba(0, 0, 0, 0.2) !default;
 $thumb-border-width: 2px !default;
 $thumb-border-color: #eceff1 !default;
 
-$track-width: 100% !default;
-$track-height: 8px !default;
-$track-shadow-size: 1px !default;
-$track-shadow-blur: 1px !default;
+$track-width: 80% !default;
+$track-height: 6px !default;
+$track-shadow-size: 0px !default;
+$track-shadow-blur: 0px !default;
 $track-shadow-color: rgba(0, 0, 0, 0.2) !default;
-$track-border-width: 2px !default;
-$track-border-color: #cfd8dc !default;
+$track-border-width: 1px !default;
+$track-border-color: #555555 !default;
 
 $track-radius: 5px !default;
 $contrast: 5% !default;

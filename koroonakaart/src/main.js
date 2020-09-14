@@ -10,10 +10,10 @@ import exportingInit from "highcharts/modules/exporting";
 import stockInit from "highcharts/modules/stock";
 import offlineExporting from "highcharts/modules/offline-exporting";
 import exportData from "highcharts/modules/export-data";
-/* eslint-disable-next-line */
-import motion from "./plugins/motion";
 
 import mapInit from "highcharts/modules/map";
+/* eslint-disable-next-line */
+import motion from "./plugins/motion.js";
 
 import App from "./App.vue";
 import router from "./router";
