@@ -1,11 +1,6 @@
 <template>
   <b-container>
-    <highcharts
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
 
@@ -51,7 +46,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function() {
+            load: function () {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -65,7 +60,7 @@ export default {
               //button.setState(2);
             },
 
-            redraw: function(e) {
+            redraw: function (e) {
               const motion = e.target.motion;
               if (motion) {
                 motion.dataSeries = e.target.series;
@@ -95,7 +90,7 @@ export default {
               }, 100);
             },
 
-            drilldown: function(e) {
+            drilldown: function (e) {
               this.motion.pause();
 
               if (!e.seriesOptions && this.options.chartType === "absolute") {
@@ -149,7 +144,7 @@ export default {
               }
             },
 
-            drillup: function() {
+            drillup: function () {
               this.exportSVGElements[2].show();
               this.motion.togglePlayControls();
             },
@@ -211,7 +206,7 @@ export default {
               menuItems: [
                 {
                   text: this.$t("per10000"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "per10k";
 
                     this.update({
@@ -229,7 +224,7 @@ export default {
 
                 {
                   text: this.$t("absolute"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "absolute";
 
                     this.update({
@@ -247,7 +242,7 @@ export default {
 
                 {
                   text: this.$t("active"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "active";
 
                     this.update({
@@ -271,7 +266,7 @@ export default {
 
                 {
                   text: this.$t("activeCounty100k"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "active100k";
 
                     this.update({
@@ -419,7 +414,7 @@ export default {
             tooltip: {
               pointFormat: "{point.MNIMI}: {point.value}<br/>",
 
-              pointFormatter: function() {
+              pointFormatter: function () {
                 if (this.value === 0.000001) {
                   return 0;
                 } else {
@@ -500,7 +495,7 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     },
   },
@@ -545,7 +540,8 @@ export default {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding-bottom: 6px;
+  padding-top: 4px;
+  padding-bottom: 7px;
 }
 
 #play-pause-button {
