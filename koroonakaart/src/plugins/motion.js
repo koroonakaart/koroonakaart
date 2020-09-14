@@ -207,16 +207,20 @@ export default function(H) {
     this.updateChart(this.playRange.value);
   };
 
+  // Refresh the chart/map to show new dataset
   Motion.prototype.updateToNewData = function() {
     this.playRange.value = this.playRange.min;
     this.updateChart(this.playRange.value);
 
+    // Depending on how big the scale difference is between the datasets adjust the
+    // timeout duration for the colorAxis animation to catch up to the new values
     setTimeout(() => {
       this.playRange.value = this.playRange.max;
       this.updateChart(this.playRange.value);
     }, 500);
   };
 
+  // Toggle play controls visibility
   Motion.prototype.togglePlayControls = function() {
     const playControls = document.getElementById("play-controls");
     if (playControls.style.display === "none") {

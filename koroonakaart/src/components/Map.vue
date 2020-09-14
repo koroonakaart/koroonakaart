@@ -1,6 +1,11 @@
 <template>
   <b-container>
-    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
+    <highcharts
+      :constructor-type="'mapChart'"
+      :options="mapOptions"
+      class="map"
+      ref="highmap"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -46,7 +51,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function () {
+            load: function() {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -60,7 +65,7 @@ export default {
               //button.setState(2);
             },
 
-            redraw: function () {
+            redraw: function() {
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
@@ -85,7 +90,7 @@ export default {
               }, 100);
             },
 
-            drilldown: function (e) {
+            drilldown: function(e) {
               if (!e.seriesOptions && this.options.chartType === "null") {
                 this.motion.togglePlayControls();
 
@@ -137,9 +142,9 @@ export default {
               }
             },
 
-            drillup: function () {
+            drillup: function() {
               this.exportSVGElements[2].show();
-              this.motion.updateToNewData();
+              this.motion.togglePlayControls();
             },
           },
         },
@@ -199,7 +204,7 @@ export default {
               menuItems: [
                 {
                   text: this.$t("per10000"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "per10k";
 
                     this.update({
@@ -217,7 +222,7 @@ export default {
 
                 {
                   text: this.$t("absolute"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "absolute";
 
                     this.update({
@@ -235,7 +240,7 @@ export default {
 
                 {
                   text: this.$t("active"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "active";
 
                     this.update({
@@ -259,7 +264,7 @@ export default {
 
                 {
                   text: this.$t("activeCounty100k"),
-                  onclick: function () {
+                  onclick: function() {
                     this.options.chartType = "active100k";
 
                     this.update({
@@ -407,7 +412,7 @@ export default {
             tooltip: {
               pointFormat: "{point.MNIMI}: {point.value}<br/>",
 
-              pointFormatter: function () {
+              pointFormatter: function() {
                 if (this.value === 0.000001) {
                   return 0;
                 } else {
@@ -488,7 +493,7 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function () {
+    currentLocale: function() {
       return this.$i18n.locale;
     },
   },
@@ -525,7 +530,7 @@ export default {
 };
 </script>
 
-<style global>
+<style global lang="scss">
 #play-controls {
   margin: 0 auto;
   max-width: 750px;
@@ -543,5 +548,163 @@ export default {
 
 #play-output {
   margin: 0;
+}
+
+$track-color: #eceff1 !default;
+$thumb-color: #607d8b !default;
+
+$thumb-radius: 12px !default;
+$thumb-height: 24px !default;
+$thumb-width: 24px !default;
+$thumb-shadow-size: 4px !default;
+$thumb-shadow-blur: 4px !default;
+$thumb-shadow-color: rgba(0, 0, 0, 0.2) !default;
+$thumb-border-width: 2px !default;
+$thumb-border-color: #eceff1 !default;
+
+$track-width: 100% !default;
+$track-height: 8px !default;
+$track-shadow-size: 1px !default;
+$track-shadow-blur: 1px !default;
+$track-shadow-color: rgba(0, 0, 0, 0.2) !default;
+$track-border-width: 2px !default;
+$track-border-color: #cfd8dc !default;
+
+$track-radius: 5px !default;
+$contrast: 5% !default;
+
+$ie-bottom-track-color: darken($track-color, $contrast) !default;
+
+@mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
+  box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color,
+    0 0 $shadow-size lighten($shadow-color, 5%);
+}
+
+@mixin track {
+  cursor: default;
+  height: $track-height;
+  transition: all 0.2s ease;
+  width: $track-width;
+}
+
+@mixin thumb {
+  @include shadow($thumb-shadow-size, $thumb-shadow-blur, $thumb-shadow-color);
+  background: $thumb-color;
+  border: $thumb-border-width solid $thumb-border-color;
+  border-radius: $thumb-radius;
+  box-sizing: border-box;
+  cursor: default;
+  height: $thumb-height;
+  width: $thumb-width;
+}
+
+[type="range"] {
+  -webkit-appearance: none;
+  background: transparent;
+  margin: $thumb-height / 2 0;
+  width: $track-width;
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &:focus {
+    outline: 0;
+
+    &::-webkit-slider-runnable-track {
+      background: lighten($track-color, $contrast);
+    }
+
+    &::-ms-fill-lower {
+      background: $track-color;
+    }
+
+    &::-ms-fill-upper {
+      background: lighten($track-color, $contrast);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track;
+    @include shadow(
+      $track-shadow-size,
+      $track-shadow-blur,
+      $track-shadow-color
+    );
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+    -webkit-appearance: none;
+    margin-top: (
+      (-$track-border-width * 2 + $track-height) / 2 - $thumb-height / 2
+    );
+  }
+
+  &::-moz-range-track {
+    @include shadow(
+      $track-shadow-size,
+      $track-shadow-blur,
+      $track-shadow-color
+    );
+    @include track;
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+    height: $track-height / 2;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+
+  &::-ms-track {
+    @include track;
+    background: transparent;
+    border-color: transparent;
+    border-width: ($thumb-height / 2) 0;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    @include shadow(
+      $track-shadow-size,
+      $track-shadow-blur,
+      $track-shadow-color
+    );
+    background: $ie-bottom-track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: ($track-radius * 2);
+  }
+
+  &::-ms-fill-upper {
+    @include shadow(
+      $track-shadow-size,
+      $track-shadow-blur,
+      $track-shadow-color
+    );
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: ($track-radius * 2);
+  }
+
+  &::-ms-thumb {
+    @include thumb;
+    margin-top: $track-height / 4;
+  }
+
+  &:disabled {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb,
+    &::-ms-thumb,
+    &::-webkit-slider-runnable-track,
+    &::-ms-fill-lower,
+    &::-ms-fill-upper {
+      cursor: not-allowed;
+    }
+  }
 }
 </style>

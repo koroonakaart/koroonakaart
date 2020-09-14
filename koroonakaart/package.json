@@ -34,10 +34,11 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
     "mutationobserver-shim": "^0.3.7",
+    "node-sass": "^4.14.1",
     "popper.js": "^1.16.0",
     "portal-vue": "^2.1.6",
     "sass": "^1.26.10",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^8.0.2",
     "vue-cli-plugin-bootstrap-vue": "^0.6.0",
     "vue-cli-plugin-i18n": "^0.6.1",
     "vue-template-compiler": "^2.6.12"
