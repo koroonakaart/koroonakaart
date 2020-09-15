@@ -1,63 +1,76 @@
 <template>
-  <b-navbar
-    class="shadow-sm p-3 mb-4 bg-white rounded"
-    sticky
-    toggleable="md"
-    type="light"
-    variant="light"
-  >
-    <b-container fluid="lg">
-      <b-navbar-brand>
-        <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
-        <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
-        <small class="navbar-updated">{{ $t("navbarUpdated") }}: {{updatedOn}}</small>
-      </b-navbar-brand>
+  <headroom>
+    <b-navbar
+      class="shadow-sm p-3 mb-4 bg-white rounded"
+      sticky
+      toggleable="md"
+      type="light"
+      variant="light"
+    >
+      <b-container fluid="lg">
+        <b-navbar-brand>
+          <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
+          <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
+          <small class="navbar-updated"
+            >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
+          >
+        </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <!--<b-nav-item class="navbar-updated">
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <!--<b-nav-item class="navbar-updated">
           </b-nav-item>-->
-          <b-dropdown-divider />
-        <!--  <b-nav-item class="navbar-description"> -->
-        <!-- <small>{{ $t("faq.a5") }}</small> -->
-         <small>{{$t("hoia.me")}} <a href="https://hoia.me" rel= "noopener" target="_blank">hoia.me</a></small>
-        <!--  </b-nav-item> -->
-        </b-navbar-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-dropdown-divider />
-          <b-nav-item toggle-class="nav-link-custom">
-            <div
-              class="navbar-faq"
-              :class="{ active: this.$store.state.faqActive }"
-              @click.prevent="toggleFaqActive"
-            >{{ $t("faq.faqShort") }}</div>
-          </b-nav-item>
-          <b-dropdown-divider />
-        </b-navbar-nav>
+            <b-dropdown-divider />
+            <!--  <b-nav-item class="navbar-description"> -->
+            <!-- <small>{{ $t("faq.a5") }}</small> -->
+            <small
+              >{{ $t("hoia.me") }}
+              <a href="https://hoia.me" rel="noopener" target="_blank"
+                >hoia.me</a
+              ></small
+            >
+            <!--  </b-nav-item> -->
+          </b-navbar-nav>
+          <b-navbar-nav class="ml-auto">
+            <b-dropdown-divider />
+            <b-nav-item toggle-class="nav-link-custom">
+              <div
+                class="navbar-faq"
+                :class="{ active: this.$store.state.faqActive }"
+                @click.prevent="toggleFaqActive"
+              >
+                {{ $t("faq.faqShort") }}
+              </div>
+            </b-nav-item>
+            <b-dropdown-divider />
+          </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav>
-          <b-nav-item-dropdown id="navbar-langselect" right>
-            <template align="center" v-slot:button-content>
-              <Earth id="navbar-langicon" />
-              <em>{{ $t("language") }}</em>
-            </template>
-            <b-dropdown-item
-              @click="changeCurrentLanguage(locale)"
-              v-for="(locale, index) in locales"
-              :key="locale"
-            >{{ languageNames[index] }}</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-container>
-  </b-navbar>
+          <!-- Right aligned nav items -->
+          <b-navbar-nav>
+            <b-nav-item-dropdown id="navbar-langselect" right>
+              <template align="center" v-slot:button-content>
+                <Earth id="navbar-langicon" />
+                <em>{{ $t("language") }}</em>
+              </template>
+              <b-dropdown-item
+                @click="changeCurrentLanguage(locale)"
+                v-for="(locale, index) in locales"
+                :key="locale"
+                >{{ languageNames[index] }}</b-dropdown-item
+              >
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-container>
+    </b-navbar>
+  </headroom>
 </template>
 
 <script>
 import Earth from "vue-material-design-icons/Earth.vue";
+import { headroom } from "vue-headroom";
 
 import data from "../data.json";
 
@@ -66,14 +79,15 @@ export default {
 
   components: {
     //Earth icon
-    Earth
+    Earth,
+    headroom,
   },
 
   data() {
     return {
       languageNames: ["Eesti", "English", "Русский"],
       updatedOn: data.updatedOn,
-      faqActive: false
+      faqActive: false,
     };
   },
 
@@ -90,13 +104,13 @@ export default {
       // Swap order of locales so et would become before en
       [initialLocales[0], initialLocales[1]] = [
         initialLocales[1],
-        initialLocales[0]
+        initialLocales[0],
       ];
       return initialLocales;
     },
     linkToFaq: function() {
       return `/${this.$i18n.locale}/faq`;
-    }
+    },
   },
 
   // Change current locale to targetLanguage and change route to the targetLanguage
@@ -128,8 +142,8 @@ export default {
 
       this.$store.dispatch("toggleFaqActive");
       this.$router.push({ path: `/${this.$i18n.locale}/faq` });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,11 +1,6 @@
 <template>
   <b-container>
-    <highcharts
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
+    <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map" ref="highmap"></highcharts>
   </b-container>
 </template>
 
@@ -51,7 +46,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function() {
+            load: function () {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -65,7 +60,12 @@ export default {
               //button.setState(2);
             },
 
-            redraw: function() {
+            redraw: function (e) {
+              const motion = e.target.motion;
+              if (motion) {
+                motion.dataSeries = e.target.series;
+              }
+
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
@@ -90,8 +90,10 @@ export default {
               }, 100);
             },
 
-            drilldown: function(e) {
-              if (!e.seriesOptions && this.options.chartType === "null") {
+            drilldown: function (e) {
+              this.motion.pause();
+
+              if (!e.seriesOptions && this.options.chartType === "absolute") {
                 this.motion.togglePlayControls();
 
                 let chart = this;
@@ -142,7 +144,7 @@ export default {
               }
             },
 
-            drillup: function() {
+            drillup: function () {
               this.exportSVGElements[2].show();
               this.motion.togglePlayControls();
             },
@@ -204,7 +206,7 @@ export default {
               menuItems: [
                 {
                   text: this.$t("per10000"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "per10k";
 
                     this.update({
@@ -222,7 +224,7 @@ export default {
 
                 {
                   text: this.$t("absolute"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "absolute";
 
                     this.update({
@@ -240,7 +242,7 @@ export default {
 
                 {
                   text: this.$t("active"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "active";
 
                     this.update({
@@ -264,7 +266,7 @@ export default {
 
                 {
                   text: this.$t("activeCounty100k"),
-                  onclick: function() {
+                  onclick: function () {
                     this.options.chartType = "active100k";
 
                     this.update({
@@ -412,7 +414,7 @@ export default {
             tooltip: {
               pointFormat: "{point.MNIMI}: {point.value}<br/>",
 
-              pointFormatter: function() {
+              pointFormatter: function () {
                 if (this.value === 0.000001) {
                   return 0;
                 } else {
@@ -493,7 +495,7 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     },
   },
@@ -538,10 +540,19 @@ export default {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding-top: 4px;
+  padding-bottom: 7px;
+}
+
+#play-pause-button {
+  border: 1px solid gray;
+  height: 24px;
+  width: 36px;
+  border-radius: 8px;
 }
 
 #play-range {
-  min-width: 300px;
+  min-width: 280px;
   margin: 0 0.5rem;
   flex: 1;
 }
@@ -551,7 +562,7 @@ export default {
 }
 
 $track-color: #eceff1 !default;
-$thumb-color: #607d8b !default;
+$thumb-color: #4072cd !default;
 
 $thumb-radius: 12px !default;
 $thumb-height: 24px !default;
@@ -562,13 +573,13 @@ $thumb-shadow-color: rgba(0, 0, 0, 0.2) !default;
 $thumb-border-width: 2px !default;
 $thumb-border-color: #eceff1 !default;
 
-$track-width: 100% !default;
-$track-height: 8px !default;
-$track-shadow-size: 1px !default;
-$track-shadow-blur: 1px !default;
+$track-width: 80% !default;
+$track-height: 6px !default;
+$track-shadow-size: 0px !default;
+$track-shadow-blur: 0px !default;
 $track-shadow-color: rgba(0, 0, 0, 0.2) !default;
-$track-border-width: 2px !default;
-$track-border-color: #cfd8dc !default;
+$track-border-width: 1px !default;
+$track-border-color: #555555 !default;
 
 $track-radius: 5px !default;
 $contrast: 5% !default;
