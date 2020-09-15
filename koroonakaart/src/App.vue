@@ -20,7 +20,7 @@ export default {
   name: "App",
   components: {
     Navbar,
-    Footer
+    Footer,
   },
 
   // When app loads change language to specified language suffix (ee, en or ru)
@@ -32,7 +32,7 @@ export default {
   computed: {
     urlIncludesChart: function() {
       return this.$route.path.includes("chart");
-    }
+    },
   },
 
   methods: {
@@ -41,8 +41,8 @@ export default {
         this.$router.push(targetLanguage);
       }
       this.$i18n.locale = targetLanguage;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -60,6 +60,7 @@ export default {
 }
 
 .router-view {
+  margin-top: 20px;
   flex: 1;
 }
 </style>
