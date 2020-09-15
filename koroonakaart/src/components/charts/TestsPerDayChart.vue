@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
+    <highcharts
+      :constructor-type="'stockChart'"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -11,11 +15,11 @@ export default {
   name: "TestsPerDayChart",
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   mounted() {
@@ -29,7 +33,7 @@ export default {
         title: {
           text: this.$t("testsPerDay"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
@@ -69,8 +73,8 @@ export default {
                   this.chartType === "absolute" ? 2 : 0
                 );
               }, 50);
-            }
-          }
+            },
+          },
         },
 
         exporting: {
@@ -80,8 +84,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed Graph"
-            }
+              text: "Embed Graph",
+            },
           },
           buttons: {
             contextButton: {
@@ -96,8 +100,8 @@ export default {
                 "downloadCSV",
                 "downloadXLS",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
             customButton: {
               text: this.$t("abs"),
@@ -109,7 +113,7 @@ export default {
                 this.$refs.thisChart.options.yAxis[0].title.text = this.$t(
                   "numberOfTests"
                 );
-              }
+              },
             },
 
             customButton2: {
@@ -120,14 +124,14 @@ export default {
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "percent";
                 this.$refs.thisChart.options.yAxis[0].title.text = "%";
-              }
-            }
-          }
+              },
+            },
+          },
         },
 
         // Remove Highcharts.com link from bottom right
         credits: {
-          enabled: false
+          enabled: false,
         },
 
         navigation: {
@@ -147,17 +151,17 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         xAxis: {
@@ -166,29 +170,30 @@ export default {
             day: "%Y<br/>%m-%d",
             week: "%Y<br/>%m-%d",
             month: "%Y-%m",
-            year: "%Y"
+            year: "%Y",
           },
           labels: {
             style: {
-              fontSize: "11px"
-            }
-          }
+              fontSize: "11px",
+            },
+          },
         },
 
         yAxis: [
           {
             min: 0,
             title: {
-              text: this.$t("numberOfTests")
-            }
+              text: this.$t("numberOfTests"),
+            },
+            opposite: false,
           },
           {
             max: 100,
             title: {
-              text: this.$t("percentPositiveTests")
+              text: this.$t("percentPositiveTests"),
             },
-            opposite: true
-          }
+            opposite: true,
+          },
         ],
 
         legend: {
@@ -196,20 +201,20 @@ export default {
           layout: "horizontal",
           align: "center",
           verticalAlign: "bottom",
-          y: 0
+          y: 0,
         },
 
         plotOptions: {
           column: {
             stacking: "normal",
-            enableMouseTracking: true
+            enableMouseTracking: true,
           },
           spline: {
             /* or spline, area, series, areaspline etc.*/
             marker: {
-              enabled: false
-            }
-          }
+              enabled: false,
+            },
+          },
         },
 
         tooltip: {
@@ -219,7 +224,7 @@ export default {
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
           shared: true,
-          useHTML: true
+          useHTML: true,
         },
 
         series: [
@@ -229,14 +234,14 @@ export default {
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#000000",
-            yAxis: 0
+            yAxis: 0,
           },
           {
             name: this.$t("negative"),
             data: data.dataTestsPerDayChart.negativeTestsPerDay,
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            yAxis: 0
+            yAxis: 0,
           },
           {
             name: this.$t("percentPositiveTests"),
@@ -244,10 +249,10 @@ export default {
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             type: "spline",
-            yAxis: 1
-          }
-        ]
-      }
+            yAxis: 1,
+          },
+        ],
+      },
     };
   },
 
@@ -255,7 +260,7 @@ export default {
   computed: {
     currentLocale: function() {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -267,10 +272,9 @@ export default {
       this.chartOptions.series[0].name = this.$t("positive");
       this.chartOptions.series[1].name = this.$t("negative");
       this.chartOptions.series[2].name = this.$t("percentPositiveTests");
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
