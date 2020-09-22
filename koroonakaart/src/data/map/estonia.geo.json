@@ -11,7 +11,9 @@
       "properties": {
         "MNIMI": "Harjumaa",
         "MKOOD": "0037",
-        "AREA": 4312853674.4052744
+        "AREA": 4312853674.4052744,
+        "hc-middle-x": 0.62,
+        "hc-middle-y": 0.47
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -458,8 +460,8 @@
         "MNIMI": "Hiiumaa",
         "MKOOD": "0039",
         "AREA": 1029344259.1724206,
-        "hc-middle-x": 0.71,
-        "hc-middle-y": 0.47
+        "hc-middle-x": 0.74,
+        "hc-middle-y": 0.49
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -644,7 +646,7 @@
         "MNIMI": "Ida-Virumaa",
         "MKOOD": "0045",
         "AREA": 2962201809.8268647,
-        "hc-middle-x": 0.61,
+        "hc-middle-x": 0.7,
         "hc-middle-y": 0.36
       },
       "geometry": {
@@ -805,7 +807,7 @@
         "MNIMI": "Järvamaa",
         "MKOOD": "0052",
         "AREA": 2666093148.9736042,
-        "hc-middle-x": 0.72,
+        "hc-middle-x": 0.79,
         "hc-middle-y": 0.45
       },
       "geometry": {
@@ -1217,8 +1219,8 @@
         "MNIMI": "Läänemaa",
         "MKOOD": "0056",
         "AREA": 1810073156.0463326,
-        "hc-middle-x": 0.8,
-        "hc-middle-y": 0.45
+        "hc-middle-x": 0.82,
+        "hc-middle-y": 0.47
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1462,8 +1464,8 @@
         "MNIMI": "Lääne-Virumaa",
         "MKOOD": "0060",
         "AREA": 3683980454.9397707,
-        "hc-middle-x": 0.74,
-        "hc-middle-y": 0.55
+        "hc-middle-x": 0.82,
+        "hc-middle-y": 0.56
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1726,8 +1728,8 @@
         "MNIMI": "Pärnumaa",
         "MKOOD": "0068",
         "AREA": 5402923410.2378073,
-        "hc-middle-x": 0.53,
-        "hc-middle-y": 0.35
+        "hc-middle-x": 0.58,
+        "hc-middle-y": 0.31
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2068,7 +2070,7 @@
         "MNIMI": "Põlvamaa",
         "MKOOD": "0064",
         "AREA": 1818021906.8134685,
-        "hc-middle-x": 0.59,
+        "hc-middle-x": 0.73,
         "hc-middle-y": 0.62
       },
       "geometry": {
@@ -2255,8 +2257,8 @@
         "MNIMI": "Raplamaa",
         "MKOOD": "0071",
         "AREA": 2756716173.8045382,
-        "hc-middle-x": 0.61,
-        "hc-middle-y": 0.5
+        "hc-middle-x": 0.65,
+        "hc-middle-y": 0.55
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2482,7 +2484,7 @@
         "MNIMI": "Saaremaa",
         "MKOOD": "0074",
         "AREA": 2929102196.0518513,
-        "hc-middle-x": 0.56,
+        "hc-middle-x": 0.62,
         "hc-middle-y": 0.29
       },
       "geometry": {
@@ -3188,7 +3190,7 @@
         "MNIMI": "Valgamaa",
         "MKOOD": "0081",
         "AREA": 1911433007.6285715,
-        "hc-middle-x": 0.63,
+        "hc-middle-x": 0.69,
         "hc-middle-y": 0.37
       },
       "geometry": {
@@ -3648,7 +3650,7 @@
         "MNIMI": "Võrumaa",
         "MKOOD": "0087",
         "AREA": 2764844031.0593786,
-        "hc-middle-x": 0.54,
+        "hc-middle-x": 0.61,
         "hc-middle-y": 0.54
       },
       "geometry": {
