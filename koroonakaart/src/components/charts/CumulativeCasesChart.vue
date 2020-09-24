@@ -122,7 +122,7 @@ export default {
 
         // Remove Highcharts.com link from bottom right
         credits: {
-          enabled: false
+          enabled: true
         },
 
         legend: {
@@ -284,7 +284,7 @@ export default {
 
               chartOptions: {
                 legend: {
-                  enabled: false
+                  enabled: true
                 }
               }
             }

@@ -113,7 +113,7 @@ export default {
 
         // Remove Highcharts.com link from bottom right
         credits: {
-          enabled: false
+          enabled: true
         },
 
         navigation: {
