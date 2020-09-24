@@ -68,6 +68,9 @@ MTÜ Open Knowledge Estonia EE607700771004696794
 
 # License and data information
 This repository is maintained as an open source project and released under an MIT license. 
+
 The highcharts component of this project is additionally licensed under CC-BY-NC, before using the highcharts dependency, please ensure that your use case is compliant with this license.
+
 The regional and settlement data is from Maa-amet version 20200601 and demographic data is provided by Statistikaamet.
+
 The COVID-19 related data has been optained from TEHIK via https://www.terviseamet.ee/et/koroonaviirus/avaandmed and is available under CC0.
