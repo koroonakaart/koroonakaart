@@ -66,7 +66,7 @@ Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.faceboo
 
 MTÜ Open Knowledge Estonia EE607700771004696794 
 
-# License and data Information
+# License and data information
 This repository is maintained as an open source project and released under an MIT license. 
 The highcharts component of this project is additionally licensed under CC-BY-NC, before using the highcharts dependency, please ensure that your use case is compliant with this license.
 The regional and settlement data is from Maa-amet version 20200601 and demographic data is provided by Statistikaamet.
