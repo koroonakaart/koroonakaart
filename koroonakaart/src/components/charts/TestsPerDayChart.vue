@@ -4,6 +4,7 @@
       :constructor-type="'stockChart'"
       class="chart"
       :options="chartOptions"
+      ref="thisChart"
     ></highcharts>
   </b-container>
 </template>
