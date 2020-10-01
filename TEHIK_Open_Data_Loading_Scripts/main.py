@@ -11,7 +11,7 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 ######## CONFIGURE MANUAL DATA ########
 MANUAL_DATA = {
     "updatedOn": today[0],
-    "deceasedNumber": 64,
+    "deceasedNumber": 65,
     "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-26",
@@ -35,7 +35,7 @@ MANUAL_DATA = {
                   69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,63,
                   63,63,63,63,63,63,63,63,63,63,63,63, 63,63,63,63,63,63,63,63,63,63,
                   64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,
-                  64,64,64,64,64,64,64,64,64,64,64,64,64]
+                  64,64,64,64,64,64,64,64,64,64,64,64,65]
 }
 
 ######## CONFIGURE IO LOCATIONS ########
