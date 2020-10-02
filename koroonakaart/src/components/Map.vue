@@ -435,11 +435,12 @@ export default {
               //shape: "callout",
               //backgroundColor: "rgba(0, 0, 0, 0.75)",
               style: {
-                fontWeight: "900",
+                fontWeight: "400",
                 fontSize: "9px",
-                color: "white",
+                //color: "white",
                 "text-anchor": "middle",
-                textOutline: "1px solid black",
+                textOutline: "1px solid #222222",
+                textShadow: "0px 0px 1px #222222",
               },
             },
           },
@@ -450,11 +451,11 @@ export default {
 
         drilldown: {
           activeAxisLabelStyle: {
-            color: "black",
+            color: "darkgrey",
           },
           activeDataLabelStyle: {
             //"letter-spacing": "1px",
-            fontWeight: "900",
+            fontWeight: "400",
             color: "white",
           },
           series: [],
@@ -493,14 +494,13 @@ export default {
                       style: {
                         fontWeight: "900",
                         fontSize: "10px",
-                        textOutline: "1px solid black",
                       },
                     },
                   },
                 ],
                 drilldown: {
                   activeDataLabelStyle: {
-                    "letter-spacing": "1.2px",
+                    //"letter-spacing": "1.2px",
                     fontWeight: "900",
                   },
                 },
