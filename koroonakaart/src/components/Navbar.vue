@@ -26,14 +26,14 @@
             <!--  <b-nav-item class="navbar-description"> -->
             <!-- <small>{{ $t("faq.a5") }}</small> -->
 
-          <!--  <small
+            <small
               >{{ $t("hoia.me") }}
               <a href="https://hoia.me" rel="noopener" target="_blank"
                 >hoia.me</a
               ></small
-            >-->
+            >
 
-            <small>NB!  Viimase 24h COVID-19 testide tulemused viibivad tehnilisel põhjusel. Probleemiga tegeletakse ja esialgse prognoosi kohaselt peaks andmed laekuma täna pärastlõunal. Laboritest on veel saabumata ligi tuhande koroonaviiruse testi tulemus.</small>
+          <!--  <small>NB!  Viimase 24h COVID-19 testide tulemused viibivad tehnilisel põhjusel. Probleemiga tegeletakse ja esialgse prognoosi kohaselt peaks andmed laekuma täna pärastlõunal. Laboritest on veel saabumata ligi tuhande koroonaviiruse testi tulemus.</small>-->
 
 
             <!--  </b-nav-item> -->
