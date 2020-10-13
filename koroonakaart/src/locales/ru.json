@@ -36,6 +36,7 @@
   "femalePositive": "Положительные среди женщин",
   "maleNegative": "Отрицательные среди мужчин",
   "femaleNegative": "Отрицательные среди женщин",
+  "pos14avg": "Keskmine positiivsete testide osakaal viimase 14 päeva jooksul",
   "unknownPositive": "Положительные (пол неизвестен)",
   "unknownNegative": "Отрицательные (пол неизвестен)",
   "testsPer10000": "Положительные тесты на 10000 жителей",
