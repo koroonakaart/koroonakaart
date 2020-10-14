@@ -131,12 +131,12 @@
           ( {{ deceasedChanged }} )
         </h5>
       </b-col>
-    <!--  <b-col class="statsbar-item" md>
+      <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("pos14avg") }}</h5>
         </div>
         <h1>{{ positiveTestAverage14Percent }} %</h1>
-       <h5
+      <!--  <h5
           :class="
             rawDeceasedChanged === 0
               ? 'neutral'
@@ -146,8 +146,8 @@
           "
         >
           ( {{ deceasedChanged }} )
-        </h5>
-      </b-col> -->
+        </h5>-->
+      </b-col>
     </b-row>
   </b-container>
 </template>
