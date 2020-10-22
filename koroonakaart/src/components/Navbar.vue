@@ -38,7 +38,7 @@
 
             <!--  </b-nav-item> -->
           </b-navbar-nav>
-          <b-navbar-nav class="ml-auto">
+        <!--  <b-navbar-nav class="ml-auto">
             <b-dropdown-divider />
             <b-nav-item toggle-class="nav-link-custom">
               <div
@@ -50,7 +50,7 @@
               </div>
             </b-nav-item>
             <b-dropdown-divider />
-          </b-navbar-nav>
+          </b-navbar-nav> -->
 
           <!-- Right aligned nav items -->
           <b-navbar-nav>

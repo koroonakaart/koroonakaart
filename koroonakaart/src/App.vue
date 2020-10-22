@@ -4,7 +4,7 @@
       <router-view class="router-view" />
     </div>
     <div v-else id="app">
-      <!-- <DisclaimerModal /> -->
+       <DisclaimerModal />
       <Navbar />
       <router-view class="router-view" />
       <Footer />
@@ -15,13 +15,16 @@
 <script>
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
+import DisclaimerModal from "./components/DisclaimerModal";
 
 export default {
   name: "App",
   components: {
     Navbar,
     Footer,
+    DisclaimerModal
   },
+
 
   // When app loads change language to specified language suffix (ee, en or ru)
   created() {
@@ -34,7 +37,9 @@ export default {
       return this.$route.path.includes("chart");
     },
   },
-
+  mounted() {
+    this.$bvModal.show("disclaimer-modal");
+  },
   methods: {
     changeCurrentLanguage: function(targetLanguage) {
       if (this.$route.params.locale !== targetLanguage) {
