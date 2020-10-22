@@ -9,8 +9,8 @@
     >
       <b-container fluid="lg">
         <b-navbar-brand>
-          <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
-          <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
+           <a  id="navbar-headingleft" href="https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-aruanne/inimoigused-eestis-2010-2/lgbt-olukord-eestis/" rel = "noopener" target = "_blank">Koroona</a>
+           <a  id="navbar-headingright" href="https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-aruanne/inimoigused-eestis-2010-2/lgbt-olukord-eestis/" rel = "noopener" target = "_blank">kaart</a>
           <small class="navbar-updated"
             >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
           >
