@@ -27,6 +27,11 @@ RUN cd koroonakaart \
 #########################
 # STEP 3 build the image (Nginx serving frontend)
 #########################
+# https://hub.docker.com/_/nginx
 FROM nginx:1.19.2-alpine
 
+# Nginx needs to redirect requests like '/et' etc to index.html
+RUN sed -i '/index.html index.htm;/ i try_files $uri /index.html;' /etc/nginx/conf.d/default.conf
+
 COPY --from=build_frontend /app/koroonakaart/dist /usr/share/nginx/html
+COPY --from=fetch_data /app/koroonakaart/src/data.json /usr/share/nginx/html/data.json
