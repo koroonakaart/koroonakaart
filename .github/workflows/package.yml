@@ -1,0 +1,74 @@
+name: Build artifacts
+
+# this action will be run only manually (only visible on master branch)
+# go to "Actions" and click "Run workflow" button at right side of screen
+on: [workflow_dispatch]
+#on: [push]
+
+jobs:
+  fetch_data:
+    name: Fetch data
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          cd TEHIK_Open_Data_Loading_Scripts/
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Fetch data from TEHIK and aggregating it as data.json
+        run: |
+          cd TEHIK_Open_Data_Loading_Scripts/
+          python main.py
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: data.json
+          path: koroonakaart/src/data.json
+          retention-days: 7
+
+  build_frontend:
+    name: Build frontend
+    needs: fetch_data
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download data.json from data fetching job
+        uses: actions/download-artifact@v2
+        with:
+          name: data.json
+
+      - shell: bash
+        run: cp data.json koroonakaart/src/data.json
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build frontend
+        run: |
+          cd koroonakaart
+          npm install
+          npm run build
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend with data
+          path: |
+            koroonakaart/dist/
+          retention-days: 7
+

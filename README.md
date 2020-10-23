@@ -23,7 +23,23 @@ You can use the export menu on the charts (hamburger menu on the top right), sel
 Accepts height and width currently as props through query string.
 
 ## Project setup
+
+### Get/update data from TEHIK API
+
+Download latest Estonian COVID-19 data from TEHIK and transform it into json format 
+
 ```
+cd TEHIK_Open_Data_Loading_Scripts/
+pip3 install -r requirements.txt
+python3 main.py
+```
+
+### Install frontend dependencies
+
+To Customize Vue.js configuration see [Configuration Reference](https://cli.vuejs.org/config/).
+
+```
+cd koroonakaart/
 npm install
 ```
 
@@ -33,22 +49,25 @@ npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
-### Get data from TEHIK API
-```
-pip3 install -r requirements.txt
-python3 main.py
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Building Docker image
+
+```
+docker build -t koroonakaart .
+
+# run container in foreground (open http://localhost:8080)
+docker run --rm -p 8080:80 --name koroona koroonakaart:latest
+```
 
 
 # Who we are?
