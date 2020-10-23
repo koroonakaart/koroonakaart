@@ -1,0 +1,8 @@
+.idea/
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+.directory
