@@ -9,8 +9,8 @@
     >
       <b-container fluid="lg">
         <b-navbar-brand>
-           <a  id="navbar-headingleft" href="https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-aruanne/inimoigused-eestis-2010-2/lgbt-olukord-eestis/" rel = "noopener" target = "_blank">Koroona</a>
-           <a  id="navbar-headingright" href="https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-aruanne/inimoigused-eestis-2010-2/lgbt-olukord-eestis/" rel = "noopener" target = "_blank">kaart</a>
+           <a  id="navbar-headingleft" href="https://www.indexoncensorship.org/2020/10/samuel-paty-an-educator-a-father-and-a-free-speech-martyr/" rel = "noopener" target = "_blank">Koroona</a>
+           <a  id="navbar-headingright" href="https://www.indexoncensorship.org/2020/10/samuel-paty-an-educator-a-father-and-a-free-speech-martyr/" rel = "noopener" target = "_blank">kaart</a>
           <small class="navbar-updated"
             >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
           >
@@ -177,7 +177,7 @@ export default {
   cursor: pointer;
   font-size: 1.2em;
   font-weight: 900;
-  background: linear-gradient(180deg, #FE0000 16.66%,  #FD8C00 16.66%, 33.32%,  #FFE500 33.32%, 49.98%,  #119F0B 49.98%, 66.64%,  #0644B3 66.64%, 83.3%,  #C22EDC 83.3%);
+  background: linear-gradient(90deg, #09F911 33%, #029D74 33%, 67%, #E35BD8 67%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -188,7 +188,7 @@ export default {
   cursor: pointer;
   font-size: 1.2em;
   font-weight: 900;
-  background: linear-gradient(180deg, #FE0000 16.66%,  #FD8C00 16.66%, 33.32%,  #FFE500 33.32%, 49.98%,  #119F0B 49.98%, 66.64%,  #0644B3 66.64%, 83.3%,  #C22EDC 83.3%);
+  background: linear-gradient(90deg, #4156C5 50%, #635688 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
