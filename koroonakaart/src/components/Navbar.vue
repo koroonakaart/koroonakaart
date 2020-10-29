@@ -9,8 +9,8 @@
     >
       <b-container fluid="lg">
         <b-navbar-brand>
-           <a  id="navbar-headingleft" href="https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-aruanne/inimoigused-eestis-2010-2/lgbt-olukord-eestis/" rel = "noopener" target = "_blank">Koroona</a>
-           <a  id="navbar-headingright" href="https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-aruanne/inimoigused-eestis-2010-2/lgbt-olukord-eestis/" rel = "noopener" target = "_blank">kaart</a>
+          <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
+          <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
           <small class="navbar-updated"
             >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
           >
@@ -171,16 +171,11 @@ export default {
   }
 }
 
-//https://humanrights.ee/en/topics-main/inimoigused-eestis/inimoiguste-aruanne/human-rights-in-estonia-2010-2/lgbt-situation-in-estonia/
 #navbar-headingleft {
   color: black;
   cursor: pointer;
   font-size: 1.2em;
   font-weight: 900;
-  background: linear-gradient(180deg, #FE0000 16.66%,  #FD8C00 16.66%, 33.32%,  #FFE500 33.32%, 49.98%,  #119F0B 49.98%, 66.64%,  #0644B3 66.64%, 83.3%,  #C22EDC 83.3%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
 }
 
 #navbar-headingright {
@@ -188,9 +183,6 @@ export default {
   cursor: pointer;
   font-size: 1.2em;
   font-weight: 900;
-  background: linear-gradient(180deg, #FE0000 16.66%,  #FD8C00 16.66%, 33.32%,  #FFE500 33.32%, 49.98%,  #119F0B 49.98%, 66.64%,  #0644B3 66.64%, 83.3%,  #C22EDC 83.3%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 #navbar-interpunct {
