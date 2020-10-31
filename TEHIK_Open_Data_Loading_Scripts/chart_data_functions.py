@@ -28,19 +28,33 @@ def getHospitalData(json_hospital):
 def getMunicipalityData(json_municipalities, county_mapping):
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
-    rangestart = 0
-    rangeend = 0
+    communes_that_are_summed = ['Tallinn', 'Pärnu linn', 'Saaremaa vald']
+    communes_that_are_summed_data = {}
     for result in json_municipalities:
         if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
-            if result["Commune"] == "Tallinn":
-                rangestart += result["TotalCasesFrom"]
-                rangeend += result["TotalCasesTo"]
-                municipalities_array.append([county, "Tallinn", "",result["ResultValue"],rangestart, rangeend])
+            if result["Commune"] in communes_that_are_summed:
+                if result["Commune"] in communes_that_are_summed_data:
+                    communes_that_are_summed_data[result["Commune"]]["range_start"] += result["TotalCasesFrom"]
+                    communes_that_are_summed_data[result["Commune"]]["range_end"] += result["TotalCasesTo"]
+                else:
+                    communes_that_are_summed_data[result["Commune"]] = {
+                        "range_start": result["TotalCasesFrom"],
+                        "range_end": result["TotalCasesTo"],
+                        "County": county_mapping[result["County"]],
+                        "Commune": result["Commune"],
+                        "ResultValue": result["ResultValue"]
+                    }
             else:
-                    county = county_mapping[result["County"]]
-                    municipalities_array.append([county, result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
+                county = county_mapping[result["County"]]
+                municipalities_array.append([county, result["Commune"], result["Village"], result["ResultValue"],result["TotalCasesFrom"], result["TotalCasesTo"]])
+
+    for commune_index in communes_that_are_summed_data:
+        commune = communes_that_are_summed_data[commune_index]
+        if (commune["range_end"] > 0):
+                municipalities_array.append([commune["County"], commune["Commune"], "", commune["ResultValue"], commune["range_start"], commune["range_end"]])
+
     municipalities_json = {
-    "municipalitiesData": municipalities_array
+        "municipalitiesData": municipalities_array
     }
     return municipalities_json
 
