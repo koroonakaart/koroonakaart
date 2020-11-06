@@ -67,6 +67,20 @@ docker build -t koroonakaart .
 docker run --rm -p 8080:80 --name koroona koroonakaart:latest
 ```
 
+## Current Data update commands
+Update  deaths and on ventilation from https://www.terviseamet.ee/et/koroonaviirus/koroonakaart
+Juhitaval hingamisel patsiente is in Haiglaravi tab and deaths are below the iframe Eestis on `koroonaviirus nõudnud XX inimese elu`.
+Also modify `deceasedNumber` with the latest number
+
+`cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py`
+
+`git push`
+go to webserver
+```
+cd /var/www/html/koroonakaart/
+git pull master
+cd koroonakaart && npm run build
+```
 
 # Who we are?
 ## How team formed @ [Hack the Crisis](https://www.facebook.com/events/204692110602347/) and current maintenance
