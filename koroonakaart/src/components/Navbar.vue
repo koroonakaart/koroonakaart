@@ -57,7 +57,7 @@
             <b-nav-item-dropdown id="navbar-langselect" right>
               <template align="center" v-slot:button-content>
                 <Earth id="navbar-langicon" />
-                <em>{{ $t("language") }}</em>
+                {{ $t("language") }}
               </template>
               <b-dropdown-item
                 @click="changeCurrentLanguage(locale)"
