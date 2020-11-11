@@ -72,7 +72,9 @@ Update  deaths and on ventilation from https://www.terviseamet.ee/et/koroonaviir
 Juhitaval hingamisel patsiente is in Haiglaravi tab and deaths are below the iframe Eestis on `koroonaviirus nõudnud XX inimese elu`.
 Also modify `deceasedNumber` with the latest number
 
-`cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py`
+```
+cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py
+```
 
 ```
 git push
