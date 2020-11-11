@@ -5,10 +5,13 @@ from constants import county_mapping, county_sizes, counties, age_groups
 from chart_data_functions import *
 from helpers import NpEncoder
 
+
 today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
 yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
+
 ######## CONFIGURE MANUAL DATA ########
+
 MANUAL_DATA = {
     "updatedOn": today[0],
     "deceasedNumber": 76,
@@ -40,16 +43,20 @@ MANUAL_DATA = {
                   73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,75,76,76]
 }
 
+
 ######## CONFIGURE IO LOCATIONS ########
+
 API_ENDPONT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
 OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
 
+
 def get_json_data(url) -> any:
     # Open data endpoint
     r = requests.get(url=url)
     return r.json()
+
 
 if __name__ == "__main__":
     # Get data
@@ -78,19 +85,16 @@ if __name__ == "__main__":
 
     dates1_range_start = MANUAL_DATA["dates1Start"]
     dates1_range_end = dates_range_end
-    # dates1_range_end = "2020-04-02"
 
     dates2_range_start = MANUAL_DATA["dates2Start"]
     dates2_range_end = dates_range_end
-    # dates2_range_end = "2020-04-02"
-
 
 
     # Create date ranges for charts
     dates1 = pd.date_range(start=dates1_range_start, end=dates1_range_end)
     dates2 = pd.date_range(start=dates2_range_start, end=dates2_range_end)
 
-    # create copy
+    # Create copy
     json_copy = json_data
     municipalities_copy = municipalities
     hospital_copy = json_hospital
@@ -121,11 +125,8 @@ if __name__ == "__main__":
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
     dataActiveInfectionsByCounty = [{"MNIMI": k, "sequence": v, "drilldown": k} for k,v in dataCountyDailyActive["countyByDayActive"].items()]
     dataActiveInfectionsByCounty100k = [[k, round(v[-1] / county_sizes[k] * 100000, 2)] for k,v in dataCountyDailyActive["countyByDayActive"].items()]
-
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
-
     perHundred = dataCumulativeCasesChart["active100k"][-1]
-
 
 
     # Create dictionary for final json
@@ -164,6 +165,7 @@ if __name__ == "__main__":
         "hospital": hospital
     }
 
-    # dump json output
+    # Dump json output
     with open(OUTPUT_FILE_LOCATION, "w", encoding="utf-8") as f:
         json.dump(finalJson, f, cls=NpEncoder, ensure_ascii=False)
+
