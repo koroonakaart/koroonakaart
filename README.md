@@ -75,10 +75,10 @@ Also modify `deceasedNumber` with the latest number
 `cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py`
 
 `git push`
-go to webserver
+Go to web server
 ```
 cd /var/www/html/koroonakaart/
-git pull master
+git pull
 cd koroonakaart && npm run build
 ```
 
