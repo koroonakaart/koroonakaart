@@ -46,7 +46,7 @@ MANUAL_DATA = {
 
 ######## CONFIGURE IO LOCATIONS ########
 
-API_ENDPONT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
+API_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
 OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
@@ -60,7 +60,7 @@ def get_json_data(url) -> any:
 
 if __name__ == "__main__":
     # Get data
-    json_data = get_json_data(API_ENDPONT)
+    json_data = get_json_data(API_ENDPOINT)
     municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
     json_hospital = get_json_data(HOSPITAL_ENDPOINT)
     # Date of update
