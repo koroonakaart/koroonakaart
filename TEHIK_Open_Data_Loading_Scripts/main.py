@@ -14,7 +14,7 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 MANUAL_DATA = {
     "updatedOn": today[0],
-    "deceasedNumber": 85,
+    "deceasedNumber": 86,
     "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-26",
@@ -60,7 +60,7 @@ MANUAL_DATA = {
         67, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 71, 71,
         71, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73,
         73, 73, 73, 75, 76, 76, 76, 76, 80, 80, 81, 81, 84, 85,
-        85
+        86
     ]
 }
 

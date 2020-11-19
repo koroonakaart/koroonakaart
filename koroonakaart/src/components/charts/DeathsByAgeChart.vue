@@ -99,11 +99,11 @@ export default {
         series: [
           {
           name: this.$t("male"),
-          data: [0,4,4,11,11,6],
+          data: [0,4,5,12,12,6],
           },
           {
           name: this.$t("female"),
-          data: [0,1,1,9,23,6]
+          data: [1,1,1,9,25,7]
           }
         ]
       }
