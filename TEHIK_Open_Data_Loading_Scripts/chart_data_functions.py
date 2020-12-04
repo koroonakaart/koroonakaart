@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta, date
 from collections import defaultdict
+import pprint
 
 
 def getHospitalData(json_hospital):
