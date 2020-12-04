@@ -1,8 +1,8 @@
 # Koroonakaart
 
-Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). Data is updated every day around 10:30 Estonian time (depending on TEHIK data update). Live version is available at [koroonakaart.ee](http://koroonakaart.ee/).
+Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). Data is updated every day around 11:00 Estonian time (depending on TEHIK data update). Live version is available at [koroonakaart.ee](http://koroonakaart.ee/).
 
-Url to load localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **et** (Estonian), **en** (English) and **ru** (Russian).
+The URL to load the localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **et** (Estonian), **en** (English) and **ru** (Russian).
 
 
 This project is co-developed by a team of researchers and open government data activists from Open Knowledge Estonia, Tallinn University of Technology (Keegan McBride, @keeganmcbride), University of Tartu (Joonas Puura, @PuuraJ), and other civic activists (Harry Sild, @Kypsis; Chris Thompson @neuroactive) who took part in the Garage 48 Hack The Crisis Hackathon.
@@ -72,13 +72,17 @@ Update  deaths and on ventilation from https://www.terviseamet.ee/et/koroonaviir
 Juhitaval hingamisel patsiente is in Haiglaravi tab and deaths are below the iframe Eestis on `koroonaviirus nõudnud XX inimese elu`.
 Also modify `deceasedNumber` with the latest number
 
-`cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py`
+```
+cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py
+```
 
-`git push`
-go to webserver
+```
+git push
+```
+Go to web server, then:
 ```
 cd /var/www/html/koroonakaart/
-git pull master
+git pull
 cd koroonakaart && npm run build
 ```
 

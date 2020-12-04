@@ -26,6 +26,7 @@ def getHospitalData(json_hospital):
     }
     return hospital_results
 
+
 def getMunicipalityData(json_municipalities, county_mapping):
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
@@ -126,8 +127,6 @@ def getCountyByDay(json, dates, county_mapping, county_sizes):
 
     countyByDayNew = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
 
-
-
     countyList = {
         "countyByDay": countyByDay,
         "countyByDayNew": countyByDayNew,
@@ -174,6 +173,7 @@ def getdataCountyDailyActive(json, dates, county_mapping,county_sizes):
         }
 
     return activeList
+
 
 def getDataConfirmedCasesByCounties(json, county_mapping):
     chart_counties = ["Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
@@ -255,7 +255,6 @@ def getDataTestsPerDayChart(json, dates):
             date_counts[date] += 1
             if res["ResultValue"] == "P":
                 date_positive[date] += 1
-
         elif date < date_start:
             # Hack to count dates before our range
             count_before_date_range += 1
@@ -282,6 +281,7 @@ def getDataTestsPerDayChart(json, dates):
         }
 
     return return_json
+
 
 def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalised, intensive, dates):
     date_counts = defaultdict(int)
@@ -313,7 +313,6 @@ def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalise
     estonian_population = 1_328_976 # from https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
     per_100_k_multiplier = 100_000 / estonian_population
     new_cases_14_per_100_k = [round(active_cases * per_100_k_multiplier, 2) for active_cases in new_cases_14]
-
 
     dataCumulativeCasesChart = {
         "cases": list(cases),
@@ -396,7 +395,7 @@ def getDataPositiveTestsByAgeChart(json):
         ('N', 'üle 85')
     ]
 
-    # Create male pos and neg lists
+    # Create male positive and negative lists
     malePositive = []
     maleNegative = []
     femalePositive = []
@@ -431,10 +430,10 @@ def getDataPositiveTestsByAgeChart(json):
 
 def getDataPositiveNegativeChart(json, mapping):
     """
-    Pos and neg by county
+    Compile data for the "Positive and negative tests by county" chart.
     """
 
-    # correct order..
+    # Define counties (in order)
     chart_counties = ["Info puudulik", "Harjumaa", "Hiiumaa", "Ida-Virumaa", "Jõgevamaa", "Järvamaa", "Läänemaa",
                       "Lääne-Virumaa", "Põlvamaa", "Pärnumaa", "Raplamaa", "Saaremaa", "Tartumaa",
                       "Valgamaa", "Viljandimaa", "Võrumaa"]
