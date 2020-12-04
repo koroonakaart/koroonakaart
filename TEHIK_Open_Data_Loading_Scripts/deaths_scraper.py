@@ -24,7 +24,7 @@ def read_json_from_file(path) -> any:
 deaths_container = soup.select('.node-lead-default strong')
 if len(deaths_container) > 0:
     deaths_count = int(deaths_container[0].text.strip())
-    current_date = datetime.now().strftime('%Y-%m-%d')
+    current_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     json_deaths = read_json_from_file(DEATH_FILE_LOCATION)
 

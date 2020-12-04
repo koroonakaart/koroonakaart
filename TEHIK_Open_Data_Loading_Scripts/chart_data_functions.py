@@ -502,3 +502,4 @@ def mergeDateDictionaries(dict1, dict2):
     output = dict1
     for index in dict2:
         output[index] = dict2[index]
+    return output
