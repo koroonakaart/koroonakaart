@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, date
 import pandas as pd
 from helpers import NpEncoder
 
+
 MANUAL_DATA = {
     'datesStart': "2020-02-26",
     "intensive": [
@@ -82,4 +83,4 @@ def printToJson(fileLocation, dataDict):
     with open(fileLocation, "w", encoding="utf-8") as f:
         json.dump(dataDict, f, cls=NpEncoder, ensure_ascii=False)
 
-printToJson('manualData.json', create_json_from_manual_data(MANUAL_DATA))
+printToJson('manual_data.json', create_json_from_manual_data(MANUAL_DATA))

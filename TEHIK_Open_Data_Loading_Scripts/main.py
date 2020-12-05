@@ -1,9 +1,10 @@
 import json
 import requests
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, timezone
 from constants import county_mapping, county_sizes, counties, age_groups
 from chart_data_functions import *
 from helpers import NpEncoder
+from dateutil.parser import parse as parsedate
 
 
 today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
@@ -25,7 +26,7 @@ MANUAL_DATA = {
 API_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
-MANUAL_DATA_FILE_LOCATION = "manualData.json"
+MANUAL_DATA_FILE_LOCATION = "manual_data.json"
 DEATHS_FILE_LOCATION = "deaths.json"
 OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
 
@@ -40,14 +41,34 @@ def read_json_from_file(path) -> any:
         data = json.load(f)
     return data
 
+def is_up_to_date(dictionary, key):
+    yesterday = datetime.today() - timedelta(1)
+    yesterday = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
+    file_date_time = datetime.strptime(dictionary[0][key].split('T')[0], '%Y-%m-%d')
+    if file_date_time >= yesterday:
+        return True
+    return False
+
+def is_header_last_modified_up_to_date(url):
+    url_date = parsedate(requests.head(url).headers['Last-Modified'])
+    today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc)
+    if url_date > today:
+        return True
+    return False
+
 if __name__ == "__main__":
     # Get data
-
-    json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
     json_data = get_json_data(API_ENDPOINT)
     municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
     json_hospital = get_json_data(HOSPITAL_ENDPOINT)
     json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
+    json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
+
+    if (not is_up_to_date(municipalities, 'LastStatisticsDate') or
+        not is_up_to_date(json_hospital, 'LastLoadStatisticsDate') or
+        not is_header_last_modified_up_to_date(MUNICIPALITIES_ENDPOINT)):
+        print("Not up to date\n")
+        exit()
 
     # Date of update
     updatedOn = MANUAL_DATA["updatedOn"]

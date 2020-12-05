@@ -2,6 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from datetime import datetime
+import os.path
 
 from helpers import NpEncoder
 from chart_data_functions import *
@@ -17,9 +18,12 @@ def printToJson(fileLocation, dataDict):
         json.dump(dataDict, f, cls=NpEncoder, ensure_ascii=False)
 
 def read_json_from_file(path) -> any:
-     with open(path) as f:
-         data = json.load(f)
-     return data
+    if not os.path.isfile(path):
+        return {}
+
+    with open(path) as f:
+        data = json.load(f)
+    return data
 
 deaths_container = soup.select('.node-lead-default strong')
 if len(deaths_container) > 0:
