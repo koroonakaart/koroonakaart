@@ -6,3 +6,6 @@
 .LSOverride
 
 .directory
+
+koroonakaart/src/data.json
+TEHIK_Open_Data_Loading_Scripts/deaths.json
