@@ -14,7 +14,7 @@ cd ../koroonakaart
 output_array[npm]=$(npm run build 2>&1 > /dev/null)
 cd - 2>&1 > /dev/null
 
-ln -sf ../../koroonakaart/koroonakaart/dist ../../current
+ln -srfn ../../koroonakaart/koroonakaart/dist ../../current
 
 # Output errors
 echo "git_output: ${output_array[git_output]}
