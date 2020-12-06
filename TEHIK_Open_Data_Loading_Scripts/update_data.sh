@@ -8,7 +8,7 @@ output_array[main_python]=$(python3 main.py 2>&1 > /dev/null)
 rm -rf ../../backup
 mkdir ../../backup
 cp -Ra ../../koroonakaart ../../backup
-ln -sf ../../backup/koroonakaart/koroonakaart/dist ../../current
+ln -srfn ../../backup/koroonakaart/koroonakaart/dist ../../current
 
 cd ../koroonakaart
 output_array[npm]=$(npm run build 2>&1 > /dev/null)
