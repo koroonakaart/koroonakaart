@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta, date
 from collections import defaultdict
+import pprint
 
 
 def getHospitalData(json_hospital):
@@ -473,3 +474,32 @@ def getDataPositiveNegativeChart(json, mapping):
 
     return end_output
 
+def getOnVentilationData(json, manualData):
+    if (type(json) is not list or type(manualData) is not dict):
+        return False
+
+    data = getDictWithDatesAndKey(json, 'IsOnVentilation')
+
+    output = manualData
+
+    for day in data:
+        if isinstance(data[day], str):
+            output[day] = data[day]
+
+    return output
+
+def getDictWithDatesAndKey(json, key):
+    days = {}
+
+    for day in json:
+        date = day['StatisticsDate'].split('T')[0]
+        data = day[key]
+        days[date] = data
+
+    return days
+
+def mergeDateDictionaries(dict1, dict2):
+    output = dict1
+    for index in dict2:
+        output[index] = dict2[index]
+    return output

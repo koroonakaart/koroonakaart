@@ -1,9 +1,10 @@
 import json
 import requests
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, timezone
 from constants import county_mapping, county_sizes, counties, age_groups
 from chart_data_functions import *
 from helpers import NpEncoder
+from dateutil.parser import parse as parsedate
 
 
 today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
@@ -14,56 +15,10 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 MANUAL_DATA = {
     "updatedOn": today[0],
-    "deceasedNumber": 126,
+    "deceasedNumber": 125,
     "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-26",
-    "intensive": [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 6, 7, 7,
-        7, 7, 10, 10, 13, 13, 15, 16, 16, 20, 17, 14, 12, 11,
-        9, 9, 11, 11, 9, 11, 10, 10, 11, 11, 10, 9, 8, 7,
-        7, 6, 6, 6, 7, 8, 10, 9, 7, 7, 7, 6, 6, 4,
-        4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 3, 2,
-        2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1, 1, 2, 3, 3, 2, 3, 3, 3, 2,
-        2, 1, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 4, 3,
-        2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1,
-        1, 1, 3, 3, 4, 3, 1, 1, 3, 2, 2, 2, 2, 2,
-        4, 4, 4, 4, 4, 5, 6, 6, 5, 5, 5, 7, 6, 6,
-        7, 10, 8, 7, 8, 8, 7, 7, 6, 6, 7, 11, 12, 11,
-        12, 11, 12
-    ],
-    "deceased": [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-        1, 1, 1, 3, 3, 4, 5, 11, 12, 13, 15, 19, 21, 24,
-        24, 24, 24, 25, 27, 31, 35, 36, 38, 38, 40, 40, 43, 44,
-        45, 46, 47, 50, 52, 52, 52, 54, 54, 55, 57, 57, 57, 57,
-        59, 59, 60, 60, 61, 61, 61, 62, 63, 63, 63, 64, 64, 64,
-        64, 64, 64, 64, 65, 65, 66, 66, 67, 67, 68, 68, 68, 69,
-        69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
-        69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
-        69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
-        69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
-        69, 69, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63,
-        63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 64, 64, 64,
-        64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
-        64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
-        64, 64, 64, 64, 64, 64, 64, 65, 66, 67, 67, 67, 67, 67,
-        67, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 71, 71,
-        71, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73, 73,
-        73, 73, 73, 75, 76, 76, 76, 76, 80, 80, 81, 81, 84, 85,
-        86, 87, 87, 88, 92, 94, 97, 99, 104, 109, 112, 118, 121, 122,
-        123, 125, 126
-    ]
 }
 
 
@@ -72,6 +27,8 @@ MANUAL_DATA = {
 API_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
+MANUAL_DATA_FILE_LOCATION = "manual_data.json"
+DEATHS_FILE_LOCATION = "deaths.json"
 OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
 
 
@@ -80,21 +37,44 @@ def get_json_data(url) -> any:
     r = requests.get(url=url)
     return r.json()
 
+def read_json_from_file(path) -> any:
+    with open(path) as f:
+        data = json.load(f)
+    return data
+
+def is_up_to_date(dictionary, key):
+    yesterday = datetime.today() - timedelta(1)
+    yesterday = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
+    file_date_time = datetime.strptime(dictionary[0][key].split('T')[0], '%Y-%m-%d')
+    if file_date_time >= yesterday:
+        return True
+    return False
+
+def is_header_last_modified_up_to_date(url):
+    url_date = parsedate(requests.head(url).headers['Last-Modified'])
+    today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc)
+    if url_date > today:
+        return True
+    return False
 
 if __name__ == "__main__":
     # Get data
     json_data = get_json_data(API_ENDPOINT)
     municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
     json_hospital = get_json_data(HOSPITAL_ENDPOINT)
+    json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
+    json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
+
+    if (not is_up_to_date(municipalities, 'LastStatisticsDate') or
+        not is_up_to_date(json_hospital, 'LastLoadStatisticsDate') or
+        not is_header_last_modified_up_to_date(MUNICIPALITIES_ENDPOINT)):
+        print("Not up to date\n")
+        exit()
+
     # Date of update
     updatedOn = MANUAL_DATA["updatedOn"]
 
     # Statsbar
-    #hospitalisedNumber = MANUAL_DATA["hospitalisedNumber"]
-    deceasedNumber = MANUAL_DATA["deceasedNumber"]
-    #recoveredNumber = MANUAL_DATA["recoveredNumber"]
-    deceasedChanged  = MANUAL_DATA["deceased"][-1] - MANUAL_DATA["deceased"][-2]
-
     # Find count of confirmed cases
     confirmedCasesNumber = np.sum([res["ResultValue"] == "P" for res in json_data])
 
@@ -125,10 +105,11 @@ if __name__ == "__main__":
 
     # Set recovered, deceased, hospitalised and ICU time-series
     recovered = hospital["discharged"]
-    deceased = MANUAL_DATA["deceased"]
+    deceased = list(mergeDateDictionaries(json_manual["deceased"], json_deaths).values())
     hospitalised =  hospital["hospitalizations"]
-    intensive = MANUAL_DATA["intensive"]
-
+    intensive = list(getOnVentilationData(json_hospital, json_manual['intensive']).values())
+    deceasedNumber = deceased[-1]
+    deceasedChanged = int(deceased[-1]) - int(deceased[-2])
 
     # Get data for each chart
     dataInfectionsByCounty = getCountInfectionsByCounty(json_copy, county_mapping)
