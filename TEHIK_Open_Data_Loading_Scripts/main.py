@@ -1,20 +1,22 @@
 import json
 import requests
+import pytz
+import sys
 from datetime import datetime, timedelta, date, timezone
 from constants import county_mapping, county_sizes, counties, age_groups
 from chart_data_functions import *
 from helpers import NpEncoder
 from dateutil.parser import parse as parsedate
 
-
-today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
+estonian_timezone = pytz.timezone('Europe/Amsterdam')
+today = estonian_timezone.localize(datetime.today()).strftime('%d/%m/%Y, %H:%M')
 yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 
 ######## CONFIGURE MANUAL DATA ########
 
 MANUAL_DATA = {
-    "updatedOn": today[0],
+    "updatedOn": today,
     "deceasedNumber": 125,
     "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
@@ -27,9 +29,9 @@ MANUAL_DATA = {
 API_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
-MANUAL_DATA_FILE_LOCATION = "manual_data.json"
-DEATHS_FILE_LOCATION = "deaths.json"
-OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
+MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
+DEATHS_FILE_LOCATION = "../data/deaths.json"
+OUTPUT_FILE_LOCATION = "../data/data.json"
 
 
 def get_json_data(url) -> any:
@@ -68,7 +70,7 @@ if __name__ == "__main__":
     if (not is_up_to_date(municipalities, 'LastStatisticsDate') or
         not is_up_to_date(json_hospital, 'LastLoadStatisticsDate') or
         not is_header_last_modified_up_to_date(MUNICIPALITIES_ENDPOINT)):
-        print("Not up to date\n")
+        print("One of the TEHIK API has not been updated\n", file=sys.stderr)
         exit()
 
     # Date of update
