@@ -8,7 +8,7 @@ from chart_data_functions import *
 from helpers import NpEncoder
 from dateutil.parser import parse as parsedate
 
-estonian_timezone = pytz.timezone('Europe/Amsterdam')
+estonian_timezone = pytz.timezone('Europe/Helsinki')
 today = estonian_timezone.localize(datetime.today()).strftime('%d/%m/%Y, %H:%M')
 yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
@@ -37,7 +37,7 @@ OUTPUT_FILE_LOCATION = "../data/data.json"
 def get_json_data(url) -> any:
     # Open data endpoint
     r = requests.get(url=url)
-    return r.json()
+    return r.json(
 
 def read_json_from_file(path) -> any:
     with open(path) as f:
