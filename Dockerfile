@@ -19,7 +19,7 @@ FROM node:erbium-buster AS build_frontend
 WORKDIR /app
 COPY . .
 
-COPY --from=fetch_data /app/koroonakaart/src/data.json /app/koroonakaart/src/data.json
+COPY --from=fetch_data /app/data/data.json /app/data/data.json
 RUN cd koroonakaart \
     npm install --silent \
     npm run build

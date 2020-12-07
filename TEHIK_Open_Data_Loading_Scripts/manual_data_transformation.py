@@ -83,4 +83,4 @@ def printToJson(fileLocation, dataDict):
     with open(fileLocation, "w", encoding="utf-8") as f:
         json.dump(dataDict, f, cls=NpEncoder, ensure_ascii=False)
 
-printToJson('manual_data.json', create_json_from_manual_data(MANUAL_DATA))
+printToJson('../data/manual_data.json', create_json_from_manual_data(MANUAL_DATA))

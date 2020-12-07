@@ -10,6 +10,9 @@ mkdir ../../backup
 cp -Ra ../../koroonakaart ../../backup
 ln -srfn ../../backup/koroonakaart/koroonakaart/dist ../../current
 
+# Copy data.json into js src folder
+cp -af ../data/data.json ../koroonakaart/src
+
 cd ../koroonakaart
 output_array[npm]=$(npm run build 2>&1 > /dev/null)
 cd - 2>&1 > /dev/null

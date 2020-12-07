@@ -11,7 +11,7 @@ url = 'https://www.terviseamet.ee/et/koroonaviirus/koroonakaart'
 html = requests.get(url).text
 soup = BeautifulSoup(html, 'html.parser')
 
-DEATH_FILE_LOCATION = 'deaths.json'
+DEATH_FILE_LOCATION = '../data/deaths.json'
 
 def printToJson(fileLocation, dataDict):
     with open(fileLocation, "w", encoding="utf-8") as f:
