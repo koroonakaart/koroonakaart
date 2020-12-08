@@ -19,9 +19,4 @@ cd - 2>&1 > /dev/null
 
 ln -srfn ../../koroonakaart/koroonakaart/dist ../../current
 
-# Output errors
-echo "git_output: ${output_array[git_output]}
-pip_output: ${output_array[pip_output]}
-deaths_scraper: ${output_array[deaths_scraper]}
-npm: ${output_array[npm]}
-main_python: ${output_array[main_python]}"
+. ./after_data_updated.sh

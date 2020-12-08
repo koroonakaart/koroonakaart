@@ -37,7 +37,7 @@ OUTPUT_FILE_LOCATION = "../data/data.json"
 def get_json_data(url) -> any:
     # Open data endpoint
     r = requests.get(url=url)
-    return r.json(
+    return r.json()
 
 def read_json_from_file(path) -> any:
     with open(path) as f:
