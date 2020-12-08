@@ -484,8 +484,7 @@ def getOnVentilationData(json, manualData):
 
     for day in data:
         if isinstance(data[day], str):
-            output[day] = data[day]
-
+            output[day] = int(data[day])
     return output
 
 def getDictWithDatesAndKey(json, key):
