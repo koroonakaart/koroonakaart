@@ -9,7 +9,7 @@ from helpers import NpEncoder
 from dateutil.parser import parse as parsedate
 
 estonian_timezone = pytz.timezone('Europe/Helsinki')
-today = estonian_timezone.localize(datetime.today()).strftime('%d/%m/%Y, %H:%M')
+today = datetime.today().astimezone(estonian_timezone).strftime('%d/%m/%Y, %H:%M')
 yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
 
 
