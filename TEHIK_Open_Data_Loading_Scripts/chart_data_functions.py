@@ -5,19 +5,22 @@ from collections import defaultdict
 import pprint
 
 
-def getHospitalData(json_hospital):
+def getHospitalData(json_hospital, startDate):
     hospitalizations = []
     activehospitalizations = []
     intensive = []
     discharged = []
+    startDate = datetime.strptime(startDate, '%Y-%m-%d')
     for result in json_hospital:
-        hospitalizations += [int(result["Hospitalised"])]
-        activehospitalizations += [int(result["ActivelyHospitalised"])]
-        if result["IsInIntensive"] != None:
-            intensive += [int(result["IsInIntensive"])]
-        else:
-            intensive += [result["IsInIntensive"]]
-        discharged += [int(result["TotalCasesDischarged"])]
+        statisticsDate = datetime.strptime(result["StatisticsDate"].split('T')[0], '%Y-%m-%d')
+        if statisticsDate >= startDate:
+            hospitalizations += [int(result["Hospitalised"])]
+            activehospitalizations += [int(result["ActivelyHospitalised"])]
+            if result["IsInIntensive"] != None:
+                intensive += [int(result["IsInIntensive"])]
+            else:
+                intensive += [result["IsInIntensive"]]
+            discharged += [int(result["TotalCasesDischarged"])]
     hospital_results = {
     "hospitalizations": hospitalizations,
     "activehospitalizations": activehospitalizations,

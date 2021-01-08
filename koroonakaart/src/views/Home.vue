@@ -24,9 +24,6 @@
       <CumulativeCasesPer100kChart :height="470" />
     </b-row>
     <b-row class="mb-5">
-      <DeathsByAgeChart :height="470" />
-    </b-row>
-    <b-row class="mb-5">
       <NewCasesPerDayChart :height="470" />
     </b-row>
     <b-row class="mb-5">
@@ -62,7 +59,6 @@ import CumulativeCasesPer100kChart from "../components/charts/CumulativeCasesPer
 import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import GenderChart from "../components/charts/GenderChart";
-import DeathsByAgeChart from "../components/charts/DeathsByAgeChart";
 //import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
@@ -88,8 +84,7 @@ export default {
     DailyCountyCasesChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
-    TestsPopRatioChart,
-    DeathsByAgeChart
+    TestsPopRatioChart
   }
 };
 </script>

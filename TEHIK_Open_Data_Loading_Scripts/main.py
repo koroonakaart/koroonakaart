@@ -103,7 +103,7 @@ if __name__ == "__main__":
     json_copy = json_data
     municipalities_copy = municipalities
     hospital_copy = json_hospital
-    hospital = getHospitalData(hospital_copy)
+    hospital = getHospitalData(hospital_copy, dates2_range_start)
 
     # Set recovered, deceased, hospitalised and ICU time-series
     recovered = hospital["discharged"]
