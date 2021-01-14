@@ -4,6 +4,27 @@
       ><small style="margin-bottom: 20px;">{{ $t("faq.a5") }}</small></b-row
     >
     <b-row>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("vaccinationNumber") }}</h5>
+        </div>
+        <h1>{{ vaccinationNumberTotal }}</h1>
+        <h5 class="negative" >
+          ( {{ vaccinationNumberLastDay }} )
+        </h5>
+      </b-col>
+      
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("vaccinationPercentage") }}</h5>
+        </div>
+        <h1>{{ vaccinationPercentage }} %</h1>
+      </b-col>
+
+    </b-row>
+    <br />
+    <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("confirmedCases") }}</h5>
@@ -228,6 +249,9 @@ export default {
             data.dataCumulativeTestsChart.testsAdminstered.length - 2
           ]
       ),
+      vaccinationNumberTotal: data.vaccinationNumberTotal,
+      vaccinationNumberLastDay: positiveSign(data.vaccinationNumberLastDay),
+      vaccinationPercentage: data.vaccinationPercentage,
     };
   },
 };

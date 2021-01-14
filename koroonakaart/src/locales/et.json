@@ -10,6 +10,8 @@
   "cases": "Haigusjuhud",
   "hoia.me": "Eesti Riigi uue mobiilirakenduse abil saad kiiresti teada võimalikust lähikontaktist COVID-19 nakatunuga. Lae alla siit: ",
   "perHundred": "Viimase 14 päeva nakatumised 100 000 inimese kohta",
+  "vaccinationNumber": "Vaktsineeritud",
+  "vaccinationPercentage": "Vaktsineeritud elanikkonnast",
   "confirmedCases": "Kinnitatud haigusjuhud",
   "confirmedCasesByCounties": "Haigusjuhud maakonniti",
   "cumulativeCases": "Haigusjuhud",

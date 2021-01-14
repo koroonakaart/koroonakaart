@@ -29,6 +29,7 @@ MANUAL_DATA = {
 API_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
+VACCINE_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_vaccination_total.json"
 MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
 DEATHS_FILE_LOCATION = "../data/deaths.json"
 OUTPUT_FILE_LOCATION = "../data/data.json"
@@ -64,6 +65,7 @@ if __name__ == "__main__":
     json_data = get_json_data(API_ENDPOINT)
     municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
     json_hospital = get_json_data(HOSPITAL_ENDPOINT)
+    json_vaccine = get_json_data(VACCINE_ENDPOINT)
     json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
     json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
 
@@ -134,6 +136,8 @@ if __name__ == "__main__":
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
     perHundred = dataCumulativeCasesChart["active100k"][-1]
 
+    #vaccination data calculation
+    lastDayVaccinationData = json_vaccine[-1]
 
     # Create dictionary for final json
     finalJson = {
@@ -168,7 +172,10 @@ if __name__ == "__main__":
         "dataPositiveTestsByAgeChart": dataPositiveTestsByAgeChart,
         "dataPositiveNegativeChart": dataPositiveNegativeChart,
         "dataMunicipalities": dataMunicipalities,
-        "hospital": hospital
+        "hospital": hospital,
+        "vaccinationNumberTotal": lastDayVaccinationData["TotalCount"],
+        "vaccinationNumberLastDay": lastDayVaccinationData["DailyCount"],
+        "vaccinationPercentage": lastDayVaccinationData["PopulationCoverage"]
     }
 
     # Dump json output
