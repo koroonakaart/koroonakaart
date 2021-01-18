@@ -137,7 +137,11 @@ if __name__ == "__main__":
     perHundred = dataCumulativeCasesChart["active100k"][-1]
 
     #vaccination data calculation
-    lastDayVaccinationData = json_vaccine[-1]
+    lastDayVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'InProgress'][-1]
+    lastDayCompletedVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'Completed'][-1]
+    vaccinationNumberTotal = lastDayVaccinationData["TotalCount"]
+    completedVaccinationNumberTotal = lastDayCompletedVaccinationData["TotalCount"]
+    completelyVaccinatedFromPartiallyVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / vaccinationNumberTotal,2)
 
     # Create dictionary for final json
     finalJson = {
@@ -173,9 +177,13 @@ if __name__ == "__main__":
         "dataPositiveNegativeChart": dataPositiveNegativeChart,
         "dataMunicipalities": dataMunicipalities,
         "hospital": hospital,
-        "vaccinationNumberTotal": lastDayVaccinationData["TotalCount"],
+        "vaccinationNumberTotal": vaccinationNumberTotal,
         "vaccinationNumberLastDay": lastDayVaccinationData["DailyCount"],
-        "vaccinationPercentage": lastDayVaccinationData["PopulationCoverage"]
+        "vaccinationPercentage": lastDayVaccinationData["PopulationCoverage"],
+        "completedVaccinationNumberTotal": completedVaccinationNumberTotal,
+        "completedVaccinationNumberLastDay": lastDayCompletedVaccinationData["DailyCount"],
+        "completedVaccinationPercentage": lastDayCompletedVaccinationData["PopulationCoverage"],
+        "completelyVaccinatedFromPartiallyVaccinatedPercentage": completelyVaccinatedFromPartiallyVaccinatedPercentage
     }
 
     # Dump json output

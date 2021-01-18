@@ -14,12 +14,36 @@
           ( {{ vaccinationNumberLastDay }} )
         </h5>
       </b-col>
-      
+
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("vaccinationPercentage") }}</h5>
         </div>
         <h1>{{ vaccinationPercentage }} %</h1>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("completedVaccinationNumber") }}</h5>
+        </div>
+        <h1>{{ completedVaccinationNumberTotal }}</h1>
+        <h5 class="negative" >
+          ( {{ completedVaccinationNumberLastDay }} )
+        </h5>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("completedVaccinationPercentage") }}</h5>
+        </div>
+        <h1>{{ completedVaccinationPercentage }} %</h1>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("completelyVaccinatedFromPartiallyVaccinatedPercentage") }}</h5>
+        </div>
+        <h1>{{ completelyVaccinatedFromPartiallyVaccinatedPercentage }} %</h1>
       </b-col>
 
     </b-row>
@@ -252,6 +276,10 @@ export default {
       vaccinationNumberTotal: data.vaccinationNumberTotal,
       vaccinationNumberLastDay: positiveSign(data.vaccinationNumberLastDay),
       vaccinationPercentage: data.vaccinationPercentage,
+      completedVaccinationNumberTotal: data.completedVaccinationNumberTotal,
+      completedVaccinationNumberLastDay: positiveSign(data.completedVaccinationNumberLastDay),
+      completedVaccinationPercentage: data.completedVaccinationPercentage,
+      completelyVaccinatedFromPartiallyVaccinatedPercentage: data.completelyVaccinatedFromPartiallyVaccinatedPercentage,
     };
   },
 };
