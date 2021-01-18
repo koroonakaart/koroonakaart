@@ -141,7 +141,7 @@ if __name__ == "__main__":
     lastDayCompletedVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'Completed'][-1]
     vaccinationNumberTotal = lastDayVaccinationData["TotalCount"]
     completedVaccinationNumberTotal = lastDayCompletedVaccinationData["TotalCount"]
-    completelyVaccinatedFromPartiallyVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (vaccinationNumberTotal + completedVaccinationNumberTotal),2)
+    completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (vaccinationNumberTotal + completedVaccinationNumberTotal),2)
 
     # Create dictionary for final json
     finalJson = {
@@ -183,7 +183,7 @@ if __name__ == "__main__":
         "completedVaccinationNumberTotal": completedVaccinationNumberTotal,
         "completedVaccinationNumberLastDay": lastDayCompletedVaccinationData["DailyCount"],
         "completedVaccinationPercentage": lastDayCompletedVaccinationData["PopulationCoverage"],
-        "completelyVaccinatedFromPartiallyVaccinatedPercentage": completelyVaccinatedFromPartiallyVaccinatedPercentage
+        "completelyVaccinatedFromTotalVaccinatedPercentage": completelyVaccinatedFromTotalVaccinatedPercentage
     }
 
     # Dump json output

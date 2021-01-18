@@ -14,7 +14,7 @@
   "vaccinationPercentage": "Elanikkonnast osaliselt vaktsineeritud",
   "completedVaccinationNumber": "Täielikult vaktsineeritud (2 süsti)",
   "completedVaccinationPercentage": "Elanikkonnast täielikult vaktsineeritud",
-  "completelyVaccinatedFromPartiallyVaccinatedPercentage": "Kõikidest vaktsineeritutest täielikult vaktsineeritud",
+  "completelyVaccinatedFromTotalVaccinatedPercentage": "Kõikidest vaktsineeritutest täielikult vaktsineeritud",
   "confirmedCases": "Kinnitatud haigusjuhud",
   "confirmedCasesByCounties": "Haigusjuhud maakonniti",
   "cumulativeCases": "Haigusjuhud",

@@ -13,7 +13,7 @@
   "vaccinationPercentage": "Partially vaccinated from eligible population",
   "completedVaccinationNumber": "Completely vaccinated (2 shots)",
   "completedVaccinationPercentage": "Completely vaccinated from eligible population",
-  "completelyVaccinatedFromPartiallyVaccinatedPercentage": "Completely vaccinated from all vaccinated",
+  "completelyVaccinatedFromTotalVaccinatedPercentage": "Completely vaccinated from all vaccinated",
   "confirmedCases": "Confirmed cases",
   "confirmedCasesByCounties": "Cases by county",
   "cumulativeCases": "Cases",
