@@ -33,7 +33,9 @@ export default {
     TestsPopRatioChart: () => import("../components/charts/TestsPopRatioChart"),
     //  PositiveTestsAgeDistributionChart:() => import("../components/charts/PositiveTestsAgeDistributionChart.vue"),
     GenderChart: () =>
-      import("../components/charts/GenderChart")
+      import("../components/charts/GenderChart"),
+    VaccinatedPeopleChart: () =>
+      import("../components/charts/VaccinatedPeopleChart")
 
   },
 

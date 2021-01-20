@@ -477,6 +477,47 @@ def getDataPositiveNegativeChart(json, mapping):
 
     return end_output
 
+def getDataVaccinatedPeopleChart(json, dates):
+    date_counts_progress = defaultdict(int)
+    date_counts_completed = defaultdict(int)
+    date_counts = defaultdict(int)
+
+    dates_within_range = set([str(date.date()) for date in list(dates)])
+    date_start = str(dates[0].date())
+
+    json_progress = [x for x in json if x['VaccinationStatus'] == 'InProgress']
+    json_completed = [x for x in json if x['VaccinationStatus'] == 'Completed']
+
+    for res in json_progress:
+        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        if date in dates_within_range:
+            date_counts_progress[date] += res["DailyCount"]
+    for res in json_completed:
+        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        if date in dates_within_range:
+            date_counts_completed[date] += res["DailyCount"]
+    for res in json:
+        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        if date in dates_within_range:
+            date_counts[date] += res["DailyCount"]
+
+    vacc_progress = []
+    vacc_completed = []
+    vacc = []
+
+    for date in dates:
+        vacc_progress.append(date_counts_progress[str(date.date())])
+        vacc_completed.append(date_counts_completed[str(date.date())])
+        vacc.append(date_counts[str(date.date())])
+
+    return_json = {
+        "vaccinesProgress": list(np.cumsum(vacc_progress)),
+        "vaccinesCompleted": list(np.cumsum(vacc_completed)),
+        "vaccinesAll": list(np.cumsum(vacc))
+    }
+
+    return return_json
+
 def getOnVentilationData(json, manualData):
     if (type(json) is not list or type(manualData) is not dict):
         return False
