@@ -21,6 +21,7 @@ MANUAL_DATA = {
     "datesEnd": yesterday,
     "dates1Start": "2020-03-15",
     "dates2Start": "2020-02-26",
+    "dates3Start": "2020-12-26",
 }
 
 
@@ -96,10 +97,13 @@ if __name__ == "__main__":
     dates2_range_start = MANUAL_DATA["dates2Start"]
     dates2_range_end = dates_range_end
 
+    dates3_range_start = MANUAL_DATA["dates3Start"]
+    dates3_range_end = dates_range_end
 
     # Create date ranges for charts
     dates1 = pd.date_range(start=dates1_range_start, end=dates1_range_end)
     dates2 = pd.date_range(start=dates2_range_start, end=dates2_range_end)
+    dates3 = pd.date_range(start=dates3_range_start, end=dates3_range_end)
 
     # Create copy
     json_copy = json_data
@@ -128,6 +132,7 @@ if __name__ == "__main__":
     dataTestsPerDayChart = getDataTestsPerDayChart(json_copy, dates2)
     dataPositiveTestsByAgeChart = getDataPositiveTestsByAgeChart(json_copy)
     dataPositiveNegativeChart = getDataPositiveNegativeChart(json_copy, county_mapping)
+    dataVaccinatedPeopleChart = getDataVaccinatedPeopleChart(json_vaccine, dates3)
     dataCountyDailyActive = getdataCountyDailyActive(json_copy,dates2,county_mapping,county_sizes)
     activeCasesNumber = dataCumulativeCasesChart["active"][-1]
     activeChanged = dataCumulativeCasesChart["active"][-1] - dataCumulativeCasesChart["active"][-2]
@@ -159,6 +164,7 @@ if __name__ == "__main__":
         "activeChanged": str(activeChanged),
         "dates1": list(map(lambda x: str(x.date()), dates1)),
         "dates2": list(map(lambda x: str(x.date()), dates2)),
+        "dates3": list(map(lambda x: str(x.date()), dates3)),
         "counties": counties,
         "age_groups": age_groups,
         "dataInfectionsByCounty": dataInfectionsByCounty,
@@ -175,6 +181,7 @@ if __name__ == "__main__":
         "dataTestsPerDayChart": dataTestsPerDayChart,
         "dataPositiveTestsByAgeChart": dataPositiveTestsByAgeChart,
         "dataPositiveNegativeChart": dataPositiveNegativeChart,
+        "dataVaccinatedPeopleChart": dataVaccinatedPeopleChart,
         "dataMunicipalities": dataMunicipalities,
         "hospital": hospital,
         "vaccinationNumberTotal": vaccinationNumberTotal,

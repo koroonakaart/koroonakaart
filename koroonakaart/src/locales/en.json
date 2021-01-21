@@ -9,6 +9,8 @@
   "cases": "Cases",
   "hoia.me": "Estonia's new mobile application helps to quickly identify possible close contacts with COVID-19 infected individuals. Download the app here: ",
   "perHundred": "14-day cumulative number of COVID-19 cases per 100,000",
+  "vaccination": "Vaccination",
+  "allVaccinated": "All vaccinated",
   "vaccinationNumber": "Partially vaccinated (1 shot)",
   "vaccinationPercentage": "Partially vaccinated from eligible population",
   "completedVaccinationNumber": "Completely vaccinated (2 shots)",
