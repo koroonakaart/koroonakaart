@@ -144,9 +144,13 @@ if __name__ == "__main__":
     #vaccination data calculation
     lastDayVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'InProgress'][-1]
     lastDayCompletedVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'Completed'][-1]
-    vaccinationNumberTotal = lastDayVaccinationData["TotalCount"]
     completedVaccinationNumberTotal = lastDayCompletedVaccinationData["TotalCount"]
-    completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (vaccinationNumberTotal + completedVaccinationNumberTotal),2)
+    completedVaccinationNumberLastDay = lastDayCompletedVaccinationData["DailyCount"]
+    allVaccinationNumberTotal = lastDayVaccinationData["TotalCount"]
+    allVaccinationNumberLastDay = lastDayVaccinationData["DailyCount"]
+    vaccinationNumberTotal = allVaccinationNumberTotal - completedVaccinationNumberTotal
+    vaccinationNumberLastDay = allVaccinationNumberLastDay - completedVaccinationNumberLastDay
+    completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (allVaccinationNumberTotal),2)
 
     # Create dictionary for final json
     finalJson = {
@@ -185,11 +189,12 @@ if __name__ == "__main__":
         "dataMunicipalities": dataMunicipalities,
         "hospital": hospital,
         "vaccinationNumberTotal": vaccinationNumberTotal,
-        "vaccinationNumberLastDay": lastDayVaccinationData["DailyCount"],
-        "vaccinationPercentage": lastDayVaccinationData["PopulationCoverage"],
+        "vaccinationNumberLastDay": vaccinationNumberLastDay,
         "completedVaccinationNumberTotal": completedVaccinationNumberTotal,
-        "completedVaccinationNumberLastDay": lastDayCompletedVaccinationData["DailyCount"],
-        "completedVaccinationPercentage": lastDayCompletedVaccinationData["PopulationCoverage"],
+        "completedVaccinationNumberLastDay": completedVaccinationNumberLastDay,
+        "allVaccinationNumberTotal": allVaccinationNumberTotal,
+        "allVaccinationNumberLastDay": allVaccinationNumberLastDay,
+        "allVaccinationFromPopulationPercentage": lastDayVaccinationData["PopulationCoverage"],
         "completelyVaccinatedFromTotalVaccinatedPercentage": completelyVaccinatedFromTotalVaccinatedPercentage
     }
 
