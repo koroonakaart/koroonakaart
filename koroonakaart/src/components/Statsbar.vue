@@ -4,54 +4,6 @@
       ><small style="margin-bottom: 20px;">{{ $t("faq.a5") }}</small></b-row
     >
     <b-row>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("allVaccinated") }}</h5>
-        </div>
-        <h1>{{ allVaccinationNumberTotal }}</h1>
-        <h5 class="negative" >
-          ( {{ allVaccinationNumberLastDay }} )
-        </h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("allVaccinatedPercentage") }}</h5>
-        </div>
-        <h1>{{ allVaccinationFromPopulationPercentage }} %</h1>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("vaccinationNumber") }}</h5>
-        </div>
-        <h1>{{ vaccinationNumberTotal }}</h1>
-        <h5 class="negative" >
-          ( {{ vaccinationNumberLastDay }} )
-        </h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("completedVaccinationNumber") }}</h5>
-        </div>
-        <h1>{{ completedVaccinationNumberTotal }}</h1>
-        <h5 class="negative" >
-          ( {{ completedVaccinationNumberLastDay }} )
-        </h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("completelyVaccinatedFromTotalVaccinatedPercentage") }}</h5>
-        </div>
-        <h1>{{ completelyVaccinatedFromTotalVaccinatedPercentage }} %</h1>
-      </b-col>
-
-    </b-row>
-    <br />
-    <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("confirmedCases") }}</h5>
@@ -196,6 +148,53 @@
           ( {{ deceasedChanged }} )
         </h5>-->
       </b-col>
+    </b-row>
+    <br />
+    <b-row>
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("allVaccinated") }}</h5>
+        </div>
+        <h1>{{ allVaccinationNumberTotal }}</h1>
+        <h5 class="negative" >
+          ( {{ allVaccinationNumberLastDay }} )
+        </h5>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("allVaccinatedPercentage") }}</h5>
+        </div>
+        <h1>{{ allVaccinationFromPopulationPercentage }} %</h1>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("vaccinationNumber") }}</h5>
+        </div>
+        <h1>{{ vaccinationNumberTotal }}</h1>
+        <h5 class="negative" >
+          ( {{ vaccinationNumberLastDay }} )
+        </h5>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("completedVaccinationNumber") }}</h5>
+        </div>
+        <h1>{{ completedVaccinationNumberTotal }}</h1>
+        <h5 class="negative" >
+          ( {{ completedVaccinationNumberLastDay }} )
+        </h5>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("completelyVaccinatedFromTotalVaccinatedPercentage") }}</h5>
+        </div>
+        <h1>{{ completelyVaccinatedFromTotalVaccinatedPercentage }} %</h1>
+      </b-col>
+
     </b-row>
   </b-container>
 </template>
