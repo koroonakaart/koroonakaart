@@ -7,6 +7,23 @@
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
+          <h5>{{ $t("allVaccinated") }}</h5>
+        </div>
+        <h1>{{ allVaccinationNumberTotal }}</h1>
+        <h5 class="negative" >
+          ( {{ allVaccinationNumberLastDay }} )
+        </h5>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <h5>{{ $t("allVaccinatedPercentage") }}</h5>
+        </div>
+        <h1>{{ allVaccinationFromPopulationPercentage }} %</h1>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
           <h5>{{ $t("vaccinationNumber") }}</h5>
         </div>
         <h1>{{ vaccinationNumberTotal }}</h1>
@@ -17,26 +34,12 @@
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
-          <h5>{{ $t("vaccinationPercentage") }}</h5>
-        </div>
-        <h1>{{ vaccinationPercentage }} %</h1>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
           <h5>{{ $t("completedVaccinationNumber") }}</h5>
         </div>
         <h1>{{ completedVaccinationNumberTotal }}</h1>
         <h5 class="negative" >
           ( {{ completedVaccinationNumberLastDay }} )
         </h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("completedVaccinationPercentage") }}</h5>
-        </div>
-        <h1>{{ completedVaccinationPercentage }} %</h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -273,12 +276,13 @@ export default {
             data.dataCumulativeTestsChart.testsAdminstered.length - 2
           ]
       ),
+      allVaccinationNumberTotal: data.allVaccinationNumberTotal,
+      allVaccinationNumberLastDay: positiveSign(data.allVaccinationNumberLastDay),
+      allVaccinationFromPopulationPercentage: data.allVaccinationFromPopulationPercentage,
       vaccinationNumberTotal: data.vaccinationNumberTotal,
       vaccinationNumberLastDay: positiveSign(data.vaccinationNumberLastDay),
-      vaccinationPercentage: data.vaccinationPercentage,
       completedVaccinationNumberTotal: data.completedVaccinationNumberTotal,
       completedVaccinationNumberLastDay: positiveSign(data.completedVaccinationNumberLastDay),
-      completedVaccinationPercentage: data.completedVaccinationPercentage,
       completelyVaccinatedFromTotalVaccinatedPercentage: data.completelyVaccinatedFromTotalVaccinatedPercentage,
     };
   },
