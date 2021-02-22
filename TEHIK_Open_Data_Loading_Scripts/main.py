@@ -114,7 +114,7 @@ if __name__ == "__main__":
     # Set recovered, deceased, hospitalised and ICU time-series
     recovered = hospital["discharged"]
     deceased = list(mergeDateDictionaries(json_manual["deceased"], json_deaths).values())
-    hospitalised =  hospital["hospitalizations"]
+    hospitalised =  hospital["activehospitalizations"]
     intensive = list(getOnVentilationData(json_hospital, json_manual['intensive']).values())
     deceasedNumber = deceased[-1]
     deceasedChanged = int(deceased[-1]) - int(deceased[-2])
