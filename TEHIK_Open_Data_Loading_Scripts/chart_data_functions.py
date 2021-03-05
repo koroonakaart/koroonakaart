@@ -286,7 +286,7 @@ def getDataTestsPerDayChart(json, dates):
     return return_json
 
 
-def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalised, intensive, dates):
+def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalised, intensive, onventilation, dates):
     date_counts = defaultdict(int)
     andmed = getDataTestsPerDayChart(json,dates)
     for res in json:
@@ -304,6 +304,7 @@ def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalise
     deceased = deceased_list
     intensive = intensive
     hospitalised = hospitalised
+    onventilation = onventilation
 
 
     new_cases_14 = [andmed["positiveTestsPerDay"][0]]
@@ -324,7 +325,8 @@ def getDataCumulativeCasesChart(json, recovered_list, deceased_list, hospitalise
         "active100k": new_cases_14_per_100_k,
         "deceased": deceased_list,
         "haiglas": hospitalised,
-        "intensive": intensive
+        "intensive": intensive,
+        "onventilation": onventilation
     }
 
     return dataCumulativeCasesChart
@@ -521,15 +523,30 @@ def getDataVaccinatedPeopleChart(json, dates):
 
     return return_json
 
-def getOnVentilationData(json, manualData):
+def getInIntensiveData(json, manualData):
     if (type(json) is not list or type(manualData) is not dict):
         return False
 
-    data = getDictWithDatesAndKey(json, 'IsOnVentilation')
+    data = getDictWithDatesAndKey(json, 'IsInIntensive')
 
     output = manualData
 
     for day in data:
+        if isinstance(data[day], str):
+            output[day] = int(data[day])
+    return output
+
+def getOnVentilationData(json):
+    if type(json) is not list:
+        return False
+
+    output = {}
+
+    data = getDictWithDatesAndKey(json, 'IsOnVentilation')
+
+    for day in data:
+        if data[day] is None:
+            data[day] = "0"
         if isinstance(data[day], str):
             output[day] = int(data[day])
     return output

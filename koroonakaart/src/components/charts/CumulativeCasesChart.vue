@@ -252,6 +252,13 @@ export default {
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.intensive
+          },
+          {
+            name: this.$t("onventilation"),
+            color: "#7617bf",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
+            data: data.dataCumulativeCasesChart.onventilation
           }
         ],
 
@@ -316,6 +323,7 @@ export default {
       this.chartOptions.series[3].name = this.$t("deceased");
       this.chartOptions.series[4].name = this.$t("hospitalised");
       this.chartOptions.series[5].name = this.$t("intensive");
+      this.chartOptions.series[6].name = this.$t("onventilation");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"

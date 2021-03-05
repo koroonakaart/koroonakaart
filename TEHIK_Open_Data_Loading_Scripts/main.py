@@ -115,7 +115,8 @@ if __name__ == "__main__":
     recovered = hospital["discharged"]
     deceased = list(mergeDateDictionaries(json_manual["deceased"], json_deaths).values())
     hospitalised =  hospital["activehospitalizations"]
-    intensive = list(getOnVentilationData(json_hospital, json_manual['intensive']).values())
+    intensive = list(getInIntensiveData(json_hospital, json_manual['intensive']).values())
+    onventilation = list(getOnVentilationData(json_hospital).values())
     deceasedNumber = deceased[-1]
     deceasedChanged = int(deceased[-1]) - int(deceased[-2])
 
@@ -125,7 +126,7 @@ if __name__ == "__main__":
     dataTestsPopRatio = getDataTestsPopRatio(dataInfectionsByCounty10000)
     countyByDay = getCountyByDay(json_copy, dates2, county_mapping,county_sizes)
     dataConfirmedCasesByCounties = getDataConfirmedCasesByCounties(json_copy, county_mapping)
-    dataCumulativeCasesChart = getDataCumulativeCasesChart(json_copy, recovered, deceased, hospitalised, intensive,
+    dataCumulativeCasesChart = getDataCumulativeCasesChart(json_copy, recovered, deceased, hospitalised, intensive, onventilation,
                                                            dates2)
     dataNewCasesPerDayChart = getDataNewCasesPerDayChart(dataCumulativeCasesChart)
     dataCumulativeTestsChart = getDataCumulativeTestsChart(json_copy, dates2)
