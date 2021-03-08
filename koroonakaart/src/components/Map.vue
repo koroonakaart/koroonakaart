@@ -89,6 +89,9 @@ export default {
                   case "active100k":
                     newTitleText = vueRoot.$t("active100k");
                     break;
+                  case "activeCountyPercentage":
+                    newTitleText = vueRoot.$t("activeCountyPercentage");
+                    break;
                 }
 
                 this.setTitle({ text: newTitleText });
@@ -287,6 +290,24 @@ export default {
                           }
                         ) */ dataLabels: {
                           format: "{point.MNIMI}<br/> {point.value}",
+                        },
+                      },
+                    });
+
+                    this.motion.updateToNewData();
+                  },
+                },
+
+                {
+                  text: this.$t("activeCountyPercentage"),
+                  onclick: function() {
+                    this.options.chartType = "activeCountyPercentage";
+
+                    this.update({
+                      series: {
+                        data: data.dataCountyDailyActive.mapCountyByDayActivePercentage,
+                        dataLabels: {
+                          format: "{point.MNIMI}<br/> {point.value}%",
                         },
                       },
                     });
@@ -541,6 +562,9 @@ export default {
       );
       this.mapOptions.exporting.buttons.toggle.menuItems[3].text = this.$t(
         "activeCounty100k"
+      );
+      this.mapOptions.exporting.buttons.toggle.menuItems[4].text = this.$t(
+        "activeCountyPercentage"
       );
 
       // Persist chart type selection through language change

@@ -61,6 +61,9 @@ export default {
                 this.exportSVGElements[6].setState(
                   this.options.chartType === "active" ? 2 : 0
                 );
+                this.exportSVGElements[8].setState(
+                  this.options.chartType === "activeCountyPercentage" ? 2 : 0
+                );
               }, 100);
             },
           },
@@ -173,6 +176,14 @@ export default {
                   type: "logarithmic",
                   allowNegativeLog: true,
                 });
+
+                this.update({
+                  tooltip: {
+                    pointFormat:
+                      '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                  },
+                });
               },
             },
             customButton2: {
@@ -252,6 +263,14 @@ export default {
 
                 this.yAxis[0].update({
                   type: "linear",
+                });
+
+                this.update({
+                  tooltip: {
+                    pointFormat:
+                      '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                  },
                 });
               },
             },
@@ -352,6 +371,122 @@ export default {
 
                 this.yAxis[0].update({
                   type: "linear",
+                });
+
+                this.update({
+                  tooltip: {
+                    pointFormat:
+                      '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                  },
+                });
+              },
+            },
+            customButton4: {
+              text: this.$t("activeCountyPercentage"),
+              onclick: function () {
+                this.update({
+                  series: [
+                    {
+                      name: "Harjumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Harjumaa,
+                      color: "#2F7ED8",
+                    },
+                    {
+                      name: "Hiiumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Hiiumaa,
+                      color: "#456990",
+                    },
+                    {
+                      name: "Ida-Virumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage[
+                          "Ida-Virumaa"
+                        ],
+                      color: "#49BEAA",
+                    },
+                    {
+                      name: "Jõgevamaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Jõgevamaa,
+                      color: "#49DCB1",
+                    },
+                    {
+                      name: "Järvamaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Järvamaa,
+                      color: "#EEB868",
+                    },
+                    {
+                      name: "Läänemaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Läänemaa,
+                    },
+                    {
+                      name: "Lääne-Virumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage[
+                          "Lääne-Virumaa"
+                        ],
+                      color: "#6684A4",
+                    },
+                    {
+                      name: "Põlvamaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Põlvamaa,
+                    },
+                    {
+                      name: "Pärnumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Pärnumaa,
+                    },
+                    {
+                      name: "Raplamaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Raplamaa,
+                    },
+                    {
+                      name: "Saaremaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Saaremaa,
+                    },
+                    {
+                      name: "Tartumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Tartumaa,
+                    },
+                    {
+                      name: "Valgamaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Valgamaa,
+                    },
+                    {
+                      name: "Viljandimaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage
+                          .Viljandimaa,
+                    },
+                    {
+                      name: "Võrumaa",
+                      data:
+                        data.dataCountyDailyActive.countyByDayActivePercentage.Võrumaa,
+                    },
+                  ],
+                });
+                this.options.chartType = "activeCountyPercentage";
+
+                this.yAxis[0].update({
+                  type: "linear",
+                });
+
+                this.update({
+                  tooltip: {
+                    pointFormat:
+                      '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y}%</b></td></tr>',
+                  },
                 });
               },
             },
@@ -544,6 +679,9 @@ export default {
       );
       this.chartOptions.exporting.buttons.customButton3.text = this.$t(
         "active"
+      );
+      this.chartOptions.exporting.buttons.customButton4.text = this.$t(
+        "activeCountyPercentage"
       );
     },
   },

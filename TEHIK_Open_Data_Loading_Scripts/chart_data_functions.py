@@ -157,22 +157,30 @@ def getdataCountyDailyActive(json, dates, county_mapping,county_sizes):
 
     countyByDay = {}
     activeMap100kPlayback = []
+    countyByDayActivePercentage = {}
+    mapCountyByDayActivePercentage = []
 
     for county in chart_counties:
         per_day_county = []
         active_per_day_county_100k = []
+        per_day_county_active_percent = []
         for date in dates:
             val = county_date_counts[(county, str(date.date()))]
             per_day_county.append(val)
             active_per_day_county_100k.append((val/county_sizes[county] * 100000))
+            per_day_county_active_percent.append((val * 100 / county_sizes[county]))
 
         # Calculate cumulative
         countyByDay[county] = list(map(int, pd.Series(per_day_county).rolling(14, min_periods=0).sum()))
         activeMap100kPlayback.append({"MNIMI": county, "sequence": list(round(pd.Series(active_per_day_county_100k).rolling(14, min_periods=0).sum(),2)), "drilldown": county})
+        countyByDayActivePercentage[county] = list(round(pd.Series(per_day_county_active_percent).rolling(14, min_periods=0).sum(),2))
+        mapCountyByDayActivePercentage.append({"MNIMI": county, "sequence": list(round(pd.Series(per_day_county_active_percent).rolling(14, min_periods=0).sum(),2)), "drilldown": county})
         activeList ={
         "countyByDayActive": countyByDay
         ,
-        "activeMap100kPlayback": activeMap100kPlayback
+        "activeMap100kPlayback": activeMap100kPlayback,
+        "countyByDayActivePercentage": countyByDayActivePercentage,
+        "mapCountyByDayActivePercentage": mapCountyByDayActivePercentage
         }
 
     return activeList

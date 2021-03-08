@@ -3,6 +3,7 @@
   "active": "Active cases estimate",
   "active100k": "14-day cumulative number of COVID-19 cases per 100,000",
   "activeCases": "Active cases estimate",
+  "activeCountyPercentage": "Active cases estimate from county population",
   "age": "Age",
   "ages": "Age groups",
   "answerbot": "Answerbot",
