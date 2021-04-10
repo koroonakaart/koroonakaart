@@ -194,9 +194,7 @@
         </h1>
         <h5 class="negative">
           (
-          {{
-            completedVaccinationNumberLastDay | formatNumber(currentLocale)
-          }}
+          {{ completedVaccinationNumberLastDay | formatNumber(currentLocale) }}
           )
         </h5>
       </b-col>
@@ -320,11 +318,16 @@ export default {
 
   filters: {
     formatNumber: function (number, currentLocale) {
+      let result = "";
+
       if (typeof number === "string" && number.startsWith("+")) {
         const actualNumber = number.split("+")[1];
-        return "+" + formatNumberByLocale(actualNumber, currentLocale);
+        result = "+" + formatNumberByLocale(actualNumber, currentLocale);
+      } else {
+        result = formatNumberByLocale(number, currentLocale);
       }
-      return formatNumberByLocale(number, currentLocale);
+
+      return result.replace(/\s/g, '\u202F')
     },
   },
 };
