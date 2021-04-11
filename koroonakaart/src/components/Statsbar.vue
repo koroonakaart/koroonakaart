@@ -118,7 +118,7 @@
         <div class="statsbar-heading">
           <h5>{{ $t("deceased") }}</h5>
         </div>
-        <h1>{{ deceasedNumber }}</h1>
+        <h1>{{ deceasedNumber | formatNumber(currentLocale) }}</h1>
         <h5
           :class="
             rawDeceasedChanged === 0
