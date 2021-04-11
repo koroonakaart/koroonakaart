@@ -136,7 +136,7 @@
           <h5>{{ $t("pos14avg") }}</h5>
         </div>
         <h1>
-          {{ positiveTestAverage14Percent | formatNumber(currentLocale) }} %
+          {{ positiveTestAverage14Percent | formatNumber(currentLocale) }}%
         </h1>
         <!--  <h5
           :class="
@@ -170,8 +170,7 @@
         <h1>
           {{
             allVaccinationFromPopulationPercentage | formatNumber(currentLocale)
-          }}
-          %
+          }}%
         </h1>
       </b-col>
 
@@ -207,8 +206,7 @@
           {{
             completelyVaccinatedFromTotalVaccinatedPercentage
               | formatNumber(currentLocale)
-          }}
-          %
+          }}%
         </h1>
       </b-col>
     </b-row>
