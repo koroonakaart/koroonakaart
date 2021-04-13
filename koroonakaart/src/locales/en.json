@@ -25,7 +25,7 @@
   "disclaimerNavbar": "All data shown in this application presents the date the test was confirmed. Data shows results up until 7am of the current day.",
   "distributionOfPositiveTests": "Distribution of tests by age",
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
-  "genderChart": "Positive and negative tests by gender",
+  "genderChart": "Positive and negative tests by sex",
   "hospitalised": "In hospital",
   "method": "Change in method",
   "newPositive": "Positive tests in last 24 hours",
