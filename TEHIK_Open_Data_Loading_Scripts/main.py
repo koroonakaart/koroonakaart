@@ -30,7 +30,7 @@ MANUAL_DATA = {
 API_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 MUNICIPALITIES_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITAL_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
-VACCINE_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_vaccination_total.json"
+VACCINE_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v2/opendata_covid19_vaccination_total.json"
 MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
 DEATHS_FILE_LOCATION = "../data/deaths.json"
 OUTPUT_FILE_LOCATION = "../data/data.json"
@@ -41,10 +41,12 @@ def get_json_data(url) -> any:
     r = requests.get(url=url)
     return r.json()
 
+
 def read_json_from_file(path) -> any:
     with open(path) as f:
         data = json.load(f)
     return data
+
 
 def is_up_to_date(dictionary, key):
     yesterday = datetime.today() - timedelta(1)
@@ -54,12 +56,14 @@ def is_up_to_date(dictionary, key):
         return True
     return False
 
+
 def is_header_last_modified_up_to_date(url):
     url_date = parsedate(requests.head(url).headers['Last-Modified'])
     today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc)
     if url_date > today:
         return True
     return False
+
 
 if __name__ == "__main__":
     # Get data
@@ -142,16 +146,18 @@ if __name__ == "__main__":
     dataMunicipalities = getMunicipalityData(municipalities_copy, county_mapping)
     perHundred = dataCumulativeCasesChart["active100k"][-1]
 
-    #vaccination data calculation
-    lastDayVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'InProgress'][-1]
-    lastDayCompletedVaccinationData = [x for x in json_vaccine if x['VaccinationStatus'] == 'Completed'][-1]
+    # Calculate vaccination data
+    lastDayVaccinationData = [x for x in json_vaccine if x['MeasurementType'] == 'Vaccinated'][-1]
+    lastDayCompletedVaccinationData = [x for x in json_vaccine if x['MeasurementType'] == 'FullyVaccinated'][-1]
+    # TODO: Doses administered
+    # lastDayDosesAdministeredData = [x for x in json_vaccine if x['MeasurementType'] == 'DosesAdministered'][-1]
     completedVaccinationNumberTotal = lastDayCompletedVaccinationData["TotalCount"]
     completedVaccinationNumberLastDay = lastDayCompletedVaccinationData["DailyCount"]
     allVaccinationNumberTotal = lastDayVaccinationData["TotalCount"]
     allVaccinationNumberLastDay = lastDayVaccinationData["DailyCount"]
     vaccinationNumberTotal = allVaccinationNumberTotal - completedVaccinationNumberTotal
     vaccinationNumberLastDay = allVaccinationNumberLastDay - completedVaccinationNumberLastDay
-    completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (allVaccinationNumberTotal),2)
+    completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (allVaccinationNumberTotal), 2)
 
     # Create dictionary for final json
     finalJson = {

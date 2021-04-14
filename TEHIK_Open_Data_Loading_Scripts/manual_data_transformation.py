@@ -55,6 +55,7 @@ MANUAL_DATA = {
     ]
    }
 
+
 def create_json_from_manual_data(data):
     today = datetime.today().strftime('%d/%m/%Y, %H:%M'),
     yesterday = datetime.strftime(datetime.today() - timedelta(1), '%Y-%m-%d')
@@ -79,8 +80,11 @@ def create_json_from_manual_data(data):
         i += 1
     return transformedData
 
+
 def printToJson(fileLocation, dataDict):
     with open(fileLocation, "w", encoding="utf-8") as f:
         json.dump(dataDict, f, cls=NpEncoder, ensure_ascii=False)
 
+
 printToJson('../data/manual_data.json', create_json_from_manual_data(MANUAL_DATA))
+

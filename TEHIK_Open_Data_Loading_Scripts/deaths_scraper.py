@@ -13,9 +13,11 @@ soup = BeautifulSoup(html, 'html.parser')
 
 DEATH_FILE_LOCATION = '../data/deaths.json'
 
+
 def printToJson(fileLocation, dataDict):
     with open(fileLocation, "w", encoding="utf-8") as f:
         json.dump(dataDict, f, cls=NpEncoder, ensure_ascii=False)
+
 
 def read_json_from_file(path) -> any:
     if not os.path.isfile(path):
@@ -24,6 +26,7 @@ def read_json_from_file(path) -> any:
     with open(path) as f:
         data = json.load(f)
     return data
+
 
 deaths_container = soup.select('.node-lead-default strong')
 if len(deaths_container) > 0:
@@ -39,3 +42,4 @@ if len(deaths_container) > 0:
     deaths_output[current_date] = deaths_count
 
     printToJson(DEATH_FILE_LOCATION, deaths_output)
+

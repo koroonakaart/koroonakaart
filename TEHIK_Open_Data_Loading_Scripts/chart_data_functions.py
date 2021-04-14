@@ -479,6 +479,7 @@ def getDataPositiveNegativeChart(json, mapping):
 
     return end_output
 
+
 def getDataVaccinatedPeopleChart(json, dates):
     date_counts_progress = defaultdict(int)
     date_counts_completed = defaultdict(int)
@@ -487,15 +488,15 @@ def getDataVaccinatedPeopleChart(json, dates):
     dates_within_range = set([str(date.date()) for date in list(dates)])
     date_start = str(dates[0].date())
 
-    json_progress = [x for x in json if x['VaccinationStatus'] == 'InProgress']
-    json_completed = [x for x in json if x['VaccinationStatus'] == 'Completed']
+    json_progress = [x for x in json if x['MeasurementType'] == 'Vaccinated']
+    json_completed = [x for x in json if x['MeasurementType'] == 'FullyVaccinated']
 
     for res in json:
         date = str(pd.to_datetime(res["StatisticsDate"]).date())
         if date in dates_within_range:
-            if res['VaccinationStatus'] == 'Completed':
+            if res['MeasurementType'] == 'FullyVaccinated':
                 date_counts_progress[date] -= res["DailyCount"]
-            elif res['VaccinationStatus'] == 'InProgress':
+            elif res['MeasurementType'] == 'Vaccinated':
                 date_counts_progress[date] += res["DailyCount"]
     for res in json_completed:
         date = str(pd.to_datetime(res["StatisticsDate"]).date())
@@ -523,6 +524,7 @@ def getDataVaccinatedPeopleChart(json, dates):
 
     return return_json
 
+
 def getInIntensiveData(json, manualData):
     if (type(json) is not list or type(manualData) is not dict):
         return False
@@ -535,6 +537,7 @@ def getInIntensiveData(json, manualData):
         if isinstance(data[day], str):
             output[day] = int(data[day])
     return output
+
 
 def getOnVentilationData(json):
     if type(json) is not list:
@@ -551,6 +554,7 @@ def getOnVentilationData(json):
             output[day] = int(data[day])
     return output
 
+
 def getDictWithDatesAndKey(json, key):
     days = {}
 
@@ -561,8 +565,10 @@ def getDictWithDatesAndKey(json, key):
 
     return days
 
+
 def mergeDateDictionaries(dict1, dict2):
     output = dict1
     for index in dict2:
         output[index] = dict2[index]
     return output
+
