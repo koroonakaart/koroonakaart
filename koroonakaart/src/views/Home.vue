@@ -30,6 +30,9 @@
       <DailyCountyCasesChart :height="470" />
     </b-row>
     <b-row class="mb-5">
+      <DailyCountyNewCasesChart :height="470" />
+    </b-row>
+    <b-row class="mb-5">
       <CumulativeTestsChart :height="470" />
     </b-row>
     <b-row class="mb-5">
@@ -65,6 +68,7 @@ import GenderChart from "../components/charts/GenderChart";
 import VaccinatedPeopleChart from "../components/charts/VaccinatedPeopleChart";
 //import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
+import DailyCountyNewCasesChart from "../components/charts/DailyCountyNewCasesChart";
 import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
 import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
@@ -87,6 +91,7 @@ export default {
     GenderChart,
     VaccinatedPeopleChart,
     DailyCountyCasesChart,
+    DailyCountyNewCasesChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
     TestsPopRatioChart

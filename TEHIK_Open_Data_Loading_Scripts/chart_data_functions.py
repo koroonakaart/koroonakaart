@@ -113,6 +113,7 @@ def getCountyByDay(json, dates, county_mapping, county_sizes):
                 county_date_counts[(county, str(date))] += 1
 
     countyByDay = {}
+    newCountyByDay = {}
     mapPlayback = []
     mapPlayback10k = []
     for county in chart_counties:
@@ -126,6 +127,7 @@ def getCountyByDay(json, dates, county_mapping, county_sizes):
         mapPlayback.append({"MNIMI": county, "sequence": list(np.cumsum(per_day_county)), "drilldown": county})
         mapPlayback10k.append({"MNIMI": county, "sequence": list(np.round(np.cumsum(per_day_county_10k),2)), "drilldown": county})
         # Calculate cumulative
+        newCountyByDay[county] = list(per_day_county)
         countyByDay[county] = list(np.cumsum(per_day_county))
 
     countyByDayNew = [countyByDay[county][-1] - countyByDay[county][-2] for county in chart_counties]
@@ -133,6 +135,7 @@ def getCountyByDay(json, dates, county_mapping, county_sizes):
     countyList = {
         "countyByDay": countyByDay,
         "countyByDayNew": countyByDayNew,
+        "newCountyByDay": newCountyByDay,
         "mapPlayback": mapPlayback
         ,
         "mapPlayback10k": mapPlayback10k
