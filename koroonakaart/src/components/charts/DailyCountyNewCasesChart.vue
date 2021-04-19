@@ -125,7 +125,7 @@ export default {
         yAxis: {
           min: 0,
           title: {
-            text: this.$t("confirmedCases"),
+            text: this.$t("numberOfCases"),
           },
           opposite: false,
         },
@@ -293,7 +293,7 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedNewCasesByCounties");
-      this.chartOptions.yAxis.title.text = this.$t("confirmedCases");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCasess");
     },
   },
 };
