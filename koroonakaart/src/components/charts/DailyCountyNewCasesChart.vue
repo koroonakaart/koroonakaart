@@ -293,7 +293,7 @@ export default {
   watch: {
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedNewCasesByCounties");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCasess");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
     },
   },
 };
