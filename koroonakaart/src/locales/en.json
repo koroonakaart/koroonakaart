@@ -17,6 +17,7 @@
   "completelyVaccinatedFromTotalVaccinatedPercentage": "Fully vaccinated out of total vaccinated",
   "confirmedCases": "Confirmed cases",
   "confirmedCasesByCounties": "Cases by county",
+  "confirmedNewCasesByCounties": "New cases by county",
   "cumulativeCases": "Cases",
   "cumulativeCasesPer100k": "Cases per 100,000 population",
   "cumulativeTests": "Cumulative tests",

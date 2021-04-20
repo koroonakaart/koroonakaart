@@ -26,6 +26,8 @@ export default {
       import("../components/charts/TestsAgeSexDistributionChart"),
     DailyCountyCasesChart: () =>
       import("../components/charts/DailyCountyCasesChart"),
+    DailyCountyNewCasesChart: () =>
+      import("../components/charts/DailyCountyNewCasesChart"),
     ConfirmedCasesByCountiesChart: () =>
       import("../components/charts/ConfirmedCasesByCountiesChart"),
     PositiveNegativeChart: () =>

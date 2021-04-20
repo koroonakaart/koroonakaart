@@ -18,6 +18,7 @@
   "completelyVaccinatedFromTotalVaccinatedPercentage": "Kõikidest vaktsineeritutest täielikult vaktsineeritud",
   "confirmedCases": "Kinnitatud haigusjuhud",
   "confirmedCasesByCounties": "Haigusjuhud maakonniti",
+  "confirmedNewCasesByCounties": "Uued haigusjuhud maakonniti",
   "cumulativeCases": "Haigusjuhud",
   "cumulativeCasesPer100k": "Haigusjuhud 100 000 inimese kohta",
   "cumulativeTests": "Kumulatiivsed testid",

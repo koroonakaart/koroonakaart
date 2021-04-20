@@ -18,6 +18,7 @@
   "completelyVaccinatedFromTotalVaccinatedPercentage": "Полностью вакцинировано от всех вакцинированных",
   "confirmedCases": "Подтвержденных случаев",
   "confirmedCasesByCounties": "Случаи по уездам",
+  "confirmedNewCasesByCounties": "Новые случаи по уездам",
   "cumulativeCases": "Случаи",
   "cumulativeCasesPer100k": "Случаи заболевания на 100 000 населения",
   "cumulativeTests": "Проведенные тесты (кумулятивно)",
