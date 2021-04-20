@@ -78,7 +78,7 @@ if __name__ == "__main__":
         not is_up_to_date(json_hospital, 'LastLoadStatisticsDate') or
         not is_header_last_modified_up_to_date(MUNICIPALITIES_ENDPOINT)):
         print("One of the TEHIK API has not been updated\n", file=sys.stderr)
-        exit()
+        # exit()
 
     # Date of update
     updatedOn = MANUAL_DATA["updatedOn"]
