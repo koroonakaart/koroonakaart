@@ -44,7 +44,7 @@
         <div class="statsbar-heading">
           <h5>{{ $t("perHundred") }}</h5>
         </div>
-        <h1>{{ perHundred | formatNumber(currentLocale) }}</h1>
+        <h1>{{ perHundred | formatNumber(currentLocale, 1) }}</h1>
         <h5
           :class="
             rawPerHundredChanged === 0
@@ -136,7 +136,7 @@
           <h5>{{ $t("pos14avg") }}</h5>
         </div>
         <h1>
-          {{ positiveTestAverage14Percent | formatNumber(currentLocale) }}%
+          {{ positiveTestAverage14Percent | formatNumber(currentLocale, 1) }}%
         </h1>
         <!--  <h5
           :class="
@@ -157,9 +157,9 @@
         <div class="statsbar-heading">
           <h5>{{ $t("allVaccinated") }}</h5>
         </div>
-        <h1>{{ allVaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
+        <h1>{{ allVaccinationNumberTotal | formatNumber(currentLocale, 1) }}</h1>
         <h5 class="negative">
-          ( {{ allVaccinationNumberLastDay | formatNumber(currentLocale) }} )
+          ( {{ allVaccinationNumberLastDay | formatNumber(currentLocale, 1) }} )
         </h5>
       </b-col>
 
@@ -169,7 +169,7 @@
         </div>
         <h1>
           {{
-            allVaccinationFromPopulationPercentage | formatNumber(currentLocale)
+            allVaccinationFromPopulationPercentage | formatNumber(currentLocale, 1)
           }}%
         </h1>
       </b-col>
@@ -315,14 +315,14 @@ export default {
   },
 
   filters: {
-    formatNumber: function (number, currentLocale) {
+    formatNumber: function (number, currentLocale, precision) {
       let result = "";
 
       if (typeof number === "string" && number.startsWith("+")) {
         const actualNumber = number.split("+")[1];
-        result = "+" + formatNumberByLocale(actualNumber, currentLocale);
+        result = "+" + formatNumberByLocale(actualNumber, currentLocale, precision);
       } else {
-        result = formatNumberByLocale(number, currentLocale);
+        result = formatNumberByLocale(number, currentLocale, precision);
       }
 
       return result.replace(/\s/g, '\u202F')
