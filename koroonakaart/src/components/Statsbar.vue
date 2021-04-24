@@ -157,7 +157,7 @@
         <div class="statsbar-heading">
           <h5>{{ $t("allVaccinated") }}</h5>
         </div>
-        <h1>{{ allVaccinationNumberTotal | formatNumber(currentLocale, 1) }}</h1>
+        <h1>{{ allVaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
         <h5 class="negative">
           ( {{ allVaccinationNumberLastDay | formatNumber(currentLocale, 1) }} )
         </h5>
@@ -205,7 +205,7 @@
         <h1>
           {{
             completelyVaccinatedFromTotalVaccinatedPercentage
-              | formatNumber(currentLocale)
+              | formatNumber(currentLocale, 1)
           }}%
         </h1>
       </b-col>
