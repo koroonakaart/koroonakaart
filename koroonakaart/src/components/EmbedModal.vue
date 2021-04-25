@@ -1,6 +1,6 @@
 <template>
   <b-modal size="lg" id="embed-modal" hide-footer>
-    <template v-slot:modal-title>Embed Graph</template>
+    <template v-slot:modal-title>Embed chart</template>
 
     <div class="d-block text-center">
       <b-row class="mb-2 mt-3">

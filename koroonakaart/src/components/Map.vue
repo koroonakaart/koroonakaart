@@ -124,7 +124,7 @@ export default {
                       joinBy: ["ONIMI"],
                       tooltip: {
                         pointFormat:
-                          "{point.ONIMI}: {point.min} - {point.value}<br/>",
+                          "{point.ONIMI}: {point.min} - {point.value}<br>",
                       },
                       dataLabels: {
                         allAreas: true,
@@ -163,7 +163,7 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed Graph",
+              text: "Embed chart",
             },
           },
 
@@ -185,11 +185,8 @@ export default {
                 "printChart",
                 "separator",
                 "downloadPNG",
-                "downloadJPEG",
-                "downloadPDF",
                 "downloadSVG",
                 "downloadCSV",
-                "downloadXLS",
                 "separator",
                 "embed",
               ],
@@ -218,7 +215,7 @@ export default {
                       series: {
                         data: data.countyByDay.mapPlayback10k,
                         dataLabels: {
-                          format: "{point.MNIMI}<br/> {point.value}",
+                          format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
                     });
@@ -236,7 +233,7 @@ export default {
                       series: {
                         data: data.countyByDay.mapPlayback,
                         dataLabels: {
-                          format: "{point.MNIMI}<br/> {point.value}",
+                          format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
                     });
@@ -260,7 +257,7 @@ export default {
                             return point;
                           } else return point;
                         }), */ dataLabels: {
-                          format: "{point.MNIMI}<br/> {point.value}",
+                          format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
                     });
@@ -286,7 +283,7 @@ export default {
                             } else return point;
                           }
                         ) */ dataLabels: {
-                          format: "{point.MNIMI}<br/> {point.value}",
+                          format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
                     });
@@ -417,7 +414,7 @@ export default {
 
             // Customise tooltips
             tooltip: {
-              pointFormat: "{point.MNIMI}: {point.value}<br/>",
+              pointFormat: "{point.MNIMI}: {point.value}<br>",
 
               pointFormatter: function() {
                 if (this.value === 0.000001) {
@@ -431,7 +428,7 @@ export default {
             dataLabels: {
               enabled: true,
               allowOverlap: true,
-              format: "{point.MNIMI}<br/> {point.value}",
+              format: "{point.MNIMI}<br>{point.value}",
               //shape: "callout",
               //backgroundColor: "rgba(0, 0, 0, 0.75)",
               style: {

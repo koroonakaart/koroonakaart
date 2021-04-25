@@ -72,7 +72,7 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed Graph",
+              text: "Embed chart",
             },
           },
 
@@ -83,11 +83,8 @@ export default {
                 "printChart",
                 "separator",
                 "downloadPNG",
-                "downloadJPEG",
-                "downloadPDF",
                 "downloadSVG",
                 "downloadCSV",
-                "downloadXLS",
                 "separator",
                 "embed",
               ],
@@ -621,8 +618,8 @@ export default {
         xAxis: {
           type: "datetime",
           dateTimeLabelFormats: {
-            day: "%Y<br/>%m-%d",
-            week: "%Y<br/>%m-%d",
+            day: "%Y<br>%m-%d",
+            week: "%Y<br>%m-%d",
             month: "%Y-%m",
             year: "%Y"
           },

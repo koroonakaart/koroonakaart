@@ -40,7 +40,7 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed Graph"
+              text: "Embed chart"
             }
           },
 
@@ -51,11 +51,8 @@ export default {
                 "printChart",
                 "separator",
                 "downloadPNG",
-                "downloadJPEG",
-                "downloadPDF",
                 "downloadSVG",
                 "downloadCSV",
-                "downloadXLS",
                 "separator",
                 "embed"
               ]
