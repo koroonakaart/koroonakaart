@@ -81,17 +81,16 @@ export default {
           fallbackToExportServer: false
         },
 
-
-                tooltip: {
-                  headerFormat:
-                    '<span style="font-size:10px">{point.key}</span><table>',
-                  pointFormat:
-                    '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}</b></tr>',
-                  footerFormat: "</table>",
-                  shared: true,
-                  useHTML: true
-                },
+        tooltip: {
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat:
+            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y}</b></tr>',
+          footerFormat: "</table>",
+          shared: true,
+          useHTML: true
+        },
 
         // Remove Highcharts.com link from bottom right
         credits: {

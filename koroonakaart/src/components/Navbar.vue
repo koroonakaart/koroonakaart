@@ -1,19 +1,15 @@
 <template>
   <headroom>
-    <b-navbar
-      class="shadow-sm p-3 mb-4 bg-white rounded"
-      sticky
-      toggleable="md"
-      type="light"
-      variant="light"
-    >
+    <b-navbar class="shadow-sm p-3 mb-4 bg-white rounded"
+              sticky
+              toggleable="md"
+              type="light"
+              variant="light">
       <b-container fluid="lg">
         <b-navbar-brand>
           <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
           <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
-          <small class="navbar-updated"
-            >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
-          >
+          <small class="navbar-updated">{{ $t("navbarUpdated") }}: {{ updatedOn }}</small>
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -23,29 +19,22 @@
             <!--<b-nav-item class="navbar-updated">
           </b-nav-item>-->
             <b-dropdown-divider />
-            <!--  <b-nav-item class="navbar-description"> -->
+            <!-- <b-nav-item class="navbar-description"> -->
             <!-- <small>{{ $t("faq.a5") }}</small> -->
 
-            <small
-              >{{ $t("hoia.me") }}
-              <a href="https://hoia.me" rel="noopener" target="_blank"
-                >hoia.me</a
-              ></small
-            >
+            <small>
+              {{ $t("hoia.me") }}
+              <a href="https://hoia.me" rel="noopener" target="_blank">hoia.me</a>
+            </small>
 
-          <!--  <small>NB!  Viimase 24h COVID-19 testide tulemused viibivad tehnilisel põhjusel. Probleemiga tegeletakse ja esialgse prognoosi kohaselt peaks andmed laekuma täna pärastlõunal. Laboritest on veel saabumata ligi tuhande koroonaviiruse testi tulemus.</small>-->
-
-
-            <!--  </b-nav-item> -->
+            <!-- </b-nav-item> -->
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <b-dropdown-divider />
             <b-nav-item toggle-class="nav-link-custom">
-              <div
-                class="navbar-faq"
-                :class="{ active: this.$store.state.faqActive }"
-                @click.prevent="toggleFaqActive"
-              >
+              <div class="navbar-faq"
+                   :class="{ active: this.$store.state.faqActive }"
+                   @click.prevent="toggleFaqActive">
                 {{ $t("faq.faqShort") }}
               </div>
             </b-nav-item>
@@ -59,12 +48,11 @@
                 <Earth id="navbar-langicon" />
                 {{ $t("language") }}
               </template>
-              <b-dropdown-item
-                @click="changeCurrentLanguage(locale)"
-                v-for="(locale, index) in locales"
-                :key="locale"
-                >{{ languageNames[index] }}</b-dropdown-item
-              >
+              <b-dropdown-item @click="changeCurrentLanguage(locale)"
+                               v-for="(locale, index) in locales"
+                               :key="locale">
+                {{ languageNames[index] }}
+              </b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
