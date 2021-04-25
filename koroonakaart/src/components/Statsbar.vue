@@ -159,7 +159,7 @@
         </div>
         <h1>{{ allVaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
         <h5 class="negative">
-          ( {{ allVaccinationNumberLastDay | formatNumber(currentLocale, 1) }} )
+          ( {{ allVaccinationNumberLastDay | formatNumber(currentLocale) }} )
         </h5>
       </b-col>
 
