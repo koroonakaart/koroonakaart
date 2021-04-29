@@ -1,38 +1,30 @@
 # Koroonakaart
 
-Repo now being developed within Open Knowledge Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). Data is updated every day around 11:00 Estonian time (depending on TEHIK data update). Live version is available at [koroonakaart.ee](http://koroonakaart.ee/).
+Koroonakaart is a project which aims to give accurate and up-to-date information about the Covid-19 epidemic in Estonia.
 
-The URL to load the localized version follows the format of **https://koroonakaart.ee/language** (eg https://koroonakaart.ee/en). Valid language identifiers currently are **et** (Estonian), **en** (English) and **ru** (Russian).
+The project is currently managed by Open Knowledge Estonia. GitHub repository: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). The live version is available at [koroonakaart.ee](https://koroonakaart.ee/). The data is updated every day around 11:00 Estonian time, depending on the TEHIK data update. The app is published in three language versions: Estonian, English, and Russian.
 
+For more information please contact:
 
-This project is co-developed by a team of researchers and open government data activists from Open Knowledge Estonia, Tallinn University of Technology (Keegan McBride, @keeganmcbride), University of Tartu (Joonas Puura, @PuuraJ), and other civic activists (Harry Sild, @Kypsis; Chris Thompson @neuroactive) who took part in the Garage 48 Hack The Crisis Hackathon.
+Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee
 
-For more information please contact:  
-
-Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee 
-
-## Data / API
+## Data
 All data used by our application can be accessed directly at the following link: https://www.koroonakaart.ee/data.json
-
-## To embed any of the charts
-
-You can use the export menu on the charts (hamburger menu on the top right), select *Embed Graph* and copy and paste from the modal or directly link to the chart. Eg https://www.koroonakaart.ee/en/chart?chart=TestsPopRatioChart&height=700&width=1000 . 
-
-Accepts height and width currently as props through query string.
 
 ## Project setup
 
 ### Get/update data from TEHIK API
 
-Download latest Estonian COVID-19 data from TEHIK and transform it into json format 
+After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile. 
 
 ```
 cd TEHIK_Open_Data_Loading_Scripts/
-pip3 install -r requirements.txt
-python3 main.py
+./update_data.sh
 ```
 
-### Install frontend dependencies
+Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data. We realise this isn't ideal and are actively working to improve the process.
+
+### Install front-end dependencies
 
 To Customize Vue.js configuration see [Configuration Reference](https://cli.vuejs.org/config/).
 
@@ -47,64 +39,34 @@ npm run serve
 ```
 
 ### Compiles and minifies for production
-
 ```
 npm run build
 ```
 
 ### Lints and fixes files
-
 ```
 npm run lint
 ```
 
-### Building Docker image
-
-```
-docker build -t koroonakaart .
-
-# run container in foreground (open http://localhost:8080)
-docker run --rm -p 8080:80 --name koroona koroonakaart:latest
-```
-
-## Current Data update commands
-Update  deaths and on ventilation from https://www.terviseamet.ee/et/koroonaviirus/koroonakaart
-Juhitaval hingamisel patsiente is in Haiglaravi tab and deaths are below the iframe Eestis on `koroonaviirus nõudnud XX inimese elu`.
-Also modify `deceasedNumber` with the latest number
-
-```
-cd {TEHIK_Open_Data_Loading_Scripts folder location} && python3 main.py
-```
-
-```
-git push
-```
-Go to web server, then:
-```
-cd /var/www/html/koroonakaart/
-git pull
-cd koroonakaart && npm run build
-```
-
-# Who we are?
-## How team formed @ [Hack the Crisis](https://www.facebook.com/events/204692110602347/) and current maintenance
-This is a work in progress and was built in ~24 hours as part of the Hack the Crisis hackathon put on by Garage 48 in Estonia. It is developed by Harry Sild (@Kypsis), Chris Thompson (@neuroactive), Joonas Puura (@PuuraJ), Keegan McBride (@Keeganmcbride). Hanna Maria Mägi came up with the initial design, Maarja Leena Saar and Sven Illing have also contributed. 
-
-Please feel free to fork and/or PR. We hope to keep this up-to-date and improve over time. All suggestions and ideas are welcome. 
-
 # How to contribute?
-It is all voluntary work and has no funding.
+If you have a suggestion about something that could be improved or wish to help with the technical development, please take a look here: https://github.com/okestonia/koroonakaart/issues
 
-You have a proposal what to do or you can help to develop a solution? Take a look here > https://github.com/okestonia/koroonakaart/issues
+All suggestions and ideas are welcome. Please feel free to fork the project, raise new issues, or make pull requests.
 
-Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) opened separate bank account to receive support for infrastructure and core maintance. We will publish all supporters and keep costs transparent.
+The project is primarily voluntary and has received no funding other than from members of the community. Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) has opened a separate bank account to receive support for infrastructure and core maintance:
 
 MTÜ Open Knowledge Estonia EE607700771004696794 
+
+We will publish the amount of all support received and keep costs transparent.
+
+# History
+## How the team formed at [Hack the Crisis](https://www.facebook.com/events/204692110602347/)
+The app was originally built in around 24 hours as part of the Hack the Crisis hackathon put on by Garage48 in Estonia. It was developed by Harry Sild (@Kypsis), Chris Thompson (@neuroactive), Joonas Puura (@PuuraJ), and Keegan McBride (@Keeganmcbride). Hanna Maria Mägi came up with the initial design. Maarja Leena Saar and Sven Illing have also contributed.
 
 # License and data information
 This repository is maintained as an open source project and released under an [MIT license](LICENSE). 
 
-⚠️ The highcharts component of this project is licensed under a more restrictive license: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/), which prevents you from using that component for commercial purposes. Before using the highcharts dependency, please ensure that your use case is compliant with this license.
+⚠️ The Highcharts component of this project is licensed under a more restrictive license: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/), which prevents you from using that component for commercial purposes. Before using the Highcharts dependency, please ensure that your use case is compliant with this licence.
 
 The regional and settlement data is from Maa-amet version 20200601 and demographic data is provided by Statistikaamet.
 
