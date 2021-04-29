@@ -6,6 +6,7 @@
 
 <script>
 import data from "../../data.json";
+import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
   name: "CumulativeCasesChart",
@@ -117,7 +118,7 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -126,8 +127,7 @@ export default {
           enabled: true,
           layout: "horizontal",
           align: "center",
-          verticalAlign: "bottom",
-          y: 0
+          verticalAlign: "bottom"
         },
 
         plotOptions: {
@@ -168,8 +168,6 @@ export default {
                 }
               },
               style: {
-                /* color: "#039", */
-                /* fontWeight: "bold", */
                 textDecoration: "none"
               }
             }
@@ -197,15 +195,18 @@ export default {
           }
         },
 
-         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-          footerFormat: "</table>",
+        tooltip: {
+          formatter: (context) => {
+              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+          },
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
-          useHTML: true
+          split: false,
+          useHTML: true,
+          distance: 20
         },
 
         series: [
@@ -214,48 +215,70 @@ export default {
             color: "#2f7ed8",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.cases
+            data: data.dataCumulativeCasesChart.cases,
+            marker: {
+                symbol: 'circle'
+            }
           },
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.recovered
+            data: data.dataCumulativeCasesChart.recovered,
+            marker: {
+                symbol: 'circle'
+            }
           },
           {
             name: this.$t("active"),
             color: "#f28f43",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.active
+            data: data.dataCumulativeCasesChart.active,
+            marker: {
+                symbol: 'circle'
+            }
           },
           {
             name: this.$t("deceased"),
             color: "#0d233a",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.deceased
+            data: data.dataCumulativeCasesChart.deceased,
+            marker: {
+                symbol: 'circle'
+            }
           },
           {
             name: this.$t("hospitalised"),
+            color: "#7cb5ec",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.haiglas
+            data: data.dataCumulativeCasesChart.haiglas,
+            marker: {
+                symbol: 'circle'
+            }
           },
           {
             name: this.$t("intensive"),
             color: "#c42525",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.intensive
+            data: data.dataCumulativeCasesChart.intensive,
+            marker: {
+                symbol: 'circle'
+            }
           },
           {
             name: this.$t("onventilation"),
             color: "#7617bf",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.onventilation
+            data: data.dataCumulativeCasesChart.onventilation,
+            marker: {
+                symbol: 'circle'
+            }
           }
         ],
 
@@ -304,10 +327,6 @@ export default {
       return this.$i18n.locale;
     }
   },
-
-  /* mounted() {
-    this.chartOptions.
-  }, */
 
   // Fire when currentLocale computed property changes
   watch: {

@@ -74,7 +74,7 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -87,8 +87,12 @@ export default {
         tooltip: {
           pointFormat:
             '<tr><td style="color:{series.color};padding:0"></td>' +
-            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+            '<td style="padding:0"><b>{point.y}</b>&nbsp;&nbsp;({point.percentage:.1f}%)</td></tr>',
           footerFormat: "</table>",
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
           useHTML: true
         },
@@ -121,8 +125,12 @@ export default {
               tooltip: {
                 pointFormat:
                   '<tr><td style="color:{series.color};padding:0"></td>' +
-                  '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+                  '<td style="padding:0"><b>{point.y}</b>&nbsp;&nbsp;({point.percentage:.1f}%)</td></tr>',
                 footerFormat: "</table>",
+                backgroundColor: "#ffffff",
+                style: {
+                  opacity: 0.95,
+                },
                 shared: true,
                 useHTML: true
               },
@@ -149,7 +157,7 @@ export default {
               tooltip: {
                 pointFormat:
                   '<tr><td style="color:{series.color};padding:0"></td>' +
-                  '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+                  '<td style="padding:0"><b>{point.y}</b>&nbsp;&nbsp;({point.percentage:.1f}%)</td></tr>',
                 footerFormat: "</table>",
                 shared: true,
                 useHTML: true

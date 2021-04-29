@@ -6,6 +6,7 @@
 
 <script>
 import data from "../../data.json";
+import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
   name: "NewCasesPerDayChart",
@@ -61,7 +62,7 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -96,14 +97,17 @@ export default {
         },
 
        tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-          footerFormat: "</table>",
+          formatter: (context) => {
+              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+          },
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
-          useHTML: true
+          split: false,
+          useHTML: true,
+          distance: 20
         },
         legend: {
           enabled: true,

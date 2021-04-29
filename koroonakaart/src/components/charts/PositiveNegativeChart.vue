@@ -120,7 +120,7 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -167,7 +167,9 @@ export default {
           },
 
           categories: [
-            this.$t("insufficientData"),
+            this.$t("insufficientData"), // TODO: This item should be the last on this list.
+                                         // But we need to change the order of the data in
+                                         // the JSON file before it can be moved.
             "Harjumaa",
             "Hiiumaa",
             "Ida-Virumaa",
@@ -194,11 +196,16 @@ export default {
 
         tooltip: {
           headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
+            '<span>{point.key}</span><table>',
           pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+            '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;&nbsp;</td>' +
+            '<td style="text-align: right"><b>{point.y}</b>&nbsp;&nbsp;</td>' + 
+            '<td style="text-align: right">({point.percentage:.1f}%)</td></tr>',
           footerFormat: "</table>",
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
           useHTML: true
         },

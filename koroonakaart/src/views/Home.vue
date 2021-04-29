@@ -1,4 +1,4 @@
-//Landing page of the app
+// Landing page of the app
 <template>
   <b-container fluid="lg">
     <EmbedModal />

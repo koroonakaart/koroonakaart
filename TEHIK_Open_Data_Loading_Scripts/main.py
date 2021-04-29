@@ -159,7 +159,7 @@ if __name__ == "__main__":
     vaccinationNumberLastDay = allVaccinationNumberLastDay - completedVaccinationNumberLastDay
     completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (allVaccinationNumberTotal), 2)
 
-    # Create dictionary for final json
+    # Create dictionary for final JSON
     finalJson = {
         "updatedOn": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
@@ -205,7 +205,7 @@ if __name__ == "__main__":
         "completelyVaccinatedFromTotalVaccinatedPercentage": completelyVaccinatedFromTotalVaccinatedPercentage
     }
 
-    # Dump json output
+    # Dump JSON output
     with open(OUTPUT_FILE_LOCATION, "w", encoding="utf-8") as f:
         json.dump(finalJson, f, cls=NpEncoder, ensure_ascii=False)
 

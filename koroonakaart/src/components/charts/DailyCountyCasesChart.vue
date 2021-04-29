@@ -6,6 +6,8 @@
 
 <script>
 import data from "../../data.json";
+import { formatDate } from "../../utilities/helper";
+import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
   name: "DailyCountyCasesChart",
@@ -57,9 +59,9 @@ export default {
                 this.exportSVGElements[2].setState(
                   this.options.chartType === "logarithmic" ? 2 : 0
                 );
-                this.exportSVGElements[6].setState(
-                  this.options.chartType === "active" ? 2 : 0
-                );
+                // this.exportSVGElements[6].setState(
+                //   this.options.chartType === "active" ? 2 : 0
+                // );
               }, 100);
             },
           },
@@ -93,151 +95,6 @@ export default {
             customButton: {
               text: this.$t("logarithmic"),
               onclick: function () {
-                this.update({
-                  series: [
-                    {
-                      name: "Harjumaa",
-                      data: data.countyByDay.countyByDay.Harjumaa,
-                      color: "#2F7ED8",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Hiiumaa",
-                      data: data.countyByDay.countyByDay.Hiiumaa,
-                      color: "#456990",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Ida-Virumaa",
-                      data: data.countyByDay.countyByDay["Ida-Virumaa"],
-                      color: "#49BEAA",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Jõgevamaa",
-                      data: data.countyByDay.countyByDay.Jõgevamaa,
-                      color: "#49DCB1",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Järvamaa",
-                      data: data.countyByDay.countyByDay.Järvamaa,
-                      color: "#EEB868",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Läänemaa",
-                      data: data.countyByDay.countyByDay.Läänemaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Lääne-Virumaa",
-                      data: data.countyByDay.countyByDay["Lääne-Virumaa"],
-                      color: "#6684A4",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Põlvamaa",
-                      data: data.countyByDay.countyByDay.Põlvamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Pärnumaa",
-                      data: data.countyByDay.countyByDay.Pärnumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Raplamaa",
-                      data: data.countyByDay.countyByDay.Raplamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Saaremaa",
-                      data: data.countyByDay.countyByDay.Saaremaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Tartumaa",
-                      data: data.countyByDay.countyByDay.Tartumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Valgamaa",
-                      data: data.countyByDay.countyByDay.Valgamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Viljandimaa",
-                      data: data.countyByDay.countyByDay.Viljandimaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Võrumaa",
-                      data: data.countyByDay.countyByDay.Võrumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                  ],
-                });
                 this.options.chartType = "logarithmic";
 
                 this.yAxis[0].update({
@@ -249,327 +106,7 @@ export default {
             customButton2: {
               text: this.$t("linear"),
               onclick: function () {
-                this.update({
-                  series: [
-                    {
-                      name: "Harjumaa",
-                      data: data.countyByDay.countyByDay.Harjumaa,
-                      color: "#2F7ED8",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Hiiumaa",
-                      data: data.countyByDay.countyByDay.Hiiumaa,
-                      color: "#456990",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Ida-Virumaa",
-                      data: data.countyByDay.countyByDay["Ida-Virumaa"],
-                      color: "#49BEAA",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Jõgevamaa",
-                      data: data.countyByDay.countyByDay.Jõgevamaa,
-                      color: "#49DCB1",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Järvamaa",
-                      data: data.countyByDay.countyByDay.Järvamaa,
-                      color: "#EEB868",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Läänemaa",
-                      data: data.countyByDay.countyByDay.Läänemaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Lääne-Virumaa",
-                      data: data.countyByDay.countyByDay["Lääne-Virumaa"],
-                      color: "#6684A4",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Põlvamaa",
-                      data: data.countyByDay.countyByDay.Põlvamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Pärnumaa",
-                      data: data.countyByDay.countyByDay.Pärnumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Raplamaa",
-                      data: data.countyByDay.countyByDay.Raplamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Saaremaa",
-                      data: data.countyByDay.countyByDay.Saaremaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Tartumaa",
-                      data: data.countyByDay.countyByDay.Tartumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Valgamaa",
-                      data: data.countyByDay.countyByDay.Valgamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Viljandimaa",
-                      data: data.countyByDay.countyByDay.Viljandimaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Võrumaa",
-                      data: data.countyByDay.countyByDay.Võrumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                  ],
-                });
                 this.options.chartType = "linear";
-
-                this.yAxis[0].update({
-                  type: "linear",
-                });
-              },
-            },
-            customButton3: {
-              text: this.$t("active"),
-              onclick: function () {
-                this.update({
-                  series: [
-                    {
-                      name: "Harjumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Harjumaa,
-                      color: "#2F7ED8",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Hiiumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Hiiumaa,
-                      color: "#456990",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Ida-Virumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive[
-                          "Ida-Virumaa"
-                        ],
-                      color: "#49BEAA",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Jõgevamaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Jõgevamaa,
-                      color: "#49DCB1",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Järvamaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Järvamaa,
-                      color: "#EEB868",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Läänemaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Läänemaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Lääne-Virumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive[
-                          "Lääne-Virumaa"
-                        ],
-                      color: "#6684A4",
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Põlvamaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Põlvamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Pärnumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Pärnumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Raplamaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Raplamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Saaremaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Saaremaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Tartumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Tartumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Valgamaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Valgamaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Viljandimaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive
-                          .Viljandimaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                    {
-                      name: "Võrumaa",
-                      data:
-                        data.dataCountyDailyActive.countyByDayActive.Võrumaa,
-                      pointStart: Date.parse(data.dates2[0]),
-                      pointInterval: 24 * 3600 * 1000,
-                      marker: {
-                        symbol: 'circle',
-                      },
-                    },
-                  ],
-                });
-                this.options.chartType = "active";
 
                 this.yAxis[0].update({
                   type: "linear",
@@ -579,7 +116,7 @@ export default {
           },
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true,
         },
@@ -639,18 +176,52 @@ export default {
         },
 
         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}:&nbsp;</td>' +
-            '<td style="padding:0; text-align: right;"><b>{point.y}</b></td></tr>',
-          footerFormat: "</table>",
-          dateTimeLabelFormats: {
-            day: "%A, %e %B %Y",
+          formatter: (context) => {
+              // Identify which position in the series and date we are dealing with
+              var index = context.chart.hoverPoint.index;
+              var x = context.chart.hoverPoint.x;
+
+              // Get data for the individual tooltip entries
+              var tooltipEntries = []
+              for (const series of this.chartOptions.series) {
+                if (series.data[index] !== undefined) {
+                  tooltipEntries.push(
+                    {
+                      name: series.name,
+                      value: formatNumberByLocale(series.data[index], this.currentLocale),
+                      color: series.color
+                    }
+                  )
+                }
+              }
+
+              // Get localised date
+              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+
+              // Compose tooltip
+              var tooltip = tooltipDate + '<br>';
+              if (tooltipEntries.length > 0) {
+                tooltip += '<table>';
+                for (const tooltipEntry of tooltipEntries) {
+                  tooltip += '<tr>';
+                  tooltip += '<td><span style="color:' + tooltipEntry.color + '">●</span> ' + tooltipEntry.name + '&nbsp;</td>';
+                  tooltip += '<td style="text-align: right"><b>' + tooltipEntry.value + '</b>&nbsp;</td>';
+                  tooltip += '</tr>';
+                }
+                tooltip += '</table>';
+              }
+
+              return tooltip;
+          },
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
           },
           shared: true,
           split: false,
           useHTML: true,
+          distance: 20
         },
 
         legend: {
@@ -730,6 +301,7 @@ export default {
           {
             name: "Läänemaa",
             data: data.countyByDay.countyByDay.Läänemaa,
+            color: "#7CB5EC",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -749,6 +321,7 @@ export default {
           {
             name: "Põlvamaa",
             data: data.countyByDay.countyByDay.Põlvamaa,
+            color: "#7cb5ec",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -758,6 +331,7 @@ export default {
           {
             name: "Pärnumaa",
             data: data.countyByDay.countyByDay.Pärnumaa,
+            color: "#434348",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -767,6 +341,7 @@ export default {
           {
             name: "Raplamaa",
             data: data.countyByDay.countyByDay.Raplamaa,
+            color: "#90ed7d",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -776,6 +351,7 @@ export default {
           {
             name: "Saaremaa",
             data: data.countyByDay.countyByDay.Saaremaa,
+            color: "#f7a35c",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -785,6 +361,7 @@ export default {
           {
             name: "Tartumaa",
             data: data.countyByDay.countyByDay.Tartumaa,
+            color: "#8085e9",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -794,6 +371,7 @@ export default {
           {
             name: "Valgamaa",
             data: data.countyByDay.countyByDay.Valgamaa,
+            color: "#f15c80",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -803,6 +381,7 @@ export default {
           {
             name: "Viljandimaa",
             data: data.countyByDay.countyByDay.Viljandimaa,
+            color: "#e4d354",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -812,6 +391,7 @@ export default {
           {
             name: "Võrumaa",
             data: data.countyByDay.countyByDay.Võrumaa,
+            color: "#2b908f",
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
@@ -877,9 +457,9 @@ export default {
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "linear"
       );
-      this.chartOptions.exporting.buttons.customButton3.text = this.$t(
-        "active"
-      );
+      // this.chartOptions.exporting.buttons.customButton3.text = this.$t(
+      //   "active"
+      // );
     },
   },
 };

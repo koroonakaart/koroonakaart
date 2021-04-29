@@ -1,11 +1,12 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
   </b-container>
 </template>
 
 <script>
 import data from "../../data.json";
+import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
   name: "CumulativeCasesPer100kChart",
@@ -23,6 +24,7 @@ export default {
     return {
       chartOptions: {
         chartType: "linear",
+        chartFirstDate: Date.UTC(2020, 1, 25),
 
         chart: {
           height: this.height,
@@ -112,12 +114,13 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
 
         legend: {
+          enabled: true,
           layout: "horizontal",
           align: "center",
           verticalAlign: "bottom"
@@ -169,8 +172,22 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2
+          type: "datetime",
+          dateTimeLabelFormats: {
+            day: "%Y<br>%m-%d",
+            week: "%Y<br>%m-%d",
+            month: "%Y-%m",
+            year: "%Y"
+          },
+          labels: {
+            style: {
+              fontSize: "11px"
+            }
+          }
         },
+        // xAxis: {
+        //   categories: data.dates2
+        // },
 
         yAxis: {
           title: {
@@ -179,20 +196,25 @@ export default {
         },
 
         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-          footerFormat: "</table>",
+          formatter: (context) => {
+              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 1);
+          },
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
-          useHTML: true
+          split: false,
+          useHTML: true,
+          distance: 20
         },
 
         series: [
           {
             name: this.$t("active100k"),
             color: "#2f7ed8",
+            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.active100k
           }
         ],

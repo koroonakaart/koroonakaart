@@ -6,6 +6,8 @@
 
 <script>
 import data from "../../data.json";
+import { formatTooltip } from "../../utilities/formatTooltip";
+import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
   name: "TestsPopRatioChart",
@@ -18,10 +20,17 @@ export default {
       default: null
     }
   },
+  // data() {
+  // },
 
-  data() {
-    return {
-      chartOptions: {
+  // Get current locale
+  computed: {
+    currentLocale: function() {
+      return this.$i18n.locale;
+    },
+    chartOptions() {
+      var context = this;
+      return {
         title: {
           text: this.$t("testsPer10000"),
           align: "left",
@@ -69,7 +78,7 @@ export default {
           },
 
           chartOptions: {
-            // specific options for the exported image
+            // Specific options for the exported image
             plotOptions: {
               series: {
                 dataLabels: {
@@ -81,7 +90,26 @@ export default {
           fallbackToExportServer: false
         },
 
-        // Remove Highcharts.com link from bottom right
+        tooltip: {
+          formatter: (context) => {
+              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 1, false);
+          },
+          // headerFormat:
+          //   '<span>{point.key}</span><table>',
+          // pointFormat:
+          //   '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;&nbsp;</td>' +
+          //   '<td style="padding:0; text-align: right"><b>{point.y}</b></tr>',
+          // footerFormat: "</table>",
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
+          shared: true,
+          useHTML: true,
+          valueDecimals: 1
+        },
+
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -121,8 +149,12 @@ export default {
         plotOptions: {
           bar: {
             dataLabels: {
-              enabled: true
-            },
+              enabled: true,
+              formatter: function() {
+                  return formatNumberByLocale(this.y, context.currentLocale, 1);
+                  // return Highcharts.numberFormat(this.y, 1);
+                }
+              },
             enableMouseTracking: true
           }
         },
@@ -147,14 +179,7 @@ export default {
             }
           ]
         }
-      }
-    };
-  },
-
-  // Get current locale
-  computed: {
-    currentLocale: function() {
-      return this.$i18n.locale;
+      };
     }
   },
 

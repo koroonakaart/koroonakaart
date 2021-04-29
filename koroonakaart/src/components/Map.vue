@@ -125,6 +125,10 @@ export default {
                       tooltip: {
                         pointFormat:
                           "{point.ONIMI}: {point.min} - {point.value}<br>",
+                        backgroundColor: "#ffffff",
+                        style: {
+                          opacity: 0.95,
+                        },
                       },
                       dataLabels: {
                         allAreas: true,
@@ -338,7 +342,7 @@ export default {
           },
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true,
         },
@@ -422,6 +426,10 @@ export default {
                 } else {
                   return this.value;
                 }
+              },
+              backgroundColor: "#ffffff",
+              style: {
+                opacity: 0.95,
               },
             },
 

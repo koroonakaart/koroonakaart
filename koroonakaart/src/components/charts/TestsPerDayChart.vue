@@ -11,6 +11,8 @@
 
 <script>
 import data from "../../data.json";
+import { formatDate } from "../../utilities/helper";
+import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
   name: "TestsPerDayChart",
@@ -127,7 +129,7 @@ export default {
           },
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true,
         },
@@ -216,11 +218,60 @@ export default {
         },
 
         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+          formatter: (context) => {
+              // Identify which position in the series and date we are dealing with
+              var index = context.chart.hoverPoint.index;
+              var x = context.chart.hoverPoint.x;
+
+              // Get data for this date
+              var positive;
+              if (context.chart.series[0].points !== null) {
+                positive = context.chart.series[0].points[index];
+              }
+              var negative;
+              if (context.chart.series[1].points !== null) {
+                negative = context.chart.series[1].points[index];
+              }
+              var positiveTestPercentage;
+              if (context.chart.series[2].points !== null) {
+                positiveTestPercentage = context.chart.series[2].points[index];
+              }
+
+              // Get localised date
+              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+
+              // Compose tooltip
+              var tooltip = tooltipDate + '<br>';
+              tooltip += '<table>';
+              if (positive !== undefined) {
+                tooltip += '<tr>';
+                tooltip += '<td>' + context.chart.series[0].name + '&nbsp;&nbsp;</td>';
+                tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(positive.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
+                tooltip += '<td style="text-align: right">(' + positive.percentage.toFixed(1) + '%)</td>';
+                tooltip += '</tr>';
+              }
+              if (negative !== undefined) {
+                tooltip += '<tr>';
+                tooltip += '<td>' + context.chart.series[1].name + '&nbsp;&nbsp;</td>';
+                tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(negative.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
+                tooltip += '<td style="text-align: right">(' + negative.percentage.toFixed(1) + '%)</td>';
+                tooltip += '</tr>';
+              }
+              if (positive === undefined && negative === undefined && positiveTestPercentage !== undefined) {
+                tooltip += '<tr>';
+                tooltip += '<td>' + context.chart.series[2].name + '&nbsp;&nbsp;</td>';
+                tooltip += '<td style="text-align: right"><b>' + positiveTestPercentage.y.toFixed(1) + '</b>&nbsp;&nbsp;</td>';
+                tooltip += '</tr>';
+              }
+              tooltip += '</table>';
+
+              return tooltip;
+          },
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
           useHTML: true,
         },
@@ -248,6 +299,7 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             type: "spline",
             yAxis: 1,
+            // enableMouseTracking: false,
           },
         ],
       },

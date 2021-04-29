@@ -1,10 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
+    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
   </b-container>
 </template>
 
@@ -157,7 +153,7 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -226,8 +222,12 @@ export default {
             '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.0f}%)</td></tr>',
+            '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.1f}%)</td></tr>',
           footerFormat: "</table>",
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           shared: true,
           useHTML: true
         },

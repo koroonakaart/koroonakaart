@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
+    <highcharts class="chart" :options="chartOptions"></highcharts>
   </b-container>
 </template>
 
@@ -9,7 +9,7 @@ import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
-  name: "VaccinatedPeopleChart",
+  name: "CumulativeCasesPer100kChart",
 
   props: {
     height: {
@@ -24,7 +24,6 @@ export default {
     return {
       chartOptions: {
         chartType: "linear",
-        chartFirstDate: Date.UTC(2020, 12, 26),
 
         chart: {
           height: this.height,
@@ -60,12 +59,8 @@ export default {
           }
         },
 
-        rangeSelector: {
-          selected: 5
-        },
-
         title: {
-          text: this.$t("vaccination"),
+          text: this.$t("cumulativeCasesPer100k"),
           align: "left",
           y: 5
         },
@@ -124,11 +119,9 @@ export default {
         },
 
         legend: {
-          enabled: true,
           layout: "horizontal",
           align: "center",
-          verticalAlign: "bottom",
-          y: 0
+          verticalAlign: "bottom"
         },
 
         plotOptions: {
@@ -139,7 +132,6 @@ export default {
             }
           },
           series: {
-            showInNavigator: true,
             label: {
               connectorAllowed: false
             }
@@ -178,61 +170,39 @@ export default {
         },
 
         xAxis: {
-          type: "datetime",
-          dateTimeLabelFormats: {
-            day: "%Y<br>%m-%d",
-            week: "%Y<br>%m-%d",
-            month: "%Y-%m",
-            year: "%Y"
-          },
-          labels: {
-            style: {
-              fontSize: "11px"
-            }
-          }
+          categories: data.dates2
         },
 
         yAxis: {
           title: {
-            text: this.$t("vaccination")
+            text: this.$t("numberOfCases")
           }
         },
 
         tooltip: {
           formatter: (context) => {
-            return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 1);
           },
+          // headerFormat:
+          //   '<span>{point.key}</span><table>',
+          // pointFormat:
+          //   '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;&nbsp;</td>' +
+          //   '<td><b>{point.y}</b></td></tr>',
+          // footerFormat: "</table>",
           backgroundColor: "#ffffff",
           style: {
             opacity: 0.95,
           },
           shared: true,
-          split: false,
           useHTML: true,
-          distance: 20
+          valueDecimals: 1
         },
 
         series: [
           {
-            name: this.$t("allVaccinated"),
+            name: this.$t("active100k"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates3[0]),
-            pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataVaccinatedPeopleChart.vaccinesAll
-          },
-          {
-            name: this.$t("vaccinationNumber"),
-            color: "#90ed7d",
-            pointStart: Date.parse(data.dates3[0]),
-            pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataVaccinatedPeopleChart.vaccinesProgress
-          },
-          {
-            name: this.$t("completedVaccinationNumber"),
-            color: "#f28f43",
-            pointStart: Date.parse(data.dates3[0]),
-            pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataVaccinatedPeopleChart.vaccinesCompleted
+            data: data.dataCumulativeCasesChart.active100k
           }
         ],
 
@@ -240,7 +210,7 @@ export default {
           rules: [
             {
               condition: {
-                maxWidth: 350
+                maxWidth: 670
               },
 
               chartOptions: {
@@ -255,17 +225,6 @@ export default {
                       }
                     }
                   }
-                }
-              }
-            },
-            {
-              condition: {
-                maxWidth: 575
-              },
-
-              chartOptions: {
-                legend: {
-                  enabled: true
                 }
               }
             }
@@ -285,11 +244,9 @@ export default {
   // Fire when currentLocale computed property changes
   watch: {
     currentLocale() {
-      this.chartOptions.title.text = this.$t("vaccination");
-      this.chartOptions.yAxis.title.text = this.$t("vaccination");
-      this.chartOptions.series[0].name = this.$t("allVaccinated");
-      this.chartOptions.series[1].name = this.$t("vaccinationNumber");
-      this.chartOptions.series[2].name = this.$t("completedVaccinationNumber");
+      this.chartOptions.title.text = this.$t("cumulativeCasesPer100k");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("active100k");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"

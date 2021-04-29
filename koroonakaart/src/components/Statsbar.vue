@@ -40,7 +40,7 @@
                     : rawPerHundredChanged > 0
                     ? 'positive'
                     : 'negative'">
-          {{ rawPerHundredChanged | formatNumber(currentLocale) }}
+          {{ rawPerHundredChanged | formatNumber(currentLocale, 1) }}
         </h5>
       </b-col>
 

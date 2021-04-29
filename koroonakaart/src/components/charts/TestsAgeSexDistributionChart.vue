@@ -6,6 +6,7 @@
 
 <script>
 import data from "../../data.json";
+import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
   name: "TestsAgeSexDistributionChart",
@@ -69,7 +70,7 @@ export default {
           }
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true
         },
@@ -152,16 +153,23 @@ export default {
         },
 
         tooltip: {
-          formatter: function() {
-            return (
-              "<b>" +
-              this.series.name +
-              "  " +
-              this.point.category +
-              "</b><br>" +
-              +Math.abs(this.point.y)
-            );
-          }
+          formatter: (context) => {
+            var seriesName = context.chart.hoverPoint.series.name;
+            var category = context.chart.hoverPoint.category;
+            var color = context.chart.hoverPoint.series.color;
+            var value = formatNumberByLocale(Math.abs(context.chart.hoverPoint.y), this.currentLocale, 0);
+
+            // Compose tooltip
+            var tooltip = "<span style='color: " + color + "'>●</span>&nbsp;";
+            tooltip += '<b>' + seriesName + ' ' + category + '</b><br>';
+            tooltip += value;
+            return tooltip;
+          },
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
+          useHTML: true
         },
 
         series: [

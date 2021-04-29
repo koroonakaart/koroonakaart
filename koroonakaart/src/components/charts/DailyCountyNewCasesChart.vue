@@ -11,6 +11,8 @@
 
 <script>
 import data from "../../data.json";
+import { formatDate } from "../../utilities/helper";
+import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
   name: "DailyCountyNewCasesChart",
@@ -69,7 +71,7 @@ export default {
           },
         },
 
-        // Remove Highcharts.com link from bottom right
+        // Show Highcharts.com link at bottom right
         credits: {
           enabled: true,
         },
@@ -149,13 +151,41 @@ export default {
         },
 
         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}:&nbsp;</td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+          formatter: (context) => {
+              // Identify which position in the series and date we are dealing with
+              var x = context.chart.hoverPoint.x;
+
+              // Get data for this date
+              var countyName = context.chart.hoverPoint.series.name;
+              var color = context.chart.hoverPoint.series.color;
+              var value = context.chart.hoverPoint.y;
+
+              // Get localised date
+              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+
+              // Compose tooltip
+              var tooltip = tooltipDate + '<br>';
+              tooltip += '<table>';
+              tooltip += '<tr>';
+              tooltip += '<td><span style="color: ' + color + '">●</span> ' + countyName + '&nbsp;&nbsp;</td>';
+              tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(value, this.currentLocale) + '</b></td>';
+              tooltip += '</tr>';
+              tooltip += '</table>';
+
+              return tooltip;
+          },
+          // headerFormat:
+          //   '<span>{point.key}</span><table>',
+          // pointFormat:
+          //   '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;</td>' +
+          //   '<td style="padding:0"><b>{point.y}</b></td></tr>',
+          backgroundColor: "#ffffff",
+          style: {
+            opacity: 0.95,
+          },
           split: false,
-          useHTML: true,
+          useHTML: true
         },
 
         rangeSelector: {
@@ -208,6 +238,7 @@ export default {
             data: data.countyByDay.newCountyByDay.Läänemaa,
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
+            color: "#7CB5EC",
             yAxis: 0,
           },
           {
