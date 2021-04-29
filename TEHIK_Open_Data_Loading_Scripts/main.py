@@ -65,20 +65,35 @@ def is_header_last_modified_up_to_date(url):
     return False
 
 
+def log_status(message):
+    print(message, file=sys.stderr)
+
+
 if __name__ == "__main__":
+    # Log status
+    log_status("Starting data update process at " + str(today))
+
     # Get data
+    log_status("Downloading data from TEHIK: Test results")
     json_data = get_json_data(API_ENDPOINT)
+    log_status("Downloading data from TEHIK: Location data")
     municipalities = get_json_data(MUNICIPALITIES_ENDPOINT)
+    log_status("Downloading data from TEHIK: Hospitalisation data")
     json_hospital = get_json_data(HOSPITAL_ENDPOINT)
+    log_status("Downloading data from TEHIK: Vaccination data")
     json_vaccine = get_json_data(VACCINE_ENDPOINT)
+    log_status("Loading local data files")
     json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
     json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
 
     if (not is_up_to_date(municipalities, 'LastStatisticsDate') or
         not is_up_to_date(json_hospital, 'LastLoadStatisticsDate') or
         not is_header_last_modified_up_to_date(MUNICIPALITIES_ENDPOINT)):
-        print("One of the TEHIK APIs has not been updated\n", file=sys.stderr)
+        log_status("One of the TEHIK APIs has not been updated")
         exit()
+
+    # Log status
+    log_status("Calculating main statistics")
 
     # Date of update
     updatedOn = MANUAL_DATA["updatedOn"]
@@ -125,6 +140,7 @@ if __name__ == "__main__":
     deceasedChanged = int(deceased[-1]) - int(deceased[-2])
 
     # Get data for each chart
+    log_status("Calculating data for charts")
     dataInfectionsByCounty = getCountInfectionsByCounty(json_copy, county_mapping)
     dataInfectionsByCounty10000 = getDataInfectionsByCount10000(dataInfectionsByCounty, county_sizes)
     dataTestsPopRatio = getDataTestsPopRatio(dataInfectionsByCounty10000)
@@ -147,6 +163,7 @@ if __name__ == "__main__":
     perHundred = dataCumulativeCasesChart["active100k"][-1]
 
     # Calculate vaccination data
+    log_status("Calculating vaccination data")
     lastDayVaccinationData = [x for x in json_vaccine if x['MeasurementType'] == 'Vaccinated'][-1]
     lastDayCompletedVaccinationData = [x for x in json_vaccine if x['MeasurementType'] == 'FullyVaccinated'][-1]
     # TODO: Doses administered
@@ -160,6 +177,7 @@ if __name__ == "__main__":
     completelyVaccinatedFromTotalVaccinatedPercentage = round(completedVaccinationNumberTotal * 100 / (allVaccinationNumberTotal), 2)
 
     # Create dictionary for final JSON
+    log_status("Compiling final JSON")
     finalJson = {
         "updatedOn": updatedOn,
         "confirmedCasesNumber": str(confirmedCasesNumber),
@@ -206,6 +224,11 @@ if __name__ == "__main__":
     }
 
     # Dump JSON output
+    log_status("Dumping JSON output")
     with open(OUTPUT_FILE_LOCATION, "w", encoding="utf-8") as f:
         json.dump(finalJson, f, cls=NpEncoder, ensure_ascii=False)
+
+    # Log finish time
+    finish = datetime.today().astimezone(estonian_timezone).strftime('%d/%m/%Y, %H:%M')
+    log_status("Finished update process at " + finish)
 
