@@ -5,20 +5,30 @@
 FROM python:3-slim AS fetch_data
 ENV PATH=$PATH:/root/.poetry/bin
 
+WORKDIR /app
+
 # Prepare environment separately to improve caching
 RUN set -exu \
  && apt-get update \
  && apt-get install -y curl \
  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
-WORKDIR /app
-COPY . .
+# Install Python dependencies - they change less often than code so caches better
+RUN mkdir TEHIK_Open_Data_Loading_Scripts
+COPY TEHIK_Open_Data_Loading_Scripts/pyproject.toml TEHIK_Open_Data_Loading_Scripts/poetry.lock TEHIK_Open_Data_Loading_Scripts
+
 RUN set -exu \
  && cd TEHIK_Open_Data_Loading_Scripts \
  && python -m pip install --upgrade pip \
- && poetry install \
+ && poetry install
+
+# Run the Python scripts themselves
+COPY . .
+RUN set -exu \
+ && cd TEHIK_Open_Data_Loading_Scripts \
  && poetry run python deaths_scraper.py \
- && poetry run python main.py
+ && poetry run python main.py \
+ && ls -lhaF ../data
 
 #########################
 # STEP 2 build frontend
@@ -29,7 +39,7 @@ FROM node:lts-slim AS build_frontend
 WORKDIR /app
 COPY . .
 
-COPY --from=fetch_data /app/data/data.json /app/data/data.json
+COPY --from=fetch_data /app/data/data.json /app/koroonakaart/src/data.json
 RUN set -exu \
  && cd koroonakaart \
  && npm install --silent \
@@ -45,4 +55,4 @@ FROM nginx:mainline-alpine AS runtime
 RUN sed -i '/index.html index.htm;/ i try_files $uri /index.html;' /etc/nginx/conf.d/default.conf
 
 COPY --from=build_frontend /app/koroonakaart/dist /usr/share/nginx/html
-COPY --from=fetch_data /app/data/data.json /usr/share/nginx/html/data.json
+COPY --from=build_frontend /app/data/data.json /usr/share/nginx/html/data.json
