@@ -5,17 +5,16 @@
 </template>
 
 <script>
-
 export default {
   name: "DeathsByAgeChart",
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -24,13 +23,13 @@ export default {
         title: {
           text: this.$t("deceasedTitle"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
           type: "column",
           height: this.height,
-          width: this.width
+          width: this.width,
         },
 
         exporting: {
@@ -40,8 +39,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -54,64 +53,63 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
-            }
-          }
+                "embed",
+              ],
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
-          }
+            y: -15,
+          },
         },
 
         yAxis: {
-//          min: 0,
+          //          min: 0,
           title: {
-            text: this.$t("deceased")
-          }
+            text: this.$t("deceased"),
+          },
         },
-
 
         legend: {
           enabled: true,
           layout: "horizontal",
           align: "center",
           verticalAlign: "bottom",
-          y: 0
+          y: 0,
         },
 
         xAxis: {
-         // categories: [this.$t("ages")]
-         categories: ["0-50", "50-59","60-69","70-79","80-89","90+"]
-            },
+          // categories: [this.$t("ages")]
+          categories: ["0-50", "50-59", "60-69", "70-79", "80-89", "90+"],
+        },
 
         series: [
           {
-          name: this.$t("male"),
-          data: [0,4,6,18,17,8],
+            name: this.$t("male"),
+            data: [0, 4, 6, 18, 17, 8],
           },
           {
-          name: this.$t("female"),
-          data: [1,1,4,13,34,14]
-          }
-        ]
-      }
+            name: this.$t("female"),
+            data: [1, 1, 4, 13, 34, 14],
+          },
+        ],
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -121,9 +119,8 @@ export default {
       this.chartOptions.yAxis.title.text = this.$t("deceased");
       this.chartOptions.series[0].name = this.$t("male");
       this.chartOptions.series[1].name = this.$t("female");
-
-    }
-  }
+    },
+  },
 };
 </script>
 

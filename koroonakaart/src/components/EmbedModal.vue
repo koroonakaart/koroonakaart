@@ -45,22 +45,22 @@ export default {
   data() {
     return {
       height: "400",
-      width: "400"
+      width: "400",
     };
   },
 
   methods: {
-    hideModal: function() {
+    hideModal: function () {
       this.$bvModal.hide("embed-modal");
-    }
+    },
   },
 
   computed: {
-    iframeText: function() {
+    iframeText: function () {
       // prettier-ignore
       return `<iframe src="https://www.koroonakaart.ee/${this.$route.params.locale}/chart?chart=${this.$store.state.currentChartName}&height=${this.height}&width=${this.width}" scrolling="no" frameborder="0" style="overflow:hidden; height:${this.height}px; width:${this.width}px;" allowTransparency="true" loading="lazy"></iframe>`;
-    }
-  }
+    },
+  },
 };
 </script>
 

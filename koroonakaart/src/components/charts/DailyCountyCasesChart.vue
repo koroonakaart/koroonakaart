@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
+    <highcharts
+      :constructor-type="'stockChart'"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -158,13 +162,13 @@ export default {
             day: "%Y<br>%m-%d",
             week: "%Y<br>%m-%d",
             month: "%Y-%m",
-            year: "%Y"
+            year: "%Y",
           },
           labels: {
             style: {
-              fontSize: "11px"
-            }
-          }
+              fontSize: "11px",
+            },
+          },
         },
 
         yAxis: {
@@ -177,42 +181,56 @@ export default {
 
         tooltip: {
           formatter: (context) => {
-              // Identify which position in the series and date we are dealing with
-              var index = context.chart.hoverPoint.index;
-              var x = context.chart.hoverPoint.x;
+            // Identify which position in the series and date we are dealing with
+            var index = context.chart.hoverPoint.index;
+            var x = context.chart.hoverPoint.x;
 
-              // Get data for the individual tooltip entries
-              var tooltipEntries = []
-              for (const series of this.chartOptions.series) {
-                if (series.data[index] !== undefined) {
-                  tooltipEntries.push(
-                    {
-                      name: series.name,
-                      value: formatNumberByLocale(series.data[index], this.currentLocale),
-                      color: series.color
-                    }
-                  )
-                }
+            // Get data for the individual tooltip entries
+            var tooltipEntries = [];
+            for (const series of this.chartOptions.series) {
+              if (series.data[index] !== undefined) {
+                tooltipEntries.push({
+                  name: series.name,
+                  value: formatNumberByLocale(
+                    series.data[index],
+                    this.currentLocale
+                  ),
+                  color: series.color,
+                });
               }
+            }
 
-              // Get localised date
-              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+            // Get localised date
+            var dateOptions = {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            };
+            var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
 
-              // Compose tooltip
-              var tooltip = tooltipDate + '<br>';
-              if (tooltipEntries.length > 0) {
-                tooltip += '<table>';
-                for (const tooltipEntry of tooltipEntries) {
-                  tooltip += '<tr>';
-                  tooltip += '<td><span style="color:' + tooltipEntry.color + '">●</span> ' + tooltipEntry.name + '&nbsp;</td>';
-                  tooltip += '<td style="text-align: right"><b>' + tooltipEntry.value + '</b>&nbsp;</td>';
-                  tooltip += '</tr>';
-                }
-                tooltip += '</table>';
+            // Compose tooltip
+            var tooltip = tooltipDate + "<br>";
+            if (tooltipEntries.length > 0) {
+              tooltip += "<table>";
+              for (const tooltipEntry of tooltipEntries) {
+                tooltip += "<tr>";
+                tooltip +=
+                  '<td><span style="color:' +
+                  tooltipEntry.color +
+                  '">●</span> ' +
+                  tooltipEntry.name +
+                  "&nbsp;</td>";
+                tooltip +=
+                  '<td style="text-align: right"><b>' +
+                  tooltipEntry.value +
+                  "</b>&nbsp;</td>";
+                tooltip += "</tr>";
               }
+              tooltip += "</table>";
+            }
 
-              return tooltip;
+            return tooltip;
           },
           backgroundColor: "#ffffff",
           style: {
@@ -221,7 +239,7 @@ export default {
           shared: true,
           split: false,
           useHTML: true,
-          distance: 20
+          distance: 20,
         },
 
         legend: {
@@ -229,7 +247,7 @@ export default {
           layout: "horizontal",
           align: "center",
           verticalAlign: "bottom",
-          y: 0
+          y: 0,
         },
 
         plotOptions: {
@@ -242,9 +260,9 @@ export default {
           series: {
             showInNavigator: true,
             label: {
-              connectorAllowed: false
-            }
-          }
+              connectorAllowed: false,
+            },
+          },
         },
 
         series: [
@@ -255,7 +273,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -265,7 +283,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -275,7 +293,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -285,7 +303,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -295,7 +313,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -305,7 +323,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -315,7 +333,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -325,7 +343,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -335,7 +353,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -345,7 +363,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -355,7 +373,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -365,7 +383,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -375,7 +393,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -385,7 +403,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
           {
@@ -395,7 +413,7 @@ export default {
             pointStart: Date.parse(data.dates2[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
-              symbol: 'circle',
+              symbol: "circle",
             },
           },
         ],
@@ -404,7 +422,7 @@ export default {
           rules: [
             {
               condition: {
-                maxWidth: 350
+                maxWidth: 350,
               },
 
               chartOptions: {
@@ -424,12 +442,12 @@ export default {
             },
             {
               condition: {
-                maxWidth: 575
+                maxWidth: 575,
               },
 
               chartOptions: {
                 legend: {
-                  enabled: true
+                  enabled: true,
                 },
               },
             },

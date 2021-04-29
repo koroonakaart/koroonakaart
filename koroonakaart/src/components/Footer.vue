@@ -1,7 +1,7 @@
 <template>
   <b-container id="footer-container" class="shadow-md p-3 text-dark" fluid>
     <b-container id="footer-innercontainer">
-    <!--  <p>
+      <!--  <p>
         {{this.$t("footer1")}}
         <a
           href="https://garage48.org/blog/hack-the-crisis-from-an-idea-to-an-execution-in-just-6-hours"
@@ -28,12 +28,13 @@
         >{{this.$t("footer8")}}</a>.
       </p>-->
       <p>
-        {{this.$t("footer9")}}
+        {{ this.$t("footer9") }}
         <a
           href="https://github.com/okestonia/koroonakaart/issues"
           target="_blank"
           rel="noreferrer"
-        >https://github.com/okestonia/koroonakaart/issues</a>
+          >https://github.com/okestonia/koroonakaart/issues</a
+        >
       </p>
     </b-container>
   </b-container>
@@ -41,7 +42,7 @@
 
 <script>
 export default {
-  name: "Footer"
+  name: "Footer",
 };
 </script>
 

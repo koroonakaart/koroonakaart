@@ -1,7 +1,6 @@
 import { formatDate } from "./helper";
 import { formatNumberByLocale } from "./formatNumberByLocale";
 
-
 export function formatTooltip(context, series, locale, precision, showMarker) {
   // Identify which position in the series and date we are dealing with
   var index = context.chart.hoverPoint.index;
@@ -12,16 +11,14 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
   // console.log(context.chart.hoverPoint);
 
   // Get data for the individual tooltip entries
-  var tooltipEntries = []
+  var tooltipEntries = [];
   for (const series of series) {
     if (series.data[index] !== undefined) {
-      tooltipEntries.push(
-        {
-          name: series.name,
-          value: formatNumberByLocale(series.data[index], locale, precision),
-          color: series.color
-        }
-      )
+      tooltipEntries.push({
+        name: series.name,
+        value: formatNumberByLocale(series.data[index], locale, precision),
+        color: series.color,
+      });
     }
   }
 
@@ -32,25 +29,31 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
     tooltipTitle = category;
   } else {
     // Localised date
-    var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var dateOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
     tooltipTitle = formatDate(x, locale, dateOptions);
   }
 
   // Compose tooltip
-  var tooltip = tooltipTitle + '<br>';
+  var tooltip = tooltipTitle + "<br>";
   if (tooltipEntries.length > 0) {
-    tooltip += '<table>';
+    tooltip += "<table>";
     for (const tooltipEntry of tooltipEntries) {
-      tooltip += '<tr>';
-      tooltip += '<td>';
+      tooltip += "<tr>";
+      tooltip += "<td>";
       if (showMarker) {
         tooltip += '<span style="color:' + tooltipEntry.color + '">●</span> ';
       }
-      tooltip += tooltipEntry.name + '&nbsp;</td>';
-      tooltip += '<td style="text-align: right"><b>' + tooltipEntry.value + '</b></td>';
-      tooltip += '</tr>';
+      tooltip += tooltipEntry.name + "&nbsp;</td>";
+      tooltip +=
+        '<td style="text-align: right"><b>' + tooltipEntry.value + "</b></td>";
+      tooltip += "</tr>";
     }
-    tooltip += '</table>';
+    tooltip += "</table>";
   }
 
   return tooltip;

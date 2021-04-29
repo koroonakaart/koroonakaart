@@ -13,11 +13,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -26,21 +26,21 @@ export default {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
-          }
+            y: -15,
+          },
         },
 
         chart: {
           type: "bar",
           height: this.height,
           width: this.width,
-          marginTop: 40
+          marginTop: 40,
         },
 
         exporting: {
@@ -50,8 +50,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -64,9 +64,9 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
-            }
+                "embed",
+              ],
+            },
           },
 
           chartOptions: {
@@ -74,17 +74,16 @@ export default {
             plotOptions: {
               series: {
                 dataLabels: {
-                  enabled: true
-                }
-              }
-            }
+                  enabled: true,
+                },
+              },
+            },
           },
-          fallbackToExportServer: false
+          fallbackToExportServer: false,
         },
 
         tooltip: {
-          headerFormat:
-            '<span>{point.key}</span><table>',
+          headerFormat: "<span>{point.key}</span><table>",
           pointFormat:
             '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;&nbsp;</td>' +
             '<td style="padding:0; text-align: right"><b>{point.y}</b></tr>',
@@ -94,20 +93,20 @@ export default {
             opacity: 0.95,
           },
           shared: true,
-          useHTML: true
+          useHTML: true,
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         xAxis: {
           labels: {
             style: {
               fontSize: "13px",
-              fontWeight: "bold"
-            }
+              fontWeight: "bold",
+            },
           },
           categories: [
             "Harjumaa",
@@ -125,47 +124,47 @@ export default {
             "Valgamaa",
             "Viljandimaa",
             "Võrumaa",
-            this.$t("insufficientData")
-          ]
+            this.$t("insufficientData"),
+          ],
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfCases")
-          }
+            text: this.$t("numberOfCases"),
+          },
         },
 
         plotOptions: {
           bar: {
-//            dataLabels: {
-//              enabled: true
-//            },
-            enableMouseTracking: true
-          }
+            //            dataLabels: {
+            //              enabled: true
+            //            },
+            enableMouseTracking: true,
+          },
         },
 
         series: [
           {
             dataLabels: {
-              enabled: true
+              enabled: true,
             },
             name: this.$t("numberOfCases"),
-            data: data.dataConfirmedCasesByCounties
+            data: data.dataConfirmedCasesByCounties,
           },
           {
             name: this.$t("newPositive"),
-            data:data.countyByDay.countyByDayNew,
-          }
-        ]
-      }
+            data: data.countyByDay.countyByDayNew,
+          },
+        ],
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -176,8 +175,8 @@ export default {
       this.chartOptions.series[0].name = this.$t("numberOfCases");
       this.chartOptions.series[1].name = this.$t("newPositive");
       this.chartOptions.xAxis.categories[15] = this.$t("insufficientData");
-    }
-  }
+    },
+  },
 };
 </script>
 

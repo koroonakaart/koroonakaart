@@ -30,13 +30,13 @@ export default {
   },
 
   computed: {
-    urlIncludesChart: function() {
+    urlIncludesChart: function () {
       return this.$route.path.includes("chart");
     },
   },
 
   methods: {
-    changeCurrentLanguage: function(targetLanguage) {
+    changeCurrentLanguage: function (targetLanguage) {
       if (this.$route.params.locale !== targetLanguage) {
         this.$router.push(targetLanguage);
       }

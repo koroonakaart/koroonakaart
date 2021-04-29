@@ -50,7 +50,6 @@
     <b-row class="mb-5">
       <VaccinatedPeopleChart :height="470" />
     </b-row>
-
   </b-container>
 </template>
 
@@ -94,8 +93,8 @@ export default {
     DailyCountyNewCasesChart,
     ConfirmedCasesByCountiesChart,
     PositiveNegativeChart,
-    TestsPopRatioChart
-  }
+    TestsPopRatioChart,
+  },
 };
 </script>
 

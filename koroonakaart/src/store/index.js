@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: () => ({
     faqActive: false,
-    currentChartName: null
+    currentChartName: null,
   }),
 
   mutations: {
@@ -18,7 +18,7 @@ export default new Vuex.Store({
     },
     setCurrentChartName(state, payload) {
       state.currentChartName = payload;
-    }
+    },
   },
 
   actions: {
@@ -30,7 +30,7 @@ export default new Vuex.Store({
     },
     setCurrentChartName(context, name) {
       context.commit("setCurrentChartName", name);
-    }
+    },
   },
-  modules: {}
+  modules: {},
 });

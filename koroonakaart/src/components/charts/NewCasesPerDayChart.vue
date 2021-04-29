@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
+    <highcharts
+      :constructor-type="'stockChart'"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -13,11 +17,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -26,13 +30,13 @@ export default {
         title: {
           text: this.$t("newCasesPerDay"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
           type: "column",
           height: this.height,
-          width: this.width
+          width: this.width,
         },
 
         exporting: {
@@ -42,8 +46,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -56,22 +60,22 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
-            }
-          }
+                "embed",
+              ],
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
-          }
+            y: -15,
+          },
         },
 
         xAxis: {
@@ -80,25 +84,31 @@ export default {
             day: "%Y<br>%m-%d",
             week: "%Y<br>%m-%d",
             month: "%Y-%m",
-            year: "%Y"
+            year: "%Y",
           },
           labels: {
             style: {
-              fontSize: "11px"
-            }
-          }
+              fontSize: "11px",
+            },
+          },
         },
 
         yAxis: {
-//          min: 0,
+          //          min: 0,
           title: {
-            text: this.$t("numberOfCases")
-          }
+            text: this.$t("numberOfCases"),
+          },
         },
 
-       tooltip: {
+        tooltip: {
           formatter: (context) => {
-              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+            return formatTooltip(
+              context,
+              this.chartOptions.series,
+              this.currentLocale,
+              0,
+              true
+            );
           },
           backgroundColor: "#ffffff",
           style: {
@@ -107,22 +117,22 @@ export default {
           shared: true,
           split: false,
           useHTML: true,
-          distance: 20
+          distance: 20,
         },
         legend: {
           enabled: true,
           layout: "horizontal",
           align: "center",
           verticalAlign: "bottom",
-          y: 0
+          y: 0,
         },
 
         plotOptions: {
           column: {
             pointWidth: 10,
             pointPadding: -0.2,
-            borderWidth: 0
-          }
+            borderWidth: 0,
+          },
         },
 
         series: [
@@ -131,32 +141,32 @@ export default {
             color: "#7cb5ec",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataNewCasesPerDayChart.confirmedCases
+            data: data.dataNewCasesPerDayChart.confirmedCases,
           },
-         {
+          {
             name: this.$t("recovered"),
             color: "#90ed7d",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataNewCasesPerDayChart.recovered
+            data: data.dataNewCasesPerDayChart.recovered,
           },
           {
             name: this.$t("deceased"),
             color: "#434348",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataNewCasesPerDayChart.deceased
-          }
-        ]
-      }
+            data: data.dataNewCasesPerDayChart.deceased,
+          },
+        ],
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -167,8 +177,8 @@ export default {
       this.chartOptions.series[0].name = this.$t("confirmedCases");
       this.chartOptions.series[1].name = this.$t("recovered");
       this.chartOptions.series[2].name = this.$t("deceased");
-    }
-  }
+    },
+  },
 };
 </script>
 

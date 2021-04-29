@@ -9,17 +9,32 @@ For more information please contact:
 Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee
 
 ## Data
+
 All data used by our application can be accessed directly at the following link: https://www.koroonakaart.ee/data.json
 
 ## Project setup
 
+### Install pre-requisites
+
+Install `pre-commit` to ensure code quality: [https://pre-commit.com/#install](https://pre-commit.com/#install)
+
+Install `poetry` to manage Python dependencies: [https://python-poetry.org/docs/#installation](https://python-poetry.org/docs/#installation)
+
+In the root of your clone of the repository, run:
+
+```bash
+pre-commit install
+```
+
 ### Get/update data from TEHIK API
 
-After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile. 
+After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile.
 
-```
+```bash
 cd TEHIK_Open_Data_Loading_Scripts/
-./update_data.sh
+poetry install
+poetry run death_scraper.py
+poetry run main.py
 ```
 
 Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data. We realise this isn't ideal and are actively working to improve the process.
@@ -28,43 +43,50 @@ Note: At present, the update process won't work if carried out between midnight 
 
 To Customize Vue.js configuration see [Configuration Reference](https://cli.vuejs.org/config/).
 
-```
+```bash
 cd koroonakaart/
 npm install
 ```
 
 ### Compiles and hot-reloads for development
-```
+
+```bash
 npm run serve
 ```
 
 ### Compiles and minifies for production
-```
+
+```bash
 npm run build
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
 
 # How to contribute?
+
 If you have a suggestion about something that could be improved or wish to help with the technical development, please take a look here: https://github.com/okestonia/koroonakaart/issues
 
 All suggestions and ideas are welcome. Please feel free to fork the project, raise new issues, or make pull requests.
 
 The project is primarily voluntary and has received no funding other than from members of the community. Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) has opened a separate bank account to receive support for infrastructure and core maintance:
 
-MTÜ Open Knowledge Estonia EE607700771004696794 
+MTÜ Open Knowledge Estonia EE607700771004696794
 
 We will publish the amount of all support received and keep costs transparent.
 
 # History
+
 ## How the team formed at [Hack the Crisis](https://www.facebook.com/events/204692110602347/)
+
 The app was originally built in around 24 hours as part of the Hack the Crisis hackathon put on by Garage48 in Estonia. It was developed by Harry Sild (@Kypsis), Chris Thompson (@neuroactive), Joonas Puura (@PuuraJ), and Keegan McBride (@Keeganmcbride). Hanna Maria Mägi came up with the initial design. Maarja Leena Saar and Sven Illing have also contributed.
 
 # License and data information
-This repository is maintained as an open source project and released under an [MIT license](LICENSE). 
+
+This repository is maintained as an open source project and released under an [MIT license](LICENSE).
 
 ⚠️ The Highcharts component of this project is licensed under a more restrictive license: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/), which prevents you from using that component for commercial purposes. Before using the Highcharts dependency, please ensure that your use case is compliant with this licence.
 

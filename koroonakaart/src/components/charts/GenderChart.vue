@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
+    <highcharts
+      class="chart"
+      :options="chartOptions"
+      ref="thisChart"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -21,11 +25,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   mounted() {
@@ -39,13 +43,13 @@ export default {
         title: {
           text: this.$t("genderChart"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
           type: "pie",
           height: this.height,
-          width: this.width
+          width: this.width,
         },
 
         exporting: {
@@ -55,8 +59,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
           buttons: {
             contextButton: {
@@ -68,21 +72,21 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
-            }
-          }
+                "embed",
+              ],
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
-          }
+            y: -15,
+          },
         },
         tooltip: {
           pointFormat:
@@ -94,7 +98,7 @@ export default {
             opacity: 0.95,
           },
           shared: true,
-          useHTML: true
+          useHTML: true,
         },
 
         series: [
@@ -106,15 +110,15 @@ export default {
               {
                 name: this.$t("male"),
                 y: data.dataPositiveTestsByAgeChart.maleTotal,
-                drilldown: "MALE"
+                drilldown: "MALE",
               },
               {
                 name: this.$t("female"),
                 y: data.dataPositiveTestsByAgeChart.femaleTotal,
-                drilldown: "FEMALE"
-              }
-            ]
-          }
+                drilldown: "FEMALE",
+              },
+            ],
+          },
         ],
 
         drilldown: {
@@ -132,7 +136,7 @@ export default {
                   opacity: 0.95,
                 },
                 shared: true,
-                useHTML: true
+                useHTML: true,
               },
               data: [
                 [
@@ -140,16 +144,16 @@ export default {
                   data.dataPositiveTestsByAgeChart.maleNegative.reduce(
                     (a, b) => a + b,
                     0
-                  )
+                  ),
                 ],
                 [
                   this.$t("malePositive"),
                   data.dataPositiveTestsByAgeChart.malePositive.reduce(
                     (a, b) => a + b,
                     0
-                  )
-                ]
-              ]
+                  ),
+                ],
+              ],
             },
             {
               name: this.$t("female"),
@@ -160,7 +164,7 @@ export default {
                   '<td style="padding:0"><b>{point.y}</b>&nbsp;&nbsp;({point.percentage:.1f}%)</td></tr>',
                 footerFormat: "</table>",
                 shared: true,
-                useHTML: true
+                useHTML: true,
               },
               data: [
                 [
@@ -168,27 +172,27 @@ export default {
                   data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
                     (a, b) => a + b,
                     0
-                  )
+                  ),
                 ],
                 [
                   this.$t("femalePositive"),
                   data.dataPositiveTestsByAgeChart.femalePositive.reduce(
                     (a, b) => a + b,
                     0
-                  )
-                ]
-              ]
-            }
-          ]
-        }
-      }
+                  ),
+                ],
+              ],
+            },
+          ],
+        },
+      },
     };
   },
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -211,10 +215,9 @@ export default {
       );
 
       this.$children[0].chart.drillUp();
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

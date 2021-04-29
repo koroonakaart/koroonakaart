@@ -1,14 +1,14 @@
 module.exports = {
   pluginOptions: {
     i18n: {
-      locale: 'et',
-      fallbackLocale: 'et',
-      localeDir: 'locales',
-      enableInSFC: true
+      locale: "et",
+      fallbackLocale: "et",
+      localeDir: "locales",
+      enableInSFC: true,
     },
-    'style-resources-loader': {
-      preProcessor: 'sass',
-      patterns: []
-    }
+    "style-resources-loader": {
+      preProcessor: "sass",
+      patterns: [],
+    },
   },
 };

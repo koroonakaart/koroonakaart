@@ -13,11 +13,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -29,7 +29,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function() {
+            load: function () {
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               if (!this.exportSVGElements) return;
@@ -43,7 +43,7 @@ export default {
               // 3 - disabled
               button.setState(2);
             },
-            redraw: function() {
+            redraw: function () {
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 if (!this.exportSVGElements) return;
@@ -55,14 +55,14 @@ export default {
                   this.options.chartType === "logarithmic" ? 2 : 0
                 );
               }, 100);
-            }
-          }
+            },
+          },
         },
 
         title: {
           text: this.$t("cumulativeCasesPer100k"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         exporting: {
@@ -72,8 +72,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -86,56 +86,56 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
 
             customButton2: {
               text: this.$t("logarithmic"),
-              onclick: function() {
+              onclick: function () {
                 this.options.chartType = "logarithmic";
 
                 this.yAxis[0].update({
-                  type: "logarithmic"
+                  type: "logarithmic",
                 });
-              }
+              },
             },
             customButton: {
               text: this.$t("linear"),
-              onclick: function() {
+              onclick: function () {
                 this.options.chartType = "linear";
 
                 this.yAxis[0].update({
-                  type: "linear"
+                  type: "linear",
                 });
-              }
-            }
-          }
+              },
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         legend: {
           layout: "horizontal",
           align: "center",
-          verticalAlign: "bottom"
+          verticalAlign: "bottom",
         },
 
         plotOptions: {
           line: {
             /* or spline, area, series, areaspline etc.*/
             marker: {
-              enabled: false
-            }
+              enabled: false,
+            },
           },
           series: {
             label: {
-              connectorAllowed: false
-            }
-          }
+              connectorAllowed: false,
+            },
+          },
         },
 
         navigation: {
@@ -156,32 +156,37 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         xAxis: {
-          categories: data.dates2
+          categories: data.dates2,
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfCases")
-          }
+            text: this.$t("numberOfCases"),
+          },
         },
 
         tooltip: {
           formatter: (context) => {
-              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 1);
+            return formatTooltip(
+              context,
+              this.chartOptions.series,
+              this.currentLocale,
+              1
+            );
           },
           // headerFormat:
           //   '<span>{point.key}</span><table>',
@@ -195,22 +200,22 @@ export default {
           },
           shared: true,
           useHTML: true,
-          valueDecimals: 1
+          valueDecimals: 1,
         },
 
         series: [
           {
             name: this.$t("active100k"),
             color: "#2f7ed8",
-            data: data.dataCumulativeCasesChart.active100k
-          }
+            data: data.dataCumulativeCasesChart.active100k,
+          },
         ],
 
         responsive: {
           rules: [
             {
               condition: {
-                maxWidth: 670
+                maxWidth: 670,
               },
 
               chartOptions: {
@@ -221,24 +226,24 @@ export default {
                     verticalAlign: "center",
                     theme: {
                       style: {
-                        width: "70px"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+                        width: "70px",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -251,8 +256,8 @@ export default {
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

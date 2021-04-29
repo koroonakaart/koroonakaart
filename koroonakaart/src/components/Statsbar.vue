@@ -1,17 +1,23 @@
 <template>
   <b-container id="statsbar-container" class="mb-5" fluid>
-    <b-row><small style="margin-bottom: 20px">{{ $t("faq.a5") }}</small></b-row>
+    <b-row
+      ><small style="margin-bottom: 20px">{{ $t("faq.a5") }}</small></b-row
+    >
     <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("confirmedCases") }}</h5>
         </div>
         <h1>{{ confirmedCasesNumber | formatNumber(currentLocale) }}</h1>
-        <h5 :class="rawConfirmedChanged === 0
-                    ? 'neutral'
-                    : rawConfirmedChanged > 0
-                    ? 'positive'
-                    : 'positive'">
+        <h5
+          :class="
+            rawConfirmedChanged === 0
+              ? 'neutral'
+              : rawConfirmedChanged > 0
+              ? 'positive'
+              : 'positive'
+          "
+        >
           {{ confirmedChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
@@ -21,11 +27,15 @@
           <h5>{{ $t("activeCases") }}</h5>
         </div>
         <h1>{{ activeCasesNumber | formatNumber(currentLocale) }}</h1>
-        <h5 :class="rawActiveChanged === 0
-                    ? 'neutral'
-                    : rawActiveChanged > 0
-                    ? 'positive'
-                    : 'negative'">
+        <h5
+          :class="
+            rawActiveChanged === 0
+              ? 'neutral'
+              : rawActiveChanged > 0
+              ? 'positive'
+              : 'negative'
+          "
+        >
           {{ activeChanged }}
         </h5>
       </b-col>
@@ -35,11 +45,15 @@
           <h5>{{ $t("perHundred") }}</h5>
         </div>
         <h1>{{ perHundred | formatNumber(currentLocale, 1) }}</h1>
-        <h5 :class="rawPerHundredChanged === 0
-                    ? 'neutral'
-                    : rawPerHundredChanged > 0
-                    ? 'positive'
-                    : 'negative'">
+        <h5
+          :class="
+            rawPerHundredChanged === 0
+              ? 'neutral'
+              : rawPerHundredChanged > 0
+              ? 'positive'
+              : 'negative'
+          "
+        >
           {{ rawPerHundredChanged | formatNumber(currentLocale, 1) }}
         </h5>
       </b-col>
@@ -49,27 +63,35 @@
           <h5>{{ $t("testsAdministered") }}</h5>
         </div>
         <h1>{{ testsAdministeredNumber | formatNumber(currentLocale) }}</h1>
-        <h5 :class="rawTestsChanged === 0
-                    ? 'neutral'
-                    : rawTestsChanged > 0
-                    ? 'negative'
-                    : 'positive'">
+        <h5
+          :class="
+            rawTestsChanged === 0
+              ? 'neutral'
+              : rawTestsChanged > 0
+              ? 'negative'
+              : 'positive'
+          "
+        >
           {{ testsChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
     </b-row>
-    <br>
+    <br />
     <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <h5>{{ $t("hospitalised") }}</h5>
         </div>
         <h1>{{ hospitalisedNumber | formatNumber(currentLocale) }}</h1>
-        <h5 :class="rawHospitalisedChanged === 0
-                    ? 'neutral'
-                    : rawHospitalisedChanged > 0
-                    ? 'positive'
-                    : 'negative'">
+        <h5
+          :class="
+            rawHospitalisedChanged === 0
+              ? 'neutral'
+              : rawHospitalisedChanged > 0
+              ? 'positive'
+              : 'negative'
+          "
+        >
           {{ hospitalisedChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
@@ -79,11 +101,15 @@
           <h5>{{ $t("recovered") }}</h5>
         </div>
         <h1>{{ recoveredNumber | formatNumber(currentLocale) }}</h1>
-        <h5 :class="rawRecoveredChanged === 0
-                    ? 'neutral'
-                    : rawRecoveredChanged > 0
-                    ? 'negative'
-                    : 'positive'">
+        <h5
+          :class="
+            rawRecoveredChanged === 0
+              ? 'neutral'
+              : rawRecoveredChanged > 0
+              ? 'negative'
+              : 'positive'
+          "
+        >
           {{ recoveredChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
@@ -93,11 +119,15 @@
           <h5>{{ $t("deceased") }}</h5>
         </div>
         <h1>{{ deceasedNumber | formatNumber(currentLocale) }}</h1>
-        <h5 :class="rawDeceasedChanged === 0
-                    ? 'neutral'
-                    : rawDeceasedChanged > 0
-                    ? 'positive'
-                    : 'negative'">
+        <h5
+          :class="
+            rawDeceasedChanged === 0
+              ? 'neutral'
+              : rawDeceasedChanged > 0
+              ? 'positive'
+              : 'negative'
+          "
+        >
           {{ deceasedChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
@@ -110,7 +140,7 @@
         </h1>
       </b-col>
     </b-row>
-    <br>
+    <br />
     <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
@@ -126,7 +156,12 @@
         <div class="statsbar-heading">
           <h5>{{ $t("allVaccinatedPercentage") }}</h5>
         </div>
-        <h1>{{ allVaccinationFromPopulationPercentage | formatNumber(currentLocale, 1) }}%</h1>
+        <h1>
+          {{
+            allVaccinationFromPopulationPercentage
+              | formatNumber(currentLocale, 1)
+          }}%
+        </h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -143,7 +178,9 @@
         <div class="statsbar-heading">
           <h5>{{ $t("completedVaccinationNumber") }}</h5>
         </div>
-        <h1>{{ completedVaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
+        <h1>
+          {{ completedVaccinationNumberTotal | formatNumber(currentLocale) }}
+        </h1>
         <h5 class="negative">
           {{ completedVaccinationNumberLastDay | formatNumber(currentLocale) }}
         </h5>
@@ -153,7 +190,12 @@
         <div class="statsbar-heading">
           <h5>{{ $t("completelyVaccinatedFromTotalVaccinatedPercentage") }}</h5>
         </div>
-        <h1>{{ completelyVaccinatedFromTotalVaccinatedPercentage | formatNumber(currentLocale, 1) }}%</h1>
+        <h1>
+          {{
+            completelyVaccinatedFromTotalVaccinatedPercentage
+              | formatNumber(currentLocale, 1)
+          }}%
+        </h1>
       </b-col>
     </b-row>
   </b-container>
@@ -212,11 +254,11 @@ export default {
       rawHospitalisedChanged: Number(data.hospitalChanged),
       rawRecoveredChanged: Number(data.recoveredChanged),
       rawTestsChanged: Number(
-        data.dataCumulativeTestsChart.testsAdminstered[
-          data.dataCumulativeTestsChart.testsAdminstered.length - 1
+        data.dataCumulativeTestsChart.testsAdministered[
+          data.dataCumulativeTestsChart.testsAdministered.length - 1
         ] -
-          data.dataCumulativeTestsChart.testsAdminstered[
-            data.dataCumulativeTestsChart.testsAdminstered.length - 2
+          data.dataCumulativeTestsChart.testsAdministered[
+            data.dataCumulativeTestsChart.testsAdministered.length - 2
           ]
       ),
 
@@ -230,11 +272,11 @@ export default {
       hospitalisedChanged: positiveSign(data.hospitalChanged),
       recoveredChanged: positiveSign(data.recoveredChanged),
       testsChanged: positiveSign(
-        data.dataCumulativeTestsChart.testsAdminstered[
-          data.dataCumulativeTestsChart.testsAdminstered.length - 1
+        data.dataCumulativeTestsChart.testsAdministered[
+          data.dataCumulativeTestsChart.testsAdministered.length - 1
         ] -
-          data.dataCumulativeTestsChart.testsAdminstered[
-            data.dataCumulativeTestsChart.testsAdminstered.length - 2
+          data.dataCumulativeTestsChart.testsAdministered[
+            data.dataCumulativeTestsChart.testsAdministered.length - 2
           ]
       ),
       allVaccinationNumberTotal: data.allVaccinationNumberTotal,
@@ -266,12 +308,13 @@ export default {
 
       if (typeof number === "string" && number.startsWith("+")) {
         const actualNumber = number.split("+")[1];
-        result = "+" + formatNumberByLocale(actualNumber, currentLocale, precision);
+        result =
+          "+" + formatNumberByLocale(actualNumber, currentLocale, precision);
       } else {
         result = formatNumberByLocale(number, currentLocale, precision);
       }
 
-      return result.replace(/\s/g, '\u202F')
+      return result.replace(/\s/g, "\u202F");
     },
   },
 };

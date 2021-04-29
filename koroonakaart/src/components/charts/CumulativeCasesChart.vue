@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts :constructor-type="'stockChart'" class="chart" :options="chartOptions"></highcharts>
+    <highcharts
+      :constructor-type="'stockChart'"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -13,11 +17,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -30,7 +34,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function() {
+            load: function () {
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
               if (!this.exportSVGElements) return;
@@ -44,7 +48,7 @@ export default {
               // 3 - disabled
               button.setState(2);
             },
-            redraw: function() {
+            redraw: function () {
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
                 if (!this.exportSVGElements) return;
@@ -56,18 +60,18 @@ export default {
                   this.options.chartType === "logarithmic" ? 2 : 0
                 );
               }, 100);
-            }
-          }
+            },
+          },
         },
 
         rangeSelector: {
-          selected: 5
+          selected: 5,
         },
 
         title: {
           text: this.$t("cumulativeCases"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         exporting: {
@@ -77,8 +81,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -91,58 +95,58 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
 
             customButton2: {
               text: this.$t("logarithmic"),
-              onclick: function() {
+              onclick: function () {
                 this.options.chartType = "logarithmic";
 
                 this.yAxis[0].update({
-                  type: "logarithmic"
+                  type: "logarithmic",
                 });
-              }
+              },
             },
             customButton: {
               text: this.$t("linear"),
-              onclick: function() {
+              onclick: function () {
                 this.options.chartType = "linear";
 
                 this.yAxis[0].update({
-                  type: "linear"
+                  type: "linear",
                 });
-              }
-            }
-          }
+              },
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         legend: {
           enabled: true,
           layout: "horizontal",
           align: "center",
-          verticalAlign: "bottom"
+          verticalAlign: "bottom",
         },
 
         plotOptions: {
           line: {
             /* or spline, area, series, areaspline etc.*/
             marker: {
-              enabled: false
-            }
+              enabled: false,
+            },
           },
           series: {
             showInNavigator: true,
             label: {
-              connectorAllowed: false
-            }
-          }
+              connectorAllowed: false,
+            },
+          },
         },
 
         navigation: {
@@ -163,15 +167,15 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         xAxis: {
@@ -180,24 +184,30 @@ export default {
             day: "%Y<br>%m-%d",
             week: "%Y<br>%m-%d",
             month: "%Y-%m",
-            year: "%Y"
+            year: "%Y",
           },
           labels: {
             style: {
-              fontSize: "11px"
-            }
-          }
+              fontSize: "11px",
+            },
+          },
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfCases")
-          }
+            text: this.$t("numberOfCases"),
+          },
         },
 
         tooltip: {
           formatter: (context) => {
-              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+            return formatTooltip(
+              context,
+              this.chartOptions.series,
+              this.currentLocale,
+              0,
+              true
+            );
           },
           backgroundColor: "#ffffff",
           style: {
@@ -206,7 +216,7 @@ export default {
           shared: true,
           split: false,
           useHTML: true,
-          distance: 20
+          distance: 20,
         },
 
         series: [
@@ -217,8 +227,8 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.cases,
             marker: {
-                symbol: 'circle'
-            }
+              symbol: "circle",
+            },
           },
           {
             name: this.$t("recovered"),
@@ -227,8 +237,8 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.recovered,
             marker: {
-                symbol: 'circle'
-            }
+              symbol: "circle",
+            },
           },
           {
             name: this.$t("active"),
@@ -237,8 +247,8 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.active,
             marker: {
-                symbol: 'circle'
-            }
+              symbol: "circle",
+            },
           },
           {
             name: this.$t("deceased"),
@@ -247,8 +257,8 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.deceased,
             marker: {
-                symbol: 'circle'
-            }
+              symbol: "circle",
+            },
           },
           {
             name: this.$t("hospitalised"),
@@ -257,8 +267,8 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.haiglas,
             marker: {
-                symbol: 'circle'
-            }
+              symbol: "circle",
+            },
           },
           {
             name: this.$t("intensive"),
@@ -267,8 +277,8 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.intensive,
             marker: {
-                symbol: 'circle'
-            }
+              symbol: "circle",
+            },
           },
           {
             name: this.$t("onventilation"),
@@ -277,16 +287,16 @@ export default {
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.onventilation,
             marker: {
-                symbol: 'circle'
-            }
-          }
+              symbol: "circle",
+            },
+          },
         ],
 
         responsive: {
           rules: [
             {
               condition: {
-                maxWidth: 350
+                maxWidth: 350,
               },
 
               chartOptions: {
@@ -297,35 +307,35 @@ export default {
                     verticalAlign: "center",
                     theme: {
                       style: {
-                        width: "70px"
-                      }
-                    }
-                  }
-                }
-              }
+                        width: "70px",
+                      },
+                    },
+                  },
+                },
+              },
             },
             {
               condition: {
-                maxWidth: 575
+                maxWidth: 575,
               },
 
               chartOptions: {
                 legend: {
-                  enabled: true
-                }
-              }
-            }
-          ]
-        }
-      }
+                  enabled: true,
+                },
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -344,8 +354,8 @@ export default {
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

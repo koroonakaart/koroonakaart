@@ -15,20 +15,20 @@ const routes = [
     name: "root",
     beforeEnter(to, from, next) {
       next(localStorage.getItem("koroonaLang") ?? "et");
-    }
+    },
   },
   {
-    path: "/api"
+    path: "/api",
   },
   {
     path: "/:locale/faq",
     name: "FrequentlyAskedQuestions",
-    component: FrequentlyAskedQuestions
+    component: FrequentlyAskedQuestions,
   },
   {
     path: "/:locale/chart",
     name: "EmbedCharts",
-    component: EmbedCharts
+    component: EmbedCharts,
   },
   {
     path: "/:locale",
@@ -37,15 +37,15 @@ const routes = [
     children: [
       {
         path: "*",
-        redirect: "/:locale"
-      }
-    ]
-  }
+        redirect: "/:locale",
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
   routes,
-  mode: "history"
+  mode: "history",
 });
 
 export default router;

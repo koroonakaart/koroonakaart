@@ -152,28 +152,41 @@ export default {
 
         tooltip: {
           formatter: (context) => {
-              // Identify which position in the series and date we are dealing with
-              var x = context.chart.hoverPoint.x;
+            // Identify which position in the series and date we are dealing with
+            var x = context.chart.hoverPoint.x;
 
-              // Get data for this date
-              var countyName = context.chart.hoverPoint.series.name;
-              var color = context.chart.hoverPoint.series.color;
-              var value = context.chart.hoverPoint.y;
+            // Get data for this date
+            var countyName = context.chart.hoverPoint.series.name;
+            var color = context.chart.hoverPoint.series.color;
+            var value = context.chart.hoverPoint.y;
 
-              // Get localised date
-              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+            // Get localised date
+            var dateOptions = {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            };
+            var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
 
-              // Compose tooltip
-              var tooltip = tooltipDate + '<br>';
-              tooltip += '<table>';
-              tooltip += '<tr>';
-              tooltip += '<td><span style="color: ' + color + '">●</span> ' + countyName + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(value, this.currentLocale) + '</b></td>';
-              tooltip += '</tr>';
-              tooltip += '</table>';
+            // Compose tooltip
+            var tooltip = tooltipDate + "<br>";
+            tooltip += "<table>";
+            tooltip += "<tr>";
+            tooltip +=
+              '<td><span style="color: ' +
+              color +
+              '">●</span> ' +
+              countyName +
+              "&nbsp;&nbsp;</td>";
+            tooltip +=
+              '<td style="text-align: right"><b>' +
+              formatNumberByLocale(value, this.currentLocale) +
+              "</b></td>";
+            tooltip += "</tr>";
+            tooltip += "</table>";
 
-              return tooltip;
+            return tooltip;
           },
           // headerFormat:
           //   '<span>{point.key}</span><table>',
@@ -185,11 +198,11 @@ export default {
             opacity: 0.95,
           },
           split: false,
-          useHTML: true
+          useHTML: true,
         },
 
         rangeSelector: {
-            selected: 0
+          selected: 0,
         },
 
         series: [
@@ -312,7 +325,7 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     },
   },

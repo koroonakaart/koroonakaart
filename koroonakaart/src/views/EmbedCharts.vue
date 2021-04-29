@@ -17,7 +17,7 @@ export default {
       import("../components/charts/CumulativeTestsChart"),
     CumulativeCasesChart: () =>
       import("../components/charts/CumulativeCasesChart"),
-    CumulativeCasesPer100kChart: () => 
+    CumulativeCasesPer100kChart: () =>
       import("../components/charts/CumulativeCasesPer100kChart"),
     NewCasesPerDayChart: () =>
       import("../components/charts/NewCasesPerDayChart"),
@@ -34,17 +34,15 @@ export default {
       import("../components/charts/PositiveNegativeChart"),
     TestsPopRatioChart: () => import("../components/charts/TestsPopRatioChart"),
     //  PositiveTestsAgeDistributionChart:() => import("../components/charts/PositiveTestsAgeDistributionChart.vue"),
-    GenderChart: () =>
-      import("../components/charts/GenderChart"),
+    GenderChart: () => import("../components/charts/GenderChart"),
     VaccinatedPeopleChart: () =>
-      import("../components/charts/VaccinatedPeopleChart")
-
+      import("../components/charts/VaccinatedPeopleChart"),
   },
 
   mounted() {
     console.log(this.$route.query);
     /* this.classList.remove("container"); */
-  }
+  },
 };
 </script>
 

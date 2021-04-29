@@ -1,15 +1,19 @@
 <template>
   <headroom>
-    <b-navbar class="shadow-sm p-3 mb-4 bg-white rounded"
-              sticky
-              toggleable="md"
-              type="light"
-              variant="light">
+    <b-navbar
+      class="shadow-sm p-3 mb-4 bg-white rounded"
+      sticky
+      toggleable="md"
+      type="light"
+      variant="light"
+    >
       <b-container fluid="lg">
         <b-navbar-brand>
           <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
           <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
-          <small class="navbar-updated">{{ $t("navbarUpdated") }}: {{ updatedOn }}</small>
+          <small class="navbar-updated"
+            >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
+          >
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -24,7 +28,9 @@
 
             <small>
               {{ $t("hoia.me") }}
-              <a href="https://hoia.me" rel="noopener" target="_blank">hoia.me</a>
+              <a href="https://hoia.me" rel="noopener" target="_blank"
+                >hoia.me</a
+              >
             </small>
 
             <!-- </b-nav-item> -->
@@ -32,9 +38,11 @@
           <b-navbar-nav class="ml-auto">
             <b-dropdown-divider />
             <b-nav-item toggle-class="nav-link-custom">
-              <div class="navbar-faq"
-                   :class="{ active: this.$store.state.faqActive }"
-                   @click.prevent="toggleFaqActive">
+              <div
+                class="navbar-faq"
+                :class="{ active: this.$store.state.faqActive }"
+                @click.prevent="toggleFaqActive"
+              >
                 {{ $t("faq.faqShort") }}
               </div>
             </b-nav-item>
@@ -48,9 +56,11 @@
                 <Earth id="navbar-langicon" />
                 {{ $t("language") }}
               </template>
-              <b-dropdown-item @click="changeCurrentLanguage(locale)"
-                               v-for="(locale, index) in locales"
-                               :key="locale">
+              <b-dropdown-item
+                @click="changeCurrentLanguage(locale)"
+                v-for="(locale, index) in locales"
+                :key="locale"
+              >
                 {{ languageNames[index] }}
               </b-dropdown-item>
             </b-nav-item-dropdown>
@@ -92,7 +102,7 @@ export default {
 
   // Get available locales
   computed: {
-    locales: function() {
+    locales: function () {
       const initialLocales = this.$i18n.availableLocales;
       // Swap order of locales so et would become before en
       [initialLocales[0], initialLocales[1]] = [
@@ -101,14 +111,14 @@ export default {
       ];
       return initialLocales;
     },
-    linkToFaq: function() {
+    linkToFaq: function () {
       return `/${this.$i18n.locale}/faq`;
     },
   },
 
   // Change current locale to targetLanguage and change route to the targetLanguage
   methods: {
-    changeCurrentLanguage: function(targetLanguage) {
+    changeCurrentLanguage: function (targetLanguage) {
       if (this.$i18n.locale === targetLanguage) return;
 
       if (this.$route.path.includes("faq")) {
@@ -123,14 +133,14 @@ export default {
       localStorage.setItem("koroonaLang", language);
     },
 
-    goBackHome: function() {
+    goBackHome: function () {
       if (this.$route.path === `/${this.$i18n.locale}`) return;
 
       this.$store.dispatch("toggleFaqInactive");
       this.$router.push(`/${this.$i18n.locale}`);
     },
 
-    toggleFaqActive: function() {
+    toggleFaqActive: function () {
       if (this.$route.path === `/${this.$i18n.locale}/faq`) return;
 
       this.$store.dispatch("toggleFaqActive");

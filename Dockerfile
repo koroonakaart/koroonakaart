@@ -3,14 +3,22 @@
 ############################
 # https://hub.docker.com/_/python
 FROM python:3-slim AS fetch_data
+ENV PATH=$PATH:/root/.poetry/bin
+
+# Prepare environment separately to improve caching
+RUN set -exu \
+ && apt-get update \
+ && apt-get install -y curl \
+ && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 WORKDIR /app
 COPY . .
 RUN set -exu \
  && cd TEHIK_Open_Data_Loading_Scripts \
  && python -m pip install --upgrade pip \
- && pip install -r requirements.txt \
- && python main.py
+ && poetry install \
+ && poetry run python deaths_scraper.py \
+ && poetry run python main.py
 
 #########################
 # STEP 2 build frontend

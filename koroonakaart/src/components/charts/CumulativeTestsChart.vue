@@ -12,11 +12,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -25,7 +25,7 @@ export default {
         title: {
           text: this.$t("cumulativeTests"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chartType: "linear",
@@ -34,7 +34,7 @@ export default {
           height: this.height,
           width: this.width,
           events: {
-            load: function() {
+            load: function () {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
@@ -46,7 +46,7 @@ export default {
               // 3 - disabled
               button.setState(2);
             },
-            redraw: function() {
+            redraw: function () {
               if (!this.exportSVGElements) return;
               // Redraw seems to be async so setTimeout for the button to update state
               setTimeout(() => {
@@ -57,8 +57,8 @@ export default {
                   this.options.chartType === "logarithmic" ? 2 : 0
                 );
               }, 100);
-            }
-          }
+            },
+          },
         },
 
         exporting: {
@@ -68,8 +68,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -82,35 +82,35 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
 
             customButton2: {
               text: this.$t("logarithmic"),
-              onclick: function() {
+              onclick: function () {
                 this.options.chartType = "logarithmic";
                 this.yAxis[0].update({
-                  type: "logarithmic"
+                  type: "logarithmic",
                 });
-              }
+              },
             },
 
             customButton: {
               text: this.$t("linear"),
-              onclick: function() {
+              onclick: function () {
                 this.options.chartType = "linear";
                 this.yAxis[0].update({
-                  type: "linear"
+                  type: "linear",
                 });
-              }
-            }
-          }
+              },
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         navigation: {
@@ -130,41 +130,41 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         legend: {
           layout: "horizontal",
           align: "center",
-          verticalAlign: "bottom"
+          verticalAlign: "bottom",
         },
 
         plotOptions: {
           line: {
             /* or spline, area, series, areaspline etc.*/
             marker: {
-              enabled: false
-            }
+              enabled: false,
+            },
           },
           series: {
             label: {
-              connectorAllowed: false
-            }
-          }
+              connectorAllowed: false,
+            },
+          },
         },
 
         xAxis: {
-          categories: data.dates2
+          categories: data.dates2,
           /* plotLines: [
             {
               color: "red", // Color value
@@ -190,22 +190,22 @@ export default {
 
         yAxis: {
           title: {
-            text: this.$t("numberOfTests")
-          }
+            text: this.$t("numberOfTests"),
+          },
         },
 
         series: [
           {
             name: this.$t("testsAdministered"),
-            data: data.dataCumulativeTestsChart.testsAdminstered
-          }
+            data: data.dataCumulativeTestsChart.testsAdministered,
+          },
         ],
 
         responsive: {
           rules: [
             {
               condition: {
-                maxWidth: 650
+                maxWidth: 650,
               },
 
               chartOptions: {
@@ -216,24 +216,24 @@ export default {
                     verticalAlign: "center",
                     theme: {
                       style: {
-                        width: "70px"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+                        width: "70px",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -248,8 +248,8 @@ export default {
       );
       /* this.chartOptions.xAxis.plotLines[0].label.text = this.$t("method");
       this.chartOptions.xAxis.plotLines[1].label.text = this.$t("method"); */
-    }
-  }
+    },
+  },
 };
 </script>
 

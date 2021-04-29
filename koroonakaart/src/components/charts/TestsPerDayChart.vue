@@ -219,54 +219,81 @@ export default {
 
         tooltip: {
           formatter: (context) => {
-              // Identify which position in the series and date we are dealing with
-              var index = context.chart.hoverPoint.index;
-              var x = context.chart.hoverPoint.x;
+            // Identify which position in the series and date we are dealing with
+            var index = context.chart.hoverPoint.index;
+            var x = context.chart.hoverPoint.x;
 
-              // Get data for this date
-              var positive;
-              if (context.chart.series[0].points !== null) {
-                positive = context.chart.series[0].points[index];
-              }
-              var negative;
-              if (context.chart.series[1].points !== null) {
-                negative = context.chart.series[1].points[index];
-              }
-              var positiveTestPercentage;
-              if (context.chart.series[2].points !== null) {
-                positiveTestPercentage = context.chart.series[2].points[index];
-              }
+            // Get data for this date
+            var positive;
+            if (context.chart.series[0].points !== null) {
+              positive = context.chart.series[0].points[index];
+            }
+            var negative;
+            if (context.chart.series[1].points !== null) {
+              negative = context.chart.series[1].points[index];
+            }
+            var positiveTestPercentage;
+            if (context.chart.series[2].points !== null) {
+              positiveTestPercentage = context.chart.series[2].points[index];
+            }
 
-              // Get localised date
-              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+            // Get localised date
+            var dateOptions = {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            };
+            var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
 
-              // Compose tooltip
-              var tooltip = tooltipDate + '<br>';
-              tooltip += '<table>';
-              if (positive !== undefined) {
-                tooltip += '<tr>';
-                tooltip += '<td>' + context.chart.series[0].name + '&nbsp;&nbsp;</td>';
-                tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(positive.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
-                tooltip += '<td style="text-align: right">(' + positive.percentage.toFixed(1) + '%)</td>';
-                tooltip += '</tr>';
-              }
-              if (negative !== undefined) {
-                tooltip += '<tr>';
-                tooltip += '<td>' + context.chart.series[1].name + '&nbsp;&nbsp;</td>';
-                tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(negative.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
-                tooltip += '<td style="text-align: right">(' + negative.percentage.toFixed(1) + '%)</td>';
-                tooltip += '</tr>';
-              }
-              if (positive === undefined && negative === undefined && positiveTestPercentage !== undefined) {
-                tooltip += '<tr>';
-                tooltip += '<td>' + context.chart.series[2].name + '&nbsp;&nbsp;</td>';
-                tooltip += '<td style="text-align: right"><b>' + positiveTestPercentage.y.toFixed(1) + '</b>&nbsp;&nbsp;</td>';
-                tooltip += '</tr>';
-              }
-              tooltip += '</table>';
+            // Compose tooltip
+            var tooltip = tooltipDate + "<br>";
+            tooltip += "<table>";
+            if (positive !== undefined) {
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[0].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                formatNumberByLocale(positive.y, this.currentLocale) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right">(' +
+                positive.percentage.toFixed(1) +
+                "%)</td>";
+              tooltip += "</tr>";
+            }
+            if (negative !== undefined) {
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[1].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                formatNumberByLocale(negative.y, this.currentLocale) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right">(' +
+                negative.percentage.toFixed(1) +
+                "%)</td>";
+              tooltip += "</tr>";
+            }
+            if (
+              positive === undefined &&
+              negative === undefined &&
+              positiveTestPercentage !== undefined
+            ) {
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[2].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                positiveTestPercentage.y.toFixed(1) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip += "</tr>";
+            }
+            tooltip += "</table>";
 
-              return tooltip;
+            return tooltip;
           },
           backgroundColor: "#ffffff",
           style: {
@@ -308,7 +335,7 @@ export default {
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     },
   },

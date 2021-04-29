@@ -15,7 +15,7 @@ county_mapping = {
     "Valga maakond": "Valgamaa",
     "Viljandi maakond": "Viljandimaa",
     "Võru maakond": "Võrumaa",
-    "Eesti": "Info puudulik"
+    "Eesti": "Info puudulik",
 }
 
 counties = [
@@ -34,7 +34,7 @@ counties = [
     "Valgamaa",
     "Viljandimaa",
     "Võrumaa",
-    "Info puudulik"
+    "Info puudulik",
 ]
 
 # 2020 population from https://www.stat.ee/et/avasta-statistikat/piirkonnad
@@ -53,7 +53,7 @@ county_sizes = {
     "Tartumaa": 153317,
     "Valgamaa": 28204,
     "Viljandimaa": 46161,
-    "Võrumaa": 35415
+    "Võrumaa": 35415,
 }
 
 age_groups = [
@@ -74,5 +74,5 @@ age_groups = [
     "70-74",
     "75-79",
     "80-84",
-    "üle 85"
+    "üle 85",
 ]

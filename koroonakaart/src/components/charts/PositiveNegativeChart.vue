@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
+    <highcharts
+      class="chart"
+      :options="chartOptions"
+      ref="thisChart"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -12,11 +16,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -27,7 +31,7 @@ export default {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
@@ -67,8 +71,8 @@ export default {
                   this.chartType === "absolute" ? 2 : 0
                 );
               }, 50);
-            }
-          }
+            },
+          },
         },
 
         exporting: {
@@ -78,8 +82,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -92,8 +96,8 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
 
             customButton: {
@@ -104,7 +108,7 @@ export default {
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "normal";
                 this.$refs.thisChart.options.yAxis.title.text = this.$t("abs");
-              }
+              },
             },
 
             customButton2: {
@@ -115,14 +119,14 @@ export default {
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "percent";
                 this.$refs.thisChart.options.yAxis.title.text = "%";
-              }
-            }
-          }
+              },
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         navigation: {
@@ -143,17 +147,17 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         xAxis: {
@@ -162,14 +166,14 @@ export default {
             autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -85, -90],
             style: {
               fontSize: "11px",
-              fontWeight: "bold"
-            }
+              fontWeight: "bold",
+            },
           },
 
           categories: [
             this.$t("insufficientData"), // TODO: This item should be the last on this list.
-                                         // But we need to change the order of the data in
-                                         // the JSON file before it can be moved.
+            // But we need to change the order of the data in
+            // the JSON file before it can be moved.
             "Harjumaa",
             "Hiiumaa",
             "Ida-Virumaa",
@@ -184,22 +188,21 @@ export default {
             "Tartumaa",
             "Valgamaa",
             "Viljandimaa",
-            "Võrumaa"
-          ]
+            "Võrumaa",
+          ],
         },
 
         yAxis: {
           title: {
-            text: "%"
-          }
+            text: "%",
+          },
         },
 
         tooltip: {
-          headerFormat:
-            '<span>{point.key}</span><table>',
+          headerFormat: "<span>{point.key}</span><table>",
           pointFormat:
             '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;&nbsp;</td>' +
-            '<td style="text-align: right"><b>{point.y}</b>&nbsp;&nbsp;</td>' + 
+            '<td style="text-align: right"><b>{point.y}</b>&nbsp;&nbsp;</td>' +
             '<td style="text-align: right">({point.percentage:.1f}%)</td></tr>',
           footerFormat: "</table>",
           backgroundColor: "#ffffff",
@@ -207,33 +210,33 @@ export default {
             opacity: 0.95,
           },
           shared: true,
-          useHTML: true
+          useHTML: true,
         },
 
         plotOptions: {
           column: {
             stacking: "percent",
-            enableMouseTracking: true
-          }
+            enableMouseTracking: true,
+          },
         },
 
         series: [
           {
             name: this.$t("positive"),
             data: data.dataPositiveNegativeChart.positive,
-            color: "#000000"
+            color: "#000000",
           },
           {
             name: this.$t("negative"),
-            data: data.dataPositiveNegativeChart.negative
-          }
+            data: data.dataPositiveNegativeChart.negative,
+          },
         ],
 
         responsive: {
           rules: [
             {
               condition: {
-                maxWidth: 600
+                maxWidth: 600,
               },
 
               chartOptions: {
@@ -243,24 +246,24 @@ export default {
                     verticalAlign: "center",
                     theme: {
                       style: {
-                        width: "70px"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+                        width: "70px",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -274,8 +277,8 @@ export default {
       if (this.chartType === "absolute") {
         this.$refs.thisChart.options.yAxis.title.text = this.$t("abs");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

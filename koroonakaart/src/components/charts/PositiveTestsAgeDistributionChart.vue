@@ -1,6 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions" ref="thisChart"></highcharts>
+    <highcharts
+      class="chart"
+      :options="chartOptions"
+      ref="thisChart"
+    ></highcharts>
   </b-container>
 </template>
 
@@ -16,18 +20,18 @@ export default {
 
       props: {
         height: {
-          default: null
+          default: null,
         },
         width: {
-          default: null
-        }
+          default: null,
+        },
       },
 
       chartOptions: {
         title: {
           text: this.$t("distributionOfPositiveTests"),
           align: "left",
-          y: 25
+          y: 25,
         },
 
         chart: {
@@ -67,8 +71,8 @@ export default {
                   this.chartType === "absolute" ? 2 : 0
                 );
               }, 50);
-            }
-          }
+            },
+          },
         },
 
         exporting: {
@@ -78,8 +82,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -92,8 +96,8 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
+                "embed",
+              ],
             },
 
             customButton: {
@@ -106,7 +110,7 @@ export default {
                 this.$refs.thisChart.options.yAxis.title.text = this.$t(
                   "numberOfTests"
                 );
-              }
+              },
             },
 
             customButton2: {
@@ -117,9 +121,9 @@ export default {
                 this.$refs.thisChart.options.plotOptions.column.stacking =
                   "percent";
                 this.$refs.thisChart.options.yAxis.title.text = "%";
-              }
-            }
-          }
+              },
+            },
+          },
         },
 
         navigation: {
@@ -140,27 +144,27 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline"
-                  }
-                }
+                    textDecoration: "underline",
+                  },
+                },
               },
               style: {
                 /* color: "#039", */
                 /* fontWeight: "bold", */
-                textDecoration: "none"
-              }
-            }
-          }
+                textDecoration: "none",
+              },
+            },
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         xAxis: {
           title: {
-            text: this.$t("age")
+            text: this.$t("age"),
           },
           labels: {
             /* padding: "1px", */
@@ -175,12 +179,12 @@ export default {
               -80,
               -85,
               -88,
-              -90
+              -90,
             ],
             style: {
               fontSize: "10px",
-              fontWeight: "bold"
-            }
+              fontWeight: "bold",
+            },
           },
 
           categories: [
@@ -202,20 +206,20 @@ export default {
             "75 - 79",
             "80 - 85",
             "85+",
-            this.$t("unknown")
-          ]
+            this.$t("unknown"),
+          ],
         },
 
         yAxis: {
           title: {
-            text: this.$t("numberOfTests")
-          }
+            text: this.$t("numberOfTests"),
+          },
         },
         plotOptions: {
           column: {
             stacking: "normal",
-            enableMouseTracking: true
-          }
+            enableMouseTracking: true,
+          },
         },
         tooltip: {
           headerFormat:
@@ -229,28 +233,28 @@ export default {
             opacity: 0.95,
           },
           shared: true,
-          useHTML: true
+          useHTML: true,
         },
         series: [
           {
             name: this.$t("positive"),
             data: data.dataPositiveTestsByAgeChart.positive,
-            color: "#000000"
+            color: "#000000",
           },
           {
             name: this.$t("negative"),
-            data: data.dataPositiveTestsByAgeChart.negative
-          }
-        ]
-      }
+            data: data.dataPositiveTestsByAgeChart.negative,
+          },
+        ],
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -267,8 +271,8 @@ export default {
       if (this.chartType === "absolute") {
         this.chartOptions.yAxis.title.text = this.$t("numberOfTests");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

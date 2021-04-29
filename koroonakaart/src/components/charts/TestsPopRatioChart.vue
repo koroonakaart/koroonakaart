@@ -14,18 +14,18 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
   // data() {
   // },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
     },
     chartOptions() {
@@ -34,21 +34,21 @@ export default {
         title: {
           text: this.$t("testsPer10000"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
-          }
+            y: -15,
+          },
         },
 
         chart: {
           type: "bar",
           height: this.height,
           width: this.width,
-          marginTop: 40
+          marginTop: 40,
         },
 
         exporting: {
@@ -58,8 +58,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -72,9 +72,9 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
-            }
+                "embed",
+              ],
+            },
           },
 
           chartOptions: {
@@ -82,17 +82,23 @@ export default {
             plotOptions: {
               series: {
                 dataLabels: {
-                  enabled: true
-                }
-              }
-            }
+                  enabled: true,
+                },
+              },
+            },
           },
-          fallbackToExportServer: false
+          fallbackToExportServer: false,
         },
 
         tooltip: {
           formatter: (context) => {
-              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 1, false);
+            return formatTooltip(
+              context,
+              this.chartOptions.series,
+              this.currentLocale,
+              1,
+              false
+            );
           },
           // headerFormat:
           //   '<span>{point.key}</span><table>',
@@ -106,20 +112,20 @@ export default {
           },
           shared: true,
           useHTML: true,
-          valueDecimals: 1
+          valueDecimals: 1,
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         xAxis: {
           labels: {
             style: {
               fontSize: "13px",
-              fontWeight: "bold"
-            }
+              fontWeight: "bold",
+            },
           },
           categories: [
             "Harjumaa",
@@ -136,51 +142,51 @@ export default {
             "Tartumaa",
             "Valgamaa",
             "Viljandimaa",
-            "Võrumaa"
-          ]
+            "Võrumaa",
+          ],
         },
 
         yAxis: {
           title: {
-            text: this.$t("testsPer10000Axis")
-          }
+            text: this.$t("testsPer10000Axis"),
+          },
         },
 
         plotOptions: {
           bar: {
             dataLabels: {
               enabled: true,
-              formatter: function() {
-                  return formatNumberByLocale(this.y, context.currentLocale, 1);
-                  // return Highcharts.numberFormat(this.y, 1);
-                }
+              formatter: function () {
+                return formatNumberByLocale(this.y, context.currentLocale, 1);
+                // return Highcharts.numberFormat(this.y, 1);
               },
-            enableMouseTracking: true
-          }
+            },
+            enableMouseTracking: true,
+          },
         },
 
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: data.dataTestsPopRatio
-          }
+            data: data.dataTestsPopRatio,
+          },
         ],
 
         responsive: {
           rules: [
             {
               condition: {
-                maxWidth: 350
+                maxWidth: 350,
               },
 
               chartOptions: {
-                chart: { marginTop: 60 }
-              }
-            }
-          ]
-        }
+                chart: { marginTop: 60 },
+              },
+            },
+          ],
+        },
       };
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -190,8 +196,8 @@ export default {
       this.chartOptions.yAxis.title.text = this.$t("testsPer10000Axis");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
       //  this.chartOptions.xAxis.categories[0] = this.$t("insufficientData");
-    }
-  }
+    },
+  },
 };
 </script>
 

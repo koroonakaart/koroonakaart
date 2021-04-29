@@ -13,11 +13,11 @@ export default {
 
   props: {
     height: {
-      default: null
+      default: null,
     },
     width: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
@@ -26,14 +26,14 @@ export default {
         title: {
           text: this.$t("distributionOfAgeSexTests"),
           align: "left",
-          y: 5
+          y: 5,
         },
 
         chart: {
           absolute: true,
           type: "bar",
           height: this.height,
-          width: this.width
+          width: this.width,
         },
 
         exporting: {
@@ -43,8 +43,8 @@ export default {
                 this.$store.dispatch("setCurrentChartName", this.$options.name);
                 this.$bvModal.show("embed-modal");
               },
-              text: "Embed chart"
-            }
+              text: "Embed chart",
+            },
           },
 
           buttons: {
@@ -57,22 +57,22 @@ export default {
                 "downloadSVG",
                 "downloadCSV",
                 "separator",
-                "embed"
-              ]
-            }
-          }
+                "embed",
+              ],
+            },
+          },
         },
 
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
-            y: -15
-          }
+            y: -15,
+          },
         },
 
         // Show Highcharts.com link at bottom right
         credits: {
-          enabled: true
+          enabled: true,
         },
 
         xAxis: [
@@ -96,12 +96,12 @@ export default {
               "75 - 79",
               "80 - 85",
               "85+",
-              this.$t("unknown")
+              this.$t("unknown"),
             ],
             reversed: false,
             labels: {
-              step: 1
-            }
+              step: 1,
+            },
           },
           {
             opposite: true,
@@ -125,31 +125,31 @@ export default {
               "75 - 79",
               "80 - 85",
               "85+",
-              this.$t("unknown")
+              this.$t("unknown"),
             ],
             linkedTo: 0,
             labels: {
-              step: 1
-            }
-          }
+              step: 1,
+            },
+          },
         ],
 
         yAxis: {
           title: {
-            text: this.$t("numberOfTests")
+            text: this.$t("numberOfTests"),
           },
           labels: {
-            formatter: function() {
+            formatter: function () {
               return Math.abs(this.value);
-            }
-          }
+            },
+          },
         },
 
         plotOptions: {
           bar: {
             stacking: "normal",
-            enableMouseTracking: true
-          }
+            enableMouseTracking: true,
+          },
         },
 
         tooltip: {
@@ -157,11 +157,15 @@ export default {
             var seriesName = context.chart.hoverPoint.series.name;
             var category = context.chart.hoverPoint.category;
             var color = context.chart.hoverPoint.series.color;
-            var value = formatNumberByLocale(Math.abs(context.chart.hoverPoint.y), this.currentLocale, 0);
+            var value = formatNumberByLocale(
+              Math.abs(context.chart.hoverPoint.y),
+              this.currentLocale,
+              0
+            );
 
             // Compose tooltip
             var tooltip = "<span style='color: " + color + "'>●</span>&nbsp;";
-            tooltip += '<b>' + seriesName + ' ' + category + '</b><br>';
+            tooltip += "<b>" + seriesName + " " + category + "</b><br>";
             tooltip += value;
             return tooltip;
           },
@@ -169,7 +173,7 @@ export default {
           style: {
             opacity: 0.95,
           },
-          useHTML: true
+          useHTML: true,
         },
 
         series: [
@@ -177,38 +181,38 @@ export default {
             name: this.$t("maleNegative"),
             visible: false,
             data: data.dataPositiveTestsByAgeChart.maleNegative.map(
-              x => x * -1
+              (x) => x * -1
             ),
-            color: "#97beeb"
+            color: "#97beeb",
           },
           {
             name: this.$t("malePositive"),
             data: data.dataPositiveTestsByAgeChart.malePositive.map(
-              x => x * -1
+              (x) => x * -1
             ),
-            color: "#2f7ed8"
+            color: "#2f7ed8",
           },
           {
             name: this.$t("femaleNegative"),
             visible: false,
             data: data.dataPositiveTestsByAgeChart.femaleNegative,
-            color: "#917ea9"
+            color: "#917ea9",
           },
           {
             name: this.$t("femalePositive"),
             data: data.dataPositiveTestsByAgeChart.femalePositive,
-            color: "#492970"
-          }
-        ]
-      }
+            color: "#492970",
+          },
+        ],
+      },
     };
   },
 
   // Get current locale
   computed: {
-    currentLocale: function() {
+    currentLocale: function () {
       return this.$i18n.locale;
-    }
+    },
   },
 
   // Fire when currentLocale computed property changes
@@ -220,8 +224,8 @@ export default {
       this.chartOptions.series[1].name = this.$t("malePositive");
       this.chartOptions.series[2].name = this.$t("femaleNegative");
       this.chartOptions.series[3].name = this.$t("femalePositive");
-    }
-  }
+    },
+  },
 };
 </script>
 
