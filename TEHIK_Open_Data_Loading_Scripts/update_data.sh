@@ -19,6 +19,9 @@ cd ../koroonakaart
 output_array[npm]=$(npm run build 2>&1 > /dev/null)
 cd - 2>&1 > /dev/null
 
+pwd
+
 ln -srfn ../../koroonakaart/koroonakaart/dist ../../current
 
-. ./after_data_updated.sh
+# Notify Slack channel of how the update went. This isn't needed for local deployment.
+if [ -f ./after_data_updated.sh ]; then . ./after_data_updated.sh; fi
