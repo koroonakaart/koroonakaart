@@ -40,7 +40,7 @@ HOSPITAL_ENDPOINT = (
 VACCINE_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v2/opendata_covid19_vaccination_total.json"
 MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
 DEATHS_FILE_LOCATION = "../data/deaths.json"
-OUTPUT_FILE_LOCATION = "../koroonakaart/src/data.json"
+OUTPUT_FILE_LOCATION = "../data/data.json"
 
 
 def get_json_data(url) -> any:
