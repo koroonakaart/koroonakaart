@@ -1,8 +1,11 @@
-import requests
 import json
-from bs4 import BeautifulSoup
-from datetime import datetime
 import os.path
+import requests
+import sys
+import traceback
+from datetime import datetime
+
+from bs4 import BeautifulSoup
 
 from helpers import NpEncoder
 from chart_data_functions import *
@@ -28,18 +31,35 @@ def read_json_from_file(path) -> any:
     return data
 
 
+def log_status(message):
+    print(message, file=sys.stderr)
+
+
+# Log status
+log_status("Crawling data on deaths from " + url)
 deaths_container = soup.select('.node-lead-default strong')
 if len(deaths_container) > 0:
-    deaths_count = int(deaths_container[0].text.strip())
-    current_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+    try:
+        deaths_count = int(deaths_container[0].text.strip())
+        current_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
 
-    json_deaths = read_json_from_file(DEATH_FILE_LOCATION)
+        json_deaths = read_json_from_file(DEATH_FILE_LOCATION)
 
-    deaths_output = {}
-    if len(json_deaths):
-        deaths_output = json_deaths
+        deaths_output = {}
+        if len(json_deaths):
+            deaths_output = json_deaths
 
-    deaths_output[current_date] = deaths_count
+        deaths_output[current_date] = deaths_count
 
-    printToJson(DEATH_FILE_LOCATION, deaths_output)
+        printToJson(DEATH_FILE_LOCATION, deaths_output)
+
+        # Log status
+        log_status("Successfully crawled deaths. Total deaths: " + str(deaths_count))
+    except:
+        # Log error
+        log_status("Error when crawling data on deaths:")
+        log_status(traceback.format_exc())
+else:
+    # Log error
+    log_status("Error: could not find page element with data on deaths")
 
