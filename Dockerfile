@@ -55,4 +55,4 @@ FROM nginx:mainline-alpine AS runtime
 RUN sed -i '/index.html index.htm;/ i try_files $uri /index.html;' /etc/nginx/conf.d/default.conf
 
 COPY --from=build_frontend /app/koroonakaart/dist /usr/share/nginx/html
-COPY --from=build_frontend /app/data/data.json /usr/share/nginx/html/data.json
+COPY --from=build_frontend /app/koroonakaart/src/data.json /usr/share/nginx/html/data.json
