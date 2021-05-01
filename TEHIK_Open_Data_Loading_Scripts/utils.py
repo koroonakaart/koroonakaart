@@ -1,5 +1,6 @@
 import json
 import os.path
+import sys
 
 from helpers import NpEncoder
 
@@ -19,3 +20,7 @@ def read_json_from_file(path) -> any:
     with open(path) as f:
         data = json.load(f)
     return data
+
+
+def log_status(message):
+    print(message, file=sys.stderr)

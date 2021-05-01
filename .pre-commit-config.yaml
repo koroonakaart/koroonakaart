@@ -1,6 +1,25 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
+  - repo: https://github.com/ryanrhee/shellcheck-py
+    rev: v0.7.2.1
+    hooks:
+      # Run shellcheck for all .sh files
+      - id: shellcheck
+
+  - repo: https://github.com/sqlalchemyorg/zimports/
+    rev: 0.3.0
+    hooks:
+      # Remove unused imports and sort them
+      - id: zimports
+
+  - repo: https://github.com/psf/black
+    rev: 20.8b1
+    hooks:
+      # Format Python files
+      - id: black
+        language_version: python3
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
     hooks:
@@ -21,25 +40,6 @@ repos:
         name: Ensure CFLF endings on Windows files
         args: ["--fix=crlf"]
         files: \.bat$
-
-  - repo: https://github.com/ryanrhee/shellcheck-py
-    rev: v0.7.2.1
-    hooks:
-      # Run shellcheck for all .sh files
-      - id: shellcheck
-
-  - repo: https://github.com/sqlalchemyorg/zimports/
-    rev: 0.3.0
-    hooks:
-      # Remove unused imports and sort them
-      - id: zimports
-
-  - repo: https://github.com/psf/black
-    rev: 20.8b1
-    hooks:
-      # Format Python files
-      - id: black
-        language_version: python3
 
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.0

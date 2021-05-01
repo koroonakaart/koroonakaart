@@ -1,5 +1,4 @@
 from datetime import timezone
-import sys
 from time import sleep
 
 from chart_data_functions import *
@@ -10,6 +9,7 @@ from constants import county_sizes
 from dateutil.parser import parse as parsedate
 import pytz
 import requests
+from utils import log_status
 from utils import read_json_from_file
 from utils import save_as_json
 
@@ -66,10 +66,6 @@ def is_header_last_modified_up_to_date(url):
     if url_date > today:
         return True
     return False
-
-
-def log_status(message):
-    print(message, file=sys.stderr)
 
 
 if __name__ == "__main__":
