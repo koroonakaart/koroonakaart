@@ -175,11 +175,6 @@ export default {
 
               return tooltip;
           },
-          // headerFormat:
-          //   '<span>{point.key}</span><table>',
-          // pointFormat:
-          //   '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;</td>' +
-          //   '<td style="padding:0"><b>{point.y}</b></td></tr>',
           backgroundColor: "#ffffff",
           style: {
             opacity: 0.95,

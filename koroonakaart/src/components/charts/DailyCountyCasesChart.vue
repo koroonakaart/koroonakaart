@@ -6,8 +6,7 @@
 
 <script>
 import data from "../../data.json";
-import { formatDate, capitalise } from "../../utilities/helper";
-import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
+import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
   name: "DailyCountyCasesChart",
@@ -177,42 +176,7 @@ export default {
 
         tooltip: {
           formatter: (context) => {
-              // Identify which position in the series and date we are dealing with
-              var index = context.chart.hoverPoint.index;
-              var x = context.chart.hoverPoint.x;
-
-              // Get data for the individual tooltip entries
-              var tooltipEntries = []
-              for (const series of this.chartOptions.series) {
-                if (series.data[index] !== undefined) {
-                  tooltipEntries.push(
-                    {
-                      name: series.name,
-                      value: formatNumberByLocale(series.data[index], this.currentLocale),
-                      color: series.color
-                    }
-                  )
-                }
-              }
-
-              // Get localised date
-              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var tooltipDate = capitalise(formatDate(x, this.currentLocale, dateOptions));
-
-              // Compose tooltip
-              var tooltip = tooltipDate + '<br>';
-              if (tooltipEntries.length > 0) {
-                tooltip += '<table>';
-                for (const tooltipEntry of tooltipEntries) {
-                  tooltip += '<tr>';
-                  tooltip += '<td><span style="color:' + tooltipEntry.color + '">●</span> ' + tooltipEntry.name + '&nbsp;</td>';
-                  tooltip += '<td style="text-align: right"><b>' + tooltipEntry.value + '</b>&nbsp;</td>';
-                  tooltip += '</tr>';
-                }
-                tooltip += '</table>';
-              }
-
-              return tooltip;
+              return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
           },
           backgroundColor: "#ffffff",
           style: {
