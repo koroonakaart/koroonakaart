@@ -6,7 +6,7 @@
 
 <script>
 import data from "../../data.json";
-import { formatDate } from "../../utilities/helper";
+import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
@@ -197,7 +197,7 @@ export default {
 
               // Get localised date
               var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+              var tooltipDate = capitalise(formatDate(x, this.currentLocale, dateOptions));
 
               // Compose tooltip
               var tooltip = tooltipDate + '<br>';
