@@ -11,7 +11,7 @@
 
 <script>
 import data from "../../data.json";
-import { formatDate } from "../../utilities/helper";
+import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
@@ -167,7 +167,7 @@ export default {
               month: "long",
               day: "numeric",
             };
-            var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+            var tooltipDate = capitalise(formatDate(x, this.currentLocale, dateOptions));
 
             // Compose tooltip
             var tooltip = tooltipDate + "<br>";
@@ -188,11 +188,6 @@ export default {
 
             return tooltip;
           },
-          // headerFormat:
-          //   '<span>{point.key}</span><table>',
-          // pointFormat:
-          //   '<tr><td><span style="color:{series.color}">●</span> {series.name}&nbsp;</td>' +
-          //   '<td style="padding:0"><b>{point.y}</b></td></tr>',
           backgroundColor: "#ffffff",
           style: {
             opacity: 0.95,

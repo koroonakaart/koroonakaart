@@ -16,5 +16,5 @@ export function formatDate(date, locale, dateOptions) {
     // Will produce European-style dates when using English
     locale = "en-GB";
   }
-  return capitalise(new Date(date).toLocaleString(locale, dateOptions));
+  return new Date(date).toLocaleString(locale, dateOptions);
 }
