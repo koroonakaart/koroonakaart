@@ -229,25 +229,22 @@ export default {
               // console.log(index);
               // console.log('currentDataGroupingUnit:');
               // console.log(currentDataGroupingUnit);
-              console.log('context.chart:');
-              console.log(context.chart);
+              // console.log('context.chart:');
+              // console.log(context.chart);
               // console.log('');
 
               // Get data for this date
               var positive;
               if (context.chart.series[0].visible) {
                 positive = context.chart.series[0].points.find(element => element.index === index);
-                console.log('positive: ' + positive.y);
               }
               var negative;
               if (context.chart.series[1].visible) {
                 negative = context.chart.series[1].points.find(element => element.index === index);
-                console.log('negative: ' + negative.y);
               }
               var positiveTestPercentage;
               if (context.chart.series[2].visible) {
                 positiveTestPercentage = context.chart.series[2].points.find(element => element.index === index);
-                console.log('positiveTestPercentage: ' + positiveTestPercentage.y);
               }
 
               // Calculate tooltip title
