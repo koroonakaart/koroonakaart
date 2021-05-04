@@ -1,4 +1,4 @@
-import { formatDate } from "./helper";
+import { formatDate, capitalise } from "./helper";
 import { formatNumberByLocale } from "./formatNumberByLocale";
 
 
@@ -8,18 +8,16 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
   var x = context.chart.hoverPoint.x;
   var category = context.chart.hoverPoint.category;
 
-  // Debug
-  // console.log(context.chart.hoverPoint);
-
   // Get data for the individual tooltip entries
   var tooltipEntries = []
-  for (const series of series) {
-    if (series.data[index] !== undefined) {
+  var n_series = series.length;
+  for (var i = 0; i < n_series; i++) {
+    if (context.chart.series[i].visible && series[i].data[index] !== undefined) {
       tooltipEntries.push(
         {
-          name: series.name,
-          value: formatNumberByLocale(series.data[index], locale, precision),
-          color: series.color
+          name: series[i].name,
+          value: formatNumberByLocale(series[i].data[index], locale, precision),
+          color: series[i].color
         }
       )
     }
@@ -33,7 +31,7 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
   } else {
     // Localised date
     var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    tooltipTitle = formatDate(x, locale, dateOptions);
+    tooltipTitle = capitalise(formatDate(x, locale, dateOptions));
   }
 
   // Compose tooltip

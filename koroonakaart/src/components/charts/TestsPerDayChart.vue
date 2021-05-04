@@ -11,7 +11,7 @@
 
 <script>
 import data from "../../data.json";
-import { formatDate } from "../../utilities/helper";
+import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
@@ -222,27 +222,44 @@ export default {
               // Identify which position in the series and date we are dealing with
               var index = context.chart.hoverPoint.index;
               var x = context.chart.hoverPoint.x;
+              // var currentDataGroupingUnit = context.chart.series[0].currentDataGrouping.unitName;
+
+              // Debug
+              // console.log('index:');
+              // console.log(index);
+              // console.log('currentDataGroupingUnit:');
+              // console.log(currentDataGroupingUnit);
+              console.log('context.chart:');
+              console.log(context.chart);
+              // console.log('');
 
               // Get data for this date
               var positive;
-              if (context.chart.series[0].points !== null) {
-                positive = context.chart.series[0].points[index];
+              if (context.chart.series[0].visible) {
+                positive = context.chart.series[0].points.find(element => element.index === index);
+                console.log('positive: ' + positive.y);
               }
               var negative;
-              if (context.chart.series[1].points !== null) {
-                negative = context.chart.series[1].points[index];
+              if (context.chart.series[1].visible) {
+                negative = context.chart.series[1].points.find(element => element.index === index);
+                console.log('negative: ' + negative.y);
               }
               var positiveTestPercentage;
-              if (context.chart.series[2].points !== null) {
-                positiveTestPercentage = context.chart.series[2].points[index];
+              if (context.chart.series[2].visible) {
+                positiveTestPercentage = context.chart.series[2].points.find(element => element.index === index);
+                console.log('positiveTestPercentage: ' + positiveTestPercentage.y);
               }
 
+              // Calculate tooltip title
+              var tooltipTitle;
               // Get localised date
+              // TODO: When data on the chart has been grouped into weeks, the tooltip title should be
+              //       in the format: "Week beginning [date]"
               var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var tooltipDate = formatDate(x, this.currentLocale, dateOptions);
+              tooltipTitle = capitalise(formatDate(x, this.currentLocale, dateOptions));
 
               // Compose tooltip
-              var tooltip = tooltipDate + '<br>';
+              var tooltip = tooltipTitle + '<br>';
               tooltip += '<table>';
               if (positive !== undefined) {
                 tooltip += '<tr>';
@@ -258,7 +275,7 @@ export default {
                 tooltip += '<td style="text-align: right">(' + negative.percentage.toFixed(1) + '%)</td>';
                 tooltip += '</tr>';
               }
-              if (positive === undefined && negative === undefined && positiveTestPercentage !== undefined) {
+              if (positiveTestPercentage !== undefined && positive === undefined) {
                 tooltip += '<tr>';
                 tooltip += '<td>' + context.chart.series[2].name + '&nbsp;&nbsp;</td>';
                 tooltip += '<td style="text-align: right"><b>' + positiveTestPercentage.y.toFixed(1) + '</b>&nbsp;&nbsp;</td>';
