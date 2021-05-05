@@ -6,17 +6,15 @@ import numpy as np
 import pandas as pd
 
 
-def get_hospital_data(json_hospital, start_date):
+def get_hospital_data(json_hospitalisation, start_date):
     hospitalizations = []
     active_hospitalizations = []
     intensive = []
     discharged = []
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
 
-    for result in json_hospital:
-        statistics_date = datetime.strptime(
-            result["StatisticsDate"].split("T")[0], "%Y-%m-%d"
-        )
+    for result in json_hospitalisation:
+        statistics_date = datetime.strptime(result["StatisticsDate"].split("T")[0], "%Y-%m-%d")
         if statistics_date >= start_date:
             hospitalizations += [int(result["Hospitalised"])]
             active_hospitalizations += [int(result["ActivelyHospitalised"])]
@@ -35,21 +33,17 @@ def get_hospital_data(json_hospital, start_date):
     return hospital_results
 
 
-def get_municipality_data(json_municipalities, county_mapping):
+def get_municipality_data(json_test_location, county_mapping):
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
     communes_that_are_summed = ["Tallinn", "Pärnu linn", "Saaremaa vald"]
     communes_that_are_summed_data = {}
-    for result in json_municipalities:
+    for result in json_test_location:
         if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
             if result["Commune"] in communes_that_are_summed:
                 if result["Commune"] in communes_that_are_summed_data:
-                    communes_that_are_summed_data[result["Commune"]][
-                        "range_start"
-                    ] += result["TotalCasesFrom"]
-                    communes_that_are_summed_data[result["Commune"]][
-                        "range_end"
-                    ] += result["TotalCasesTo"]
+                    communes_that_are_summed_data[result["Commune"]]["range_start"] += result["TotalCasesFrom"]
+                    communes_that_are_summed_data[result["Commune"]]["range_end"] += result["TotalCasesTo"]
                 else:
                     communes_that_are_summed_data[result["Commune"]] = {
                         "range_start": result["TotalCasesFrom"],
@@ -326,12 +320,10 @@ def get_new_cases_per_day_chart_data(data):
 
 def get_cumulative_tests_chart_data(json, dates):
     # Count totals for every day
+
     date_counts = defaultdict(int)
-
     dates_within_range = set([str(date.date()) for date in list(dates)])
-
     date_start = str(dates[0].date())
-
     count_before_date_range = 0
 
     for res in json:
@@ -356,13 +348,11 @@ def get_cumulative_tests_chart_data(json, dates):
 
 def get_tests_per_day_chart_data(json, dates):
     # Count totals for every day
+
     date_counts = defaultdict(int)
     date_positive = defaultdict(int)
-
     dates_within_range = set([str(date.date()) for date in list(dates)])
-
     date_start = str(dates[0].date())
-
     count_before_date_range = 0
     count_positive_before_date_range = 0
 
@@ -425,12 +415,10 @@ def get_cumulative_cases_chart_data(
 
     for i in range(14, len(andmed["positiveTestsPerDay"])):
         new_cases_14.append(
-            new_cases_14[i - 1]
-            - andmed["positiveTestsPerDay"][i - 14]
-            + andmed["positiveTestsPerDay"][i]
+            new_cases_14[i - 1] - andmed["positiveTestsPerDay"][i - 14] + andmed["positiveTestsPerDay"][i]
         )
 
-    estonian_population = 1_328_976  # from https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
+    estonian_population = 1_328_976  # From https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
     per_100_k_multiplier = 100_000 / estonian_population
     new_cases_14_per_100_k = [
         round(active_cases * per_100_k_multiplier, 2) for active_cases in new_cases_14
@@ -579,7 +567,6 @@ def get_positive_negative_chart_data(json, mapping):
     neg_results = df[df.ResultValue == "N"].groupby("County").count()
 
     pos_results.rename(columns={"ResultValue": "Positive"}, inplace=True)
-
     neg_results.rename(columns={"ResultValue": "Negative"}, inplace=True)
 
     end_df = pos_results.join(neg_results, how="outer")

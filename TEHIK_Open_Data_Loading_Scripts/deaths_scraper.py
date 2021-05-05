@@ -7,11 +7,13 @@ from utils import log_status
 from utils import read_json_from_file
 from utils import save_as_json
 
+
 url = "https://www.terviseamet.ee/et/koroonaviirus/koroonakaart"
 html = requests.get(url).text
 soup = BeautifulSoup(html, "html.parser")
 
 DEATH_FILE_LOCATION = "../data/deaths.json"
+
 
 log_status("Crawling data on deaths from " + url)
 deaths_container = soup.select(".node-lead-default strong")

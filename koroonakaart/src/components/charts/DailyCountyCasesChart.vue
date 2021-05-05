@@ -62,9 +62,6 @@ export default {
                 this.exportSVGElements[2].setState(
                   this.options.chartType === "logarithmic" ? 2 : 0
                 );
-                // this.exportSVGElements[6].setState(
-                //   this.options.chartType === "active" ? 2 : 0
-                // );
               }, 100);
             },
           },

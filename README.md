@@ -14,17 +14,9 @@ All data used by our application can be accessed directly at the following link:
 
 ## Project setup
 
-### Install pre-requisites
-
-Install `pre-commit` to ensure code quality: [https://pre-commit.com/#install](https://pre-commit.com/#install)
+### Install prerequisites
 
 Install `poetry` to manage Python dependencies: [https://python-poetry.org/docs/#installation](https://python-poetry.org/docs/#installation)
-
-In the root of your clone of the repository, run:
-
-```bash
-pre-commit install
-```
 
 ### Get/update data from TEHIK API
 
@@ -33,11 +25,11 @@ After cloning the repository, you will need to download the latest Estonian COVI
 ```bash
 cd TEHIK_Open_Data_Loading_Scripts/
 poetry install
-poetry run death_scraper.py
-poetry run main.py
+poetry run python deaths_scraper.py
+poetry run python main.py
 ```
 
-Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data. We realise this isn't ideal and are actively working to improve the process.
+Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to improve the process.
 
 ### Install front-end dependencies
 
@@ -62,7 +54,7 @@ npm run build
 
 ### Lints and fixes files
 
-```
+```bash
 npm run lint
 ```
 

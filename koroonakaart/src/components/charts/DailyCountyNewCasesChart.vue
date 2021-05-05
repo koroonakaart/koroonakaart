@@ -173,16 +173,8 @@ export default {
             var tooltip = tooltipDate + "<br>";
             tooltip += "<table>";
             tooltip += "<tr>";
-            tooltip +=
-              '<td><span style="color: ' +
-              color +
-              '">●</span> ' +
-              countyName +
-              "&nbsp;&nbsp;</td>";
-            tooltip +=
-              '<td style="text-align: right"><b>' +
-              formatNumberByLocale(value, this.currentLocale) +
-              "</b></td>";
+            tooltip += '<td><span style="color: ' + color + '">●</span> ' + countyName + "&nbsp;&nbsp;</td>";
+            tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(value, this.currentLocale) + "</b></td>";
             tooltip += "</tr>";
             tooltip += "</table>";
 

@@ -47,8 +47,7 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
         tooltip += '<span style="color:' + tooltipEntry.color + '">●</span> ';
       }
       tooltip += tooltipEntry.name + "&nbsp;</td>";
-      tooltip +=
-        '<td style="text-align: right"><b>' + tooltipEntry.value + "</b></td>";
+      tooltip += '<td style="text-align: right"><b>' + tooltipEntry.value + "</b></td>";
       tooltip += "</tr>";
     }
     tooltip += "</table>";
