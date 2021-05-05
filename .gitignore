@@ -9,5 +9,6 @@
 
 koroonakaart/src/data.json
 data/data.json
+data/deaths.json
 
 TEHIK_Open_Data_Loading_Scripts/after_data_updated.sh
