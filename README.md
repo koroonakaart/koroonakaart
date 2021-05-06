@@ -25,8 +25,7 @@ After cloning the repository, you will need to download the latest Estonian COVI
 ```bash
 cd TEHIK_Open_Data_Loading_Scripts/
 poetry install
-poetry run python deaths_scraper.py
-poetry run python main.py
+poetry run python update_data.py
 ```
 
 Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to improve the process.

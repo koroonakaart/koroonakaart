@@ -2,14 +2,16 @@ from datetime import timezone
 from time import sleep
 import traceback
 
+import pytz
+import requests
+from bs4 import BeautifulSoup
+from dateutil.parser import parse as parsedate
+
 from chart_data_functions import *
 from constants import age_groups
 from constants import counties
 from constants import county_mapping
 from constants import county_sizes
-from dateutil.parser import parse as parsedate
-import pytz
-import requests
 from utils import log_status
 from utils import read_json_from_file
 from utils import save_as_json
@@ -20,26 +22,29 @@ today = datetime.today().astimezone(estonian_timezone).strftime("%d/%m/%Y, %H:%M
 yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
 
 
-######## CONFIGURE MANUAL DATA ########
+######## CONFIGURATION SETTINGS ########
 # TODO: We should document what the start dates below represent and which data they apply to
-#       as dictionary key names such as "dates1Start" aren't self-explanatory. Also, it
+#       as dictionary key names such as "dates1_start" aren't self-explanatory. Also, it
 #       would probably be better if they were in chronological order.
 
-MANUAL_DATA = {
-    "updatedOn": today,
-    "deceasedNumber": 125, # TODO: Is this still needed?
-    "datesEnd": yesterday,
-    "dates1Start": "2020-03-15",
-    "dates2Start": "2020-02-26",
-    "dates3Start": "2020-12-26",
+DATE_SETTINGS = {
+    "dates1_start": "2020-03-15",
+    "dates2_start": "2020-02-26",
+    "dates3_start": "2020-12-26",
+    "dates_end": yesterday,
+    "updated_on": today,
 }
 
 ######## CONFIGURE IO LOCATIONS ########
 
+# TEHIK API endpoints
 TESTING_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 TEST_LOCATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITALISATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
 VACCINATION_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v2/opendata_covid19_vaccination_total.json"
+# Terviseamet Covid dashboard
+TERVISEAMET_COVID_DASHBOARD = "https://www.terviseamet.ee/et/koroonaviirus/koroonakaart"
+# Local data files
 MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
 DEATHS_FILE_LOCATION = "../data/deaths.json"
 OUTPUT_FILE_LOCATION = "../data/data.json"
@@ -88,9 +93,16 @@ def is_up_to_date(json_data, date_field_name):
 #     return False
 
 
-if __name__ == "__main__":
+def main():
     # Log status
     log_status("Starting data update process at " + str(today))
+
+    # Get current number of deaths from Terviseamet's Covid dashboard
+    try:
+        scrape_deaths()
+    except:
+        log_status("Aborting data update.")
+        exit()
 
     # Load data from external services
     log_status("Downloading data from TEHIK: Test results")
@@ -151,9 +163,6 @@ if __name__ == "__main__":
     # Log status
     log_status("Calculating main statistics")
 
-    # Date of update
-    updated_on = MANUAL_DATA["updatedOn"]
-
     # Statsbar
     # Find count of confirmed cases
     n_confirmed_cases = np.sum([res["ResultValue"] == "P" for res in json_testing])
@@ -161,22 +170,13 @@ if __name__ == "__main__":
     # Find total number of tests
     n_tests_administered = len(json_testing)
 
-    # Set date ranges
-    dates1_range_start = MANUAL_DATA["dates1Start"]
-    dates2_range_start = MANUAL_DATA["dates2Start"]
-    dates3_range_start = MANUAL_DATA["dates3Start"]
-    dates_range_end = MANUAL_DATA["datesEnd"]
-    dates1_range_end = dates_range_end
-    dates2_range_end = dates_range_end
-    dates3_range_end = dates_range_end
-
     # Create date ranges for charts
-    dates1 = pd.date_range(start=dates1_range_start, end=dates1_range_end)
-    dates2 = pd.date_range(start=dates2_range_start, end=dates2_range_end)
-    dates3 = pd.date_range(start=dates3_range_start, end=dates3_range_end)
+    dates1 = pd.date_range(start=DATE_SETTINGS["dates1_start"], end=DATE_SETTINGS["dates_end"])
+    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=DATE_SETTINGS["dates_end"])
+    dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=DATE_SETTINGS["dates_end"])
 
     # Set recovered, deceased, hospitalised and ICU time-series
-    hospital = get_hospital_data(json_hospitalisation, dates2_range_start)
+    hospital = get_hospital_data(json_hospitalisation, DATE_SETTINGS["dates2_start"])
     recovered = hospital["discharged"]
     json_manual["deceased"].update(json_deaths)
     deceased = list(json_manual["deceased"].values())
@@ -236,7 +236,7 @@ if __name__ == "__main__":
     # Create dictionary for final JSON
     log_status("Compiling final JSON")
     final_json = {
-        "updatedOn": updated_on,
+        "updatedOn": DATE_SETTINGS["updated_on"],
         "confirmedCasesNumber": str(n_confirmed_cases),
         "activeCasesNumber": str(n_active_cases),
         "perHundred": str(per_100k),
@@ -287,3 +287,49 @@ if __name__ == "__main__":
     # Log finish time
     finish = datetime.today().astimezone(estonian_timezone).strftime("%d/%m/%Y, %H:%M")
     log_status("Finished update process at " + finish)
+
+
+def scrape_deaths():
+    # Load content from Terviset's Covid dashboard and parse it
+    log_status("Scraping data on deaths from " + TERVISEAMET_COVID_DASHBOARD)
+    html = requests.get(TERVISEAMET_COVID_DASHBOARD).text
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Extract number of deaths from page content and update JSON data on deaths
+    deaths_container = soup.select(".node-lead-default strong")
+    if len(deaths_container) > 0:
+        try:
+            # Get number of deaths and the current date
+            deaths_count = int(deaths_container[0].text.strip())
+            current_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+            # Load existing deaths data
+            json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
+
+            # Add new entry to deaths data for current date
+            deaths_output = {}
+            if len(json_deaths):
+                deaths_output = json_deaths
+            deaths_output[current_date] = deaths_count
+
+            # Save data on deaths
+            save_as_json(DEATHS_FILE_LOCATION, deaths_output)
+
+            # Log status
+            log_status("Successfully scraped deaths. Total deaths: " + str(deaths_count))
+        except:
+            # Log error
+            error_message = "Error when scraping data on deaths"
+            log_status(error_message + ":")
+            log_status(traceback.format_exc())
+            raise Exception(error_message)
+    else:
+        # Log error
+        error_message = "Error: could not find page element with data on deaths"
+        log_status(error_message)
+        raise Exception(error_message)
+
+
+if __name__ == "__main__":
+    main()
+
