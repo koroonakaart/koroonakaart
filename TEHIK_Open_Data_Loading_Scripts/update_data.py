@@ -23,28 +23,21 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
 
 
 ######## CONFIGURATION SETTINGS ########
-# TODO: We should document what the start dates below represent and which data they apply to
-#       as dictionary key names such as "dates1_start" aren't self-explanatory. Also, it
-#       would probably be better if they were in chronological order.
 
 DATE_SETTINGS = {
-    "dates1_start": "2020-03-15",
-    "dates2_start": "2020-02-26",
-    "dates3_start": "2020-12-26",
-    "dates_end": yesterday,
-    "updated_on": today,
+    "dates1_start": "2020-03-15", # TODO: It's unclear what this date relates to. Remove?
+    "dates2_start": "2020-02-26", # The date of the first Covid-19 case in Estonia. Most charts start from this date.
+    "dates3_start": "2020-12-26", # Vaccination started in Estonia on 27 December 2020. Time series charts related
+                                  # to vaccination start one day earlier.
 }
 
 ######## CONFIGURE IO LOCATIONS ########
 
-# TEHIK API endpoints
 TESTING_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
 TEST_LOCATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITALISATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
 VACCINATION_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v2/opendata_covid19_vaccination_total.json"
-# Terviseamet Covid dashboard
 TERVISEAMET_COVID_DASHBOARD = "https://www.terviseamet.ee/et/koroonaviirus/koroonakaart"
-# Local data files
 MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
 DEATHS_FILE_LOCATION = "../data/deaths.json"
 OUTPUT_FILE_LOCATION = "../data/data.json"
@@ -171,9 +164,9 @@ def main():
     n_tests_administered = len(json_testing)
 
     # Create date ranges for charts
-    dates1 = pd.date_range(start=DATE_SETTINGS["dates1_start"], end=DATE_SETTINGS["dates_end"])
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=DATE_SETTINGS["dates_end"])
-    dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=DATE_SETTINGS["dates_end"])
+    dates1 = pd.date_range(start=DATE_SETTINGS["dates1_start"], end=yesterday)
+    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=yesterday)
+    dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=yesterday)
 
     # Set recovered, deceased, hospitalised and ICU time-series
     hospital = get_hospital_data(json_hospitalisation, DATE_SETTINGS["dates2_start"])
@@ -184,8 +177,8 @@ def main():
     intensive = list(get_in_intensive_data(json_hospitalisation, json_manual["intensive"]).values())
     on_ventilation = list(get_on_ventilation_data(json_hospitalisation).values())
 
-    deceased_number = deceased[-1]
-    deceased_changed = int(deceased[-1]) - int(deceased[-2])
+    n_deaths = deceased[-1]
+    n_deaths_change = int(deceased[-1]) - int(deceased[-2])
 
     # Get data for each chart
     log_status("Calculating data for charts")
@@ -205,7 +198,7 @@ def main():
     vaccinated_people_chart_data = get_vaccinated_people_chart_data(json_vaccination, dates3)
     county_daily_active = get_county_daily_active(json_testing, dates2, county_mapping, county_sizes)
     n_active_cases = cumulative_cases_chart_data["active"][-1]
-    active_changed = (cumulative_cases_chart_data["active"][-1] - cumulative_cases_chart_data["active"][-2])
+    n_active_cases_change = (cumulative_cases_chart_data["active"][-1] - cumulative_cases_chart_data["active"][-2])
     active_infections_by_county = [
         {"MNIMI": k, "sequence": v, "drilldown": k}
         for k, v in county_daily_active["countyByDayActive"].items()
@@ -222,35 +215,38 @@ def main():
     last_day_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "Vaccinated"][-1]
     last_day_completed_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "FullyVaccinated"][-1]
     # TODO: Doses administered
-    # lastDayDosesAdministeredData = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered'][-1]
+    # last_day_doses_administered_data = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered'][-1]
     completed_vaccination_number_total = last_day_completed_vaccination_data["TotalCount"]
     completed_vaccination_number_last_day = last_day_completed_vaccination_data["DailyCount"]
     all_vaccination_number_total = last_day_vaccination_data["TotalCount"]
     all_vaccination_number_last_day = last_day_vaccination_data["DailyCount"]
     vaccination_number_total = (all_vaccination_number_total - completed_vaccination_number_total)
     vaccination_number_last_day = (all_vaccination_number_last_day - completed_vaccination_number_last_day)
-    completely_vaccinated_from_total_vaccinated_percentage = round(
+    fully_vaccinated_from_total_vaccinated_percentage = round(
         completed_vaccination_number_total * 100 / (all_vaccination_number_total), 2
     )
 
     # Create dictionary for final JSON
     log_status("Compiling final JSON")
     final_json = {
-        "updatedOn": DATE_SETTINGS["updated_on"],
+        "updatedOn": today,
         "confirmedCasesNumber": str(n_confirmed_cases),
-        "activeCasesNumber": str(n_active_cases),
-        "perHundred": str(per_100k),
+        # TODO: For consistentcy, we should calculate the change in the number of confirmed cases as well.
         "hospitalisedNumber": str(hospital["activehospitalizations"][-1]),
-        "deceasedNumber": str(deceased_number),
-        "recoveredNumber": str(hospital["discharged"][-1]),
-        "testsAdministeredNumber": str(n_tests_administered),
         "hospitalChanged": str(hospital["activehospitalizations"][-1] - hospital["activehospitalizations"][-2]),
-        "deceasedChanged": str(deceased_changed),
+        "deceasedNumber": str(n_deaths),
+        "deceasedChanged": str(n_deaths_change),
+        "recoveredNumber": str(hospital["discharged"][-1]),
         "recoveredChanged": str(hospital["discharged"][-1] - hospital["discharged"][-2]),
-        "activeChanged": str(active_changed),
-        "dates1": list(map(lambda x: str(x.date()), dates1)),
-        "dates2": list(map(lambda x: str(x.date()), dates2)),
-        "dates3": list(map(lambda x: str(x.date()), dates3)),
+        "testsAdministeredNumber": str(n_tests_administered),
+        # TODO: For consistentcy, we should calculate the change in the number of tests as well.
+        "activeCasesNumber": str(n_active_cases),
+        "activeChanged": str(n_active_cases_change),
+        "perHundred": str(per_100k), # TODO: What per hundred? This should be given a better name.
+        # TODO: I can't find anywhere in the app where "dates1" is used. Is it needed?
+        "dates1": [str(x.date()) for x in dates1],
+        "dates2": [str(x.date()) for x in dates2],
+        "dates3": [str(x.date()) for x in dates3],
         "counties": counties,
         "age_groups": age_groups,
         "dataInfectionsByCounty": infections_by_county,
@@ -277,7 +273,7 @@ def main():
         "allVaccinationNumberTotal": all_vaccination_number_total,
         "allVaccinationNumberLastDay": all_vaccination_number_last_day,
         "allVaccinationFromPopulationPercentage": last_day_vaccination_data["PopulationCoverage"],
-        "completelyVaccinatedFromTotalVaccinatedPercentage": completely_vaccinated_from_total_vaccinated_percentage,
+        "completelyVaccinatedFromTotalVaccinatedPercentage": fully_vaccinated_from_total_vaccinated_percentage,
     }
 
     # Dump JSON output
