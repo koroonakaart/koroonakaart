@@ -25,7 +25,7 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
 ######## CONFIGURATION SETTINGS ########
 
 DATE_SETTINGS = {
-    "dates1_start": "2020-03-15", # TODO: It's unclear what this date relates to. Remove?
+    # "dates1_start": "2020-03-15", # TODO: It's unclear what this date relates to. Remove? Commented out for now.
     "dates2_start": "2020-02-26", # The date of the first Covid-19 case in Estonia. Most charts start from this date.
     "dates3_start": "2020-12-26", # Vaccination started in Estonia on 27 December 2020. Time series charts related
                                   # to vaccination start one day earlier.
@@ -164,7 +164,7 @@ def main():
     n_tests_administered = len(json_testing)
 
     # Create date ranges for charts
-    dates1 = pd.date_range(start=DATE_SETTINGS["dates1_start"], end=yesterday)
+    # dates1 = pd.date_range(start=DATE_SETTINGS["dates1_start"], end=yesterday)
     dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=yesterday)
     dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=yesterday)
 
@@ -174,6 +174,10 @@ def main():
     json_manual["deceased"].update(json_deaths)
     deceased = list(json_manual["deceased"].values())
     hospitalised = hospital["activehospitalizations"]
+    # TODO: Based on cross-checking with the hospitalisation data publishedby TEHIK, the data listed
+    #       in the manual_data.json file with the field name "intensive" appears to show the number
+    #       of patients on ventilation. We should fix the terminology and make sure that the intensive
+    #       and on ventilation statistics are being calculated correctly.
     intensive = list(get_in_intensive_data(json_hospitalisation, json_manual["intensive"]).values())
     on_ventilation = list(get_on_ventilation_data(json_hospitalisation).values())
 
@@ -231,7 +235,7 @@ def main():
     final_json = {
         "updatedOn": today,
         "confirmedCasesNumber": str(n_confirmed_cases),
-        # TODO: For consistentcy, we should calculate the change in the number of confirmed cases as well.
+        # TODO: For consistency, we should include the change in the number of confirmed cases as well.
         "hospitalisedNumber": str(hospital["activehospitalizations"][-1]),
         "hospitalChanged": str(hospital["activehospitalizations"][-1] - hospital["activehospitalizations"][-2]),
         "deceasedNumber": str(n_deaths),
@@ -239,12 +243,12 @@ def main():
         "recoveredNumber": str(hospital["discharged"][-1]),
         "recoveredChanged": str(hospital["discharged"][-1] - hospital["discharged"][-2]),
         "testsAdministeredNumber": str(n_tests_administered),
-        # TODO: For consistentcy, we should calculate the change in the number of tests as well.
+        # TODO: For consistency, we should include the change in the number of tests as well.
         "activeCasesNumber": str(n_active_cases),
         "activeChanged": str(n_active_cases_change),
-        "perHundred": str(per_100k), # TODO: What per hundred? This should be given a better name.
-        # TODO: I can't find anywhere in the app where "dates1" is used. Is it needed?
-        "dates1": [str(x.date()) for x in dates1],
+        "perHundred": str(per_100k), # TODO: This should be given a clearer name.
+        # TODO: I can't find anywhere in the app where "dates1" is used. Is it needed? Commented out for now.
+        # "dates1": [str(x.date()) for x in dates1],
         "dates2": [str(x.date()) for x in dates2],
         "dates3": [str(x.date()) for x in dates3],
         "counties": counties,
@@ -265,7 +269,7 @@ def main():
         "dataPositiveNegativeChart": positive_negative_chart_data,
         "dataVaccinatedPeopleChart": vaccinated_people_chart_data,
         "dataMunicipalities": municipalities_data,
-        "hospital": hospital,
+        "hospital": hospital, # TODO: Rename this to make it clearer what data it contains.
         "vaccinationNumberTotal": vaccination_number_total,
         "vaccinationNumberLastDay": vaccination_number_last_day,
         "completedVaccinationNumberTotal": completed_vaccination_number_total,
