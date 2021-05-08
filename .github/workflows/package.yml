@@ -23,9 +23,6 @@ jobs:
       - name: Install pre-commit
         run: pip install pre-commit
 
-      - name: Run pre-commit
-        run: pre-commit run --all-files || exit 1
-
       - name: Install Poetry
         run: pip install poetry
 
