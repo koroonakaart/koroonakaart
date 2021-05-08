@@ -11,6 +11,11 @@ numpy = "^1.20.2"
 requests = "^2.25.1"
 DateTime = "^4.3"
 beautifulsoup4 = "^4.9.3"
+loguru = "^0.5.3"
+tenacity = "^7.0.0"
+
+[tool.poetry.scripts]
+update-data = "update_data:main"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,6 +1,3 @@
-from time import sleep
-import traceback
-
 from bs4 import BeautifulSoup
 from chart_data_functions import *
 from constants import age_groups
@@ -9,15 +6,16 @@ from constants import county_mapping
 from constants import county_sizes
 import pytz
 import requests
-from utils import log_status
+from tenacity import retry
+from tenacity import stop_after_attempt
+from tenacity import wait_exponential
+from utils import logger
 from utils import read_json_from_file
 from utils import save_as_json
-
 
 estonian_timezone = pytz.timezone("Europe/Helsinki")
 today = datetime.today().astimezone(estonian_timezone).strftime("%d/%m/%Y, %H:%M")
 yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
-
 
 ######## CONFIGURATION SETTINGS ########
 
@@ -27,6 +25,8 @@ DATE_SETTINGS = {
     "dates3_start": "2020-12-26",  # Vaccination started in Estonia on 27 December 2020. Time series charts related
     # to vaccination start one day earlier.
 }
+
+DEATHS_SELECTOR = ".node-lead-default strong"
 
 ######## CONFIGURE IO LOCATIONS ########
 
@@ -44,32 +44,12 @@ DEATHS_FILE_LOCATION = "../data/deaths.json"
 OUTPUT_FILE_LOCATION = "../data/data.json"
 
 
+@retry(stop=stop_after_attempt(10), wait=wait_exponential(min=2, max=30))
 def get_json_data(url):
-    max_retries = 3
-    for retry in range(1, max_retries + 1):
-        try:
-            # Request remote data
-            response = requests.get(url=url)
-
-            # Process response
-            if response.status_code == 200:
-                return response.json()
-            else:
-                log_status(
-                    "Endpoint unavailable. Status code: " + str(response.status_code)
-                )
-        except:
-            # Log error
-            log_status("Error when retrieving remote data:")
-            log_status(traceback.format_exc())
-
-        # Retry?
-        if retry < max_retries:
-            log_status("Retrying...")
-            sleep(5)
-
-    # Unable to get remote data
-    return None
+    logger.info("Attempting to fetch data from {url}", url=url)
+    response = requests.get(url=url)
+    response.raise_for_status()
+    return response.json()
 
 
 def is_up_to_date(json_data, date_field_name):
@@ -93,23 +73,19 @@ def is_up_to_date(json_data, date_field_name):
 
 def main():
     # Log status
-    log_status("Starting data update process at " + str(today))
+    logger.info("Starting data update process at " + str(today))
 
     # Get current number of deaths from Terviseamet's Covid dashboard
-    try:
-        scrape_deaths()
-    except:
-        log_status("Aborting data update.")
-        exit()
+    scrape_deaths()
 
     # Load data from external services
-    log_status("Downloading data from TEHIK: Test results")
+    logger.info("Downloading data from TEHIK: Test results")
     json_testing = get_json_data(TESTING_ENDPOINT)
-    log_status("Downloading data from TEHIK: Location data")
+    logger.info("Downloading data from TEHIK: Location data")
     json_test_location = get_json_data(TEST_LOCATION_ENDPOINT)
-    log_status("Downloading data from TEHIK: Hospitalisation data")
+    logger.info("Downloading data from TEHIK: Hospitalisation data")
     json_hospitalisation = get_json_data(HOSPITALISATION_ENDPOINT)
-    log_status("Downloading data from TEHIK: Vaccination data")
+    logger.info("Downloading data from TEHIK: Vaccination data")
     json_vaccination = get_json_data(VACCINATION_ENDPOINT)
 
     # Validate data from remote endpoints
@@ -120,48 +96,40 @@ def main():
     #       vaccinations on a particular day.
     ok = True
     if json_testing is None:
-        log_status("Unable to retrieve testing data")
+        logger.info("Unable to retrieve testing data")
         ok = False
     if json_test_location is None:
-        log_status("Unable to retrieve location data")
+        logger.info("Unable to retrieve location data")
         ok = False
     elif not is_up_to_date(json_test_location, "LastStatisticsDate"):
-        log_status("Location data is not up-to-date")
+        logger.info("Location data is not up-to-date")
         ok = False
     if json_hospitalisation is None:
-        log_status("Unable to retrieve hospitalisation data")
+        logger.info("Unable to retrieve hospitalisation data")
         ok = False
     elif not is_up_to_date(json_hospitalisation, "LastLoadStatisticsDate"):
-        log_status("Hospitalisation data is not up-to-date")
+        logger.info("Hospitalisation data is not up-to-date")
         ok = False
     if json_vaccination is None:
-        log_status("Unable to retrieve vaccination data")
+        logger.info("Unable to retrieve vaccination data")
         ok = False
     # TODO: Review whether this check is needed. I have commented it out for now.
     # if not is_header_last_modified_up_to_date(TEST_LOCATION_ENDPOINT):
-    #     log_status("Location data last modified is not up-to-date")
+    #     logger.info("Location data last modified is not up-to-date")
     #     ok = False
 
     if not ok:
-        log_status(
+        raise Exception(
             "One or more of the TEHIK APIs has not been updated or could not be retrieved."
         )
-        log_status("Aborting data update.")
-        exit()
 
     # Load locally-stored data
-    log_status("Loading local data files")
-    try:
-        json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
-        json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
-    except:
-        # Log error
-        log_status("Error when loading local data:")
-        log_status(traceback.format_exc())
-        exit()
+    logger.info("Loading local data files")
+    json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
+    json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
 
     # Log status
-    log_status("Calculating main statistics")
+    logger.info("Calculating main statistics")
 
     # Statsbar
     # Find count of confirmed cases
@@ -194,7 +162,7 @@ def main():
     n_deaths_change = int(deceased[-1]) - int(deceased[-2])
 
     # Get data for each chart
-    log_status("Calculating data for charts")
+    logger.info("Calculating data for charts")
     infections_by_county = get_infection_count_by_county(json_testing, county_mapping)
     infections_by_county_10000 = get_infections_data_by_count_10000(
         infections_by_county, county_sizes
@@ -247,7 +215,7 @@ def main():
     per_100k = cumulative_cases_chart_data["active100k"][-1]
 
     # Calculate vaccination data
-    log_status("Calculating vaccination data")
+    logger.info("Calculating vaccination data")
     last_day_vaccination_data = [
         x for x in json_vaccination if x["MeasurementType"] == "Vaccinated"
     ][-1]
@@ -275,7 +243,7 @@ def main():
     )
 
     # Create dictionary for final JSON
-    log_status("Compiling final JSON")
+    logger.info("Compiling final JSON")
     final_json = {
         "updatedOn": today,
         "confirmedCasesNumber": str(n_confirmed_cases),
@@ -332,55 +300,47 @@ def main():
     }
 
     # Dump JSON output
-    log_status("Dumping JSON output")
+    logger.info("Dumping JSON output")
     save_as_json(OUTPUT_FILE_LOCATION, final_json)
 
     # Log finish time
     finish = datetime.today().astimezone(estonian_timezone).strftime("%d/%m/%Y, %H:%M")
-    log_status("Finished update process at " + finish)
+    logger.info("Finished update process at " + finish)
 
 
+@retry(stop=stop_after_attempt(10), wait=wait_exponential(min=2, max=30))
 def scrape_deaths():
     # Load content from Terviset's Covid dashboard and parse it
-    log_status("Scraping data on deaths from " + TERVISEAMET_COVID_DASHBOARD)
+    logger.info("Scraping data on deaths from {url}", url=TERVISEAMET_COVID_DASHBOARD)
     html = requests.get(TERVISEAMET_COVID_DASHBOARD).text
     soup = BeautifulSoup(html, "html.parser")
 
     # Extract number of deaths from page content and update JSON data on deaths
-    deaths_container = soup.select(".node-lead-default strong")
+    deaths_container = soup.select(DEATHS_SELECTOR)
     if len(deaths_container) > 0:
-        try:
-            # Get number of deaths and the current date
-            deaths_count = int(deaths_container[0].text.strip())
-            current_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        # Get number of deaths and the current date
+        deaths_count = int(deaths_container[0].text.strip())
+        current_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
-            # Load existing deaths data
-            json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
+        # Load existing deaths data
+        json_deaths = read_json_from_file(DEATHS_FILE_LOCATION)
 
-            # Add new entry to deaths data for current date
-            deaths_output = {}
-            if len(json_deaths):
-                deaths_output = json_deaths
-            deaths_output[current_date] = deaths_count
+        # Add new entry to deaths data for current date
+        deaths_output = {}
+        if len(json_deaths):
+            deaths_output = json_deaths
+        deaths_output[current_date] = deaths_count
 
-            # Save data on deaths
-            save_as_json(DEATHS_FILE_LOCATION, deaths_output)
+        # Save data on deaths
+        save_as_json(DEATHS_FILE_LOCATION, deaths_output)
 
-            # Log status
-            log_status(
-                "Successfully scraped deaths. Total deaths: " + str(deaths_count)
-            )
-        except:
-            # Log error
-            error_message = "Error when scraping data on deaths"
-            log_status(error_message + ":")
-            log_status(traceback.format_exc())
-            raise Exception(error_message)
+        # Log status
+        logger.info(
+            "Successfully scraped deaths. Total deaths: {deaths}", deaths=deaths_count
+        )
     else:
         # Log error
-        error_message = "Error: could not find page element with data on deaths"
-        log_status(error_message)
-        raise Exception(error_message)
+        raise Exception("Error: could not find page element with data on deaths")
 
 
 if __name__ == "__main__":

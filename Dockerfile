@@ -14,20 +14,19 @@ RUN set -exu \
  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 # Install Python dependencies - they change less often than code so caches better
-RUN mkdir TEHIK_Open_Data_Loading_Scripts
-COPY build/pyproject.toml TEHIK_Open_Data_Loading_Scripts/poetry.lock TEHIK_Open_Data_Loading_Scripts
+RUN mkdir build
+COPY build/pyproject.toml build/poetry.lock build
 
 RUN set -exu \
- && cd TEHIK_Open_Data_Loading_Scripts \
+ && cd build \
  && python -m pip install --upgrade pip \
  && poetry install
 
 # Run the Python scripts themselves
 COPY . .
 RUN set -exu \
- && cd TEHIK_Open_Data_Loading_Scripts \
+ && cd build \
  && poetry run python update_data.py \
- && poetry run python main.py \
  && ls -lhaF ../data
 
 #########################
