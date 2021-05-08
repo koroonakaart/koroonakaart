@@ -62,7 +62,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate chart data
-        run: poetry run generate
+        run: poetry run generate --parallel 2
 
       - name: Build frontend
         run: |
