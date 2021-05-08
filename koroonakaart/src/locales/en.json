@@ -29,7 +29,7 @@
   "genderChart": "Positive and negative tests by sex",
   "hospitalized": "In hospital",
   "intensive": "In intensive care",
-  "onventilation": "On ventilation",
+  "onVentilation": "On ventilation",
   "method": "Change in method",
   "newPositive": "Positive tests in last 24 hours",
   "insufficientData": "Unknown",

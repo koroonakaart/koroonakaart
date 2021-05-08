@@ -402,7 +402,7 @@ def get_cumulative_cases_chart_data(
         "deceased": deceased_list,
         "haiglas": hospitalized,
         "intensive": intensive,
-        "onventilation": on_ventilation,
+        "onVentilation": on_ventilation,
     }
 
     return cumulative_cases_chart_data

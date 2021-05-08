@@ -29,7 +29,7 @@
   "genderChart": "Positiivsete ja negatiivsete testide sooline jaotus",
   "hospitalized": "Haiglaravil",
   "intensive": "Intensiivravil",
-  "onventilation": "Juhitaval hingamisel",
+  "onVentilation": "Juhitaval hingamisel",
   "method": "Muutus metoodikas",
   "newPositive": "Positiivsed testid viimase 24 tunni jooksul",
   "insufficientData": "Info puudulik",
