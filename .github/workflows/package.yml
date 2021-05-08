@@ -50,6 +50,7 @@ jobs:
             # Add downloaded files
             cp -f /tmp/data/* data/
             git add data
+            pre-commit run
 
             if [[ $(git status --porcelain) ]]; then
               # Try to commit and push updates
