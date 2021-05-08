@@ -13,6 +13,7 @@ DateTime = "^4.3"
 beautifulsoup4 = "^4.9.3"
 loguru = "^0.5.3"
 tenacity = "^7.0.0"
+humanize = "^3.5.0"
 
 [tool.poetry.scripts]
 download = "build.download_data:main"

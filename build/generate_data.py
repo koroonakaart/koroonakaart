@@ -29,6 +29,8 @@ from build.constants import OUTPUT_PATH
 from build.constants import TEST_LOCATIONS_PATH
 from build.constants import TEST_RESULTS_PATH
 from build.constants import VACCINATIONS_PATH
+from build.utils import analyze_memory
+from build.utils import analyze_time
 from build.utils import logger
 from build.utils import read_json_from_file
 from build.utils import save_as_json
@@ -50,6 +52,8 @@ DATE_SETTINGS = {
 }
 
 
+@analyze_time
+@analyze_memory
 def main():
     # Log status
     logger.info("Starting data update process")

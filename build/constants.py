@@ -1,3 +1,4 @@
+# Relative to repo root
 MANUAL_DATA_PATH = "data/manual_data.json"
 DEATHS_PATH = "data/deaths.json"
 TEST_RESULTS_PATH = "data/test_results.json"

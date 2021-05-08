@@ -5,10 +5,14 @@ from datetime import timedelta
 from build.constants import COUNTIES
 from build.constants import COUNTIES_INCL_UNKNOWN
 from build.constants import COUNTIES_INCL_UNKNOWN_FIRST
+from build.utils import analyze_memory
+from build.utils import analyze_time
 import numpy as np
 import pandas as pd
 
 
+@analyze_time
+@analyze_memory
 def get_hospital_data(json_hospitalization, start_date):
     hospitalizations = []
     active_hospitalizations = []
@@ -38,6 +42,8 @@ def get_hospital_data(json_hospitalization, start_date):
     return hospital_results
 
 
+@analyze_time
+@analyze_memory
 def get_municipality_data(json_test_location, county_mapping):
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
@@ -92,6 +98,8 @@ def get_municipality_data(json_test_location, county_mapping):
     return municipalities_json
 
 
+@analyze_time
+@analyze_memory
 def get_infection_count_by_county(json, county_mapping) -> list:
     # Ordering of counties for chart
     # For performance, hashing
@@ -113,6 +121,8 @@ def get_infection_count_by_county(json, county_mapping) -> list:
     return result_array
 
 
+@analyze_time
+@analyze_memory
 def get_infections_data_by_count_10000(infections_by_county, county_sizes):
     return [
         [county, round(value / county_sizes[county] * 10000, 2), county]
@@ -120,11 +130,15 @@ def get_infections_data_by_count_10000(infections_by_county, county_sizes):
     ]
 
 
+@analyze_time
+@analyze_memory
 def get_test_data_pop_ratio(infections_by_county_10000):
     # Just extract pop ratios
     return [v for k, v, k in infections_by_county_10000]
 
 
+@analyze_time
+@analyze_memory
 def get_county_by_day(json, dates, county_mapping, county_sizes):
     chart_counties = COUNTIES
 
@@ -183,6 +197,8 @@ def get_county_by_day(json, dates, county_mapping, county_sizes):
     return county_list
 
 
+@analyze_time
+@analyze_memory
 def get_county_daily_active(json, dates, county_mapping, county_sizes):
     chart_counties = COUNTIES
 
@@ -232,6 +248,8 @@ def get_county_daily_active(json, dates, county_mapping, county_sizes):
     return active_list
 
 
+@analyze_time
+@analyze_memory
 def get_confirmed_cases_by_county(json, county_mapping):
     chart_counties = COUNTIES_INCL_UNKNOWN
 
@@ -246,6 +264,8 @@ def get_confirmed_cases_by_county(json, county_mapping):
     return [counts[county] for county in chart_counties]
 
 
+@analyze_time
+@analyze_memory
 def get_new_cases_per_day_chart_data(data):
     cases = np.diff(data["cases"], prepend=0)
     recovered = np.diff(data["recovered"], prepend=0)
@@ -260,6 +280,8 @@ def get_new_cases_per_day_chart_data(data):
     return dataNewCasesPerDayChart
 
 
+@analyze_time
+@analyze_memory
 def get_cumulative_tests_chart_data(json, dates):
     # Count totals for every day
 
@@ -288,6 +310,8 @@ def get_cumulative_tests_chart_data(json, dates):
     return return_json
 
 
+@analyze_time
+@analyze_memory
 def get_tests_per_day_chart_data(json, dates):
     # Count totals for every day
 
@@ -334,6 +358,8 @@ def get_tests_per_day_chart_data(json, dates):
     return return_json
 
 
+@analyze_time
+@analyze_memory
 def get_cumulative_cases_chart_data(
     json, recovered_list, deceased_list, hospitalized, intensive, on_ventilation, dates
 ):
@@ -382,6 +408,8 @@ def get_cumulative_cases_chart_data(
     return cumulative_cases_chart_data
 
 
+@analyze_time
+@analyze_memory
 def get_positive_tests_by_age_chart_data(json):
     results = [d["ResultValue"] for d in json]
     genders = [d["Gender"] for d in json]
@@ -477,6 +505,8 @@ def get_positive_tests_by_age_chart_data(json):
     return end_result
 
 
+@analyze_time
+@analyze_memory
 def get_positive_negative_chart_data(json, mapping):
     """
     Compile data for the "Positive and negative tests by county" chart.
@@ -511,6 +541,8 @@ def get_positive_negative_chart_data(json, mapping):
     return end_output
 
 
+@analyze_time
+@analyze_memory
 def get_vaccinated_people_chart_data(json, dates):
     date_counts_progress = defaultdict(int)
     date_counts_completed = defaultdict(int)
@@ -555,6 +587,8 @@ def get_vaccinated_people_chart_data(json, dates):
     return return_json
 
 
+@analyze_time
+@analyze_memory
 def get_in_intensive_data(json, manual_data):
     if type(json) is not list or type(manual_data) is not dict:
         return False
@@ -569,6 +603,8 @@ def get_in_intensive_data(json, manual_data):
     return output
 
 
+@analyze_time
+@analyze_memory
 def get_on_ventilation_data(json):
     if type(json) is not list:
         return False
@@ -585,6 +621,8 @@ def get_on_ventilation_data(json):
     return output
 
 
+@analyze_time
+@analyze_memory
 def get_dict_with_dates_and_key(json, key):
     days = {}
 

@@ -21,16 +21,15 @@ RUN set -exu \
  && poetry install
 
 # Run the Python scripts themselves
-COPY . .
+COPY build build
+COPY data data
 RUN set -exu \
- && cd build \
  && poetry run download \
- && ls -lhaF ../data
+ && ls -lhaF data
 
 RUN set -exu \
- && cd build \
- && poetry run update \
- && ls -lhaF ../data
+ && poetry run generate \
+ && ls -lhaF data
 
 #########################
 # STEP 2 build frontend
@@ -39,9 +38,9 @@ RUN set -exu \
 FROM node:lts-slim AS build_frontend
 
 WORKDIR /app
-COPY . .
+COPY koroonakaart koroonakaart
 
-COPY --from=fetch_data /app/data/data.json /app/koroonakaart/src/data.json
+COPY --from=fetch_data /app/data/data.json /app/koroonakaart/src/data/data.json
 RUN set -exu \
  && cd koroonakaart \
  && npm install --silent \
@@ -57,4 +56,5 @@ FROM nginx:mainline-alpine AS runtime
 RUN sed -i '/index.html index.htm;/ i try_files $uri /index.html;' /etc/nginx/conf.d/default.conf
 
 COPY --from=build_frontend /app/koroonakaart/dist /usr/share/nginx/html
-COPY --from=build_frontend /app/koroonakaart/src/data.json /usr/share/nginx/html/data.json
+COPY --from=build_frontend /app/koroonakaart/src/data/data.json /usr/share/nginx/html/data.json
+COPY --from=build_frontend /app/koroonakaart/src/data/data.json /usr/share/nginx/html/data/data.json
