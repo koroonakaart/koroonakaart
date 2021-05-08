@@ -99,7 +99,7 @@ def main():
 
     # Validate data from remote endpoints
     if not is_up_to_date(hospitalization, "LastLoadStatisticsDate"):
-        raise Exception("Hospitalisation data is not up-to-date")
+        raise Exception("Hospitalization data is not up-to-date")
 
     save_as_json(TEST_RESULTS_PATH, test_results)
     save_as_json(TEST_LOCATIONS_PATH, test_locations)

@@ -27,7 +27,7 @@
   "distributionOfAgeSexTests": "Distribution of tests by age and sex",
   "distributionOfPositiveTests": "Distribution of tests by age",
   "genderChart": "Positive and negative tests by sex",
-  "hospitalised": "In hospital",
+  "hospitalized": "In hospital",
   "intensive": "In intensive care",
   "onventilation": "On ventilation",
   "method": "Change in method",

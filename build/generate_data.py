@@ -79,12 +79,12 @@ def main():
     dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
     dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=YESTERDAY_YMD)
 
-    # Set recovered, deceased, hospitalised and ICU time-series
+    # Set recovered, deceased, hospitalized and ICU time-series
     hospital = get_hospital_data(hospitalization, DATE_SETTINGS["dates2_start"])
     recovered = hospital["discharged"]
     manual_data["deceased"].update(deaths)
     deceased = list(manual_data["deceased"].values())
-    hospitalised = hospital["activehospitalizations"]
+    hospitalized = hospital["activehospitalizations"]
     # TODO: Based on cross-checking with the hospitalization data publishedby TEHIK, the data listed
     #       in the manual_data.json file with the field name "intensive" appears to show the number
     #       of patients on ventilation. We should fix the terminology and make sure that the intensive
@@ -114,7 +114,7 @@ def main():
         test_results,
         recovered,
         deceased,
-        hospitalised,
+        hospitalized,
         intensive,
         on_ventilation,
         dates2,
@@ -182,7 +182,7 @@ def main():
         "updatedOn": TODAY_DMYHM,
         "confirmedCasesNumber": str(n_confirmed_cases),
         # TODO: For consistency, we should include the change in the number of confirmed cases as well.
-        "hospitalisedNumber": str(hospital["activehospitalizations"][-1]),
+        "hospitalizedNumber": str(hospital["activehospitalizations"][-1]),
         "hospitalChanged": str(
             hospital["activehospitalizations"][-1]
             - hospital["activehospitalizations"][-2]

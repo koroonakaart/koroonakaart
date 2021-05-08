@@ -335,7 +335,7 @@ def get_tests_per_day_chart_data(json, dates):
 
 
 def get_cumulative_cases_chart_data(
-    json, recovered_list, deceased_list, hospitalised, intensive, on_ventilation, dates
+    json, recovered_list, deceased_list, hospitalized, intensive, on_ventilation, dates
 ):
     date_counts = defaultdict(int)
     andmed = get_tests_per_day_chart_data(json, dates)
@@ -374,7 +374,7 @@ def get_cumulative_cases_chart_data(
         "active": new_cases_14,
         "active100k": new_cases_14_per_100_k,
         "deceased": deceased_list,
-        "haiglas": hospitalised,
+        "haiglas": hospitalized,
         "intensive": intensive,
         "onventilation": on_ventilation,
     }

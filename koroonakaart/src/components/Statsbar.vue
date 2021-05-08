@@ -80,19 +80,19 @@
     <b-row>
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
-          <h5>{{ $t("hospitalised") }}</h5>
+          <h5>{{ $t("hospitalized") }}</h5>
         </div>
-        <h1>{{ hospitalisedNumber | formatNumber(currentLocale) }}</h1>
+        <h1>{{ hospitalizedNumber | formatNumber(currentLocale) }}</h1>
         <h5
           :class="
-            rawHospitalisedChanged === 0
+            rawHospitalizedChanged === 0
               ? 'neutral'
-              : rawHospitalisedChanged > 0
+              : rawHospitalizedChanged > 0
               ? 'positive'
               : 'negative'
           "
         >
-          {{ hospitalisedChanged | formatNumber(currentLocale) }}
+          {{ hospitalizedChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
 
@@ -219,7 +219,7 @@ export default {
         data.dataCumulativeCasesChart.active100k[
           data.dataCumulativeCasesChart.active100k.length - 1
         ],
-      hospitalisedNumber:
+      hospitalizedNumber:
         data.hospital.activehospitalizations[
           data.hospital.activehospitalizations.length - 1
         ],
@@ -251,7 +251,7 @@ export default {
         ).toFixed(2)
       ),
       rawDeceasedChanged: Number(data.deceasedChanged),
-      rawHospitalisedChanged: Number(data.hospitalChanged),
+      rawHospitalizedChanged: Number(data.hospitalChanged),
       rawRecoveredChanged: Number(data.recoveredChanged),
       rawTestsChanged: Number(
         data.dataCumulativeTestsChart.testsAdministered[
@@ -269,7 +269,7 @@ export default {
           data.dataNewCasesPerDayChart.confirmedCases.length - 1
         ]
       ),
-      hospitalisedChanged: positiveSign(data.hospitalChanged),
+      hospitalizedChanged: positiveSign(data.hospitalChanged),
       recoveredChanged: positiveSign(data.recoveredChanged),
       testsChanged: positiveSign(
         data.dataCumulativeTestsChart.testsAdministered[

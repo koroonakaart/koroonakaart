@@ -261,7 +261,7 @@ export default {
             },
           },
           {
-            name: this.$t("hospitalised"),
+            name: this.$t("hospitalized"),
             color: "#7cb5ec",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
@@ -347,7 +347,7 @@ export default {
       this.chartOptions.series[1].name = this.$t("recovered");
       this.chartOptions.series[2].name = this.$t("active");
       this.chartOptions.series[3].name = this.$t("deceased");
-      this.chartOptions.series[4].name = this.$t("hospitalised");
+      this.chartOptions.series[4].name = this.$t("hospitalized");
       this.chartOptions.series[5].name = this.$t("intensive");
       this.chartOptions.series[6].name = this.$t("onventilation");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
