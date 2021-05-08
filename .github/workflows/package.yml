@@ -1,6 +1,9 @@
 name: Build and update to GitHub Pages
 
 on:
+  schedule:
+    # Estonia is UTC+2/+3 and data updates often happen daily ~11-12
+    - cron: "15 0,8,9,10,11,18 * * *"
   push:
     branches:
       - master
@@ -34,8 +37,8 @@ jobs:
 
       - name: Commit latest data files if updated
         run: |
-          git config user.name "GitHub"
-          git config user.email "<noreply@github.com>"
+          git config --global user.name "GitHub"
+          git config --global user.email "<noreply@github.com>"
 
           cp -a data /tmp
 
@@ -73,8 +76,8 @@ jobs:
       - name: Deploy to GitHub Pages
         if: success()
         run: |
-          git config user.name "GitHub"
-          git config user.email "<noreply@github.com>"
+          git config --global user.name "GitHub"
+          git config --global user.email "<noreply@github.com>"
 
           SRC="$(pwd)"
           mkdir /tmp/github-pages && cd /tmp/github-pages
