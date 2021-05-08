@@ -21,7 +21,6 @@ import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
 
 import vueRoot from "../main.js";
-import importMap from "../utilities/importMap";
 
 HighchartsMapModule(Highcharts);
 drilldown(Highcharts);
@@ -57,17 +56,19 @@ export default {
   methods: {
     fetchData() {
       let _this = this;
-      import("../data/map/estonia.geo.json").then((mapData) => {
-        Highcharts.maps["mapEstonia"] = mapData;
-        import("../data/Map.json").then((data) => {
-          _this.data = data;
-          _this.mapOptions = _this.makeData(mapData, data);
-          _this.loading = false;
+      import("../utilities/importMap").then((importMap) => {
+        import("../data/map/estonia.geo.json").then((mapData) => {
+          Highcharts.maps["mapEstonia"] = mapData;
+          import("../data/Map.json").then((data) => {
+            _this.data = data;
+            _this.mapOptions = _this.makeData(mapData, importMap, data);
+            _this.loading = false;
+          });
         });
       });
     },
 
-    makeData(mapData, data) {
+    makeData(mapData, importMap, data) {
       return {
         chart: {
           marginTop: 30,
