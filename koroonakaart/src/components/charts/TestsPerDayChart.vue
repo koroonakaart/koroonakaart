@@ -329,7 +329,7 @@ export default {
           {
             name: this.$t("positive"),
             data: data.dataTestsPerDayChart.positiveTestsPerDay,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#000000",
             yAxis: 0,
@@ -337,14 +337,14 @@ export default {
           {
             name: this.$t("negative"),
             data: data.dataTestsPerDayChart.negativeTestsPerDay,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: this.$t("percentPositiveTests"),
             data: data.dataTestsPerDayChart.positiveTestsPercentage,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             type: "spline",
             yAxis: 1,

@@ -8,8 +8,9 @@ TODAY_DMYHM = datetime.today().astimezone(ESTONIA_TZ).strftime("%d/%m/%Y, %H:%M"
 YESTERDAY_YMD = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
 
 DATE_SETTINGS = {
-    "dates2_start": "2020-02-26",  # The date of the first Covid-19 case in Estonia. Most charts start from this date.
-    "dates3_start": "2020-12-26",  # Vaccination started in Estonia on 27 December 2020. Time series charts related
+    "firstCaseDate": "2020-02-26",  # The date of the first Covid-19 case in Estonia. Most charts start from this date.
+    "vaccinationStartDate": "2020-12-26",
+    # Vaccination started in Estonia on 27 December 2020. Time series charts related
     # to vaccination start one day earlier.
 }
 

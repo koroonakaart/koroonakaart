@@ -32,10 +32,10 @@ def main():
     logger.info("Calculating main statistics")
 
     # Create date ranges for charts
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
+    case_dates = pd.date_range(start=DATE_SETTINGS["firstCaseDate"], end=YESTERDAY_YMD)
 
     # Set recovered, deceased, hospitalized and ICU time-series
-    hospital = get_hospital_data(hospitalization, DATE_SETTINGS["dates2_start"])
+    hospital = get_hospital_data(hospitalization, DATE_SETTINGS["firstCaseDate"])
     recovered = hospital["discharged"]
     manual_data["deceased"].update(deaths)
     deceased = list(manual_data["deceased"].values())
@@ -58,7 +58,7 @@ def main():
         hospitalized,
         intensive,
         on_ventilation,
-        dates2,
+        case_dates,
     )
 
     del cumulative_cases_chart_data["active100k"]
@@ -67,7 +67,7 @@ def main():
     logger.info("Compiling final JSON")
     final_json = {
         "updatedOn": TODAY_DMYHM,
-        "dates2": [str(x.date()) for x in dates2],
+        "caseDates": [str(x.date()) for x in case_dates],
         "dataCumulativeCasesChart": cumulative_cases_chart_data,
     }
 

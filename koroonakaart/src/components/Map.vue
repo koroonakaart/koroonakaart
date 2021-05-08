@@ -385,7 +385,7 @@ export default {
         motion: {
           enabled: true,
           axisLabel: "date",
-          labels: data.dates2,
+          labels: data.caseDates,
           loop: false,
           series: 0, // The series which holds points to update
           updateInterval: 40,

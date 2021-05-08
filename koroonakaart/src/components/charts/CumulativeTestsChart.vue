@@ -164,7 +164,7 @@ export default {
         },
 
         xAxis: {
-          categories: data.dates2,
+          categories: data.caseDates,
           /* plotLines: [
             {
               color: "red", // Color value

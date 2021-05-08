@@ -26,12 +26,12 @@ def main():
     logger.info("Calculating main statistics")
 
     # Create date ranges for charts
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
+    case_dates = pd.date_range(start=DATE_SETTINGS["firstCaseDate"], end=YESTERDAY_YMD)
 
     # Get data for each chart
     logger.info("Calculating data for charts")
     county_by_day = get_county_by_day(
-        test_results, dates2, COUNTY_MAPPING, COUNTY_POPULATION
+        test_results, case_dates, COUNTY_MAPPING, COUNTY_POPULATION
     )
     confirmed_cases_by_county = get_confirmed_cases_by_county(
         test_results, COUNTY_MAPPING

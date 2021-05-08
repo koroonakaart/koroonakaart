@@ -23,16 +23,18 @@ def main():
     logger.info("Calculating main statistics")
 
     # Create date ranges for charts
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
+    case_dates = pd.date_range(start=DATE_SETTINGS["firstCaseDate"], end=YESTERDAY_YMD)
 
     # Set recovered, deceased, hospitalized and ICU time-series
-    cumulative_tests_chart_data = get_cumulative_tests_chart_data(test_results, dates2)
+    cumulative_tests_chart_data = get_cumulative_tests_chart_data(
+        test_results, case_dates
+    )
 
     # Create dictionary for final JSON
     logger.info("Compiling final JSON")
     final_json = {
         "updatedOn": TODAY_DMYHM,
-        "dates2": [str(x.date()) for x in dates2],
+        "caseDates": [str(x.date()) for x in case_dates],
         "testsAdministered": cumulative_tests_chart_data["testsAdministered"],
     }
 

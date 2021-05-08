@@ -20,16 +20,20 @@ def main():
     vaccination = read_json_from_file(VACCINATIONS_PATH)
 
     logger.info("Calculating main statistics")
-    dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=YESTERDAY_YMD)
+    vaccination_dates = pd.date_range(
+        start=DATE_SETTINGS["vaccinationStartDate"], end=YESTERDAY_YMD
+    )
 
     logger.info("Calculating data for charts")
-    vaccinated_people_chart_data = get_vaccinated_people_chart_data(vaccination, dates3)
+    vaccinated_people_chart_data = get_vaccinated_people_chart_data(
+        vaccination, vaccination_dates
+    )
 
     # Create dictionary for final JSON
     logger.info("Compiling final JSON")
     final_json = {
         "updatedOn": TODAY_DMYHM,
-        "dates3": [str(x.date()) for x in dates3],
+        "vaccinationDates": [str(x.date()) for x in vaccination_dates],
         "dataVaccinatedPeopleChart": vaccinated_people_chart_data,
     }
 

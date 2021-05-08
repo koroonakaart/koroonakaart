@@ -67,11 +67,13 @@ def main():
 
     # Create date ranges for charts
     # dates1 = pd.date_range(start=DATE_SETTINGS["dates1_start"], end=yesterday)
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
-    dates3 = pd.date_range(start=DATE_SETTINGS["dates3_start"], end=YESTERDAY_YMD)
+    case_dates = pd.date_range(start=DATE_SETTINGS["firstCaseDate"], end=YESTERDAY_YMD)
+    vaccination_dates = pd.date_range(
+        start=DATE_SETTINGS["vaccinationStartDate"], end=YESTERDAY_YMD
+    )
 
     # Set recovered, deceased, hospitalized and ICU time-series
-    hospital = get_hospital_data(hospitalization, DATE_SETTINGS["dates2_start"])
+    hospital = get_hospital_data(hospitalization, DATE_SETTINGS["firstCaseDate"])
     recovered = hospital["discharged"]
     manual_data["deceased"].update(deaths)
     deceased = list(manual_data["deceased"].values())
@@ -96,7 +98,7 @@ def main():
     )
     tests_pop_ratio = get_test_data_pop_ratio(infections_by_county_10000)
     county_by_day = get_county_by_day(
-        test_results, dates2, COUNTY_MAPPING, COUNTY_POPULATION
+        test_results, case_dates, COUNTY_MAPPING, COUNTY_POPULATION
     )
     confirmed_cases_by_county = get_confirmed_cases_by_county(
         test_results, COUNTY_MAPPING
@@ -108,20 +110,24 @@ def main():
         hospitalized,
         intensive,
         on_ventilation,
-        dates2,
+        case_dates,
     )
     new_cases_per_day_chart_data = get_new_cases_per_day_chart_data(
         cumulative_cases_chart_data
     )
-    cumulative_tests_chart_data = get_cumulative_tests_chart_data(test_results, dates2)
-    tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, dates2)
+    cumulative_tests_chart_data = get_cumulative_tests_chart_data(
+        test_results, case_dates
+    )
+    tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, case_dates)
     positive_test_by_age_chart_data = get_positive_tests_by_age_chart_data(test_results)
     positive_negative_chart_data = get_positive_negative_chart_data(
         test_results, COUNTY_MAPPING
     )
-    vaccinated_people_chart_data = get_vaccinated_people_chart_data(vaccination, dates3)
+    vaccinated_people_chart_data = get_vaccinated_people_chart_data(
+        vaccination, vaccination_dates
+    )
     county_daily_active = get_county_daily_active(
-        test_results, dates2, COUNTY_MAPPING, COUNTY_POPULATION
+        test_results, case_dates, COUNTY_MAPPING, COUNTY_POPULATION
     )
     n_active_cases = cumulative_cases_chart_data["active"][-1]
     n_active_cases_change = (
@@ -191,8 +197,8 @@ def main():
         "perHundred": str(per_100k),  # TODO: This should be given a clearer name.
         # TODO: I can't find anywhere in the app where "dates1" is used. Is it needed? Commented out for now.
         # "dates1": [str(x.date()) for x in dates1],
-        "dates2": [str(x.date()) for x in dates2],
-        "dates3": [str(x.date()) for x in dates3],
+        "caseDates": [str(x.date()) for x in case_dates],
+        "vaccinationDates": [str(x.date()) for x in vaccination_dates],
         "counties": COUNTIES_INCL_UNKNOWN,
         "age_groups": AGE_GROUPS,
         "dataInfectionsByCounty": infections_by_county,

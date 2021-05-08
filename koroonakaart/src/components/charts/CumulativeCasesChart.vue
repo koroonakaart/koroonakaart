@@ -223,7 +223,7 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.cases,
             marker: {
@@ -233,7 +233,7 @@ export default {
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.recovered,
             marker: {
@@ -243,7 +243,7 @@ export default {
           {
             name: this.$t("active"),
             color: "#f28f43",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.active,
             marker: {
@@ -253,7 +253,7 @@ export default {
           {
             name: this.$t("deceased"),
             color: "#0d233a",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.deceased,
             marker: {
@@ -263,7 +263,7 @@ export default {
           {
             name: this.$t("hospitalized"),
             color: "#7cb5ec",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.haiglas,
             marker: {
@@ -273,7 +273,7 @@ export default {
           {
             name: this.$t("intensive"),
             color: "#c42525",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.intensive,
             marker: {
@@ -283,7 +283,7 @@ export default {
           {
             name: this.$t("onVentilation"),
             color: "#7617bf",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.onVentilation,
             marker: {

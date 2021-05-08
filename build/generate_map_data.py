@@ -29,7 +29,7 @@ def main():
 
     # Log status
     logger.info("Calculating main statistics")
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
+    case_dates = pd.date_range(start=DATE_SETTINGS["firstCaseDate"], end=YESTERDAY_YMD)
 
     # Get data for each chart
     logger.info("Calculating data for charts")
@@ -38,10 +38,10 @@ def main():
         infections_by_county, COUNTY_POPULATION
     )
     county_by_day = get_county_by_day(
-        test_results, dates2, COUNTY_MAPPING, COUNTY_POPULATION
+        test_results, case_dates, COUNTY_MAPPING, COUNTY_POPULATION
     )
     county_daily_active = get_county_daily_active(
-        test_results, dates2, COUNTY_MAPPING, COUNTY_POPULATION
+        test_results, case_dates, COUNTY_MAPPING, COUNTY_POPULATION
     )
     active_infections_by_county = [
         {"MNIMI": k, "sequence": v, "drilldown": k}
@@ -53,7 +53,7 @@ def main():
     logger.info("Compiling final JSON")
     final_json = {
         "updatedOn": TODAY_DMYHM,
-        "dates2": [str(x.date()) for x in dates2],
+        "caseDates": [str(x.date()) for x in case_dates],
         "dataMunicipalities": municipalities_data,
         "mapPlayback": county_by_day["mapPlayback"],
         "mapPlayback10k": county_by_day["mapPlayback10k"],

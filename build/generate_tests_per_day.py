@@ -21,16 +21,16 @@ def main():
 
     logger.info("Calculating main statistics")
     # Create date ranges for charts
-    dates2 = pd.date_range(start=DATE_SETTINGS["dates2_start"], end=YESTERDAY_YMD)
+    case_dates = pd.date_range(start=DATE_SETTINGS["firstCaseDate"], end=YESTERDAY_YMD)
 
     logger.info("Calculating data for charts")
-    tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, dates2)
+    tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, case_dates)
 
     # Create dictionary for final JSON
     logger.info("Compiling final JSON")
     final_json = {
         "updatedOn": TODAY_DMYHM,
-        "dates2": [str(x.date()) for x in dates2],
+        "caseDates": [str(x.date()) for x in case_dates],
         "dataTestsPerDayChart": tests_per_day_chart_data,
     }
 

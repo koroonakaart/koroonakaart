@@ -206,7 +206,7 @@ export default {
           {
             name: "Harjumaa",
             data: data.newCountyByDay.Harjumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#2F7ED8",
             yAxis: 0,
@@ -214,7 +214,7 @@ export default {
           {
             name: "Hiiumaa",
             data: data.newCountyByDay.Hiiumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#456990",
             yAxis: 0,
@@ -222,7 +222,7 @@ export default {
           {
             name: "Ida-Virumaa",
             data: data.newCountyByDay["Ida-Virumaa"],
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#49BEAA",
             yAxis: 0,
@@ -230,7 +230,7 @@ export default {
           {
             name: "Jõgevamaa",
             data: data.newCountyByDay.Jõgevamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#49DCB1",
             yAxis: 0,
@@ -238,7 +238,7 @@ export default {
           {
             name: "Järvamaa",
             data: data.newCountyByDay.Järvamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#EEB868",
             yAxis: 0,
@@ -246,7 +246,7 @@ export default {
           {
             name: "Läänemaa",
             data: data.newCountyByDay.Läänemaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#7CB5EC",
             yAxis: 0,
@@ -254,7 +254,7 @@ export default {
           {
             name: "Lääne-Virumaa",
             data: data.newCountyByDay["Lääne-Virumaa"],
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#6684A4",
             yAxis: 0,
@@ -262,56 +262,56 @@ export default {
           {
             name: "Põlvamaa",
             data: data.newCountyByDay.Põlvamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Pärnumaa",
             data: data.newCountyByDay.Pärnumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Raplamaa",
             data: data.newCountyByDay.Raplamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Saaremaa",
             data: data.newCountyByDay.Saaremaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Tartumaa",
             data: data.newCountyByDay.Tartumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Valgamaa",
             data: data.newCountyByDay.Valgamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Viljandimaa",
             data: data.newCountyByDay.Viljandimaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Võrumaa",
             data: data.newCountyByDay.Võrumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },

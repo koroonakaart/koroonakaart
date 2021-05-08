@@ -219,7 +219,7 @@ export default {
           {
             name: this.$t("active100k"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.active100k,
           },

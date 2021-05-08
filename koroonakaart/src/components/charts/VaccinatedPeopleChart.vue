@@ -226,21 +226,21 @@ export default {
           {
             name: this.$t("allVaccinated"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates3[0]),
+            pointStart: Date.parse(data.vaccinationDates[0]),
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataVaccinatedPeopleChart.vaccinesAll,
           },
           {
             name: this.$t("vaccinationNumber"),
             color: "#90ed7d",
-            pointStart: Date.parse(data.dates3[0]),
+            pointStart: Date.parse(data.vaccinationDates[0]),
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataVaccinatedPeopleChart.vaccinesProgress,
           },
           {
             name: this.$t("completedVaccinationNumber"),
             color: "#f28f43",
-            pointStart: Date.parse(data.dates3[0]),
+            pointStart: Date.parse(data.vaccinationDates[0]),
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataVaccinatedPeopleChart.vaccinesCompleted,
           },
