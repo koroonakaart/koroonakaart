@@ -14,7 +14,31 @@ of https://koroonakaart.ee
 
 ## Data
 
-All data used by our application can be accessed directly at the following link: https://www.koroonakaart.ee/data.json
+All data for the application can be accessed directly via the links:
+
+- https://koroonakaart.cocreators.ee/data/ConfirmedCasesByCounties.json
+- https://koroonakaart.cocreators.ee/data/CumulativeCases.json
+- https://koroonakaart.cocreators.ee/data/CumulativeCasesPer100k.json
+- https://koroonakaart.cocreators.ee/data/CumulativeTests.json
+- https://koroonakaart.cocreators.ee/data/DailyCountyCases.json
+- https://koroonakaart.cocreators.ee/data/DailyCountyNewCases.json
+- https://koroonakaart.cocreators.ee/data/deaths.json
+- https://koroonakaart.cocreators.ee/data/Gender.json
+- https://koroonakaart.cocreators.ee/data/hospitalization.json
+- https://koroonakaart.cocreators.ee/data/manual_data.json
+- https://koroonakaart.cocreators.ee/data/Map.json
+- https://koroonakaart.cocreators.ee/data/NavBar.json
+- https://koroonakaart.cocreators.ee/data/NewCasesPerDay.json
+- https://koroonakaart.cocreators.ee/data/PositiveNegative.json
+- https://koroonakaart.cocreators.ee/data/PositiveTestsAgeDistribution.json
+- https://koroonakaart.cocreators.ee/data/StatsBar.json
+- https://koroonakaart.cocreators.ee/data/test_locations.json
+- https://koroonakaart.cocreators.ee/data/test_results.json
+- https://koroonakaart.cocreators.ee/data/TestsAgeSexDistribution.json
+- https://koroonakaart.cocreators.ee/data/TestsPerDay.json
+- https://koroonakaart.cocreators.ee/data/TestsPopRatio.json
+- https://koroonakaart.cocreators.ee/data/VaccinatedPeople.json
+- https://koroonakaart.cocreators.ee/data/vaccinations.json
 
 ## Project setup
 
