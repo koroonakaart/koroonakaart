@@ -39,10 +39,9 @@ poetry install
 poetry run download
 poetry run generate
 
-# Or if you have plenty of memory and CPU - this will take about 16GB of RAM
-poetry run generate --parallel 8
-# This seems to require about 32GB of free RAM at peak
-poetry run generate --parallel 16
+# Or if you have plenty of memory and CPU - this will take about 14GB of RAM and optimize time spent
+poetry run generate --parallel 6
+# Larger numbers will eat greatly more RAM without significantly improving performance
 ```
 
 Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their
