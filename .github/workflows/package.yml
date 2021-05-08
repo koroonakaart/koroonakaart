@@ -70,6 +70,8 @@ jobs:
           cd koroonakaart
           npm install
           npm run build
+          mkdir -p dist/data
+          cp src/data/*.json dist/data
 
       - name: Generate indexes
         run: |
