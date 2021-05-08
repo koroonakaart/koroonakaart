@@ -17,7 +17,7 @@ import dataModule from "highcharts/modules/data";
 
 import vueRoot from "../main.js";
 import mapData from "../data/map/estonia.geo.json";
-import data from "../data/data.json";
+import data from "../data/Map.json";
 import importMap from "../utilities/importMap";
 
 HighchartsMapModule(Highcharts);
@@ -217,7 +217,7 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.countyByDay.mapPlayback10k,
+                        data: data.mapPlayback10k,
                         dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },
@@ -235,7 +235,7 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.countyByDay.mapPlayback,
+                        data: data.mapPlayback,
                         dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },

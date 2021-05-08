@@ -75,7 +75,7 @@
 import Earth from "vue-material-design-icons/Earth.vue";
 import { headroom } from "vue-headroom";
 
-import data from "../data/data.json";
+import data from "../data/NavBar.json";
 
 export default {
   name: "Navbar",

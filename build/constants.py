@@ -24,7 +24,9 @@ HOSPITALIZATION_PATH = "data/hospitalization.json"
 VACCINATIONS_PATH = "data/vaccinations.json"
 
 # Result files
-OUTPUT_PATH = "koroonakaart/src/data/data.json"
+NAVBAR_PATH = "koroonakaart/src/data/NavBar.json"
+MAP_PATH = "koroonakaart/src/data/Map.json"
+STATS_BAR_PATH = "koroonakaart/src/data/StatsBar.json"
 CONFIRMED_CASES_BY_COUNTIES_PATH = "koroonakaart/src/data/ConfirmedCasesByCounties.json"
 CUMULATIVE_CASES_PATH = "koroonakaart/src/data/CumulativeCases.json"
 CUMULATIVE_CASES_PER_100K_PATH = "koroonakaart/src/data/CumulativeCasesPer100k.json"

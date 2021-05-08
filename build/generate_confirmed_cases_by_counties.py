@@ -37,6 +37,9 @@ def main():
         test_results, COUNTY_MAPPING
     )
 
+    del county_by_day["mapPlayback"]
+    del county_by_day["mapPlayback10k"]
+
     # Create dictionary for final JSON
     logger.info("Compiling final JSON")
     final_json = {

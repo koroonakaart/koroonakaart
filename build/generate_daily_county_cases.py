@@ -30,7 +30,10 @@ def main():
     county_by_day = get_county_by_day(
         test_results, dates2, COUNTY_MAPPING, COUNTY_POPULATION
     )
+
     del county_by_day["newCountyByDay"]
+    del county_by_day["mapPlayback"]
+    del county_by_day["mapPlayback10k"]
 
     # Create dictionary for final JSON
     logger.info("Compiling final JSON")

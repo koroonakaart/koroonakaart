@@ -8,23 +8,8 @@
 .directory
 
 koroonakaart/src/data/*.json
-data/data.json
 data/hospitalization.json
 data/test_locations.json
 data/test_results.json
 data/vaccinations.json
-data/ConfirmedCasesByCounties.json
-data/CumulativeCases.json
-data/CumulativeCasesPer100k.json
-data/CumulativeTests.json
-data/DailyCountyCases.json
-data/DailyCountyNewCases.json
-data/Gender.json
-data/NewCasesPerDay.json
-data/PositiveNegative.json
-data/PositiveTestsAgeDistribution.json
-data/TestsAgeSexDistribution.json
-data/TestsPerDay.json
-data/TestsPopRatio.json
-data/VaccinatedPeople.json
 *.tmp

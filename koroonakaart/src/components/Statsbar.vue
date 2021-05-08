@@ -202,7 +202,7 @@
 </template>
 
 <script>
-import data from "../data/data.json";
+import data from "../data/StatsBar.json";
 import { positiveSign } from "../utilities/helper";
 import { formatNumberByLocale } from "../utilities/formatNumberByLocale";
 export default {
@@ -211,88 +211,40 @@ export default {
   data() {
     return {
       activeCasesNumber: data.activeCasesNumber,
-      positiveTestAverage14Percent:
-        data.dataTestsPerDayChart.positiveTestAverage14Percent,
-      confirmedCasesNumber: data.confirmedCasesNumber,
-      deceasedNumber: data.deceasedNumber,
-      perHundred:
-        data.dataCumulativeCasesChart.active100k[
-          data.dataCumulativeCasesChart.active100k.length - 1
-        ],
-      hospitalizedNumber:
-        data.hospital.activeHospitalizations[
-          data.hospital.activeHospitalizations.length - 1
-        ],
-      recoveredNumber:
-        data.hospital.discharged[data.hospital.discharged.length - 1],
-      testsAdministeredNumber: data.testsAdministeredNumber,
-
-      rawActiveChanged: Number(
-        data.dataCumulativeCasesChart.active[
-          data.dataCumulativeCasesChart.active.length - 1
-        ] -
-          data.dataCumulativeCasesChart.active[
-            data.dataCumulativeCasesChart.active.length - 2
-          ]
-      ),
-      rawConfirmedChanged: Number(
-        data.dataNewCasesPerDayChart.confirmedCases[
-          data.dataNewCasesPerDayChart.confirmedCases.length - 1
-        ]
-      ),
-      rawPerHundredChanged: positiveSign(
-        Number(
-          data.dataCumulativeCasesChart.active100k[
-            data.dataCumulativeCasesChart.active100k.length - 1
-          ] -
-            data.dataCumulativeCasesChart.active100k[
-              data.dataCumulativeCasesChart.active100k.length - 2
-            ]
-        ).toFixed(2)
-      ),
-      rawDeceasedChanged: Number(data.deceasedChanged),
-      rawHospitalizedChanged: Number(data.hospitalChanged),
-      rawRecoveredChanged: Number(data.recoveredChanged),
-      rawTestsChanged: Number(
-        data.dataCumulativeTestsChart.testsAdministered[
-          data.dataCumulativeTestsChart.testsAdministered.length - 1
-        ] -
-          data.dataCumulativeTestsChart.testsAdministered[
-            data.dataCumulativeTestsChart.testsAdministered.length - 2
-          ]
-      ),
-
       activeChanged: positiveSign(data.activeChanged),
-      deceasedChanged: positiveSign(data.deceasedChanged),
-      confirmedChanged: positiveSign(
-        data.dataNewCasesPerDayChart.confirmedCases[
-          data.dataNewCasesPerDayChart.confirmedCases.length - 1
-        ]
-      ),
-      hospitalizedChanged: positiveSign(data.hospitalChanged),
-      recoveredChanged: positiveSign(data.recoveredChanged),
-      testsChanged: positiveSign(
-        data.dataCumulativeTestsChart.testsAdministered[
-          data.dataCumulativeTestsChart.testsAdministered.length - 1
-        ] -
-          data.dataCumulativeTestsChart.testsAdministered[
-            data.dataCumulativeTestsChart.testsAdministered.length - 2
-          ]
-      ),
-      allVaccinationNumberTotal: data.allVaccinationNumberTotal,
+      allVaccinationFromPopulationPercentage:
+        data.allVaccinationFromPopulationPercentage,
       allVaccinationNumberLastDay: positiveSign(
         data.allVaccinationNumberLastDay
       ),
-      allVaccinationFromPopulationPercentage:
-        data.allVaccinationFromPopulationPercentage,
-      vaccinationNumberTotal: data.vaccinationNumberTotal,
-      vaccinationNumberLastDay: positiveSign(data.vaccinationNumberLastDay),
-      completedVaccinationNumberTotal: data.completedVaccinationNumberTotal,
+      allVaccinationNumberTotal: data.allVaccinationNumberTotal,
       completedVaccinationNumberLastDay: positiveSign(
         data.completedVaccinationNumberLastDay
       ),
+      completedVaccinationNumberTotal: data.completedVaccinationNumberTotal,
       completelyVaccinatedFromTotalVaccinatedPercentage:
         data.completelyVaccinatedFromTotalVaccinatedPercentage,
+      confirmedCasesNumber: data.confirmedCasesNumber,
+      confirmedChanged: positiveSign(data.confirmedChanged),
+      deceasedChanged: positiveSign(data.deceasedChanged),
+      deceasedNumber: data.deceasedNumber,
+      hospitalizedChanged: positiveSign(data.hospitalizedChanged),
+      hospitalizedNumber: data.hospitalizedNumber,
+      perHundred: data.perHundred,
+      positiveTestAverage14Percent: data.positiveTestAverage14Percent,
+      rawActiveChanged: data.rawActiveChanged,
+      rawConfirmedChanged: data.rawConfirmedChanged,
+      rawDeceasedChanged: Number(data.deceasedChanged),
+      rawHospitalizedChanged: Number(data.hospitalizedChanged),
+      rawPerHundredChanged: positiveSign(data.rawPerHundredChanged.toFixed(2)),
+      rawRecoveredChanged: Number(data.recoveredChanged),
+      rawTestsChanged: Number(data.rawTestsChanged),
+      recoveredChanged: positiveSign(data.recoveredChanged),
+      recoveredNumber: data.recoveredNumber,
+      testsAdministeredNumber: data.testsAdministeredNumber,
+      testsChanged: positiveSign(data.testsChanged),
+      vaccinationNumberLastDay: positiveSign(data.vaccinationNumberLastDay),
+      vaccinationNumberTotal: data.vaccinationNumberTotal,
     };
   },
 
