@@ -1,23 +1,28 @@
-from datetime import timedelta
-from functools import wraps
 import json
 import os.path
-from time import time
+import sys
 import tracemalloc
+from datetime import timedelta
+from functools import wraps
+from time import time
 from typing import Any
 from typing import Callable
 
-from build.helpers import NpEncoder
 from humanize import naturalsize
 from humanize import precisedelta
 from loguru import logger
 
+from build.helpers import NpEncoder
+
 _ACTIVE_ANALYSES = 0
-_DEBUG_MEMORY = False
+_DEBUG_MEMORY = True
+
+logger.remove()
+logger.add(sys.stderr, enqueue=True)
 
 
 def save_as_json(destination, data):
-    logger.info("Writing {dst}", dst=destination)
+    logger.debug("Writing {dst}", dst=destination)
     with open(destination, "w", encoding="utf-8", newline="\n") as f:
         output = json.dumps(
             data, cls=NpEncoder, ensure_ascii=False, indent=2, sort_keys=True
@@ -26,7 +31,7 @@ def save_as_json(destination, data):
 
 
 def read_json_from_file(path):
-    logger.info("Reading {path}", path=path)
+    logger.debug("Reading {path}", path=path)
     if not os.path.isfile(path):
         raise Exception(f"{path} not found")
 
