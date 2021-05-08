@@ -8,6 +8,16 @@ from build.utils import analyze_time
 from build.utils import logger
 
 
+def label(text: str):
+    length = len(text)
+    l = logger.opt(colors=True)
+    l.warning("")
+    l.warning("<m>/=" + ("=" * length) + "=\\ </m>")
+    l.warning("<m>|</m> <b>{text}</b> <m>|</m>", text=text)
+    l.warning("<m>\\=" + ("=" * length) + "=/</m>")
+    l.warning("")
+
+
 @analyze_time
 @analyze_memory
 def main():
@@ -16,10 +26,7 @@ def main():
         if f.name == script_name:
             continue
 
-        logger.warning("")
-        logger.warning("")
-        logger.warning("Running {name}", name=f.name)
-        logger.warning("")
+        label(f"Running {f.name}")
         subprocess.run([sys.executable, f], check=True)  # nosec
 
     logger.info("Writing NavBar JSON package")
