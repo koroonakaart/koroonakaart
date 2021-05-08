@@ -1,11 +1,46 @@
+from datetime import datetime
+from datetime import timedelta
+
+import pytz
+
+ESTONIA_TZ = pytz.timezone("Europe/Helsinki")
+TODAY_DMYHM = datetime.today().astimezone(ESTONIA_TZ).strftime("%d/%m/%Y, %H:%M")
+YESTERDAY_YMD = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
+
+DATE_SETTINGS = {
+    "dates2_start": "2020-02-26",  # The date of the first Covid-19 case in Estonia. Most charts start from this date.
+    "dates3_start": "2020-12-26",  # Vaccination started in Estonia on 27 December 2020. Time series charts related
+    # to vaccination start one day earlier.
+}
+
 # Relative to repo root
+
+# Source files
 MANUAL_DATA_PATH = "data/manual_data.json"
 DEATHS_PATH = "data/deaths.json"
 TEST_RESULTS_PATH = "data/test_results.json"
 TEST_LOCATIONS_PATH = "data/test_locations.json"
 HOSPITALIZATION_PATH = "data/hospitalization.json"
 VACCINATIONS_PATH = "data/vaccinations.json"
-OUTPUT_PATH = "data/data.json"
+
+# Result files
+OUTPUT_PATH = "koroonakaart/src/data/data.json"
+CONFIRMED_CASES_BY_COUNTIES_PATH = "koroonakaart/src/data/ConfirmedCasesByCounties.json"
+CUMULATIVE_CASES_PATH = "koroonakaart/src/data/CumulativeCases.json"
+CUMULATIVE_CASES_PER_100K_PATH = "koroonakaart/src/data/CumulativeCasesPer100k.json"
+CUMULATIVE_TESTS_PATH = "koroonakaart/src/data/CumulativeTests.json"
+DAILY_COUNTY_CASES_PATH = "koroonakaart/src/data/DailyCountyCases.json"
+DAILY_COUNTY_NEW_CASES_PATH = "koroonakaart/src/data/DailyCountyNewCases.json"
+GENDER_PATH = "koroonakaart/src/data/Gender.json"
+NEW_CASES_PER_DAY_PATH = "koroonakaart/src/data/NewCasesPerDay.json"
+POSITIVE_NEGATIVE_PATH = "koroonakaart/src/data/PositiveNegative.json"
+POSITIVE_TESTS_AGE_DISTRIBUTION_PATH = (
+    "koroonakaart/src/data/PositiveTestsAgeDistribution.json"
+)
+TESTS_AGE_SEX_DISTRIBUTION_PATH = "koroonakaart/src/data/TestsAgeSexDistribution.json"
+TESTS_PER_DAY_PATH = "koroonakaart/src/data/TestsPerDay.json"
+TESTS_POP_RATIO_PATH = "koroonakaart/src/data/TestsPopRatio.json"
+VACCINATED_PEOPLE_PATH = "koroonakaart/src/data/VaccinatedPeople.json"
 
 COUNTY_MAPPING = {
     "Harju maakond": "Harjumaa",

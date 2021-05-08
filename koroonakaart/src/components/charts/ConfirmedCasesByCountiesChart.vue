@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/ConfirmedCasesByCounties.json";
 
 export default {
   name: "ConfirmedCasesByCountiesChart",

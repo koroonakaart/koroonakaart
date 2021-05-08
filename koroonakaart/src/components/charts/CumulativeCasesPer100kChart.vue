@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/CumulativeCasesPer100k.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
@@ -189,9 +189,6 @@ export default {
             },
           },
         },
-        // xAxis: {
-        //   categories: data.dates2
-        // },
 
         yAxis: {
           title: {
@@ -224,7 +221,7 @@ export default {
             color: "#2f7ed8",
             pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.active100k,
+            data: data.active100k,
           },
         ],
 

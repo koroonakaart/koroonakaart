@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/TestsPerDay.json";
 import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 

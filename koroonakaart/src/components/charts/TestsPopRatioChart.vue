@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/TestsPopRatio.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 

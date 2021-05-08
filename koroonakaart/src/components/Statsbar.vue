@@ -220,8 +220,8 @@ export default {
           data.dataCumulativeCasesChart.active100k.length - 1
         ],
       hospitalizedNumber:
-        data.hospital.activehospitalizations[
-          data.hospital.activehospitalizations.length - 1
+        data.hospital.activeHospitalizations[
+          data.hospital.activeHospitalizations.length - 1
         ],
       recoveredNumber:
         data.hospital.discharged[data.hospital.discharged.length - 1],

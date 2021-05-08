@@ -13,7 +13,7 @@ import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
 
-import data from "../../data/data.json";
+import data from "../../data/Gender.json";
 
 dataModule(Highcharts);
 drilldown(Highcharts);
@@ -109,12 +109,12 @@ export default {
             data: [
               {
                 name: this.$t("male"),
-                y: data.dataPositiveTestsByAgeChart.maleTotal,
+                y: data.maleTotal,
                 drilldown: "MALE",
               },
               {
                 name: this.$t("female"),
-                y: data.dataPositiveTestsByAgeChart.femaleTotal,
+                y: data.femaleTotal,
                 drilldown: "FEMALE",
               },
             ],
@@ -141,17 +141,11 @@ export default {
               data: [
                 [
                   this.$t("maleNegative"),
-                  data.dataPositiveTestsByAgeChart.maleNegative.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.maleNegative.reduce((a, b) => a + b, 0),
                 ],
                 [
                   this.$t("malePositive"),
-                  data.dataPositiveTestsByAgeChart.malePositive.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.malePositive.reduce((a, b) => a + b, 0),
                 ],
               ],
             },
@@ -169,17 +163,11 @@ export default {
               data: [
                 [
                   this.$t("femaleNegative"),
-                  data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.femaleNegative.reduce((a, b) => a + b, 0),
                 ],
                 [
                   this.$t("femalePositive"),
-                  data.dataPositiveTestsByAgeChart.femalePositive.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.femalePositive.reduce((a, b) => a + b, 0),
                 ],
               ],
             },

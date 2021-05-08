@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/DailyCountyCases.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {

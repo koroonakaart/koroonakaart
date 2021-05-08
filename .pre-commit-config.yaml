@@ -6,12 +6,12 @@ repos:
     hooks:
       # Run shellcheck for all .sh files
       - id: shellcheck
-
-  - repo: https://github.com/sqlalchemyorg/zimports/
-    rev: 0.3.0
-    hooks:
-      # Remove unused imports and sort them
-      - id: zimports
+  # Commented out for now as zimports strips nosec comments from imports
+  #  - repo: https://github.com/sqlalchemyorg/zimports/
+  #    rev: 0.3.0
+  #    hooks:
+  #      # Remove unused imports and sort them
+  #      - id: zimports
 
   - repo: https://github.com/psf/black
     rev: 20.8b1

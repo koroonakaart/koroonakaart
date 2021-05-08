@@ -35,7 +35,7 @@ def get_hospital_data(json_hospitalization, start_date):
 
     hospital_results = {
         "hospitalizations": hospitalizations,
-        "activehospitalizations": active_hospitalizations,
+        "activeHospitalizations": active_hospitalizations,
         "intensive": intensive,
         "discharged": discharged,
     }

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/CumulativeTests.json";
 
 export default {
   name: "CumulativeTestsChart",
@@ -197,7 +197,7 @@ export default {
         series: [
           {
             name: this.$t("testsAdministered"),
-            data: data.dataCumulativeTestsChart.testsAdministered,
+            data: data.testsAdministered,
           },
         ],
 

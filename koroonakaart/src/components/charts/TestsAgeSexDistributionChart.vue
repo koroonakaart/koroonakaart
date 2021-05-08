@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import data from "../../data/data.json";
+import data from "../../data/TestsAgeSexDistribution.json";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
