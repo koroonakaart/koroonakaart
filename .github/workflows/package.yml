@@ -73,6 +73,10 @@ jobs:
           mkdir -p dist/data
           cp src/data/*.json dist/data
 
+          # Too large for GitHub
+          rm dist/data/test_results.json
+          rm dist/data/test_locations.json
+
       - name: Generate indexes
         run: |
           cd koroonakaart/dist
