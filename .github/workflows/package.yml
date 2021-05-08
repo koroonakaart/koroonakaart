@@ -71,6 +71,17 @@ jobs:
           npm install
           npm run build
 
+      - name: Generate indexes
+        run: |
+          cd koroonakaart/dist
+          for locale in en et ru; do
+            mkdir -p "${locale}/faq"
+            mkdir -p "${locale}/chart"
+            cp index.html "${locale}/"
+            cp index.html "${locale}/faq/"
+            cp index.html "${locale}/chart/"
+          done
+
       - name: Deploy to GitHub Pages
         if: success()
         run: |
