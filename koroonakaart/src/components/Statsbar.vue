@@ -238,7 +238,7 @@ export default {
       rawHospitalizedChanged: Number(data.hospitalizedChanged),
       rawPerHundredChanged: positiveSign(data.rawPerHundredChanged.toFixed(2)),
       rawRecoveredChanged: Number(data.recoveredChanged),
-      rawTestsChanged: Number(data.rawTestsChanged),
+      rawTestsChanged: Number(data.testsChanged),
       recoveredChanged: positiveSign(data.recoveredChanged),
       recoveredNumber: data.recoveredNumber,
       testsAdministeredNumber: data.testsAdministeredNumber,
