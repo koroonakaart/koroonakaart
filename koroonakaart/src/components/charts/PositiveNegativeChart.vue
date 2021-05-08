@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       class="chart"
       :options="chartOptions"
       ref="thisChart"
@@ -9,8 +14,6 @@
 </template>
 
 <script>
-import data from "../../data/PositiveNegative.json";
-
 export default {
   name: "PositiveNegativeChart",
 
@@ -25,9 +28,27 @@ export default {
 
   data() {
     return {
+      loading: true,
       chartType: "percent",
+      chartOptions: null,
+    };
+  },
 
-      chartOptions: {
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/PositiveNegative.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
@@ -255,8 +276,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale

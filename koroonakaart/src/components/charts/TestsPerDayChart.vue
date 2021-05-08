@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       :constructor-type="'stockChart'"
       class="chart"
       :options="chartOptions"
@@ -10,8 +15,7 @@
 </template>
 
 <script>
-import data from "../../data/TestsPerDay.json";
-import { formatDate, capitalise } from "../../utilities/helper";
+import { capitalise, formatDate } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
@@ -25,14 +29,33 @@ export default {
     },
   },
 
+  data() {
+    return {
+      loading: true,
+      chartType: "absolute",
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
   mounted() {
     /* console.log(this.chartOptions.yAxis.title.text); */
   },
 
-  data() {
-    return {
-      chartType: "absolute",
-      chartOptions: {
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/TestsPerDay.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("testsPerDay"),
           align: "left",
@@ -351,8 +374,8 @@ export default {
             // enableMouseTracking: false,
           },
         ],
-      },
-    };
+      };
+    },
   },
 
   // Get current locale

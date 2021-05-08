@@ -36,6 +36,7 @@
   "language": "English",
   "mapTitle": "Infections by county",
   "logarithmic": "Logarithmic",
+  "loading": "Loading...",
   "linear": "Linear",
   "showValues": "Show values",
   "hideValues": "Hide values",

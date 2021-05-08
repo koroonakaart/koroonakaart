@@ -1,6 +1,11 @@
 <template>
   <b-container>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       :constructor-type="'mapChart'"
       :options="mapOptions"
       class="map"
@@ -16,15 +21,12 @@ import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
 
 import vueRoot from "../main.js";
-import mapData from "../data/map/estonia.geo.json";
-import data from "../data/Map.json";
 import importMap from "../utilities/importMap";
 
 HighchartsMapModule(Highcharts);
 drilldown(Highcharts);
 dataModule(Highcharts);
 
-Highcharts.maps["mapEstonia"] = mapData;
 Highcharts.setOptions({ lang: { drillUpText: "◁ {series.drillUpText}" } });
 
 export default {
@@ -41,9 +43,32 @@ export default {
 
   data() {
     return {
-      mapOptions: {
-        chartType: "active",
+      data: null,
+      loading: true,
+      chartType: "active",
+      mapOptions: null,
+    };
+  },
 
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../data/map/estonia.geo.json").then((mapData) => {
+        Highcharts.maps["mapEstonia"] = mapData;
+        import("../data/Map.json").then((data) => {
+          _this.data = data;
+          _this.mapOptions = _this.makeData(mapData, data);
+          _this.loading = false;
+        });
+      });
+    },
+
+    makeData(mapData, data) {
+      return {
         chart: {
           marginTop: 30,
           map: "mapEstonia",
@@ -518,8 +543,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -548,12 +573,14 @@ export default {
         "activeCounty100k"
       );
 
-      // Persist chart type selection through language change
-      this.mapOptions.chartType === "absolute"
-        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
-        : this.mapOptions.chartType === "per10k"
-        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty10000)
-        : (this.mapOptions.series[0] = data.dataActiveInfectionsByCounty);
+      if (!this.loading) {
+        // Persist chart type selection through language change
+        this.mapOptions.chartType === "absolute"
+          ? (this.mapOptions.series[0] = this.data.dataInfectionsByCounty)
+          : this.mapOptions.chartType === "per10k"
+          ? (this.mapOptions.series[0] = this.data.dataInfectionsByCounty10000)
+          : (this.mapOptions.series[0] = this.data.dataActiveInfectionsByCounty);
+      }
 
       this.$children[0].chart.drillUp();
     },

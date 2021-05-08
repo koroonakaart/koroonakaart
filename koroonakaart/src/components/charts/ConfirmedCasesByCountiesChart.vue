@@ -1,13 +1,19 @@
 // "Cases by county" chart
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
+    <highcharts
+      v-if="!loading"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data/ConfirmedCasesByCounties.json";
-
 export default {
   name: "ConfirmedCasesByCountiesChart",
 
@@ -22,7 +28,44 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      loading: true,
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+  },
+
+  // Fire when currentLocale computed property changes
+  watch: {
+    currentLocale() {
+      this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("numberOfCases");
+      this.chartOptions.series[1].name = this.$t("newPositive");
+      this.chartOptions.xAxis.categories[15] = this.$t("insufficientData");
+    },
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/ConfirmedCasesByCounties.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("confirmedCasesByCounties"),
           align: "left",
@@ -156,25 +199,7 @@ export default {
             data: data.countyByDay.countyByDayNew,
           },
         ],
-      },
-    };
-  },
-
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
-  },
-
-  // Fire when currentLocale computed property changes
-  watch: {
-    currentLocale() {
-      this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("numberOfCases");
-      this.chartOptions.series[1].name = this.$t("newPositive");
-      this.chartOptions.xAxis.categories[15] = this.$t("insufficientData");
+      };
     },
   },
 };

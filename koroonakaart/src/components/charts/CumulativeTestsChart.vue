@@ -1,12 +1,18 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
+    <highcharts
+      v-if="!loading"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data/CumulativeTests.json";
-
 export default {
   name: "CumulativeTestsChart",
 
@@ -21,7 +27,33 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      loading: true,
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/CumulativeTests.json").then((data) => {
+        _this.chartOptions = this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("cumulativeTests"),
           align: "left",
@@ -225,14 +257,7 @@ export default {
             },
           ],
         },
-      },
-    };
-  },
-
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
+      };
     },
   },
 

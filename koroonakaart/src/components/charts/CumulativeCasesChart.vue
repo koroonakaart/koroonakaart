@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       :constructor-type="'stockChart'"
       class="chart"
       :options="chartOptions"
@@ -9,7 +14,6 @@
 </template>
 
 <script>
-import data from "../../data/CumulativeCases.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
@@ -26,7 +30,26 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      loading: true,
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/CumulativeCases.json").then((data) => {
+        _this.chartOptions = this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartType: "linear",
         chartFirstDate: Date.UTC(2020, 1, 25),
 
@@ -327,8 +350,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale

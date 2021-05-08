@@ -1,11 +1,18 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
+    <highcharts
+      v-if="!loading"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data/TestsAgeSexDistribution.json";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
@@ -22,7 +29,26 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      loading: true,
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/TestsAgeSexDistribution.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("distributionOfAgeSexTests"),
           align: "left",
@@ -204,8 +230,8 @@ export default {
             color: "#492970",
           },
         ],
-      },
-    };
+      };
+    },
   },
 
   // Get current locale

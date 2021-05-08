@@ -1,11 +1,18 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
+    <highcharts
+      v-if="!loading"
+      class="chart"
+      :options="chartOptions"
+    ></highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data/TestsPopRatio.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
@@ -20,15 +27,35 @@ export default {
       default: null,
     },
   },
-  // data() {
-  // },
+
+  data() {
+    return {
+      loading: true,
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
 
   // Get current locale
   computed: {
     currentLocale: function () {
       return this.$i18n.locale;
     },
-    chartOptions() {
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/TestsPopRatio.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
       var context = this;
       return {
         title: {

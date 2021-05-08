@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       class="chart"
       :options="chartOptions"
       ref="thisChart"
@@ -12,8 +17,6 @@
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
-
-import data from "../../data/Gender.json";
 
 dataModule(Highcharts);
 drilldown(Highcharts);
@@ -38,8 +41,27 @@ export default {
 
   data() {
     return {
+      loading: true,
       chartType: "pie",
-      chartOptions: {
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/Gender.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("genderChart"),
           align: "left",
@@ -173,8 +195,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
   // Get current locale
   computed: {

@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       :constructor-type="'stockChart'"
       class="chart"
       :options="chartOptions"
@@ -9,7 +14,6 @@
 </template>
 
 <script>
-import data from "../../data/VaccinatedPeople.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
@@ -26,8 +30,27 @@ export default {
 
   data() {
     return {
-      chartOptions: {
-        chartType: "linear",
+      loading: true,
+      chartType: "linear",
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/VaccinatedPeople.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartFirstDate: Date.UTC(2020, 12, 26),
 
         chart: {
@@ -281,8 +304,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale

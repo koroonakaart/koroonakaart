@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       :constructor-type="'stockChart'"
       class="chart"
       :options="chartOptions"
@@ -9,7 +14,6 @@
 </template>
 
 <script>
-import data from "../../data/CumulativeCasesPer100k.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
@@ -26,7 +30,46 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      loading: true,
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+  },
+
+  // Fire when currentLocale computed property changes
+  watch: {
+    currentLocale() {
+      this.chartOptions.title.text = this.$t("cumulativeCasesPer100k");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("active100k");
+      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
+        "logarithmic"
+      );
+    },
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/CumulativeCasesPer100k.json").then((data) => {
+        _this.chartOptions = this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartType: "linear",
         chartFirstDate: Date.UTC(2020, 1, 25),
 
@@ -249,27 +292,7 @@ export default {
             },
           ],
         },
-      },
-    };
-  },
-
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
-  },
-
-  // Fire when currentLocale computed property changes
-  watch: {
-    currentLocale() {
-      this.chartOptions.title.text = this.$t("cumulativeCasesPer100k");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("active100k");
-      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
-        "logarithmic"
-      );
+      };
     },
   },
 };

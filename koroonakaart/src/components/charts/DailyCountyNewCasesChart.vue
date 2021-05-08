@@ -1,6 +1,11 @@
 <template>
   <b-container fluid>
+    <div v-if="loading" class="loading">
+      {{ $t("loading") }}
+    </div>
+
     <highcharts
+      v-if="!loading"
       :constructor-type="'stockChart'"
       class="chart"
       :options="chartOptions"
@@ -10,8 +15,7 @@
 </template>
 
 <script>
-import data from "../../data/DailyCountyNewCases.json";
-import { formatDate, capitalise } from "../../utilities/helper";
+import { capitalise, formatDate } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
@@ -31,8 +35,27 @@ export default {
 
   data() {
     return {
+      loading: true,
       chartType: "absolute",
-      chartOptions: {
+      chartOptions: null,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      import("../../data/DailyCountyNewCases.json").then((data) => {
+        _this.chartOptions = _this.makeData(data);
+        _this.loading = false;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("confirmedNewCasesByCounties"),
           align: "left",
@@ -316,8 +339,8 @@ export default {
             yAxis: 0,
           },
         ],
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
