@@ -15,7 +15,7 @@ RUN set -exu \
 
 # Install Python dependencies - they change less often than code so caches better
 RUN mkdir TEHIK_Open_Data_Loading_Scripts
-COPY TEHIK_Open_Data_Loading_Scripts/pyproject.toml TEHIK_Open_Data_Loading_Scripts/poetry.lock TEHIK_Open_Data_Loading_Scripts
+COPY build/pyproject.toml TEHIK_Open_Data_Loading_Scripts/poetry.lock TEHIK_Open_Data_Loading_Scripts
 
 RUN set -exu \
  && cd TEHIK_Open_Data_Loading_Scripts \
@@ -26,7 +26,7 @@ RUN set -exu \
 COPY . .
 RUN set -exu \
  && cd TEHIK_Open_Data_Loading_Scripts \
- && poetry run python deaths_scraper.py \
+ && poetry run python update_data.py \
  && poetry run python main.py \
  && ls -lhaF ../data
 

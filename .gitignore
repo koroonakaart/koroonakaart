@@ -10,4 +10,4 @@
 koroonakaart/src/data.json
 data/data.json
 
-TEHIK_Open_Data_Loading_Scripts/after_data_updated.sh
+build/after_data_updated.sh

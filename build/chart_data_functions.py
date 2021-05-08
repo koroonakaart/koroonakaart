@@ -14,7 +14,9 @@ def get_hospital_data(json_hospitalisation, start_date):
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
 
     for result in json_hospitalisation:
-        statistics_date = datetime.strptime(result["StatisticsDate"].split("T")[0], "%Y-%m-%d")
+        statistics_date = datetime.strptime(
+            result["StatisticsDate"].split("T")[0], "%Y-%m-%d"
+        )
         if statistics_date >= start_date:
             hospitalizations += [int(result["Hospitalised"])]
             active_hospitalizations += [int(result["ActivelyHospitalised"])]
@@ -42,8 +44,12 @@ def get_municipality_data(json_test_location, county_mapping):
         if result["StatisticsDate"] == yesterday and result["ResultValue"] == "P":
             if result["Commune"] in communes_that_are_summed:
                 if result["Commune"] in communes_that_are_summed_data:
-                    communes_that_are_summed_data[result["Commune"]]["range_start"] += result["TotalCasesFrom"]
-                    communes_that_are_summed_data[result["Commune"]]["range_end"] += result["TotalCasesTo"]
+                    communes_that_are_summed_data[result["Commune"]][
+                        "range_start"
+                    ] += result["TotalCasesFrom"]
+                    communes_that_are_summed_data[result["Commune"]][
+                        "range_end"
+                    ] += result["TotalCasesTo"]
                 else:
                     communes_that_are_summed_data[result["Commune"]] = {
                         "range_start": result["TotalCasesFrom"],
@@ -415,7 +421,9 @@ def get_cumulative_cases_chart_data(
 
     for i in range(14, len(andmed["positiveTestsPerDay"])):
         new_cases_14.append(
-            new_cases_14[i - 1] - andmed["positiveTestsPerDay"][i - 14] + andmed["positiveTestsPerDay"][i]
+            new_cases_14[i - 1]
+            - andmed["positiveTestsPerDay"][i - 14]
+            + andmed["positiveTestsPerDay"][i]
         )
 
     estonian_population = 1_328_976  # From https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure

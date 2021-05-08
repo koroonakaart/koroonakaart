@@ -1,17 +1,14 @@
-from datetime import timezone
 from time import sleep
 import traceback
 
-import pytz
-import requests
 from bs4 import BeautifulSoup
-from dateutil.parser import parse as parsedate
-
 from chart_data_functions import *
 from constants import age_groups
 from constants import counties
 from constants import county_mapping
 from constants import county_sizes
+import pytz
+import requests
 from utils import log_status
 from utils import read_json_from_file
 from utils import save_as_json
@@ -26,16 +23,20 @@ yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
 
 DATE_SETTINGS = {
     # "dates1_start": "2020-03-15", # TODO: It's unclear what this date relates to. Remove? Commented out for now.
-    "dates2_start": "2020-02-26", # The date of the first Covid-19 case in Estonia. Most charts start from this date.
-    "dates3_start": "2020-12-26", # Vaccination started in Estonia on 27 December 2020. Time series charts related
-                                  # to vaccination start one day earlier.
+    "dates2_start": "2020-02-26",  # The date of the first Covid-19 case in Estonia. Most charts start from this date.
+    "dates3_start": "2020-12-26",  # Vaccination started in Estonia on 27 December 2020. Time series charts related
+    # to vaccination start one day earlier.
 }
 
 ######## CONFIGURE IO LOCATIONS ########
 
 TESTING_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
-TEST_LOCATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
-HOSPITALISATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
+TEST_LOCATION_ENDPOINT = (
+    "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
+)
+HOSPITALISATION_ENDPOINT = (
+    "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
+)
 VACCINATION_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v2/opendata_covid19_vaccination_total.json"
 TERVISEAMET_COVID_DASHBOARD = "https://www.terviseamet.ee/et/koroonaviirus/koroonakaart"
 MANUAL_DATA_FILE_LOCATION = "../data/manual_data.json"
@@ -54,10 +55,12 @@ def get_json_data(url):
             if response.status_code == 200:
                 return response.json()
             else:
-                log_status('Endpoint unavailable. Status code: ' + str(response.status_code))
+                log_status(
+                    "Endpoint unavailable. Status code: " + str(response.status_code)
+                )
         except:
             # Log error
-            log_status('Error when retrieving remote data:')
+            log_status("Error when retrieving remote data:")
             log_status(traceback.format_exc())
 
         # Retry?
@@ -72,7 +75,9 @@ def get_json_data(url):
 def is_up_to_date(json_data, date_field_name):
     yesterday = datetime.today() - timedelta(1)
     yesterday = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
-    file_date_time = datetime.strptime(json_data[0][date_field_name].split("T")[0], "%Y-%m-%d")
+    file_date_time = datetime.strptime(
+        json_data[0][date_field_name].split("T")[0], "%Y-%m-%d"
+    )
     if file_date_time >= yesterday:
         return True
     return False
@@ -138,7 +143,9 @@ def main():
     #     ok = False
 
     if not ok:
-        log_status("One or more of the TEHIK APIs has not been updated or could not be retrieved.")
+        log_status(
+            "One or more of the TEHIK APIs has not been updated or could not be retrieved."
+        )
         log_status("Aborting data update.")
         exit()
 
@@ -149,7 +156,7 @@ def main():
         json_manual = read_json_from_file(MANUAL_DATA_FILE_LOCATION)
     except:
         # Log error
-        log_status('Error when loading local data:')
+        log_status("Error when loading local data:")
         log_status(traceback.format_exc())
         exit()
 
@@ -178,7 +185,9 @@ def main():
     #       in the manual_data.json file with the field name "intensive" appears to show the number
     #       of patients on ventilation. We should fix the terminology and make sure that the intensive
     #       and on ventilation statistics are being calculated correctly.
-    intensive = list(get_in_intensive_data(json_hospitalisation, json_manual["intensive"]).values())
+    intensive = list(
+        get_in_intensive_data(json_hospitalisation, json_manual["intensive"]).values()
+    )
     on_ventilation = list(get_on_ventilation_data(json_hospitalisation).values())
 
     n_deaths = deceased[-1]
@@ -187,22 +196,45 @@ def main():
     # Get data for each chart
     log_status("Calculating data for charts")
     infections_by_county = get_infection_count_by_county(json_testing, county_mapping)
-    infections_by_county_10000 = get_infections_data_by_count_10000(infections_by_county, county_sizes)
-    tests_pop_ratio = get_test_data_pop_ratio(infections_by_county_10000)
-    county_by_day = get_county_by_day(json_testing, dates2, county_mapping, county_sizes)
-    confirmed_cases_by_county = get_confirmed_cases_by_county(json_testing, county_mapping)
-    cumulative_cases_chart_data = get_cumulative_cases_chart_data(
-        json_testing, recovered, deceased, hospitalised, intensive, on_ventilation, dates2
+    infections_by_county_10000 = get_infections_data_by_count_10000(
+        infections_by_county, county_sizes
     )
-    new_cases_per_day_chart_data = get_new_cases_per_day_chart_data(cumulative_cases_chart_data)
+    tests_pop_ratio = get_test_data_pop_ratio(infections_by_county_10000)
+    county_by_day = get_county_by_day(
+        json_testing, dates2, county_mapping, county_sizes
+    )
+    confirmed_cases_by_county = get_confirmed_cases_by_county(
+        json_testing, county_mapping
+    )
+    cumulative_cases_chart_data = get_cumulative_cases_chart_data(
+        json_testing,
+        recovered,
+        deceased,
+        hospitalised,
+        intensive,
+        on_ventilation,
+        dates2,
+    )
+    new_cases_per_day_chart_data = get_new_cases_per_day_chart_data(
+        cumulative_cases_chart_data
+    )
     cumulative_tests_chart_data = get_cumulative_tests_chart_data(json_testing, dates2)
     tests_per_day_chart_data = get_tests_per_day_chart_data(json_testing, dates2)
     positive_test_by_age_chart_data = get_positive_tests_by_age_chart_data(json_testing)
-    positive_negative_chart_data = get_positive_negative_chart_data(json_testing, county_mapping)
-    vaccinated_people_chart_data = get_vaccinated_people_chart_data(json_vaccination, dates3)
-    county_daily_active = get_county_daily_active(json_testing, dates2, county_mapping, county_sizes)
+    positive_negative_chart_data = get_positive_negative_chart_data(
+        json_testing, county_mapping
+    )
+    vaccinated_people_chart_data = get_vaccinated_people_chart_data(
+        json_vaccination, dates3
+    )
+    county_daily_active = get_county_daily_active(
+        json_testing, dates2, county_mapping, county_sizes
+    )
     n_active_cases = cumulative_cases_chart_data["active"][-1]
-    n_active_cases_change = (cumulative_cases_chart_data["active"][-1] - cumulative_cases_chart_data["active"][-2])
+    n_active_cases_change = (
+        cumulative_cases_chart_data["active"][-1]
+        - cumulative_cases_chart_data["active"][-2]
+    )
     active_infections_by_county = [
         {"MNIMI": k, "sequence": v, "drilldown": k}
         for k, v in county_daily_active["countyByDayActive"].items()
@@ -216,16 +248,28 @@ def main():
 
     # Calculate vaccination data
     log_status("Calculating vaccination data")
-    last_day_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "Vaccinated"][-1]
-    last_day_completed_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "FullyVaccinated"][-1]
+    last_day_vaccination_data = [
+        x for x in json_vaccination if x["MeasurementType"] == "Vaccinated"
+    ][-1]
+    last_day_completed_vaccination_data = [
+        x for x in json_vaccination if x["MeasurementType"] == "FullyVaccinated"
+    ][-1]
     # TODO: Doses administered
     # last_day_doses_administered_data = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered'][-1]
-    completed_vaccination_number_total = last_day_completed_vaccination_data["TotalCount"]
-    completed_vaccination_number_last_day = last_day_completed_vaccination_data["DailyCount"]
+    completed_vaccination_number_total = last_day_completed_vaccination_data[
+        "TotalCount"
+    ]
+    completed_vaccination_number_last_day = last_day_completed_vaccination_data[
+        "DailyCount"
+    ]
     all_vaccination_number_total = last_day_vaccination_data["TotalCount"]
     all_vaccination_number_last_day = last_day_vaccination_data["DailyCount"]
-    vaccination_number_total = (all_vaccination_number_total - completed_vaccination_number_total)
-    vaccination_number_last_day = (all_vaccination_number_last_day - completed_vaccination_number_last_day)
+    vaccination_number_total = (
+        all_vaccination_number_total - completed_vaccination_number_total
+    )
+    vaccination_number_last_day = (
+        all_vaccination_number_last_day - completed_vaccination_number_last_day
+    )
     fully_vaccinated_from_total_vaccinated_percentage = round(
         completed_vaccination_number_total * 100 / (all_vaccination_number_total), 2
     )
@@ -237,16 +281,21 @@ def main():
         "confirmedCasesNumber": str(n_confirmed_cases),
         # TODO: For consistency, we should include the change in the number of confirmed cases as well.
         "hospitalisedNumber": str(hospital["activehospitalizations"][-1]),
-        "hospitalChanged": str(hospital["activehospitalizations"][-1] - hospital["activehospitalizations"][-2]),
+        "hospitalChanged": str(
+            hospital["activehospitalizations"][-1]
+            - hospital["activehospitalizations"][-2]
+        ),
         "deceasedNumber": str(n_deaths),
         "deceasedChanged": str(n_deaths_change),
         "recoveredNumber": str(hospital["discharged"][-1]),
-        "recoveredChanged": str(hospital["discharged"][-1] - hospital["discharged"][-2]),
+        "recoveredChanged": str(
+            hospital["discharged"][-1] - hospital["discharged"][-2]
+        ),
         "testsAdministeredNumber": str(n_tests_administered),
         # TODO: For consistency, we should include the change in the number of tests as well.
         "activeCasesNumber": str(n_active_cases),
         "activeChanged": str(n_active_cases_change),
-        "perHundred": str(per_100k), # TODO: This should be given a clearer name.
+        "perHundred": str(per_100k),  # TODO: This should be given a clearer name.
         # TODO: I can't find anywhere in the app where "dates1" is used. Is it needed? Commented out for now.
         # "dates1": [str(x.date()) for x in dates1],
         "dates2": [str(x.date()) for x in dates2],
@@ -269,14 +318,16 @@ def main():
         "dataPositiveNegativeChart": positive_negative_chart_data,
         "dataVaccinatedPeopleChart": vaccinated_people_chart_data,
         "dataMunicipalities": municipalities_data,
-        "hospital": hospital, # TODO: Rename this to make it clearer what data it contains.
+        "hospital": hospital,  # TODO: Rename this to make it clearer what data it contains.
         "vaccinationNumberTotal": vaccination_number_total,
         "vaccinationNumberLastDay": vaccination_number_last_day,
         "completedVaccinationNumberTotal": completed_vaccination_number_total,
         "completedVaccinationNumberLastDay": completed_vaccination_number_last_day,
         "allVaccinationNumberTotal": all_vaccination_number_total,
         "allVaccinationNumberLastDay": all_vaccination_number_last_day,
-        "allVaccinationFromPopulationPercentage": last_day_vaccination_data["PopulationCoverage"],
+        "allVaccinationFromPopulationPercentage": last_day_vaccination_data[
+            "PopulationCoverage"
+        ],
         "completelyVaccinatedFromTotalVaccinatedPercentage": fully_vaccinated_from_total_vaccinated_percentage,
     }
 
@@ -316,7 +367,9 @@ def scrape_deaths():
             save_as_json(DEATHS_FILE_LOCATION, deaths_output)
 
             # Log status
-            log_status("Successfully scraped deaths. Total deaths: " + str(deaths_count))
+            log_status(
+                "Successfully scraped deaths. Total deaths: " + str(deaths_count)
+            )
         except:
             # Log error
             error_message = "Error when scraping data on deaths"
@@ -332,4 +385,3 @@ def scrape_deaths():
 
 if __name__ == "__main__":
     main()
-

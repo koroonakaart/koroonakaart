@@ -23,7 +23,7 @@ Install `poetry` to manage Python dependencies: [https://python-poetry.org/docs/
 After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile.
 
 ```bash
-cd TEHIK_Open_Data_Loading_Scripts/
+cd build/
 poetry install
 poetry run python update_data.py
 ```

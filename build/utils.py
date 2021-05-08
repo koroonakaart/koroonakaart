@@ -7,7 +7,9 @@ from helpers import NpEncoder
 
 def save_as_json(destination, data):
     with open(destination, "w", encoding="utf-8") as f:
-        output = json.dumps(data, cls=NpEncoder, ensure_ascii=False).replace("NaN", "null")
+        output = json.dumps(data, cls=NpEncoder, ensure_ascii=False).replace(
+            "NaN", "null"
+        )
         f.write(output)
 
 
