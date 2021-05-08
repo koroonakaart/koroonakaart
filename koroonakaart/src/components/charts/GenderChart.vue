@@ -13,7 +13,7 @@ import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
 
-import data from "../../data.json";
+import data from "../../data/data.json";
 
 dataModule(Highcharts);
 drilldown(Highcharts);

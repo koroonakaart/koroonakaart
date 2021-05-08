@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import data from "../../data.json";
+import data from "../../data/data.json";
 
 export default {
   name: "PositiveTestsAgeDistributionChart",
@@ -222,7 +222,8 @@ export default {
           },
         },
         tooltip: {
-          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b> ({point.percentage:.1f}%)</td></tr>',

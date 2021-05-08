@@ -14,11 +14,9 @@ RUN set -exu \
  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 # Install Python dependencies - they change less often than code so caches better
-RUN mkdir build
-COPY build/pyproject.toml build/poetry.lock build
+COPY pyproject.toml poetry.lock ./
 
 RUN set -exu \
- && cd build \
  && python -m pip install --upgrade pip \
  && poetry install
 
@@ -26,7 +24,12 @@ RUN set -exu \
 COPY . .
 RUN set -exu \
  && cd build \
- && poetry run python update_data.py \
+ && poetry run download \
+ && ls -lhaF ../data
+
+RUN set -exu \
+ && cd build \
+ && poetry run update \
  && ls -lhaF ../data
 
 #########################

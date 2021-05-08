@@ -2,18 +2,21 @@ from collections import defaultdict
 from datetime import datetime
 from datetime import timedelta
 
+from build.constants import COUNTIES
+from build.constants import COUNTIES_INCL_UNKNOWN
+from build.constants import COUNTIES_INCL_UNKNOWN_FIRST
 import numpy as np
 import pandas as pd
 
 
-def get_hospital_data(json_hospitalisation, start_date):
+def get_hospital_data(json_hospitalization, start_date):
     hospitalizations = []
     active_hospitalizations = []
     intensive = []
     discharged = []
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
 
-    for result in json_hospitalisation:
+    for result in json_hospitalization:
         statistics_date = datetime.strptime(
             result["StatisticsDate"].split("T")[0], "%Y-%m-%d"
         )
@@ -91,26 +94,8 @@ def get_municipality_data(json_test_location, county_mapping):
 
 def get_infection_count_by_county(json, county_mapping) -> list:
     # Ordering of counties for chart
-    map_counties = [
-        "Harjumaa",
-        "Hiiumaa",
-        "Ida-Virumaa",
-        "Jõgevamaa",
-        "Järvamaa",
-        "Läänemaa",
-        "Lääne-Virumaa",
-        "Põlvamaa",
-        "Pärnumaa",
-        "Raplamaa",
-        "Saaremaa",
-        "Tartumaa",
-        "Valgamaa",
-        "Viljandimaa",
-        "Võrumaa",
-    ]
-
     # For performance, hashing
-    set_map_counties = set(map_counties)
+    set_map_counties = set(COUNTIES)
 
     counts = defaultdict(int)
 
@@ -123,7 +108,7 @@ def get_infection_count_by_county(json, county_mapping) -> list:
                 counts[county] += 1
 
     # Create list of lists as in current json
-    result_array = [[county, counts[county], county] for county in map_counties]
+    result_array = [[county, counts[county], county] for county in COUNTIES]
 
     return result_array
 
@@ -141,23 +126,7 @@ def get_test_data_pop_ratio(infections_by_county_10000):
 
 
 def get_county_by_day(json, dates, county_mapping, county_sizes):
-    chart_counties = [
-        "Harjumaa",
-        "Hiiumaa",
-        "Ida-Virumaa",
-        "Jõgevamaa",
-        "Järvamaa",
-        "Läänemaa",
-        "Lääne-Virumaa",
-        "Põlvamaa",
-        "Pärnumaa",
-        "Raplamaa",
-        "Saaremaa",
-        "Tartumaa",
-        "Valgamaa",
-        "Viljandimaa",
-        "Võrumaa",
-    ]
+    chart_counties = COUNTIES
 
     county_date_counts = defaultdict(int)
 
@@ -215,23 +184,7 @@ def get_county_by_day(json, dates, county_mapping, county_sizes):
 
 
 def get_county_daily_active(json, dates, county_mapping, county_sizes):
-    chart_counties = [
-        "Harjumaa",
-        "Hiiumaa",
-        "Ida-Virumaa",
-        "Jõgevamaa",
-        "Järvamaa",
-        "Läänemaa",
-        "Lääne-Virumaa",
-        "Põlvamaa",
-        "Pärnumaa",
-        "Raplamaa",
-        "Saaremaa",
-        "Tartumaa",
-        "Valgamaa",
-        "Viljandimaa",
-        "Võrumaa",
-    ]
+    chart_counties = COUNTIES
 
     county_date_counts = defaultdict(int)
 
@@ -280,24 +233,7 @@ def get_county_daily_active(json, dates, county_mapping, county_sizes):
 
 
 def get_confirmed_cases_by_county(json, county_mapping):
-    chart_counties = [
-        "Harjumaa",
-        "Hiiumaa",
-        "Ida-Virumaa",
-        "Jõgevamaa",
-        "Järvamaa",
-        "Läänemaa",
-        "Lääne-Virumaa",
-        "Põlvamaa",
-        "Pärnumaa",
-        "Raplamaa",
-        "Saaremaa",
-        "Tartumaa",
-        "Valgamaa",
-        "Viljandimaa",
-        "Võrumaa",
-        "Info puudulik",
-    ]
+    chart_counties = COUNTIES_INCL_UNKNOWN
 
     # Count totals for every county
     counts = defaultdict(int)
@@ -547,24 +483,7 @@ def get_positive_negative_chart_data(json, mapping):
     """
 
     # Define counties (in order)
-    chart_counties = [
-        "Info puudulik",
-        "Harjumaa",
-        "Hiiumaa",
-        "Ida-Virumaa",
-        "Jõgevamaa",
-        "Järvamaa",
-        "Läänemaa",
-        "Lääne-Virumaa",
-        "Põlvamaa",
-        "Pärnumaa",
-        "Raplamaa",
-        "Saaremaa",
-        "Tartumaa",
-        "Valgamaa",
-        "Viljandimaa",
-        "Võrumaa",
-    ]
+    chart_counties = COUNTIES_INCL_UNKNOWN_FIRST
 
     results = [d["ResultValue"] for d in json]
     county = [mapping[d["County"]] for d in json]

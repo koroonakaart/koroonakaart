@@ -1,4 +1,12 @@
-county_mapping = {
+MANUAL_DATA_PATH = "data/manual_data.json"
+DEATHS_PATH = "data/deaths.json"
+TEST_RESULTS_PATH = "data/test_results.json"
+TEST_LOCATIONS_PATH = "data/test_locations.json"
+HOSPITALIZATION_PATH = "data/hospitalization.json"
+VACCINATIONS_PATH = "data/vaccinations.json"
+OUTPUT_PATH = "data/data.json"
+
+COUNTY_MAPPING = {
     "Harju maakond": "Harjumaa",
     "Hiiu maakond": "Hiiumaa",
     "Ida-Viru maakond": "Ida-Virumaa",
@@ -18,7 +26,7 @@ county_mapping = {
     "Eesti": "Info puudulik",
 }
 
-counties = [
+COUNTIES = [
     "Harjumaa",
     "Hiiumaa",
     "Ida-Virumaa",
@@ -34,11 +42,16 @@ counties = [
     "Valgamaa",
     "Viljandimaa",
     "Võrumaa",
+]
+
+COUNTIES_INCL_UNKNOWN = COUNTIES.copy() + [
     "Info puudulik",
 ]
 
+COUNTIES_INCL_UNKNOWN_FIRST = ["Info puudulik"] + COUNTIES.copy()
+
 # 2020 population from https://www.stat.ee/et/avasta-statistikat/piirkonnad
-county_sizes = {
+COUNTY_POPULATION = {
     "Harjumaa": 605029,
     "Hiiumaa": 9315,
     "Ida-Virumaa": 134259,
@@ -56,7 +69,7 @@ county_sizes = {
     "Võrumaa": 35415,
 }
 
-age_groups = [
+AGE_GROUPS = [
     "0-4",
     "5-9",
     "10-14",

@@ -17,7 +17,7 @@ import dataModule from "highcharts/modules/data";
 
 import vueRoot from "../main.js";
 import mapData from "../data/map/estonia.geo.json";
-import data from "../data.json";
+import data from "../data/data.json";
 import importMap from "../utilities/importMap";
 
 HighchartsMapModule(Highcharts);

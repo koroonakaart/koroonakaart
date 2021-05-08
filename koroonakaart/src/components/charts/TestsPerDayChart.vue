@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import data from "../../data.json";
+import data from "../../data/data.json";
 import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
@@ -236,15 +236,21 @@ export default {
             // Get data for this date
             var positive;
             if (context.chart.series[0].visible) {
-              positive = context.chart.series[0].points.find(element => element.index === index);
+              positive = context.chart.series[0].points.find(
+                (element) => element.index === index
+              );
             }
             var negative;
             if (context.chart.series[1].visible) {
-              negative = context.chart.series[1].points.find(element => element.index === index);
+              negative = context.chart.series[1].points.find(
+                (element) => element.index === index
+              );
             }
             var positiveTestPercentage;
             if (context.chart.series[2].visible) {
-              positiveTestPercentage = context.chart.series[2].points.find(element => element.index === index);
+              positiveTestPercentage = context.chart.series[2].points.find(
+                (element) => element.index === index
+              );
             }
 
             // Calculate tooltip title
@@ -259,32 +265,55 @@ export default {
               month: "long",
               day: "numeric",
             };
-            tooltipTitle = capitalise(formatDate(x, this.currentLocale, dateOptions));
+            tooltipTitle = capitalise(
+              formatDate(x, this.currentLocale, dateOptions)
+            );
 
             // Compose tooltip
-            var tooltip = tooltipTitle + '<br>';
-            tooltip += '<table>';
+            var tooltip = tooltipTitle + "<br>";
+            tooltip += "<table>";
             if (positive !== undefined) {
-              tooltip += '<tr>';
-              tooltip += '<td>' + context.chart.series[0].name + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(positive.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right">(' + positive.percentage.toFixed(1) + '%)</td>';
-              tooltip += '</tr>';
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[0].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                formatNumberByLocale(positive.y, this.currentLocale) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right">(' +
+                positive.percentage.toFixed(1) +
+                "%)</td>";
+              tooltip += "</tr>";
             }
             if (negative !== undefined) {
-              tooltip += '<tr>';
-              tooltip += '<td>' + context.chart.series[1].name + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(negative.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right">(' + negative.percentage.toFixed(1) + '%)</td>';
-              tooltip += '</tr>';
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[1].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                formatNumberByLocale(negative.y, this.currentLocale) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right">(' +
+                negative.percentage.toFixed(1) +
+                "%)</td>";
+              tooltip += "</tr>";
             }
-            if (positiveTestPercentage !== undefined && positive === undefined) {
-              tooltip += '<tr>';
-              tooltip += '<td>' + context.chart.series[2].name + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + positiveTestPercentage.y.toFixed(1) + '</b>&nbsp;&nbsp;</td>';
-              tooltip += '</tr>';
+            if (
+              positiveTestPercentage !== undefined &&
+              positive === undefined
+            ) {
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[2].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                positiveTestPercentage.y.toFixed(1) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip += "</tr>";
             }
-            tooltip += '</table>';
+            tooltip += "</table>";
 
             return tooltip;
           },

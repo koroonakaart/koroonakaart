@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import data from "../../data.json";
+import data from "../../data/data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
@@ -177,7 +177,13 @@ export default {
 
         tooltip: {
           formatter: (context) => {
-            return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+            return formatTooltip(
+              context,
+              this.chartOptions.series,
+              this.currentLocale,
+              0,
+              true
+            );
           },
           backgroundColor: "#ffffff",
           style: {

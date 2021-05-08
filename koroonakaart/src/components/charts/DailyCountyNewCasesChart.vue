@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import data from "../../data.json";
+import data from "../../data/data.json";
 import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
@@ -167,14 +167,24 @@ export default {
               month: "long",
               day: "numeric",
             };
-            var tooltipDate = capitalise(formatDate(x, this.currentLocale, dateOptions));
+            var tooltipDate = capitalise(
+              formatDate(x, this.currentLocale, dateOptions)
+            );
 
             // Compose tooltip
             var tooltip = tooltipDate + "<br>";
             tooltip += "<table>";
             tooltip += "<tr>";
-            tooltip += '<td><span style="color: ' + color + '">●</span> ' + countyName + "&nbsp;&nbsp;</td>";
-            tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(value, this.currentLocale) + "</b></td>";
+            tooltip +=
+              '<td><span style="color: ' +
+              color +
+              '">●</span> ' +
+              countyName +
+              "&nbsp;&nbsp;</td>";
+            tooltip +=
+              '<td style="text-align: right"><b>' +
+              formatNumberByLocale(value, this.currentLocale) +
+              "</b></td>";
             tooltip += "</tr>";
             tooltip += "</table>";
 

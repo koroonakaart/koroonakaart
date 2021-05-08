@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tehik_open_data_loading_scripts"
+name = "build"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
@@ -15,7 +15,8 @@ loguru = "^0.5.3"
 tenacity = "^7.0.0"
 
 [tool.poetry.scripts]
-update-data = "update_data:main"
+download = "build.download_data:main"
+generate = "build.generate_data:main"
 
 [tool.poetry.dev-dependencies]
 

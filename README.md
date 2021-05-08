@@ -16,12 +16,12 @@ Install `poetry` to manage Python dependencies: [https://python-poetry.org/docs/
 
 ### Get/update data from TEHIK API
 
-After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile.
+After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile, after which we can generate the chart data for the frontend.
 
 ```bash
-cd build/
 poetry install
-poetry run python update_data.py
+poetry run download
+poetry run generate
 ```
 
 Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to improve the process.
