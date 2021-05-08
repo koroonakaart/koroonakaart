@@ -5,7 +5,7 @@ README.md
 .github
 koroonakaart/dist
 koroonakaart/node_modules
-koroonakaart/src/data/data.json
+koroonakaart/src/data/*.json
 data/data.json
 data/hospitalization.json
 data/test_locations.json

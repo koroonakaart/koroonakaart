@@ -3,7 +3,8 @@
 ############################
 # https://hub.docker.com/_/python
 FROM python:3-slim AS fetch_data
-ENV PATH=$PATH:/root/.poetry/bin
+ENV PATH=$PATH:/root/.poetry/bin \
+    PYTHONPATH=/app
 
 WORKDIR /app
 
@@ -28,8 +29,9 @@ RUN set -exu \
  && ls -lhaF data
 
 RUN set -exu \
+ && mkdir -p koroonakaart/src/data \
  && poetry run generate \
- && ls -lhaF data
+ && ls -lhaF koroonakaart/src/data
 
 #########################
 # STEP 2 build frontend
@@ -40,7 +42,7 @@ FROM node:lts-slim AS build_frontend
 WORKDIR /app
 COPY koroonakaart koroonakaart
 
-COPY --from=fetch_data /app/data/data.json /app/koroonakaart/src/data/data.json
+COPY --from=fetch_data /app/koroonakaart/src/data/*.json /app/koroonakaart/src/data/
 RUN set -exu \
  && cd koroonakaart \
  && npm install --silent \
@@ -53,8 +55,9 @@ RUN set -exu \
 FROM nginx:mainline-alpine AS runtime
 
 # Nginx needs to redirect requests like '/et' etc to index.html
-RUN sed -i '/index.html index.htm;/ i try_files $uri /index.html;' /etc/nginx/conf.d/default.conf
+RUN set -exu \
+ && sed -i '/index.html index.htm;/ i try_files $uri /index.html;' /etc/nginx/conf.d/default.conf \
+ && mkdir -p /usr/share/nginx/html/data/
 
 COPY --from=build_frontend /app/koroonakaart/dist /usr/share/nginx/html
-COPY --from=build_frontend /app/koroonakaart/src/data/data.json /usr/share/nginx/html/data.json
-COPY --from=build_frontend /app/koroonakaart/src/data/data.json /usr/share/nginx/html/data/data.json
+COPY --from=build_frontend /app/koroonakaart/src/data/*.json /usr/share/nginx/html/data/
