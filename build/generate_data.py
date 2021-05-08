@@ -12,13 +12,14 @@ from build.utils import logger
 @analyze_memory
 def main():
     script_name = Path(__file__).name
-    for f in Path("build").glob("generate_*.py"):
+    for f in sorted(Path("build").glob("generate_*.py")):
         if f.name == script_name:
             continue
 
-        print("")
-        print(f" ----- {f.name} -----")
-        print("")
+        logger.warning("")
+        logger.warning("")
+        logger.warning("Running {name}", name=f.name)
+        logger.warning("")
         subprocess.run([sys.executable, f], check=True)  # nosec
 
     logger.info("Writing NavBar JSON package")
