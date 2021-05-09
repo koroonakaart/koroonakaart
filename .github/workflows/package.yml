@@ -39,6 +39,8 @@ jobs:
           key: ${{ hashFiles('data/*.json') }}
 
       - name: Commit latest data files if updated
+        # If cache matched then the files have not changed
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           git config --global user.name "GitHub"
           git config --global user.email "<noreply@github.com>"
@@ -68,6 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate chart data
+        # If cache matched then the previously generated chart data is still valid
         if: steps.cache.outputs.cache-hit != 'true'
         run: poetry run generate --parallel 2
 
