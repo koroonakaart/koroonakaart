@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.9
-          node-version: 14
+          # node-version: 14
 
       - name: Install pre-commit
         run: pip install pre-commit
