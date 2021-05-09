@@ -36,7 +36,7 @@ jobs:
         id: cache
         with:
           path: koroonakaart/src/data
-          key: ${{ hashFiles('data/*.json') }}
+          key: ${{ hashFiles('data/*.json', 'build/*.py', 'pyproject.toml', 'poetry.lock') }}
 
       - name: Commit latest data files if updated
         # If cache matched then the files have not changed
