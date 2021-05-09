@@ -30,7 +30,6 @@ All data for the application can be accessed directly via the links:
 - https://koroonakaart.cocreators.ee/data/NavBar.json
 - https://koroonakaart.cocreators.ee/data/NewCasesPerDay.json
 - https://koroonakaart.cocreators.ee/data/PositiveNegative.json
-- https://koroonakaart.cocreators.ee/data/PositiveTestsAgeDistribution.json
 - https://koroonakaart.cocreators.ee/data/StatsBar.json
 - https://koroonakaart.cocreators.ee/data/TestsAgeSexDistribution.json
 - https://koroonakaart.cocreators.ee/data/TestsPerDay.json
