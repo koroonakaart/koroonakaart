@@ -86,6 +86,9 @@ def main():
     else:
         # Parallelism in Python can sometimes be a bit funky
         # This takes care of sharing a sane logger, and handling Ctrl+C, sometimes
+        logger.remove()
+        logger.add(sys.stderr, enqueue=True)
+
         original_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
         with Pool(opts.parallel, initializer=set_logger, initargs=(logger,)) as pool:
             signal.signal(signal.SIGINT, original_sigint_handler)

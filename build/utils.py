@@ -17,9 +17,6 @@ from build.helpers import NpEncoder
 _ACTIVE_ANALYSES = 0
 _DEBUG_MEMORY = True
 
-logger.remove()
-logger.add(sys.stderr, enqueue=True)
-
 
 def save_as_json(destination, data):
     logger.debug("Writing {dst}", dst=destination)
