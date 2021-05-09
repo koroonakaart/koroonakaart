@@ -21,23 +21,23 @@ const routes = [
     path: "/api",
   },
   {
-    path: "/:locale/faq",
+    path: "/:locale/faq/",
     name: "FrequentlyAskedQuestions",
     component: FrequentlyAskedQuestions,
   },
   {
-    path: "/:locale/chart",
+    path: "/:locale/chart/",
     name: "EmbedCharts",
     component: EmbedCharts,
   },
   {
-    path: "/:locale",
+    path: "/:locale/",
     name: "Home",
     component: Home,
     children: [
       {
         path: "*",
-        redirect: "/:locale",
+        redirect: "/:locale/",
       },
     ],
   },

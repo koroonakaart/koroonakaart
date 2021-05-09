@@ -1,17 +1,17 @@
 <template>
-  <b-container>
-    <div v-if="loading" class="loading">
-      {{ $t("loading") }}
-    </div>
+  <intersect @enter="visible = true">
+    <b-container>
+      <Loading v-if="!loaded" />
 
-    <highcharts
-      v-if="!loading"
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
-  </b-container>
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'mapChart'"
+        :options="mapOptions"
+        class="map"
+        ref="highmap"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
@@ -19,6 +19,8 @@ import Highcharts from "highcharts";
 import HighchartsMapModule from "highcharts/modules/map";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
+import Intersect from "vue-intersect";
+import Loading from "./Loading";
 
 import vueRoot from "../main.js";
 
@@ -30,6 +32,8 @@ Highcharts.setOptions({ lang: { drillUpText: "◁ {series.drillUpText}" } });
 
 export default {
   name: "Map",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -43,26 +47,31 @@ export default {
   data() {
     return {
       data: null,
-      loading: true,
+      visible: false,
+      loaded: false,
+      loading: false,
       chartType: "active",
       mapOptions: null,
     };
   },
 
-  created() {
-    this.fetchData();
-  },
-
   methods: {
     fetchData() {
       let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
       import("../utilities/importMap").then((importMap) => {
         import("../data/map/estonia.geo.json").then((mapData) => {
-          Highcharts.maps["mapEstonia"] = mapData;
           import("../data/Map.json").then((data) => {
-            _this.data = data;
-            _this.mapOptions = _this.makeData(mapData, importMap, data);
             _this.loading = false;
+            Highcharts.maps["mapEstonia"] = Object.freeze(mapData);
+            _this.data = data;
+            _this.mapOptions = Object.freeze(
+              _this.makeData(mapData, importMap, data)
+            );
+            _this.loaded = true;
           });
         });
       });
@@ -557,6 +566,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.mapOptions.series[0].name = this.$t("cases");
       this.mapOptions.exporting.buttons.toggle.text =
