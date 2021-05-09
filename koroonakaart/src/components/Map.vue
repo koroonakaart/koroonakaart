@@ -87,6 +87,7 @@ export default {
     },
 
     makeData(mapData, data) {
+      let _this = this;
       return {
         chart: {
           marginTop: 30,
@@ -139,15 +140,14 @@ export default {
               }, 100);
             },
 
-            // FIXME: When has this even last worked? Doesn't work now, and depends on huge bundle
             drilldown: function (e) {
               this.motion.pause();
 
               if (!e.seriesOptions && this.options.chartType === "absolute") {
                 this.motion.togglePlayControls();
+                let chart = this;
 
-                this.loadMaps().then((importMap) => {
-                  let chart = this;
+                _this.loadMaps().then((importMap) => {
                   let drilldowns = data.dataMunicipalities.municipalitiesData.map(
                     (item) => {
                       return {
