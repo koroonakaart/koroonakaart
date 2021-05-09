@@ -65,6 +65,12 @@ poetry run generate --parallel 6
 # Larger numbers will eat greatly more RAM without significantly improving performance
 ```
 
+If you're working on the data generators, you can run an individual script as well:
+
+```bash
+poetry run python build/generate_x.py
+```
+
 Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their
 data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to
 improve the process.
