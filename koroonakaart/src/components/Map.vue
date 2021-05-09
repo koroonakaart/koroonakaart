@@ -77,7 +77,7 @@ export default {
       return new Promise((resolve) => {
         if (_mapData === null) {
           import("../utilities/importMap").then((mapData) => {
-            _mapData = Object.freeze(mapData);
+            _mapData = Object.freeze(mapData.default);
             resolve(_mapData);
           });
         } else {
@@ -141,18 +141,20 @@ export default {
             },
 
             drilldown: function (e) {
-              this.motion.pause();
-
-              if (!e.seriesOptions && this.options.chartType === "absolute") {
-                this.motion.togglePlayControls();
-                let chart = this;
-
-                _this.loadMaps().then((importMap) => {
+              let chart = this;
+              _this.loadMaps().then((importMap) => {
+                chart.motion.pause();
+                if (
+                  !e.seriesOptions &&
+                  chart.options.chartType === "absolute"
+                ) {
+                  chart.motion.togglePlayControls();
                   let drilldowns = data.dataMunicipalities.municipalitiesData.map(
                     (item) => {
+                      const name = item[0];
                       return {
-                        name: item[0],
-                        id: item[0],
+                        name: name,
+                        id: name,
                         keys: [
                           "MNIMI",
                           "ONIMI",
@@ -166,7 +168,7 @@ export default {
                         ),
                         // evaluate template string to a value to be looked up from importMap
                         // eg item[0] is "Harjumaa"
-                        mapData: importMap[`${item[0]}`],
+                        mapData: importMap[name],
                         joinBy: ["ONIMI"],
                         tooltip: {
                           pointFormat:
@@ -196,8 +198,8 @@ export default {
                   chart.addSeriesAsDrilldown(e.point, series);
 
                   this.exportSVGElements[2].hide();
-                });
-              }
+                }
+              });
             },
 
             drillup: function () {
@@ -217,7 +219,6 @@ export default {
               text: "Embed chart",
             },
           },
-
           chartOptions: {
             // specific options for the exported image
             plotOptions: {
@@ -228,7 +229,6 @@ export default {
               },
             },
           },
-
           buttons: {
             contextButton: {
               menuItems: [
@@ -242,7 +242,6 @@ export default {
                 "embed",
               ],
             },
-
             toggle: {
               text: this.$t("typeOfData") + " ▾",
               align: "right",
@@ -303,11 +302,11 @@ export default {
                         data: data.dataActiveInfectionsByCounty,
                         // For logarithmic scale
                         /* .map((point) => {
-                          if (point[1] === 0) {
-                            point[1] = point[1] + 0.000001;
-                            return point;
-                          } else return point;
-                        }), */ dataLabels: {
+                        if (point[1] === 0) {
+                          point[1] = point[1] + 0.000001;
+                          return point;
+                        } else return point;
+                      }), */ dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
@@ -327,13 +326,13 @@ export default {
                         data: data.dataCountyDailyActive.activeMap100kPlayback,
                         // For logarithmic scale
                         /* .map(
-                          (point) => {
-                            if (point[1] === 0) {
-                              point[1] = point[1] + 0.000001;
-                              return point;
-                            } else return point;
-                          }
-                        ) */ dataLabels: {
+                        (point) => {
+                          if (point[1] === 0) {
+                            point[1] = point[1] + 0.000001;
+                            return point;
+                          } else return point;
+                        }
+                      ) */ dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
@@ -345,18 +344,17 @@ export default {
               ],
             },
           },
-
           fallbackToExportServer: false,
         },
-
         title: {
           text: this.$t("absolute"),
           fontSize: 10,
           align: "left",
           y: 30,
-          style: { fontSize: 18 },
+          style: {
+            fontSize: 18,
+          },
         },
-
         navigation: {
           buttonOptions: {
             verticalAlign: "top",
@@ -388,20 +386,18 @@ export default {
             },
           },
         },
-
         // Show Highcharts.com link at bottom right
         credits: {
           enabled: true,
         },
-
         /*
-        // Navigation controls like zoom etc
-          mapNavigation: {
-          enabled: true,
-          buttonOptions: {
-            verticalAlign: "bottom"
-          }
-        }, */
+      // Navigation controls like zoom etc
+        mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+          verticalAlign: "bottom"
+        }
+      }, */
 
         // Legend bar density
         colorAxis: {
@@ -418,17 +414,15 @@ export default {
           ],
 
           /* labels: {
-            formatter: function () {
-              return this.value - 1;
-            },
-          }, */
+          formatter: function () {
+            return this.value - 1;
+          },
+        }, */
         },
-
         //Legend max width
         legend: {
           symbolWidth: 300,
         },
-
         motion: {
           enabled: true,
           axisLabel: "date",
@@ -441,7 +435,6 @@ export default {
             step: 0.2,
           },
         },
-
         series: [
           {
             drillUpText: this.$t("faq.back"),
@@ -512,7 +505,6 @@ export default {
           },
           series: [],
         },
-
         responsive: {
           rules: [
             {
@@ -568,14 +560,12 @@ export default {
       };
     },
   },
-
   // Get current locale
   computed: {
     currentLocale: function () {
       return this.$i18n.locale;
     },
   },
-
   // Fire when currentLocale computed property changes
   watch: {
     visible() {
