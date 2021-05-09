@@ -62,22 +62,31 @@ export default {
         return;
       }
       _this.loading = true;
-      import("../utilities/importMap").then((importMap) => {
-        import("../data/map/estonia.geo.json").then((mapData) => {
-          import("../data/Map.json").then((data) => {
-            _this.loading = false;
-            Highcharts.maps["mapEstonia"] = Object.freeze(mapData);
-            _this.data = data;
-            _this.mapOptions = Object.freeze(
-              _this.makeData(mapData, importMap, data)
-            );
-            _this.loaded = true;
-          });
+      import("../data/map/estonia.geo.json").then((mapData) => {
+        import("../data/Map.json").then((data) => {
+          _this.loading = false;
+          Highcharts.maps["mapEstonia"] = Object.freeze(mapData);
+          _this.mapOptions = Object.freeze(_this.makeData(mapData, data));
+          _this.loaded = true;
         });
       });
     },
 
-    makeData(mapData, importMap, data) {
+    loadMaps() {
+      let _mapData = null;
+      return new Promise((resolve) => {
+        if (_mapData === null) {
+          import("../utilities/importMap").then((mapData) => {
+            _mapData = Object.freeze(mapData);
+            resolve(_mapData);
+          });
+        } else {
+          resolve(_mapData);
+        }
+      });
+    },
+
+    makeData(mapData, data) {
       return {
         chart: {
           marginTop: 30,
@@ -130,61 +139,64 @@ export default {
               }, 100);
             },
 
+            // FIXME: When has this even last worked? Doesn't work now, and depends on huge bundle
             drilldown: function (e) {
               this.motion.pause();
 
               if (!e.seriesOptions && this.options.chartType === "absolute") {
                 this.motion.togglePlayControls();
 
-                let chart = this;
-                let drilldowns = data.dataMunicipalities.municipalitiesData.map(
-                  (item) => {
-                    return {
-                      name: item[0],
-                      id: item[0],
-                      keys: [
-                        "MNIMI",
-                        "ONIMI",
-                        "ANIMI",
-                        "result",
-                        "min",
-                        "value",
-                      ],
-                      data: data.dataMunicipalities.municipalitiesData.filter(
-                        (element) => element.MNIMI === item.MNIMI
-                      ),
-                      // evaluate template string to a value to be looked up from importMap
-                      // eg item[0] is "Harjumaa"
-                      mapData: importMap[`${item[0]}`],
-                      joinBy: ["ONIMI"],
-                      tooltip: {
-                        pointFormat:
-                          "{point.ONIMI}: {point.min} - {point.value}<br>",
-                        backgroundColor: "#ffffff",
-                        style: {
-                          opacity: 0.95,
+                this.loadMaps().then((importMap) => {
+                  let chart = this;
+                  let drilldowns = data.dataMunicipalities.municipalitiesData.map(
+                    (item) => {
+                      return {
+                        name: item[0],
+                        id: item[0],
+                        keys: [
+                          "MNIMI",
+                          "ONIMI",
+                          "ANIMI",
+                          "result",
+                          "min",
+                          "value",
+                        ],
+                        data: data.dataMunicipalities.municipalitiesData.filter(
+                          (element) => element.MNIMI === item.MNIMI
+                        ),
+                        // evaluate template string to a value to be looked up from importMap
+                        // eg item[0] is "Harjumaa"
+                        mapData: importMap[`${item[0]}`],
+                        joinBy: ["ONIMI"],
+                        tooltip: {
+                          pointFormat:
+                            "{point.ONIMI}: {point.min} - {point.value}<br>",
+                          backgroundColor: "#ffffff",
+                          style: {
+                            opacity: 0.95,
+                          },
                         },
-                      },
-                      dataLabels: {
-                        allAreas: true,
-                        enabled: true,
-                        format: "{point.ONIMI}",
-                        style: {
-                          fontWeight: "normal",
-                          fontSize: "9px",
+                        dataLabels: {
+                          allAreas: true,
+                          enabled: true,
+                          format: "{point.ONIMI}",
+                          style: {
+                            fontWeight: "normal",
+                            fontSize: "9px",
+                          },
                         },
-                      },
-                    };
-                  }
-                );
+                      };
+                    }
+                  );
 
-                let series = drilldowns.find(
-                  (element) => element.name === e.point.MNIMI
-                );
+                  let series = drilldowns.find(
+                    (element) => element.name === e.point.MNIMI
+                  );
 
-                chart.addSeriesAsDrilldown(e.point, series);
+                  chart.addSeriesAsDrilldown(e.point, series);
 
-                this.exportSVGElements[2].hide();
+                  this.exportSVGElements[2].hide();
+                });
               }
             },
 

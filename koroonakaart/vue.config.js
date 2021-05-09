@@ -10,5 +10,10 @@ module.exports = {
       preProcessor: "sass",
       patterns: [],
     },
+    webpackBundleAnalyzer: {
+      // Relative to dist
+      reportFilename: "../report.html",
+      openAnalyzer: false,
+    },
   },
 };
