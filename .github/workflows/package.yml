@@ -32,6 +32,12 @@ jobs:
       - name: Download latest data
         run: poetry run download
 
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: koroonakaart/src/data
+          key: ${{ hashFiles('data/*.json') }}
+
       - name: Commit latest data files if updated
         run: |
           git config --global user.name "GitHub"
@@ -62,6 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate chart data
+        if: steps.cache.outputs.cache-hit != 'true'
         run: poetry run generate --parallel 2
 
       - name: Build frontend
