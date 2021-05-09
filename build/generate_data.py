@@ -105,6 +105,7 @@ def main():
             except KeyboardInterrupt:
                 logger.error("Caught KeyboardInterrupt, terminating workers")
                 pool.terminate()
+                raise
 
     logger.info("Writing NavBar JSON package")
     final_json = {
