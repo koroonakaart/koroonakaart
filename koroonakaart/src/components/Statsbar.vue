@@ -281,6 +281,7 @@ strong {
   margin-top: 0;
   margin-bottom: 0.5rem;
   line-height: 1.2;
+  display: block;
 }
 
 #statsbar-container {
