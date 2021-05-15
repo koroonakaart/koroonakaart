@@ -3,7 +3,7 @@ name: Build and update to GitHub Pages
 on:
   schedule:
     # Estonia is UTC+2/+3 and data updates often happen daily ~11-12
-    - cron: "15 0,8,9,10,11,18 * * *"
+    - cron: "15 8,9,10,11,18,20 * * *"
   push:
     branches:
       - master
