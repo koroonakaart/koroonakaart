@@ -1,19 +1,27 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'stockChart'"
+        class="chart"
+        :options="chartOptions"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "CumulativeCasesChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -26,7 +34,29 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartOptions: null,
+    };
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/CumulativeCases.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartType: "linear",
         chartFirstDate: Date.UTC(2020, 1, 25),
 
@@ -223,7 +253,7 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.cases,
             marker: {
@@ -233,7 +263,7 @@ export default {
           {
             name: this.$t("recovered"),
             color: "#90ed7d",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.recovered,
             marker: {
@@ -243,7 +273,7 @@ export default {
           {
             name: this.$t("active"),
             color: "#f28f43",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.active,
             marker: {
@@ -253,7 +283,7 @@ export default {
           {
             name: this.$t("deceased"),
             color: "#0d233a",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.deceased,
             marker: {
@@ -261,9 +291,9 @@ export default {
             },
           },
           {
-            name: this.$t("hospitalised"),
+            name: this.$t("hospitalized"),
             color: "#7cb5ec",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.haiglas,
             marker: {
@@ -273,7 +303,7 @@ export default {
           {
             name: this.$t("intensive"),
             color: "#c42525",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataCumulativeCasesChart.intensive,
             marker: {
@@ -281,11 +311,11 @@ export default {
             },
           },
           {
-            name: this.$t("onventilation"),
+            name: this.$t("onVentilation"),
             color: "#7617bf",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.onventilation,
+            data: data.dataCumulativeCasesChart.onVentilation,
             marker: {
               symbol: "circle",
             },
@@ -327,8 +357,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -340,6 +370,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("cumulativeCases");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
@@ -347,9 +382,9 @@ export default {
       this.chartOptions.series[1].name = this.$t("recovered");
       this.chartOptions.series[2].name = this.$t("active");
       this.chartOptions.series[3].name = this.$t("deceased");
-      this.chartOptions.series[4].name = this.$t("hospitalised");
+      this.chartOptions.series[4].name = this.$t("hospitalized");
       this.chartOptions.series[5].name = this.$t("intensive");
-      this.chartOptions.series[6].name = this.$t("onventilation");
+      this.chartOptions.series[6].name = this.$t("onVentilation");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"

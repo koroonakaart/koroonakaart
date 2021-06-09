@@ -7,8 +7,10 @@
 
 .directory
 
-koroonakaart/src/data.json
-data/data.json
-data/deaths.json
-
-TEHIK_Open_Data_Loading_Scripts/after_data_updated.sh
+koroonakaart/src/data/*.json
+koroonakaart/report.html
+data/hospitalization.json
+data/test_locations.json
+data/test_results.json
+data/vaccinations.json
+*.tmp

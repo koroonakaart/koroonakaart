@@ -1,19 +1,27 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'stockChart'"
+        class="chart"
+        :options="chartOptions"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "DailyCountyCasesChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -26,7 +34,29 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartOptions: null,
+    };
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/DailyCountyCases.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartType: "linear",
 
         title: {
@@ -177,7 +207,13 @@ export default {
 
         tooltip: {
           formatter: (context) => {
-            return formatTooltip(context, this.chartOptions.series, this.currentLocale, 0, true);
+            return formatTooltip(
+              context,
+              this.chartOptions.series,
+              this.currentLocale,
+              0,
+              true
+            );
           },
           backgroundColor: "#ffffff",
           style: {
@@ -217,7 +253,7 @@ export default {
             name: "Harjumaa",
             data: data.countyByDay.countyByDay.Harjumaa,
             color: "#2F7ED8",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -227,7 +263,7 @@ export default {
             name: "Hiiumaa",
             data: data.countyByDay.countyByDay.Hiiumaa,
             color: "#456990",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -237,7 +273,7 @@ export default {
             name: "Ida-Virumaa",
             data: data.countyByDay.countyByDay["Ida-Virumaa"],
             color: "#49BEAA",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -247,7 +283,7 @@ export default {
             name: "Jõgevamaa",
             data: data.countyByDay.countyByDay.Jõgevamaa,
             color: "#49DCB1",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -257,7 +293,7 @@ export default {
             name: "Järvamaa",
             data: data.countyByDay.countyByDay.Järvamaa,
             color: "#EEB868",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -267,7 +303,7 @@ export default {
             name: "Läänemaa",
             data: data.countyByDay.countyByDay.Läänemaa,
             color: "#7CB5EC",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -277,7 +313,7 @@ export default {
             name: "Lääne-Virumaa",
             data: data.countyByDay.countyByDay["Lääne-Virumaa"],
             color: "#6684A4",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -287,7 +323,7 @@ export default {
             name: "Põlvamaa",
             data: data.countyByDay.countyByDay.Põlvamaa,
             color: "#7cb5ec",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -297,7 +333,7 @@ export default {
             name: "Pärnumaa",
             data: data.countyByDay.countyByDay.Pärnumaa,
             color: "#434348",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -307,7 +343,7 @@ export default {
             name: "Raplamaa",
             data: data.countyByDay.countyByDay.Raplamaa,
             color: "#90ed7d",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -317,7 +353,7 @@ export default {
             name: "Saaremaa",
             data: data.countyByDay.countyByDay.Saaremaa,
             color: "#f7a35c",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -327,7 +363,7 @@ export default {
             name: "Tartumaa",
             data: data.countyByDay.countyByDay.Tartumaa,
             color: "#8085e9",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -337,7 +373,7 @@ export default {
             name: "Valgamaa",
             data: data.countyByDay.countyByDay.Valgamaa,
             color: "#f15c80",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -347,7 +383,7 @@ export default {
             name: "Viljandimaa",
             data: data.countyByDay.countyByDay.Viljandimaa,
             color: "#e4d354",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -357,7 +393,7 @@ export default {
             name: "Võrumaa",
             data: data.countyByDay.countyByDay.Võrumaa,
             color: "#2b908f",
-            pointStart: Date.parse(data.dates2[0]),
+            pointStart: Date.parse(data.caseDates[0]),
             pointInterval: 24 * 3600 * 1000,
             marker: {
               symbol: "circle",
@@ -400,8 +436,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -413,6 +449,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");

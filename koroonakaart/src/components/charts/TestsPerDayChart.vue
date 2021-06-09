@@ -1,21 +1,30 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'stockChart'"
+        class="chart"
+        :options="chartOptions"
+        ref="thisChart"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
-import { formatDate, capitalise } from "../../utilities/helper";
+import { capitalise, formatDate } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "TestsPerDayChart",
+
+  components: { Intersect, Loading },
+
   props: {
     height: {
       default: null,
@@ -25,14 +34,36 @@ export default {
     },
   },
 
+  data() {
+    return {
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartType: "absolute",
+      chartOptions: null,
+    };
+  },
+
   mounted() {
     /* console.log(this.chartOptions.yAxis.title.text); */
   },
 
-  data() {
-    return {
-      chartType: "absolute",
-      chartOptions: {
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/TestsPerDay.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("testsPerDay"),
           align: "left",
@@ -236,15 +267,21 @@ export default {
             // Get data for this date
             var positive;
             if (context.chart.series[0].visible) {
-              positive = context.chart.series[0].points.find(element => element.index === index);
+              positive = context.chart.series[0].points.find(
+                (element) => element.index === index
+              );
             }
             var negative;
             if (context.chart.series[1].visible) {
-              negative = context.chart.series[1].points.find(element => element.index === index);
+              negative = context.chart.series[1].points.find(
+                (element) => element.index === index
+              );
             }
             var positiveTestPercentage;
             if (context.chart.series[2].visible) {
-              positiveTestPercentage = context.chart.series[2].points.find(element => element.index === index);
+              positiveTestPercentage = context.chart.series[2].points.find(
+                (element) => element.index === index
+              );
             }
 
             // Calculate tooltip title
@@ -259,32 +296,55 @@ export default {
               month: "long",
               day: "numeric",
             };
-            tooltipTitle = capitalise(formatDate(x, this.currentLocale, dateOptions));
+            tooltipTitle = capitalise(
+              formatDate(x, this.currentLocale, dateOptions)
+            );
 
             // Compose tooltip
-            var tooltip = tooltipTitle + '<br>';
-            tooltip += '<table>';
+            var tooltip = tooltipTitle + "<br>";
+            tooltip += "<table>";
             if (positive !== undefined) {
-              tooltip += '<tr>';
-              tooltip += '<td>' + context.chart.series[0].name + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(positive.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right">(' + positive.percentage.toFixed(1) + '%)</td>';
-              tooltip += '</tr>';
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[0].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                formatNumberByLocale(positive.y, this.currentLocale) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right">(' +
+                positive.percentage.toFixed(1) +
+                "%)</td>";
+              tooltip += "</tr>";
             }
             if (negative !== undefined) {
-              tooltip += '<tr>';
-              tooltip += '<td>' + context.chart.series[1].name + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(negative.y, this.currentLocale) + '</b>&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right">(' + negative.percentage.toFixed(1) + '%)</td>';
-              tooltip += '</tr>';
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[1].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                formatNumberByLocale(negative.y, this.currentLocale) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right">(' +
+                negative.percentage.toFixed(1) +
+                "%)</td>";
+              tooltip += "</tr>";
             }
-            if (positiveTestPercentage !== undefined && positive === undefined) {
-              tooltip += '<tr>';
-              tooltip += '<td>' + context.chart.series[2].name + '&nbsp;&nbsp;</td>';
-              tooltip += '<td style="text-align: right"><b>' + positiveTestPercentage.y.toFixed(1) + '</b>&nbsp;&nbsp;</td>';
-              tooltip += '</tr>';
+            if (
+              positiveTestPercentage !== undefined &&
+              positive === undefined
+            ) {
+              tooltip += "<tr>";
+              tooltip +=
+                "<td>" + context.chart.series[2].name + "&nbsp;&nbsp;</td>";
+              tooltip +=
+                '<td style="text-align: right"><b>' +
+                positiveTestPercentage.y.toFixed(1) +
+                "</b>&nbsp;&nbsp;</td>";
+              tooltip += "</tr>";
             }
-            tooltip += '</table>';
+            tooltip += "</table>";
 
             return tooltip;
           },
@@ -300,7 +360,7 @@ export default {
           {
             name: this.$t("positive"),
             data: data.dataTestsPerDayChart.positiveTestsPerDay,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#000000",
             yAxis: 0,
@@ -308,22 +368,22 @@ export default {
           {
             name: this.$t("negative"),
             data: data.dataTestsPerDayChart.negativeTestsPerDay,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: this.$t("percentPositiveTests"),
             data: data.dataTestsPerDayChart.positiveTestsPercentage,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             type: "spline",
             yAxis: 1,
             // enableMouseTracking: false,
           },
         ],
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -335,6 +395,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("testsPerDay");
       this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");

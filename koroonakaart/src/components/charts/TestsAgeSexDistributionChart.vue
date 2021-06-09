@@ -1,15 +1,26 @@
 <template>
-  <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        class="chart"
+        :options="chartOptions"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "TestsAgeSexDistributionChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -22,7 +33,29 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartOptions: null,
+    };
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/TestsAgeSexDistribution.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("distributionOfAgeSexTests"),
           align: "left",
@@ -204,8 +237,8 @@ export default {
             color: "#492970",
           },
         ],
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -217,6 +250,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("distributionOfAgeSexTests");
       this.chartOptions.yAxis.title.text = this.$t("numberOfTests");

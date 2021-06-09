@@ -1,21 +1,30 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'stockChart'"
+        class="chart"
+        :options="chartOptions"
+        ref="thisChart"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
-import { formatDate, capitalise } from "../../utilities/helper";
+import { capitalise, formatDate } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "DailyCountyNewCasesChart",
+
+  components: { Intersect, Loading },
+
   props: {
     height: {
       default: null,
@@ -31,8 +40,30 @@ export default {
 
   data() {
     return {
+      visible: false,
+      loaded: false,
+      loading: false,
       chartType: "absolute",
-      chartOptions: {
+      chartOptions: null,
+    };
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/DailyCountyNewCases.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("confirmedNewCasesByCounties"),
           align: "left",
@@ -167,14 +198,24 @@ export default {
               month: "long",
               day: "numeric",
             };
-            var tooltipDate = capitalise(formatDate(x, this.currentLocale, dateOptions));
+            var tooltipDate = capitalise(
+              formatDate(x, this.currentLocale, dateOptions)
+            );
 
             // Compose tooltip
             var tooltip = tooltipDate + "<br>";
             tooltip += "<table>";
             tooltip += "<tr>";
-            tooltip += '<td><span style="color: ' + color + '">●</span> ' + countyName + "&nbsp;&nbsp;</td>";
-            tooltip += '<td style="text-align: right"><b>' + formatNumberByLocale(value, this.currentLocale) + "</b></td>";
+            tooltip +=
+              '<td><span style="color: ' +
+              color +
+              '">●</span> ' +
+              countyName +
+              "&nbsp;&nbsp;</td>";
+            tooltip +=
+              '<td style="text-align: right"><b>' +
+              formatNumberByLocale(value, this.currentLocale) +
+              "</b></td>";
             tooltip += "</tr>";
             tooltip += "</table>";
 
@@ -195,119 +236,119 @@ export default {
         series: [
           {
             name: "Harjumaa",
-            data: data.countyByDay.newCountyByDay.Harjumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Harjumaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#2F7ED8",
             yAxis: 0,
           },
           {
             name: "Hiiumaa",
-            data: data.countyByDay.newCountyByDay.Hiiumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Hiiumaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#456990",
             yAxis: 0,
           },
           {
             name: "Ida-Virumaa",
-            data: data.countyByDay.newCountyByDay["Ida-Virumaa"],
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay["Ida-Virumaa"],
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#49BEAA",
             yAxis: 0,
           },
           {
             name: "Jõgevamaa",
-            data: data.countyByDay.newCountyByDay.Jõgevamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Jõgevamaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#49DCB1",
             yAxis: 0,
           },
           {
             name: "Järvamaa",
-            data: data.countyByDay.newCountyByDay.Järvamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Järvamaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#EEB868",
             yAxis: 0,
           },
           {
             name: "Läänemaa",
-            data: data.countyByDay.newCountyByDay.Läänemaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Läänemaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#7CB5EC",
             yAxis: 0,
           },
           {
             name: "Lääne-Virumaa",
-            data: data.countyByDay.newCountyByDay["Lääne-Virumaa"],
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay["Lääne-Virumaa"],
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#6684A4",
             yAxis: 0,
           },
           {
             name: "Põlvamaa",
-            data: data.countyByDay.newCountyByDay.Põlvamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Põlvamaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Pärnumaa",
-            data: data.countyByDay.newCountyByDay.Pärnumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Pärnumaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Raplamaa",
-            data: data.countyByDay.newCountyByDay.Raplamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Raplamaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Saaremaa",
-            data: data.countyByDay.newCountyByDay.Saaremaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Saaremaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Tartumaa",
-            data: data.countyByDay.newCountyByDay.Tartumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Tartumaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Valgamaa",
-            data: data.countyByDay.newCountyByDay.Valgamaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Valgamaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Viljandimaa",
-            data: data.countyByDay.newCountyByDay.Viljandimaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Viljandimaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: "Võrumaa",
-            data: data.countyByDay.newCountyByDay.Võrumaa,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: data.newCountyByDay.Võrumaa,
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
         ],
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -319,6 +360,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("confirmedNewCasesByCounties");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");

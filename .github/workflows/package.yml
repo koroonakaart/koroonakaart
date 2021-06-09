@@ -1,73 +1,119 @@
-name: Build artifacts
+name: Build and update to GitHub Pages
 
-# this action will be run only manually (only visible on master branch)
-# go to "Actions" and click "Run workflow" button at right side of screen
-on: [workflow_dispatch]
-#on: [push]
+on:
+  schedule:
+    # Estonia is UTC+2/+3 and data updates often happen daily ~11-12
+    - cron: "15 8,9,10,11,18,20 * * *"
+  push:
+    branches:
+      - master
 
 jobs:
-  fetch_data:
-    name: Fetch data
+  Deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.9
+          # node-version: 14
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Install Poetry
+        run: pip install poetry
+
       - name: Install dependencies
+        run: poetry install
+
+      - name: Download latest data
+        run: poetry run download
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: koroonakaart/src/data
+          key: ${{ hashFiles('data/*.json', 'build/*.py', 'pyproject.toml', 'poetry.lock') }}
+
+      - name: Commit latest data files if updated
+        # If cache matched then the files have not changed
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          cd TEHIK_Open_Data_Loading_Scripts/
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Fetch data from TEHIK and aggregating it as data.json
-        run: |
-          cd TEHIK_Open_Data_Loading_Scripts/
-          python main.py
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: data.json
-          path: koroonakaart/src/data.json
-          retention-days: 7
+          git config --global user.name "GitHub"
+          git config --global user.email "<noreply@github.com>"
 
-  build_frontend:
-    name: Build frontend
-    needs: fetch_data
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      - uses: actions/checkout@v2
+          cp -a data /tmp
 
-      - name: Download data.json from data fetching job
-        uses: actions/download-artifact@v2
-        with:
-          name: data.json
+          for i in 1 2 3 4 5; do
+            # Reset local to origin
+            git fetch --all
+            git reset --hard origin/master
 
-      - shell: bash
-        run: cp data.json koroonakaart/src/data.json
+            # Add downloaded files
+            cp -f /tmp/data/* data/
+            git add data
+            pre-commit run || true
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+            if [[ $(git status --porcelain) ]]; then
+              # Try to commit and push updates
+              git commit -m "Automatic update of data files"
+              git push -q "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" master
+            else
+              echo "No updates to data"
+              exit 0
+            fi
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate chart data
+        # If cache matched then the previously generated chart data is still valid
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: poetry run generate --parallel 2
 
       - name: Build frontend
         run: |
+          cp -f data/*.json koroonakaart/src/data
           cd koroonakaart
           npm install
           npm run build
+          mkdir -p dist/data
+          cp src/data/*.json dist/data
 
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: frontend with data
-          path: |
-            koroonakaart/dist/
-          retention-days: 7
+          # Too large for GitHub
+          rm dist/data/test_results.json
+          rm dist/data/test_locations.json
+
+      - name: Generate indexes
+        run: |
+          cd koroonakaart/dist
+          for locale in en et ru; do
+            mkdir -p "${locale}/faq"
+            mkdir -p "${locale}/chart"
+            cp index.html "${locale}/"
+            cp index.html "${locale}/faq/"
+            cp index.html "${locale}/chart/"
+          done
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        run: |
+          git config --global user.name "GitHub"
+          git config --global user.email "<noreply@github.com>"
+
+          SRC="$(pwd)"
+          mkdir /tmp/github-pages && cd /tmp/github-pages
+          git init . && git checkout --orphan "${BRANCH}"
+          cp -r "${SRC}/${DEPLOY_DIR}"/* .
+          [[ ! -z "${FQDN}" ]] && echo "${FQDN}" > CNAME
+          git add . && git status && git commit --message "${MESSAGE}"
+          git push -f -q "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "${BRANCH}"
+        env:
+          DEPLOY_DIR: koroonakaart/dist
+          FQDN: koroonakaart.cocreators.ee
+          MESSAGE: Deploy to GitHub Pages
+          BRANCH: gh-pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

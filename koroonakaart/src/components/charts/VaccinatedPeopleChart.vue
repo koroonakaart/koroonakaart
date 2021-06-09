@@ -1,19 +1,27 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'stockChart'"
+        class="chart"
+        :options="chartOptions"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "VaccinatedPeopleChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -26,8 +34,30 @@ export default {
 
   data() {
     return {
-      chartOptions: {
-        chartType: "linear",
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartType: "linear",
+      chartOptions: null,
+    };
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/VaccinatedPeople.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartFirstDate: Date.UTC(2020, 12, 26),
 
         chart: {
@@ -226,21 +256,21 @@ export default {
           {
             name: this.$t("allVaccinated"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates3[0]),
+            pointStart: Date.parse(data.vaccinationDates[0]),
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataVaccinatedPeopleChart.vaccinesAll,
           },
           {
             name: this.$t("vaccinationNumber"),
             color: "#90ed7d",
-            pointStart: Date.parse(data.dates3[0]),
+            pointStart: Date.parse(data.vaccinationDates[0]),
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataVaccinatedPeopleChart.vaccinesProgress,
           },
           {
             name: this.$t("completedVaccinationNumber"),
             color: "#f28f43",
-            pointStart: Date.parse(data.dates3[0]),
+            pointStart: Date.parse(data.vaccinationDates[0]),
             pointInterval: 24 * 3600 * 1000, // one day
             data: data.dataVaccinatedPeopleChart.vaccinesCompleted,
           },
@@ -281,8 +311,8 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
 
   // Get current locale
@@ -294,6 +324,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("vaccination");
       this.chartOptions.yAxis.title.text = this.$t("vaccination");

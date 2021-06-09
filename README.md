@@ -2,33 +2,78 @@
 
 Koroonakaart is a project which aims to give accurate and up-to-date information about the Covid-19 epidemic in Estonia.
 
-The project is currently managed by Open Knowledge Estonia. GitHub repository: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). The live version is available at [koroonakaart.ee](https://koroonakaart.ee/). The data is updated every day around 11:00 Estonian time, depending on the TEHIK data update. The app is published in three language versions: Estonian, English, and Russian.
+This is a fork of the repo managed by Open Knowledge
+Estonia: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart).
 
-For more information please contact:
+GitHub Actions are used to automatically download latest data and rebuild the site. The data which is not easily
+available from external APIs is automatically updated to the repository after scraping.
 
-Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— maarjaleena@okee.ee
+The generated site is hosted on GitHub Pages with Cloudflare caching
+at [https://koroonakaart.cocreators.ee/](https://koroonakaart.cocreators.ee/) - consider this a backup
+of https://koroonakaart.ee
 
 ## Data
 
-All data used by our application can be accessed directly at the following link: https://www.koroonakaart.ee/data.json
+All data for the application can be accessed directly via the links:
+
+- https://koroonakaart.cocreators.ee/data/ConfirmedCasesByCounties.json
+- https://koroonakaart.cocreators.ee/data/CumulativeCases.json
+- https://koroonakaart.cocreators.ee/data/CumulativeCasesPer100k.json
+- https://koroonakaart.cocreators.ee/data/CumulativeTests.json
+- https://koroonakaart.cocreators.ee/data/DailyCountyCases.json
+- https://koroonakaart.cocreators.ee/data/DailyCountyNewCases.json
+- https://koroonakaart.cocreators.ee/data/deaths.json
+- https://koroonakaart.cocreators.ee/data/Gender.json
+- https://koroonakaart.cocreators.ee/data/hospitalization.json
+- https://koroonakaart.cocreators.ee/data/manual_data.json
+- https://koroonakaart.cocreators.ee/data/Map.json
+- https://koroonakaart.cocreators.ee/data/NavBar.json
+- https://koroonakaart.cocreators.ee/data/NewCasesPerDay.json
+- https://koroonakaart.cocreators.ee/data/PositiveNegative.json
+- https://koroonakaart.cocreators.ee/data/StatsBar.json
+- https://koroonakaart.cocreators.ee/data/TestsAgeSexDistribution.json
+- https://koroonakaart.cocreators.ee/data/TestsPerDay.json
+- https://koroonakaart.cocreators.ee/data/TestsPopRatio.json
+- https://koroonakaart.cocreators.ee/data/VaccinatedPeople.json
+- https://koroonakaart.cocreators.ee/data/vaccinations.json
 
 ## Project setup
 
 ### Install prerequisites
 
-Install `poetry` to manage Python dependencies: [https://python-poetry.org/docs/#installation](https://python-poetry.org/docs/#installation)
+Install Python appropriately for your environment. Especially on Windows, if you installed from Microsoft Store, please ensure the "Scripts" directory is added on your `PATH` properly.
+
+You can check with `where python.exe` where Python was installed to, and you should ensure the `Python3x\Scripts` directory is included in your `PATH` ([https://datatofish.com/add-python-to-windows-path/](https://datatofish.com/add-python-to-windows-path/)). Alternatively if this does not work, after installing `pre-commit` run `where /R C:\ pre-commit.exe` to locate the correct `Scripts` directory.
+
+Install `poetry` to manage Python
+dependencies: [https://python-poetry.org/docs/#installation](https://python-poetry.org/docs/#installation)
+
+Install `pre-commit` to do automatic code analysis and formatting before committing changes: [https://pre-commit.com/#install](https://pre-commit.com/#install)
 
 ### Get/update data from TEHIK API
 
-After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile.
+After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the
+app to compile, after which we can generate the chart data for the frontend.
 
 ```bash
-cd TEHIK_Open_Data_Loading_Scripts/
 poetry install
-poetry run python update_data.py
+poetry run download
+poetry run generate
+
+# Or if you have plenty of memory and CPU - this will take about 14GB of RAM and optimize time spent
+poetry run generate --parallel 6
+# Larger numbers will eat greatly more RAM without significantly improving performance
 ```
 
-Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to improve the process.
+If you're working on the data generators, you can run an individual script as well:
+
+```bash
+poetry run python build/generate_x.py
+```
+
+Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their
+data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to
+improve the process.
 
 ### Install front-end dependencies
 
@@ -59,11 +104,14 @@ npm run lint
 
 # How to contribute?
 
-If you have a suggestion about something that could be improved or wish to help with the technical development, please take a look here: https://github.com/okestonia/koroonakaart/issues
+If you have a suggestion about something that could be improved or wish to help with the technical development, please
+take a look here: https://github.com/okestonia/koroonakaart/issues
 
 All suggestions and ideas are welcome. Please feel free to fork the project, raise new issues, or make pull requests.
 
-The project is primarily voluntary and has received no funding other than from members of the community. Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) has opened a separate bank account to receive support for infrastructure and core maintance:
+The project is primarily voluntary and has received no funding other than from members of the community. Open Knowledge
+Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) has opened a separate bank account to
+receive support for infrastructure and core maintance:
 
 MTÜ Open Knowledge Estonia EE607700771004696794
 
@@ -73,14 +121,21 @@ We will publish the amount of all support received and keep costs transparent.
 
 ## How the team formed at [Hack the Crisis](https://www.facebook.com/events/204692110602347/)
 
-The app was originally built in around 24 hours as part of the Hack the Crisis hackathon put on by Garage48 in Estonia. It was developed by Harry Sild (@Kypsis), Chris Thompson (@neuroactive), Joonas Puura (@PuuraJ), and Keegan McBride (@Keeganmcbride). Hanna Maria Mägi came up with the initial design. Maarja Leena Saar and Sven Illing have also contributed.
+The app was originally built in around 24 hours as part of the Hack the Crisis hackathon put on by Garage48 in Estonia.
+It was developed by Harry Sild (@Kypsis), Chris Thompson (@neuroactive), Joonas Puura (@PuuraJ), and Keegan McBride (
+@Keeganmcbride). Hanna Maria Mägi came up with the initial design. Maarja Leena Saar and Sven Illing have also
+contributed.
 
 # License and data information
 
 This repository is maintained as an open source project and released under an [MIT license](LICENSE).
 
-⚠️ The Highcharts component of this project is licensed under a more restrictive license: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/), which prevents you from using that component for commercial purposes. Before using the Highcharts dependency, please ensure that your use case is compliant with this licence.
+⚠️ The Highcharts component of this project is licensed under a more restrictive
+license: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/), which prevents you from using that component for
+commercial purposes. Before using the Highcharts dependency, please ensure that your use case is compliant with this
+licence.
 
 The regional and settlement data is from Maa-amet version 20200601 and demographic data is provided by Statistikaamet.
 
-The COVID-19 related data has been optained from TEHIK via https://www.terviseamet.ee/et/koroonaviirus/avaandmed and is available under [CC0](LICENSE-data).
+The COVID-19 related data has been optained from TEHIK via https://www.terviseamet.ee/et/koroonaviirus/avaandmed and is
+available under [CC0](LICENSE-data).

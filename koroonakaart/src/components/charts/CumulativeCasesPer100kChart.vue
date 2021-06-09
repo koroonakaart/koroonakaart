@@ -1,19 +1,27 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        :constructor-type="'stockChart'"
+        class="chart"
+        :options="chartOptions"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "CumulativeCasesPer100kChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -26,7 +34,54 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartOptions: null,
+    };
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+  },
+
+  // Fire when currentLocale computed property changes
+  watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
+    currentLocale() {
+      this.chartOptions.title.text = this.$t("cumulativeCasesPer100k");
+      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
+      this.chartOptions.series[0].name = this.$t("active100k");
+      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
+      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
+        "logarithmic"
+      );
+    },
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/CumulativeCasesPer100k.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         chartType: "linear",
         chartFirstDate: Date.UTC(2020, 1, 25),
 
@@ -189,9 +244,6 @@ export default {
             },
           },
         },
-        // xAxis: {
-        //   categories: data.dates2
-        // },
 
         yAxis: {
           title: {
@@ -222,9 +274,9 @@ export default {
           {
             name: this.$t("active100k"),
             color: "#2f7ed8",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(data.caseDates[0]), // data.caseDates first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataCumulativeCasesChart.active100k,
+            data: data.active100k,
           },
         ],
 
@@ -252,27 +304,7 @@ export default {
             },
           ],
         },
-      },
-    };
-  },
-
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
-  },
-
-  // Fire when currentLocale computed property changes
-  watch: {
-    currentLocale() {
-      this.chartOptions.title.text = this.$t("cumulativeCasesPer100k");
-      this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
-      this.chartOptions.series[0].name = this.$t("active100k");
-      this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
-      this.chartOptions.exporting.buttons.customButton2.text = this.$t(
-        "logarithmic"
-      );
+      };
     },
   },
 };

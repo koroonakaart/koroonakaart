@@ -1,16 +1,27 @@
 <template>
-  <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        class="chart"
+        :options="chartOptions"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 export default {
   name: "TestsPopRatioChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -20,15 +31,38 @@ export default {
       default: null,
     },
   },
-  // data() {
-  // },
+
+  data() {
+    return {
+      visible: false,
+      loaded: false,
+      loading: false,
+      chartOptions: null,
+    };
+  },
 
   // Get current locale
   computed: {
     currentLocale: function () {
       return this.$i18n.locale;
     },
-    chartOptions() {
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/TestsPopRatio.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
       var context = this;
       return {
         title: {
@@ -185,6 +219,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("testsPer10000");
       this.chartOptions.yAxis.title.text = this.$t("testsPer10000Axis");

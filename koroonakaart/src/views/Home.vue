@@ -65,7 +65,6 @@ import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
 import TestsPerDayChart from "../components/charts/TestsPerDayChart";
 import GenderChart from "../components/charts/GenderChart";
 import VaccinatedPeopleChart from "../components/charts/VaccinatedPeopleChart";
-//import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 import DailyCountyNewCasesChart from "../components/charts/DailyCountyNewCasesChart";
 import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";

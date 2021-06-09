@@ -11,11 +11,14 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
   var tooltipEntries = [];
   var n_series = series.length;
   for (var i = 0; i < n_series; i++) {
-    if (context.chart.series[i].visible && series[i].data[index] !== undefined) {
+    if (
+      context.chart.series[i].visible &&
+      series[i].data[index] !== undefined
+    ) {
       tooltipEntries.push({
         name: series[i].name,
         value: formatNumberByLocale(series[i].data[index], locale, precision),
-        color: series[i].color
+        color: series[i].color,
       });
     }
   }
@@ -47,7 +50,8 @@ export function formatTooltip(context, series, locale, precision, showMarker) {
         tooltip += '<span style="color:' + tooltipEntry.color + '">●</span> ';
       }
       tooltip += tooltipEntry.name + "&nbsp;</td>";
-      tooltip += '<td style="text-align: right"><b>' + tooltipEntry.value + "</b></td>";
+      tooltip +=
+        '<td style="text-align: right"><b>' + tooltipEntry.value + "</b></td>";
       tooltip += "</tr>";
     }
     tooltip += "</table>";

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "build"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.2.4"
+numpy = "^1.20.2"
+requests = "^2.25.1"
+DateTime = "^4.3"
+beautifulsoup4 = "^4.9.3"
+loguru = "^0.5.3"
+tenacity = "^7.0.0"
+humanize = "^3.5.0"
+
+[tool.poetry.scripts]
+download = "build.download_data:main"
+generate = "build.generate_data:main"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

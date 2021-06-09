@@ -1,19 +1,24 @@
 <template>
-  <b-container fluid>
-    <highcharts
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
-  </b-container>
+  <intersect @enter="visible = true">
+    <b-container fluid>
+      <Loading v-if="!loaded" />
+
+      <highcharts
+        v-if="loaded"
+        class="chart"
+        :options="chartOptions"
+        ref="thisChart"
+      ></highcharts>
+    </b-container>
+  </intersect>
 </template>
 
 <script>
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
-
-import data from "../../data.json";
+import Intersect from "vue-intersect";
+import Loading from "../Loading";
 
 dataModule(Highcharts);
 drilldown(Highcharts);
@@ -22,6 +27,8 @@ Highcharts.setOptions({ lang: { drillUpText: "◁ {series.drillUpText}" } });
 
 export default {
   name: "GenderChart",
+
+  components: { Intersect, Loading },
 
   props: {
     height: {
@@ -38,8 +45,30 @@ export default {
 
   data() {
     return {
+      visible: false,
+      loaded: false,
+      loading: false,
       chartType: "pie",
-      chartOptions: {
+      chartOptions: null,
+    };
+  },
+
+  methods: {
+    fetchData() {
+      let _this = this;
+      if (_this.loaded || _this.loading) {
+        return;
+      }
+      _this.loading = true;
+      import("../../data/Gender.json").then((data) => {
+        _this.loading = false;
+        _this.chartOptions = Object.freeze(_this.makeData(data));
+        _this.loaded = true;
+      });
+    },
+
+    makeData(data) {
+      return {
         title: {
           text: this.$t("genderChart"),
           align: "left",
@@ -109,12 +138,12 @@ export default {
             data: [
               {
                 name: this.$t("male"),
-                y: data.dataPositiveTestsByAgeChart.maleTotal,
+                y: data.maleTotal,
                 drilldown: "MALE",
               },
               {
                 name: this.$t("female"),
-                y: data.dataPositiveTestsByAgeChart.femaleTotal,
+                y: data.femaleTotal,
                 drilldown: "FEMALE",
               },
             ],
@@ -141,17 +170,11 @@ export default {
               data: [
                 [
                   this.$t("maleNegative"),
-                  data.dataPositiveTestsByAgeChart.maleNegative.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.maleNegative.reduce((a, b) => a + b, 0),
                 ],
                 [
                   this.$t("malePositive"),
-                  data.dataPositiveTestsByAgeChart.malePositive.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.malePositive.reduce((a, b) => a + b, 0),
                 ],
               ],
             },
@@ -169,24 +192,18 @@ export default {
               data: [
                 [
                   this.$t("femaleNegative"),
-                  data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.femaleNegative.reduce((a, b) => a + b, 0),
                 ],
                 [
                   this.$t("femalePositive"),
-                  data.dataPositiveTestsByAgeChart.femalePositive.reduce(
-                    (a, b) => a + b,
-                    0
-                  ),
+                  data.femalePositive.reduce((a, b) => a + b, 0),
                 ],
               ],
             },
           ],
         },
-      },
-    };
+      };
+    },
   },
   // Get current locale
   computed: {
@@ -197,6 +214,11 @@ export default {
 
   // Fire when currentLocale computed property changes
   watch: {
+    visible() {
+      if (this.visible) {
+        this.fetchData();
+      }
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("genderChart");
       this.chartOptions.series[0].data[0].name = this.$t("male");
