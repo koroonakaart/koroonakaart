@@ -146,10 +146,10 @@ def get_county_by_day(json, dates, county_mapping, county_sizes):
 
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
+            date = res["StatisticsDate"]
             county = county_mapping[res["County"]]
             if county in chart_counties:
-                county_date_counts[(county, str(date))] += 1
+                county_date_counts[(county, date)] += 1
 
     county_by_day = {}
     new_county_by_day = {}
@@ -206,10 +206,10 @@ def get_county_daily_active(json, dates, county_mapping, county_sizes):
 
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
+            date = res["StatisticsDate"]
             county = county_mapping[res["County"]]
             if county in chart_counties:
-                county_date_counts[(county, str(date))] += 1
+                county_date_counts[(county, date)] += 1
 
     county_by_day = {}
     active_map_100k_playback = []
@@ -291,7 +291,7 @@ def get_cumulative_tests_chart_data(json, dates):
     count_before_date_range = 0
 
     for res in json:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts[date] += 1
         elif date < date_start:
@@ -323,7 +323,7 @@ def get_tests_per_day_chart_data(json, dates):
     count_positive_before_date_range = 0
 
     for res in json:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts[date] += 1
             if res["ResultValue"] == "P":
@@ -361,14 +361,23 @@ def get_tests_per_day_chart_data(json, dates):
 @analyze_time
 @analyze_memory
 def get_cumulative_cases_chart_data(
-    json, recovered_list, deceased_list, hospitalized, intensive, on_ventilation, dates
+    json,
+    recovered_list,
+    deceased_list,
+    hospitalized,
+    intensive,
+    on_ventilation,
+    dates,
+    test_per_day_chart_data=None,
 ):
     date_counts = defaultdict(int)
-    andmed = get_tests_per_day_chart_data(json, dates)
+    tests_per_day_data = test_per_day_chart_data
+    if tests_per_day_data is None:
+        tests_per_day_data = get_tests_per_day_chart_data(json, dates)
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
-            date_counts[str(date)] += 1
+            date = res["StatisticsDate"]
+            date_counts[date] += 1
 
     confirmed_cases = []
 
@@ -377,15 +386,17 @@ def get_cumulative_cases_chart_data(
 
     cases = np.cumsum(confirmed_cases)
 
-    new_cases_14 = [andmed["positiveTestsPerDay"][0]]
+    new_cases_14 = [tests_per_day_data["positiveTestsPerDay"][0]]
     for i in range(1, 14):
-        new_cases_14.append(new_cases_14[i - 1] + andmed["positiveTestsPerDay"][i])
+        new_cases_14.append(
+            new_cases_14[i - 1] + tests_per_day_data["positiveTestsPerDay"][i]
+        )
 
-    for i in range(14, len(andmed["positiveTestsPerDay"])):
+    for i in range(14, len(tests_per_day_data["positiveTestsPerDay"])):
         new_cases_14.append(
             new_cases_14[i - 1]
-            - andmed["positiveTestsPerDay"][i - 14]
-            + andmed["positiveTestsPerDay"][i]
+            - tests_per_day_data["positiveTestsPerDay"][i - 14]
+            + tests_per_day_data["positiveTestsPerDay"][i]
         )
 
     estonian_population = 1_328_976  # From https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
@@ -554,18 +565,18 @@ def get_vaccinated_people_chart_data(json, dates):
     json_completed = [x for x in json if x["MeasurementType"] == "FullyVaccinated"]
 
     for res in json:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             if res["MeasurementType"] == "FullyVaccinated":
                 date_counts_progress[date] -= res["DailyCount"]
             elif res["MeasurementType"] == "Vaccinated":
                 date_counts_progress[date] += res["DailyCount"]
     for res in json_completed:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts_completed[date] += res["DailyCount"]
     for res in json_progress:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts[date] += res["DailyCount"]
 

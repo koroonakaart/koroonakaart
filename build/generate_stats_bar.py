@@ -67,6 +67,7 @@ def main():
 
     # Get data for each chart
     logger.info("Calculating data for charts")
+    tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, case_dates)
     cumulative_cases_chart_data = get_cumulative_cases_chart_data(
         test_results,
         recovered,
@@ -75,6 +76,7 @@ def main():
         intensive,
         on_ventilation,
         case_dates,
+        test_per_day_chart_data=tests_per_day_chart_data,
     )
     new_cases_per_day_chart_data = get_new_cases_per_day_chart_data(
         cumulative_cases_chart_data
@@ -82,7 +84,6 @@ def main():
     cumulative_tests_chart_data = get_cumulative_tests_chart_data(
         test_results, case_dates
     )
-    tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, case_dates)
 
     n_active_cases = cumulative_cases_chart_data["active"][-1]
     n_active_cases_change = (
