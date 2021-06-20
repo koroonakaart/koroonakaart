@@ -75,9 +75,7 @@
           {{ testsChanged | formatNumber(currentLocale) }}
         </strong>
       </b-col>
-    </b-row>
-    <br />
-    <b-row>
+
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
           <strong>{{ $t("hospitalized") }}</strong>
@@ -94,6 +92,24 @@
         >
           {{ hospitalizedChanged | formatNumber(currentLocale) }}
         </strong>
+      </b-col>
+    </b-row>
+    <br />
+    <b-row>
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <strong>{{ $t("partiallyImmunized") }}</strong>
+        </div>
+        <h1>{{ partiallyImmunized | formatNumber(currentLocale) }}</h1>
+      </b-col>
+
+      <b-col class="statsbar-item" md>
+        <div class="statsbar-heading">
+          <strong>{{ $t("partiallyImmunizedPercentage") }}</strong>
+        </div>
+        <h1>
+          {{ partiallyImmunizedPercentage | formatNumber(currentLocale, 1) }}%
+        </h1>
       </b-col>
 
       <b-col class="statsbar-item" md>
@@ -232,6 +248,8 @@ export default {
       deceasedNumber: data.deceasedNumber,
       hospitalizedChanged: positiveSign(data.hospitalizedChanged),
       hospitalizedNumber: data.hospitalizedNumber,
+      partiallyImmunized: data.partiallyImmunized,
+      partiallyImmunizedPercentage: data.partiallyImmunizedPercentage,
       perHundred: data.perHundred,
       positiveTestAverage14Percent: data.positiveTestAverage14Percent,
       rawActiveChanged: data.rawActiveChanged,
@@ -294,7 +312,7 @@ strong {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 4em;
+  height: 6em;
   margin-bottom: -0.4em;
 }
 

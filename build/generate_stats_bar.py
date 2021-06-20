@@ -8,7 +8,7 @@ from build.chart_data_functions import get_in_intensive_data
 from build.chart_data_functions import get_new_cases_per_day_chart_data
 from build.chart_data_functions import get_on_ventilation_data
 from build.chart_data_functions import get_tests_per_day_chart_data
-from build.constants import DATE_SETTINGS, STATS_BAR_PATH
+from build.constants import DATE_SETTINGS, STATS_BAR_PATH, POPULATION
 from build.constants import DEATHS_PATH
 from build.constants import HOSPITALIZATION_PATH
 from build.constants import MANUAL_DATA_PATH
@@ -131,6 +131,11 @@ def main():
         - cumulative_tests_chart_data["testsAdministered"][-2]
     )
 
+    partially_immunized_total = all_vaccination_number_total + n_confirmed_cases
+    partially_immunized_pct = round(
+        (float(partially_immunized_total) / float(POPULATION) * 100), 2
+    )
+
     # Create dictionary for final JSON
     logger.info("Compiling final JSON")
     final_json = {
@@ -154,6 +159,8 @@ def main():
             - hospital["activeHospitalizations"][-2]
         ),
         "hospitalizedNumber": hospital["activeHospitalizations"][-1],
+        "partiallyImmunized": partially_immunized_total,
+        "partiallyImmunizedPercentage": partially_immunized_pct,
         "perHundred": cumulative_cases_chart_data["active100k"][-1],
         "positiveTestAverage14Percent": tests_per_day_chart_data[
             "positiveTestAverage14Percent"

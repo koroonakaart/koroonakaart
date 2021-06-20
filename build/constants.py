@@ -89,6 +89,9 @@ COUNTIES_INCL_UNKNOWN = COUNTIES.copy() + [
 
 COUNTIES_INCL_UNKNOWN_FIRST = ["Info puudulik"] + COUNTIES.copy()
 
+# 2021 population from https://www.stat.ee/en/find-statistics/statistics-theme/population
+POPULATION = 1330068
+
 # 2020 population from https://www.stat.ee/et/avasta-statistikat/piirkonnad
 COUNTY_POPULATION = {
     "Harjumaa": 605029,
