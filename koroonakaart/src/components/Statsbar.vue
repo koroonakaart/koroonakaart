@@ -116,8 +116,13 @@
       </b-col>
     </b-row>
     <br>
+    <b-row class="mb-2">
+      <b-col md>
+        <h5 class="text-left">{{ $t("vaccination") }}</h5>
+      </b-col>
+    </b-row>
     <b-row>
-      <b-col class="statsbar-item ml-2" md>
+      <b-col class="statsbar-item" md>
         <div class="vaccination-progress-label">
           <p class="vaccination-progress-text">{{ $t("atLeastOneDose") }}</p>
           <p class="vaccination-progress-value">{{ vaccinatedAtLeastOneDosePercentage | formatNumber(currentLocale, 1) }}%</p>
@@ -128,7 +133,7 @@
           </div>
         </div>
       </b-col>
-      <b-col class="statsbar-item ml-2" md>
+      <b-col class="statsbar-item" md>
         <div class="vaccination-progress-label">
           <p class="vaccination-progress-text">{{ $t("fullyVaccinated") }}</p>
           <p class="vaccination-progress-value">{{ fullyVaccinatedNumberPercentage | formatNumber(currentLocale, 1) }}%</p>
