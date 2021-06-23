@@ -14,9 +14,7 @@ from build.utils import logger
 from build.utils import read_json_from_file
 from build.utils import save_as_json
 import requests
-from tenacity import retry
-from tenacity import stop_after_attempt
-from tenacity import wait_exponential
+from tenacity import retry, RetryError, stop_after_attempt, wait_exponential
 
 DEATHS_SELECTOR = ".node-lead-default strong"
 TESTING_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
@@ -52,7 +50,7 @@ def download_json_data(url, dst):
                 f.write(chunk)
 
 
-@retry(stop=stop_after_attempt(10), wait=wait_exponential(min=2, max=30))
+@retry(stop=stop_after_attempt(5), wait=wait_exponential(min=2, max=30))
 def scrape_deaths():
     # Load content from Terviset's Covid dashboard and parse it
     logger.info("Scraping data on deaths from {url}", url=TERVISEAMET_COVID_DASHBOARD)
@@ -84,13 +82,22 @@ def scrape_deaths():
         )
     else:
         # Log error
-        raise Exception("Error: could not find page element with data on deaths")
+        logger.debug("Couldn't find {selector}", selector=DEATHS_SELECTOR)
+        raise Exception(
+            "Couldn't scrape latest deaths data. Website structure probably changed."
+        )
 
 
 @analyze_time
 @analyze_memory
 def main():
-    scrape_deaths()
+    deaths = False
+    try:
+        scrape_deaths()
+        deaths = True
+    except RetryError:
+        logger.info("Failed to scrape deaths")
+        pass
 
     # Load data from external services
     logger.info("Downloading data from TEHIK: Test results")
@@ -111,7 +118,8 @@ def main():
         raise Exception("Hospitalization data is not up-to-date")
 
     logger.info("All ok, replacing old files with downloaded files")
-    move(DEATHS_PATH + ".tmp", DEATHS_PATH)
+    if deaths:
+        move(DEATHS_PATH + ".tmp", DEATHS_PATH)
     move(TEST_RESULTS_PATH + ".tmp", TEST_RESULTS_PATH)
     move(TEST_LOCATIONS_PATH + ".tmp", TEST_LOCATIONS_PATH)
     move(HOSPITALIZATION_PATH + ".tmp", HOSPITALIZATION_PATH)
