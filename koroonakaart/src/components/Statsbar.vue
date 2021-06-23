@@ -117,45 +117,31 @@
     </b-row>
     <br>
     <b-row>
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("allVaccinated") }}</h5>
+      <b-col class="statsbar-item ml-2" md>
+        <div class="vaccination-progress-label">
+          <p class="vaccination-progress-text">{{ $t("atLeastOneDose") }}</p>
+          <p class="vaccination-progress-value">{{ vaccinatedAtLeastOneDosePercentage | formatNumber(currentLocale, 1) }}%</p>
         </div>
-        <h1>{{ allVaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
-        <h5 class="negative">{{ allVaccinationNumberLastDay | formatNumber(currentLocale) }}</h5>
+        <div class="progress">
+          <div class="progress-bar"
+               :style="{width: vaccinatedAtLeastOneDosePercentage + '%'}">
+          </div>
+        </div>
       </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("allVaccinatedPercentage") }}</h5>
+      <b-col class="statsbar-item ml-2" md>
+        <div class="vaccination-progress-label">
+          <p class="vaccination-progress-text">{{ $t("fullyVaccinated") }}</p>
+          <p class="vaccination-progress-value">{{ fullyVaccinatedNumberPercentage | formatNumber(currentLocale, 1) }}%</p>
         </div>
-        <h1>{{ allVaccinationFromPopulationPercentage | formatNumber(currentLocale, 1)}}%
-        </h1>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("vaccinationNumber") }}</h5>
+        <div class="progress">
+          <div class="progress-bar"
+               :style="{width: fullyVaccinatedNumberPercentage + '%'}">
+          </div>
         </div>
-        <h1>{{ vaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
-        <h5 class="negative">{{ vaccinationNumberLastDay | formatNumber(currentLocale) }}</h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("completedVaccinationNumber") }}</h5>
-        </div>
-        <h1>{{ completedVaccinationNumberTotal | formatNumber(currentLocale) }}</h1>
-        <h5 class="negative">{{ completedVaccinationNumberLastDay | formatNumber(currentLocale) }}</h5>
-      </b-col>
-
-      <b-col class="statsbar-item" md>
-        <div class="statsbar-heading">
-          <h5>{{ $t("completelyVaccinatedFromTotalVaccinatedPercentage") }}</h5>
-        </div>
-        <h1>{{ completelyVaccinatedFromTotalVaccinatedPercentage | formatNumber(currentLocale, 1) }}%</h1>
       </b-col>
     </b-row>
+
+
   </b-container>
 </template>
 
@@ -238,20 +224,12 @@ export default {
             data.dataCumulativeTestsChart.testsAdministered.length - 2
           ]
       ),
-      allVaccinationNumberTotal: data.allVaccinationNumberTotal,
-      allVaccinationNumberLastDay: positiveSign(
-        data.allVaccinationNumberLastDay
-      ),
-      allVaccinationFromPopulationPercentage:
-        data.allVaccinationFromPopulationPercentage,
-      vaccinationNumberTotal: data.vaccinationNumberTotal,
-      vaccinationNumberLastDay: positiveSign(data.vaccinationNumberLastDay),
-      completedVaccinationNumberTotal: data.completedVaccinationNumberTotal,
-      completedVaccinationNumberLastDay: positiveSign(
-        data.completedVaccinationNumberLastDay
-      ),
-      completelyVaccinatedFromTotalVaccinatedPercentage:
-        data.completelyVaccinatedFromTotalVaccinatedPercentage,
+      vaccinatedAtLeastOneDoseNumber: data.vaccinatedAtLeastOneDoseNumber,
+      vaccinatedAtLeastOneDoseChange: positiveSign(data.vaccinatedAtLeastOneDoseChange),
+      vaccinatedAtLeastOneDosePercentage: data.vaccinatedAtLeastOneDosePercentage,
+      fullyVaccinatedNumber: data.fullyVaccinatedNumber,
+      fullyVaccinatedNumberChange: positiveSign(data.fullyVaccinatedNumberChange),
+      fullyVaccinatedNumberPercentage: data.fullyVaccinatedNumberPercentage,
     };
   },
 
@@ -285,6 +263,20 @@ h5 {
   font-weight: 500;
 }
 
+.vaccination-progress-label {
+  display: flex;
+  justify-content: space-between;
+}
+.vaccination-progress-text {
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
+.vaccination-progress-value {
+  font-size: 16px;
+  margin-bottom: 0.25rem;
+}
+
 #statsbar-container {
   @media only screen and (max-width: 766px) {
     margin-bottom: 0;
@@ -309,6 +301,14 @@ h5 {
 
 .neutral {
   color: rgb(97, 97, 97);
+}
+
+.progress {
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  background-color: #7cb5ec;
 }
 
 .statsbar-item {

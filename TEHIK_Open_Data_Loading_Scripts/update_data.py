@@ -90,12 +90,12 @@ def main():
     # Log status
     log_status("Starting data update process at " + str(today))
 
-    # Get current number of deaths from Terviseamet's Covid dashboard
-    try:
-        scrape_deaths()
-    except:
-        log_status("Aborting data update.")
-        exit()
+    # # Get current number of deaths from Terviseamet's Covid dashboard
+    # try:
+    #     scrape_deaths()
+    # except:
+    #     log_status("Aborting data update.")
+    #     exit()
 
     # Load data from external services
     log_status("Downloading data from TEHIK: Test results")
@@ -218,17 +218,15 @@ def main():
     log_status("Calculating vaccination data")
     last_day_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "Vaccinated"][-1]
     last_day_completed_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "FullyVaccinated"][-1]
-    # TODO: Doses administered
-    # last_day_doses_administered_data = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered'][-1]
-    completed_vaccination_number_total = last_day_completed_vaccination_data["TotalCount"]
-    completed_vaccination_number_last_day = last_day_completed_vaccination_data["DailyCount"]
-    all_vaccination_number_total = last_day_vaccination_data["TotalCount"]
-    all_vaccination_number_last_day = last_day_vaccination_data["DailyCount"]
-    vaccination_number_total = (all_vaccination_number_total - completed_vaccination_number_total)
-    vaccination_number_last_day = (all_vaccination_number_last_day - completed_vaccination_number_last_day)
-    fully_vaccinated_from_total_vaccinated_percentage = round(
-        completed_vaccination_number_total * 100 / (all_vaccination_number_total), 2
-    )
+    last_day_doses_administered_data = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered'][-1]
+    n_fully_vaccinated = last_day_completed_vaccination_data["TotalCount"]
+    n_fully_vaccinated_change = last_day_completed_vaccination_data["DailyCount"]
+    n_fully_vaccinated_percentage = last_day_completed_vaccination_data["PopulationCoverage"]
+    n_vaccinated_at_least_one_dose = last_day_vaccination_data["TotalCount"]
+    n_vaccinated_at_least_one_dose_change = last_day_vaccination_data["DailyCount"]
+    n_vaccinated_at_least_one_dose_percentage = last_day_vaccination_data["PopulationCoverage"]
+    # vaccination_number_total = (n_vaccinated_at_least_one_dose - n_fully_vaccinated)
+    # vaccination_number_last_day = (n_vaccinated_at_least_one_dose_change - n_fully_vaccinated_change)
 
     # Create dictionary for final JSON
     log_status("Compiling final JSON")
@@ -270,14 +268,14 @@ def main():
         "dataVaccinatedPeopleChart": vaccinated_people_chart_data,
         "dataMunicipalities": municipalities_data,
         "hospital": hospital, # TODO: Rename this to make it clearer what data it contains.
-        "vaccinationNumberTotal": vaccination_number_total,
-        "vaccinationNumberLastDay": vaccination_number_last_day,
-        "completedVaccinationNumberTotal": completed_vaccination_number_total,
-        "completedVaccinationNumberLastDay": completed_vaccination_number_last_day,
-        "allVaccinationNumberTotal": all_vaccination_number_total,
-        "allVaccinationNumberLastDay": all_vaccination_number_last_day,
-        "allVaccinationFromPopulationPercentage": last_day_vaccination_data["PopulationCoverage"],
-        "completelyVaccinatedFromTotalVaccinatedPercentage": fully_vaccinated_from_total_vaccinated_percentage,
+        # "vaccinationNumberTotal": vaccination_number_total,
+        # "vaccinationNumberLastDay": vaccination_number_last_day,
+        "fullyVaccinatedNumber": n_fully_vaccinated,
+        "fullyVaccinatedNumberChange": n_fully_vaccinated_change,
+        "fullyVaccinatedNumberPercentage": n_fully_vaccinated_percentage,
+        "vaccinatedAtLeastOneDoseNumber": n_vaccinated_at_least_one_dose,
+        "vaccinatedAtLeastOneDoseChange": n_vaccinated_at_least_one_dose_change,
+        "vaccinatedAtLeastOneDosePercentage": n_vaccinated_at_least_one_dose_percentage,
     }
 
     # Dump JSON output
