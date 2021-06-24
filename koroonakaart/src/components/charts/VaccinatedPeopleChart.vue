@@ -238,7 +238,7 @@ export default {
             data: data.dataVaccinatedPeopleChart.vaccinesProgress,
           },
           {
-            name: this.$t("completedVaccinationNumber"),
+            name: this.$t("fullyVaccinated"),
             color: "#f28f43",
             pointStart: Date.parse(data.dates3[0]),
             pointInterval: 24 * 3600 * 1000, // one day
@@ -299,7 +299,7 @@ export default {
       this.chartOptions.yAxis.title.text = this.$t("vaccination");
       this.chartOptions.series[0].name = this.$t("allVaccinated");
       this.chartOptions.series[1].name = this.$t("vaccinationNumber");
-      this.chartOptions.series[2].name = this.$t("completedVaccinationNumber");
+      this.chartOptions.series[2].name = this.$t("fullyVaccinated");
       this.chartOptions.exporting.buttons.customButton.text = this.$t("linear");
       this.chartOptions.exporting.buttons.customButton2.text = this.$t(
         "logarithmic"
