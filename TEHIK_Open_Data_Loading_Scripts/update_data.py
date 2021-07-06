@@ -90,12 +90,12 @@ def main():
     # Log status
     log_status("Starting data update process at " + str(today))
 
-    # # Get current number of deaths from Terviseamet's Covid dashboard
-    # try:
-    #     scrape_deaths()
-    # except:
-    #     log_status("Aborting data update.")
-    #     exit()
+    # Get current number of deaths from Terviseamet's Covid dashboard
+    try:
+        scrape_deaths()
+    except:
+        log_status("Aborting data update.")
+        exit()
 
     # Load data from external services
     log_status("Downloading data from TEHIK: Test results")
