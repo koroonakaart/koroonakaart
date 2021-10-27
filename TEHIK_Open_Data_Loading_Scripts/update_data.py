@@ -216,9 +216,9 @@ def main():
 
     # Calculate vaccination data
     log_status("Calculating vaccination data")
-    last_day_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "Vaccinated"][-1]
-    last_day_completed_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "FullyVaccinated"][-1]
-    last_day_doses_administered_data = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered'][-1]
+    last_day_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "Vaccinated" and x["VaccinationSeries"] == 1][-1]
+    last_day_completed_vaccination_data = [x for x in json_vaccination if x["MeasurementType"] == "FullyVaccinated" and x["VaccinationSeries"] == 1][-1]
+    last_day_doses_administered_data = [x for x in json_vaccination if x['MeasurementType'] == 'DosesAdministered' and x["VaccinationSeries"] == 1][-1]
     n_fully_vaccinated = last_day_completed_vaccination_data["TotalCount"]
     n_fully_vaccinated_change = last_day_completed_vaccination_data["DailyCount"]
     n_fully_vaccinated_percentage = last_day_completed_vaccination_data["PopulationCoverage"]
