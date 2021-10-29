@@ -591,15 +591,15 @@ def get_vaccinated_people_chart_data(json, dates):
 
     dates_within_range = set([str(date.date()) for date in list(dates)])
 
-    json_progress = [x for x in json if x["MeasurementType"] == "Vaccinated"]
-    json_completed = [x for x in json if x["MeasurementType"] == "FullyVaccinated"]
+    json_progress = [x for x in json if x["MeasurementType"] == "Vaccinated" and x["VaccinationSeries"] == 1]
+    json_completed = [x for x in json if x["MeasurementType"] == "FullyVaccinated" and x["VaccinationSeries"] == 1]
 
     for res in json:
         date = str(pd.to_datetime(res["StatisticsDate"]).date())
         if date in dates_within_range:
-            if res["MeasurementType"] == "FullyVaccinated":
+            if res["MeasurementType"] == "FullyVaccinated" and res["VaccinationSeries"] == 1:
                 date_counts_progress[date] -= res["DailyCount"]
-            elif res["MeasurementType"] == "Vaccinated":
+            elif res["MeasurementType"] == "Vaccinated" and res["VaccinationSeries"] == 1:
                 date_counts_progress[date] += res["DailyCount"]
     for res in json_completed:
         date = str(pd.to_datetime(res["StatisticsDate"]).date())
