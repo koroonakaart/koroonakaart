@@ -79,8 +79,8 @@ jobs:
         run: |
           cp -f data/*.json koroonakaart/src/data
           cd koroonakaart
-          npm install
-          npm run build
+          pnpm install --frozen-lockfile
+          pnpm run build
           mkdir -p dist/data
           cp src/data/*.json dist/data
 

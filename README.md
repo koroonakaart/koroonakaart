@@ -81,25 +81,25 @@ To Customize Vue.js configuration see [Configuration Reference](https://cli.vuej
 
 ```bash
 cd koroonakaart/
-npm install
+pnpm install
 ```
 
 ### Compiles and hot-reloads for development
 
 ```bash
-npm run serve
+pnpm run serve
 ```
 
 ### Compiles and minifies for production
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### Lints and fixes files
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 # How to contribute?
@@ -140,10 +140,8 @@ The regional and settlement data is from Maa-amet version 20200601 and demograph
 The COVID-19 related data has been optained from TEHIK via https://www.terviseamet.ee/et/koroonaviirus/avaandmed and is
 available under [CC0](LICENSE-data).
 
-
 # Financial support
 
 This fork has been made possible thanks to [Cocreators](https://cocreators.ee) and [Lietu](https://lietu.net). You can help us continue our open source work by supporting us on [Buy me a coffee](https://www.buymeacoffee.com/cocreators).
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/cocreators)
-

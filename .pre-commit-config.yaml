@@ -57,3 +57,7 @@ repos:
     hooks:
       # Run prettier to format non-Python files
       - id: prettier
+        exclude: |
+          (?x)^(
+            .*/pnpm-lock.yaml$
+          )$
