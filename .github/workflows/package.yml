@@ -27,6 +27,9 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
 
+      - name: Install Pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies
         run: poetry install
 
