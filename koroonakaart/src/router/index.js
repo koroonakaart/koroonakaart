@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 
 import Home from "../views/Home.vue";
 import FrequentlyAskedQuestions from "../views/FrequentlyAskedQuestions.vue";
-import EmbedCharts from "../views/EmbedCharts.vue";
 
 Vue.use(VueRouter);
 
@@ -18,17 +17,9 @@ const routes = [
     },
   },
   {
-    path: "/api",
-  },
-  {
     path: "/:locale/faq",
     name: "FrequentlyAskedQuestions",
     component: FrequentlyAskedQuestions,
-  },
-  {
-    path: "/:locale/chart",
-    name: "EmbedCharts",
-    component: EmbedCharts,
   },
   {
     path: "/:locale",

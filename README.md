@@ -6,7 +6,8 @@ The project is currently managed by Open Knowledge Estonia. GitHub repository: [
 
 For more information please contact:
 
-Maarja-Leena Saar (board member of Open Knowledge Estonia) ⁠— info@okee.ee
+Maarja-Leena Saar (board member of Open Knowledge Estonia) — maarjaleena@okee.ee
+Chris Thompson (project maintainer) — chris@neuroactive.ai
 
 ## Data
 
@@ -23,9 +24,10 @@ Install `poetry` to manage Python dependencies: [https://python-poetry.org/docs/
 After cloning the repository, you will need to download the latest Estonian COVID-19 data from TEHIK in order for the app to compile.
 
 ```bash
-cd TEHIK_Open_Data_Loading_Scripts/
+cd build/
 poetry install
-poetry run python update_data.py
+poetry run download
+poetry run update_data
 ```
 
 Note: At present, the update process won't work if carried out between midnight and the time that TEHIK updates their data, which is typically sometime between 11am and noon Estonian time. We realise this isn't ideal and are working to improve the process.

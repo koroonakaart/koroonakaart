@@ -1,11 +1,11 @@
 <template>
   <b-container>
-    <highcharts
-      :constructor-type="'mapChart'"
-      :options="mapOptions"
-      class="map"
-      ref="highmap"
-    ></highcharts>
+    <highcharts v-if="mapOptions != null"
+                :constructor-type="'mapChart'"
+                :options="mapOptions"
+                class="map"
+                ref="highmap">
+    </highcharts>
   </b-container>
 </template>
 
@@ -17,15 +17,24 @@ import dataModule from "highcharts/modules/data";
 
 import vueRoot from "../main.js";
 import mapData from "../data/map/estonia.geo.json";
-import data from "../data.json";
-import importMap from "../utilities/importMap";
+import importMap from "../utilities/importMap";  // Imports county-level GeoJSON
 
 HighchartsMapModule(Highcharts);
 drilldown(Highcharts);
 dataModule(Highcharts);
 
 Highcharts.maps["mapEstonia"] = mapData;
-Highcharts.setOptions({ lang: { drillUpText: "◁ {series.drillUpText}" } });
+Highcharts.setOptions({
+  lang: {
+    drillUpText: "◁ {series.drillUpText}"
+  },
+  chart: {
+    style: {
+  //     fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif'
+         textDecoration: "none",
+    }
+  }
+});
 
 export default {
   name: "Map",
@@ -41,9 +50,28 @@ export default {
 
   data() {
     return {
-      mapOptions: {
-        chartType: "active",
+      mapOptions: null,
+      // chartType: "active",
+    };
+  },
 
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    chartData () {
+      return this.$store.getters.chartData;
+    },
+  },
+
+  methods: {
+    getMapOptions(chartData) {
+      return {
+        chartType: "active",
         chart: {
           marginTop: 30,
           map: "mapEstonia",
@@ -55,14 +83,14 @@ export default {
               if (!this.exportSVGElements) return;
               // Buttons have indexes go in even numbers (button1 [0], button2 [2])
               // Odd indexes are button symbols
-              //const button = this.exportSVGElements[2];
+              // const button = this.exportSVGElements[2];
 
               // States:
               // 0 - normal
               // 1 - hover
               // 2 - selected
               // 3 - disabled
-              //button.setState(2);
+              // button.setState(2);
             },
 
             redraw: function (e) {
@@ -76,9 +104,11 @@ export default {
               setTimeout(() => {
                 let newTitleText;
 
+                // alert('_this.mapOptions.chartType: ' + _this.mapOptions.chartType);
+
                 switch (this.options.chartType) {
                   case "absolute":
-                    newTitleText = vueRoot.$t("absolute");
+                    newTitleText = vueRoot.$t("cumulativeCases");
                     break;
                   case "per10k":
                     newTitleText = vueRoot.$t("per10000");
@@ -90,19 +120,18 @@ export default {
                     newTitleText = vueRoot.$t("active100k");
                     break;
                 }
-
                 this.setTitle({ text: newTitleText });
               }, 100);
             },
 
             drilldown: function (e) {
-              this.motion.pause();
+              let chart = this;
+              chart.motion.pause();
 
-              if (!e.seriesOptions && this.options.chartType === "absolute") {
-                this.motion.togglePlayControls();
+              if (!e.seriesOptions && chart.options.chartType === "absolute") {
+                chart.motion.togglePlayControls();
 
-                let chart = this;
-                let drilldowns = data.dataMunicipalities.municipalitiesData.map(
+                let drilldowns = chartData.dataMunicipalities.municipalitiesData.map(
                   (item) => {
                     return {
                       name: item[0],
@@ -115,7 +144,7 @@ export default {
                         "min",
                         "value",
                       ],
-                      data: data.dataMunicipalities.municipalitiesData.filter(
+                      data: chartData.dataMunicipalities.municipalitiesData.filter(
                         (element) => element.MNIMI === item.MNIMI
                       ),
                       // evaluate template string to a value to be looked up from importMap
@@ -161,16 +190,6 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
-
           chartOptions: {
             // specific options for the exported image
             plotOptions: {
@@ -187,12 +206,9 @@ export default {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
-                "downloadCSV",
-                "separator",
-                "embed",
+                "downloadCSV"
               ],
             },
 
@@ -211,13 +227,30 @@ export default {
               },
               menuItems: [
                 {
+                  text: this.$t("cumulativeCases"),
+                  onclick: function () {
+                    this.options.chartType = "absolute";
+
+                    this.update({
+                      series: {
+                        data: chartData.countyByDay.mapPlayback,
+                        dataLabels: {
+                          format: "{point.MNIMI}<br>{point.value}",
+                        },
+                      },
+                    });
+
+                    this.motion.updateToNewData();
+                  },
+                },
+                {
                   text: this.$t("per10000"),
                   onclick: function () {
                     this.options.chartType = "per10k";
 
                     this.update({
                       series: {
-                        data: data.countyByDay.mapPlayback10k,
+                        data: chartData.countyByDay.mapPlayback10k,
                         dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },
@@ -227,25 +260,6 @@ export default {
                     this.motion.updateToNewData();
                   },
                 },
-
-                {
-                  text: this.$t("absolute"),
-                  onclick: function () {
-                    this.options.chartType = "absolute";
-
-                    this.update({
-                      series: {
-                        data: data.countyByDay.mapPlayback,
-                        dataLabels: {
-                          format: "{point.MNIMI}<br>{point.value}",
-                        },
-                      },
-                    });
-
-                    this.motion.updateToNewData();
-                  },
-                },
-
                 {
                   text: this.$t("active"),
                   onclick: function () {
@@ -253,14 +267,8 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataActiveInfectionsByCounty,
-                        // For logarithmic scale
-                        /* .map((point) => {
-                          if (point[1] === 0) {
-                            point[1] = point[1] + 0.000001;
-                            return point;
-                          } else return point;
-                        }), */ dataLabels: {
+                        data: chartData.dataActiveInfectionsByCounty,
+                        dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
@@ -269,7 +277,6 @@ export default {
                     this.motion.updateToNewData();
                   },
                 },
-
                 {
                   text: this.$t("activeCounty100k"),
                   onclick: function () {
@@ -277,16 +284,8 @@ export default {
 
                     this.update({
                       series: {
-                        data: data.dataCountyDailyActive.activeMap100kPlayback,
-                        // For logarithmic scale
-                        /* .map(
-                          (point) => {
-                            if (point[1] === 0) {
-                              point[1] = point[1] + 0.000001;
-                              return point;
-                            } else return point;
-                          }
-                        ) */ dataLabels: {
+                        data: chartData.dataCountyDailyActive.activeMap100kPlayback,
+                        dataLabels: {
                           format: "{point.MNIMI}<br>{point.value}",
                         },
                       },
@@ -303,7 +302,7 @@ export default {
         },
 
         title: {
-          text: this.$t("absolute"),
+          text: this.$t("active"),
           fontSize: 10,
           align: "left",
           y: 30,
@@ -328,7 +327,7 @@ export default {
                   fill: "none",
                   style: {
                     fontWeight: "bold",
-                    textDecoration: "underline",
+                    textDecoration: "none",
                     letterSpacing: "-0.5px",
                   },
                 },
@@ -361,14 +360,26 @@ export default {
           //min: 1,
           //tickPixelInterval: 50,
           type: "linear",
-          //minColor: "#EEF1FC",
-          //maxColor: "#011145",
+          // Legacy blue colors
+          // minColor: "#EEF1FC",
+          // maxColor: "#011145",
           stops: [
-            [0, "#E5E8F2"],
-            [0.25, "#3A52A7"],
-            [0.6, "#1C2F71"],
-            [1.0, "#071239"],
+            [0, "#FDFFDC"],
+            [0.143, "#FFE7A4"],
+            [0.286, "#FFD37E"],
+            [0.429, "#FFBD5D"],
+            [0.571, "#FA9A43"],
+            [0.714, "#F16835"],
+            [0.857, "#D63A2F"],
+            [1.0, "#B20213"],
           ],
+          // Legacy blue color scale
+          // stops: [
+          //   [0, "#E5E8F2"],
+          //   [0.25, "#3A52A7"],
+          //   [0.6, "#1C2F71"],
+          //   [1.0, "#071239"],
+          // ],
 
           /* labels: {
             formatter: function () {
@@ -385,7 +396,7 @@ export default {
         motion: {
           enabled: true,
           axisLabel: "date",
-          labels: data.dates2,
+          labels: chartData.dates2,
           loop: false,
           series: 0, // The series which holds points to update
           updateInterval: 40,
@@ -399,20 +410,21 @@ export default {
           {
             drillUpText: this.$t("faq.back"),
             drilldown: true,
-            data: data.dataActiveInfectionsByCounty,
+            data: chartData.dataActiveInfectionsByCounty,
             // allowPointSelect: true,
-            //keys: ["MNIMI", "sequence", "drilldown"],
+            // keys: ["MNIMI", "sequence", "drilldown"],
             joinBy: "MNIMI",
             name: this.$t("cases"),
             borderColor: "black",
             borderWidth: 0.3,
 
-            //zMin: 1,
-            //zMax: 1100,
+            // zMin: 1,
+            // zMax: 1100,
 
             states: {
               hover: {
-                color: "#a4edba",
+                brightness: 0.15,
+                // color: "#a4edba",
               },
             },
 
@@ -440,12 +452,16 @@ export default {
               //shape: "callout",
               //backgroundColor: "rgba(0, 0, 0, 0.75)",
               style: {
-                fontWeight: "400",
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif',
+                fontWeight: "500",
                 fontSize: "9px",
-                //color: "white",
+                color: "#000000",
                 "text-anchor": "middle",
-                textOutline: "1px solid #222222",
-                textShadow: "0px 0px 1px #222222",
+                textOutline: "1px solid #ffffff80",  // White with 50% opacity
+                // textShadow: "0px 0px 0.5px #333333",
+                // textOutline: "1px solid white",
+                textShadow: "0px 0px 2px #ffffff8c",  // White with 65% opacity
+                textDecoration: "none",
               },
             },
           },
@@ -460,8 +476,9 @@ export default {
           },
           activeDataLabelStyle: {
             //"letter-spacing": "1px",
-            fontWeight: "400",
-            color: "white",
+            fontWeight: "500",
+            color: "black",
+            textDecoration: "none",
           },
           series: [],
         },
@@ -489,7 +506,7 @@ export default {
 
             {
               condition: {
-                minWidth: 1000,
+                minWidth: 800,
               },
 
               chartOptions: {
@@ -497,16 +514,16 @@ export default {
                   {
                     dataLabels: {
                       style: {
-                        fontWeight: "900",
-                        fontSize: "10px",
+                        fontWeight: "500",
+                        fontSize: "13px",
                       },
                     },
                   },
                 ],
                 drilldown: {
                   activeDataLabelStyle: {
-                    //"letter-spacing": "1.2px",
-                    fontWeight: "900",
+                    fontWeight: "500",
+                    textDecoration: "none"
                   },
                 },
                 chart: { height: 600 },
@@ -518,42 +535,34 @@ export default {
             },
           ],
         },
-      },
-    };
-  },
-
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
+      };
     },
   },
 
-  // Fire when currentLocale computed property changes
+  created: function () {
+      if (this.loaded) {
+        this.mapOptions = this.getMapOptions(this.chartData);
+      }
+  },
+
   watch: {
+    loaded: function () {
+      this.mapOptions = this.getMapOptions(this.chartData);
+    },
     currentLocale() {
       this.mapOptions.series[0].name = this.$t("cases");
-      this.mapOptions.exporting.buttons.toggle.text =
-        this.$t("typeOfData") + " ▾";
-      this.mapOptions.exporting.buttons.toggle.menuItems[0].text = this.$t(
-        "per10000"
-      );
-      this.mapOptions.exporting.buttons.toggle.menuItems[1].text = this.$t(
-        "absolute"
-      );
-      this.mapOptions.exporting.buttons.toggle.menuItems[2].text = this.$t(
-        "active"
-      );
-      this.mapOptions.exporting.buttons.toggle.menuItems[3].text = this.$t(
-        "activeCounty100k"
-      );
+      this.mapOptions.exporting.buttons.toggle.text = this.$t("typeOfData") + " ▾";
+      this.mapOptions.exporting.buttons.toggle.menuItems[0].text = this.$t("per10000");
+      this.mapOptions.exporting.buttons.toggle.menuItems[1].text = this.$t("cumulativeCases");
+      this.mapOptions.exporting.buttons.toggle.menuItems[2].text = this.$t("active");
+      this.mapOptions.exporting.buttons.toggle.menuItems[3].text = this.$t("activeCounty100k");
 
       // Persist chart type selection through language change
       this.mapOptions.chartType === "absolute"
-        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty)
+        ? (this.mapOptions.series[0] = this.chartData.dataInfectionsByCounty)
         : this.mapOptions.chartType === "per10k"
-        ? (this.mapOptions.series[0] = data.dataInfectionsByCounty10000)
-        : (this.mapOptions.series[0] = data.dataActiveInfectionsByCounty);
+        ? (this.mapOptions.series[0] = this.chartData.dataInfectionsByCounty10000)
+        : (this.mapOptions.series[0] = this.chartData.dataActiveInfectionsByCounty);
 
       this.$children[0].chart.drillUp();
     },

@@ -1,15 +1,14 @@
 <template>
   <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-    ></highcharts>
+    <highcharts v-if="chartOptions"
+                :constructor-type="'stockChart'"
+                class="chart"
+                :options="chartOptions">
+    </highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 
 export default {
@@ -26,9 +25,31 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      chartOptions: null
+    };
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    caseDates () {
+      return this.$store.getters.caseDates;
+    },
+    dataNewCasesPerDayChart () {
+      return this.$store.state.data.dataNewCasesPerDayChart;
+    },
+  },
+
+  methods: {
+    getChartOptions() {
+      this.chartOptions = {
         title: {
-          text: this.$t("newCasesPerDay"),
+          text: this.$t("newCases"),
           align: "left",
           y: 5,
         },
@@ -40,27 +61,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
-
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
           },
@@ -139,44 +147,29 @@ export default {
           {
             name: this.$t("confirmedCases"),
             color: "#7cb5ec",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            pointStart: Date.parse(this.caseDates[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataNewCasesPerDayChart.confirmedCases,
-          },
-          {
-            name: this.$t("recovered"),
-            color: "#90ed7d",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
-            pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataNewCasesPerDayChart.recovered,
-          },
-          {
-            name: this.$t("deceased"),
-            color: "#434348",
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
-            pointInterval: 24 * 3600 * 1000, // one day
-            data: data.dataNewCasesPerDayChart.deceased,
+            data: this.dataNewCasesPerDayChart.confirmedCases,
           },
         ],
-      },
-    };
+      };
+    }
   },
 
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
+  created: function () {
+      if (this.loaded) {
+        this.getChartOptions();
+      }
   },
 
-  // Fire when currentLocale computed property changes
   watch: {
+    loaded: function () {
+      this.getChartOptions();
+    },
     currentLocale() {
-      this.chartOptions.title.text = this.$t("newCasesPerDay");
+      this.chartOptions.title.text = this.$t("newCases");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("confirmedCases");
-      this.chartOptions.series[1].name = this.$t("recovered");
-      this.chartOptions.series[2].name = this.$t("deceased");
     },
   },
 };

@@ -33,27 +33,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
-
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
           },

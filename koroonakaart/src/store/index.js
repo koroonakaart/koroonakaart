@@ -6,8 +6,60 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: () => ({
     faqActive: false,
-    currentChartName: null,
+    data: {},
+    loaded: false
   }),
+
+  getters: {
+    cases: state => {
+      return state.data.dataCumulativeCasesChart.cases;
+    },
+    caseDates: state => {
+      return state.data.dates2;
+    },
+    vaccinationDates: state => {
+      return state.data.dates3;
+    },
+    confirmedCasesByCounty: state => {
+      return state.data.dataConfirmedCasesByCounties;
+    },
+    countyByDayNew: state => {
+      return state.data.countyByDay.countyByDayNew;
+    },
+    activeMap100kPlayback: state => {
+      return state.data.dataCountyDailyActive.activeMap100kPlayback;
+    },
+    dataActiveInfectionsByCounty: state => {
+      return state.data.dataActiveInfectionsByCounty;
+    },
+    dataCumulativeCasesChart: state => {
+      return state.data.dataCumulativeCasesChart;
+    },
+    dataCumulativeTestsChart: state => {
+      return state.data.dataCumulativeTestsChart;
+    },
+    countyByDay: state => {
+      return state.data.countyByDay.countyByDay;
+    },
+    // mapPlayback: state => {
+    //   return state.data.countyByDay.mapPlayback;
+    // },
+    // mapPlayback10k: state => {
+    //   return state.data.countyByDay.mapPlayback10k;
+    // },
+    newCountyByDay: state => {
+      return state.data.countyByDay.newCountyByDay;
+    },
+    chartData: state => {
+      return state.data;
+    },
+    // dataPositiveTestsByAgeChart: state => {
+    //   return state.data.dataPositiveTestsByAgeChart;
+    // },
+    // countyByDay: state => {
+    //   return state.data.countyByDay;
+    // },
+  },
 
   mutations: {
     toggleFaqActive(state) {
@@ -16,8 +68,9 @@ export default new Vuex.Store({
     toggleFaqInactive(state) {
       state.faqActive = false;
     },
-    setCurrentChartName(state, payload) {
-      state.currentChartName = payload;
+    setData(state, payload) {
+      state.data = payload;
+      state.loaded = true;
     },
   },
 
@@ -28,8 +81,8 @@ export default new Vuex.Store({
     toggleFaqInactive(context) {
       context.commit("toggleFaqInactive");
     },
-    setCurrentChartName(context, name) {
-      context.commit("setCurrentChartName", name);
+    setData(context, data) {
+      context.commit("setData", Object.freeze(data));
     },
   },
   modules: {},

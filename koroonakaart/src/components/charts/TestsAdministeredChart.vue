@@ -1,21 +1,20 @@
 <template>
   <b-container fluid>
-    <highcharts
-      :constructor-type="'stockChart'"
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
+    <highcharts v-if="chartOptions"
+                :constructor-type="'stockChart'"
+                class="chart"
+                :options="chartOptions"
+                ref="thisChart">
+    </highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatDate, capitalise } from "../../utilities/helper";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
 export default {
-  name: "TestsPerDayChart",
+  name: "TestsAdministeredChart",
   props: {
     height: {
       default: null,
@@ -25,16 +24,30 @@ export default {
     },
   },
 
-  mounted() {
-    /* console.log(this.chartOptions.yAxis.title.text); */
-  },
-
   data() {
     return {
       chartType: "absolute",
-      chartOptions: {
+      chartOptions: null
+    };
+  },
+
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    caseDates () {
+      return this.$store.getters.caseDates;
+    },
+  },
+
+  methods: {
+    getChartOptions() {
+      this.chartOptions = {
         title: {
-          text: this.$t("testsPerDay"),
+          text: this.$t("testsAdministered"),
           align: "left",
           y: 5,
         },
@@ -81,26 +94,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
             customButton: {
@@ -299,44 +300,45 @@ export default {
         series: [
           {
             name: this.$t("positive"),
-            data: data.dataTestsPerDayChart.positiveTestsPerDay,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: this.$store.state.data.dataTestsPerDayChart.positiveTestsPerDay,
+            pointStart: Date.parse(this.caseDates[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             color: "#000000",
             yAxis: 0,
           },
           {
             name: this.$t("negative"),
-            data: data.dataTestsPerDayChart.negativeTestsPerDay,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: this.$store.state.data.dataTestsPerDayChart.negativeTestsPerDay,
+            pointStart: Date.parse(this.caseDates[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             yAxis: 0,
           },
           {
             name: this.$t("percentPositiveTests"),
-            data: data.dataTestsPerDayChart.positiveTestsPercentage,
-            pointStart: Date.parse(data.dates2[0]), // data.dates2 first entry to UTC
+            data: this.$store.state.data.dataTestsPerDayChart.positiveTestsPercentage,
+            pointStart: Date.parse(this.caseDates[0]), // data.dates2 first entry to UTC
             pointInterval: 24 * 3600 * 1000, // one day
             type: "spline",
             yAxis: 1,
             // enableMouseTracking: false,
           },
         ],
-      },
-    };
+      };
+    }
   },
 
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
+  created: function () {
+      if (this.loaded) {
+        this.getChartOptions();
+      }
   },
 
-  // Fire when currentLocale computed property changes
   watch: {
+    loaded: function () {
+      this.getChartOptions();
+    },
     currentLocale() {
-      this.chartOptions.title.text = this.$t("testsPerDay");
+      this.chartOptions.title.text = this.$t("testsAdministered");
       this.chartOptions.yAxis[0].title.text = this.$t("numberOfTests");
       this.chartOptions.yAxis[1].title.text = this.$t("percentPositiveTests");
       this.chartOptions.series[0].name = this.$t("positive");

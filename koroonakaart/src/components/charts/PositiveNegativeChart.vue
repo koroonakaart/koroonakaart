@@ -1,16 +1,14 @@
 <template>
   <b-container fluid>
-    <highcharts
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
+    <highcharts v-if="chartOptions"
+                class="chart"
+                :options="chartOptions"
+                ref="thisChart">
+    </highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data.json";
-
 export default {
   name: "PositiveNegativeChart",
 
@@ -26,8 +24,23 @@ export default {
   data() {
     return {
       chartType: "percent",
+      chartOptions: null
+    };
+  },
 
-      chartOptions: {
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+  },
+
+  methods: {
+    getChartOptions() {
+      this.chartOptions = {
         title: {
           text: this.$t("positiveNegativeTitle"),
           align: "left",
@@ -76,27 +89,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
-
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
 
@@ -223,12 +223,12 @@ export default {
         series: [
           {
             name: this.$t("positive"),
-            data: data.dataPositiveNegativeChart.positive,
+            data: this.$store.state.data.dataPositiveNegativeChart.positive,
             color: "#000000",
           },
           {
             name: this.$t("negative"),
-            data: data.dataPositiveNegativeChart.negative,
+            data: this.$store.state.data.dataPositiveNegativeChart.negative,
           },
         ],
 
@@ -255,19 +255,21 @@ export default {
             },
           ],
         },
-      },
-    };
+      };
+    }
   },
 
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
+  created: function () {
+      if (this.loaded) {
+        this.getChartOptions();
+      }
   },
 
   // Fire when currentLocale computed property changes
   watch: {
+    loaded: function () {
+      this.getChartOptions();
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("positiveNegativeTitle");
       this.chartOptions.series[0].name = this.$t("positive");

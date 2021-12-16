@@ -1,10 +1,10 @@
 <template>
   <b-container fluid>
-    <highcharts
-      class="chart"
-      :options="chartOptions"
-      ref="thisChart"
-    ></highcharts>
+    <highcharts v-if="chartOptions"
+                class="chart"
+                :options="chartOptions"
+                ref="thisChart">
+    </highcharts>
   </b-container>
 </template>
 
@@ -12,8 +12,6 @@
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import dataModule from "highcharts/modules/data";
-
-import data from "../../data.json";
 
 dataModule(Highcharts);
 drilldown(Highcharts);
@@ -32,14 +30,27 @@ export default {
     },
   },
 
-  mounted() {
-    /* console.log(this.chartOptions.yAxis.title.text); */
-  },
-
   data() {
     return {
-      chartType: "pie",
-      chartOptions: {
+      chartOptions: null
+    };
+  },
+
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    dataPositiveTestsByAgeChart () {
+      return this.$store.state.data.dataPositiveTestsByAgeChart;
+    }
+  },
+
+  methods: {
+    getChartOptions() {
+      this.chartOptions = {
         title: {
           text: this.$t("genderChart"),
           align: "left",
@@ -53,26 +64,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
           },
@@ -109,12 +108,12 @@ export default {
             data: [
               {
                 name: this.$t("male"),
-                y: data.dataPositiveTestsByAgeChart.maleTotal,
+                y: this.dataPositiveTestsByAgeChart.maleTotal,
                 drilldown: "MALE",
               },
               {
                 name: this.$t("female"),
-                y: data.dataPositiveTestsByAgeChart.femaleTotal,
+                y: this.dataPositiveTestsByAgeChart.femaleTotal,
                 drilldown: "FEMALE",
               },
             ],
@@ -141,14 +140,14 @@ export default {
               data: [
                 [
                   this.$t("maleNegative"),
-                  data.dataPositiveTestsByAgeChart.maleNegative.reduce(
+                  this.dataPositiveTestsByAgeChart.maleNegative.reduce(
                     (a, b) => a + b,
                     0
                   ),
                 ],
                 [
                   this.$t("malePositive"),
-                  data.dataPositiveTestsByAgeChart.malePositive.reduce(
+                  this.dataPositiveTestsByAgeChart.malePositive.reduce(
                     (a, b) => a + b,
                     0
                   ),
@@ -169,14 +168,14 @@ export default {
               data: [
                 [
                   this.$t("femaleNegative"),
-                  data.dataPositiveTestsByAgeChart.femaleNegative.reduce(
+                  this.dataPositiveTestsByAgeChart.femaleNegative.reduce(
                     (a, b) => a + b,
                     0
                   ),
                 ],
                 [
                   this.$t("femalePositive"),
-                  data.dataPositiveTestsByAgeChart.femalePositive.reduce(
+                  this.dataPositiveTestsByAgeChart.femalePositive.reduce(
                     (a, b) => a + b,
                     0
                   ),
@@ -185,18 +184,20 @@ export default {
             },
           ],
         },
-      },
-    };
-  },
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
+      };
+    }
   },
 
-  // Fire when currentLocale computed property changes
+  created: function () {
+      if (this.loaded) {
+        this.getChartOptions();
+      }
+  },
+
   watch: {
+    loaded: function () {
+      this.getChartOptions();
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("genderChart");
       this.chartOptions.series[0].data[0].name = this.$t("male");

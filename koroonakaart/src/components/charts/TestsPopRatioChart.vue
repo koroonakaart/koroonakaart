@@ -1,11 +1,13 @@
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts v-if="chartOptions"
+                class="chart"
+                :options="chartOptions">
+    </highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data.json";
 import { formatTooltip } from "../../utilities/formatTooltip";
 import { formatNumberByLocale } from "../../utilities/formatNumberByLocale";
 
@@ -20,17 +22,26 @@ export default {
       default: null,
     },
   },
-  // data() {
-  // },
 
-  // Get current locale
+  data() {
+    return {
+      chartOptions: null
+    };
+  },
+
   computed: {
     currentLocale: function () {
       return this.$i18n.locale;
     },
-    chartOptions() {
+    loaded () {
+      return this.$store.state.loaded;
+    },
+  },
+
+  methods: {
+    getChartOptions() {
       var context = this;
-      return {
+      this.chartOptions = {
         title: {
           text: this.$t("testsPer10000"),
           align: "left",
@@ -52,27 +63,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
-
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
           },
@@ -162,7 +160,7 @@ export default {
         series: [
           {
             name: this.$t("numberOfCases"),
-            data: data.dataTestsPopRatio,
+            data: this.$store.state.data.dataTestsPopRatio,
           },
         ],
 
@@ -180,11 +178,19 @@ export default {
           ],
         },
       };
-    },
+    }
   },
 
-  // Fire when currentLocale computed property changes
+  created: function () {
+      if (this.loaded) {
+        this.getChartOptions();
+      }
+  },
+
   watch: {
+    loaded: function () {
+      this.getChartOptions();
+    },
     currentLocale() {
       this.chartOptions.title.text = this.$t("testsPer10000");
       this.chartOptions.yAxis.title.text = this.$t("testsPer10000Axis");

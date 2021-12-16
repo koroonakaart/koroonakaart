@@ -9,6 +9,10 @@
 
 koroonakaart/src/data.json
 data/data.json
-# data/deaths.json
+data/deaths.json
+data/hospitalization.json
+data/test_locations.json
+data/test_results.json
+data/vaccinations.json
 
-TEHIK_Open_Data_Loading_Scripts/after_data_updated.sh
+*.tmp

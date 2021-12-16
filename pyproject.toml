@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tehik_open_data_loading_scripts"
+name = "build"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
@@ -11,6 +11,10 @@ numpy = "^1.20.2"
 requests = "^2.25.1"
 DateTime = "^4.3"
 beautifulsoup4 = "^4.9.3"
+
+[tool.poetry.scripts]
+download = "build.download_data:main"
+update_data = "build.update_data:main"
 
 [tool.poetry.dev-dependencies]
 

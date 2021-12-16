@@ -1,7 +1,6 @@
 // Landing page of the app
 <template>
   <b-container fluid="lg">
-    <EmbedModal />
     <Statsbar />
 
     <b-row class="mb-5">
@@ -10,7 +9,7 @@
 
     <b-row class="mb-5">
       <b-col cols="12" lg="6">
-        <ConfirmedCasesByCountiesChart :height="470" />
+        <ConfirmedCasesByCountyChart :height="470" />
       </b-col>
       <b-col cols="12" lg="6">
         <TestsPopRatioChart :height="470" />
@@ -18,13 +17,13 @@
     </b-row>
 
     <b-row class="mb-5">
-      <CumulativeCasesChart :height="470" />
+      <NewCasesChart :height="470" />
     </b-row>
     <b-row class="mb-5">
       <CumulativeCasesPer100kChart :height="470" />
     </b-row>
     <b-row class="mb-5">
-      <NewCasesPerDayChart :height="470" />
+      <CumulativeCasesChart :height="470" />
     </b-row>
     <b-row class="mb-5">
       <DailyCountyCasesChart :height="470" />
@@ -33,10 +32,10 @@
       <DailyCountyNewCasesChart :height="470" />
     </b-row>
     <b-row class="mb-5">
-      <CumulativeTestsChart :height="470" />
+      <TestsAdministeredChart :height="470" />
     </b-row>
     <b-row class="mb-5">
-      <TestsPerDayChart :height="470" />
+      <CumulativeTestsChart :height="470" />
     </b-row>
     <b-row class="mb-5">
       <TestsAgeSexDistributionChart :height="470" />
@@ -54,22 +53,20 @@
 </template>
 
 <script>
-import EmbedModal from "../components/EmbedModal";
 import Statsbar from "../components/Statsbar";
 
 import Map from "../components/Map";
 import CumulativeTestsChart from "../components/charts/CumulativeTestsChart";
 import CumulativeCasesChart from "../components/charts/CumulativeCasesChart";
 import CumulativeCasesPer100kChart from "../components/charts/CumulativeCasesPer100kChart";
-import NewCasesPerDayChart from "../components/charts/NewCasesPerDayChart";
-import TestsPerDayChart from "../components/charts/TestsPerDayChart";
+import NewCasesChart from "../components/charts/NewCasesChart";
+import TestsAdministeredChart from "../components/charts/TestsAdministeredChart";
 import GenderChart from "../components/charts/GenderChart";
 import VaccinatedPeopleChart from "../components/charts/VaccinatedPeopleChart";
-//import PositiveTestsAgeDistributionChart from "../components/charts/PositiveTestsAgeDistributionChart";
 import DailyCountyCasesChart from "../components/charts/DailyCountyCasesChart";
 import DailyCountyNewCasesChart from "../components/charts/DailyCountyNewCasesChart";
 import TestsAgeSexDistributionChart from "../components/charts/TestsAgeSexDistributionChart";
-import ConfirmedCasesByCountiesChart from "../components/charts/ConfirmedCasesByCountiesChart";
+import ConfirmedCasesByCountyChart from "../components/charts/ConfirmedCasesByCountyChart";
 import PositiveNegativeChart from "../components/charts/PositiveNegativeChart";
 import TestsPopRatioChart from "../components/charts/TestsPopRatioChart";
 
@@ -77,21 +74,19 @@ export default {
   name: "Home",
   //Register components you want to use in the page here
   components: {
-    EmbedModal,
     Statsbar,
     Map,
     CumulativeTestsChart,
     CumulativeCasesChart,
     CumulativeCasesPer100kChart,
-    NewCasesPerDayChart,
-    TestsPerDayChart,
+    NewCasesChart,
+    TestsAdministeredChart,
     TestsAgeSexDistributionChart,
-    //  PositiveTestsAgeDistributionChart,
     GenderChart,
     VaccinatedPeopleChart,
     DailyCountyCasesChart,
     DailyCountyNewCasesChart,
-    ConfirmedCasesByCountiesChart,
+    ConfirmedCasesByCountyChart,
     PositiveNegativeChart,
     TestsPopRatioChart,
   },

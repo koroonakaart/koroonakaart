@@ -1,5 +1,5 @@
 <template>
-  <b-container id="statsbar-container" class="mb-5" fluid>
+  <b-container id="statsbar-container" class="mb-5" fluid v-if="loaded">
     <b-row><small style="margin-bottom: 20px">{{ $t("faq.a5") }}</small></b-row>
     <b-row>
       <b-col class="statsbar-item" md>
@@ -81,16 +81,16 @@
 
       <b-col class="statsbar-item" md>
         <div class="statsbar-heading">
-          <h5>{{ $t("recovered") }}</h5>
+          <h5>{{ $t("onventilation") }}</h5>
         </div>
-        <h1>{{ recoveredNumber | formatNumber(currentLocale) }}</h1>
+        <h1>{{ onVentilationNumber | formatNumber(currentLocale) }}</h1>
         <h5 :class="
-            rawRecoveredChanged === 0
+            rawOnVentilationChanged === 0
               ? 'neutral'
-              : rawRecoveredChanged > 0
-              ? 'negative'
-              : 'positive'">
-          {{ recoveredChanged | formatNumber(currentLocale) }}
+              : rawOnVentilationChanged > 0
+              ? 'positive'
+              : 'negative'">
+          {{ onVentilationChanged | formatNumber(currentLocale) }}
         </h5>
       </b-col>
 
@@ -152,95 +152,149 @@
 
 
 <script>
-import data from "../data.json";
 import { positiveSign } from "../utilities/helper";
 import { formatNumberByLocale } from "../utilities/formatNumberByLocale";
 export default {
   name: "Statsbar",
 
-  data() {
-    return {
-      activeCasesNumber: data.activeCasesNumber,
-      positiveTestAverage14Percent:
-        data.dataTestsPerDayChart.positiveTestAverage14Percent,
-      confirmedCasesNumber: data.confirmedCasesNumber,
-      deceasedNumber: data.deceasedNumber,
-      perHundred:
-        data.dataCumulativeCasesChart.active100k[
-          data.dataCumulativeCasesChart.active100k.length - 1
-        ],
-      hospitalisedNumber:
-        data.hospital.activehospitalizations[
-          data.hospital.activehospitalizations.length - 1
-        ],
-      recoveredNumber:
-        data.hospital.discharged[data.hospital.discharged.length - 1],
-      testsAdministeredNumber: data.testsAdministeredNumber,
-
-      rawActiveChanged: Number(
-        data.dataCumulativeCasesChart.active[
-          data.dataCumulativeCasesChart.active.length - 1
-        ] -
-          data.dataCumulativeCasesChart.active[
-            data.dataCumulativeCasesChart.active.length - 2
-          ]
-      ),
-      rawConfirmedChanged: Number(
-        data.dataNewCasesPerDayChart.confirmedCases[
-          data.dataNewCasesPerDayChart.confirmedCases.length - 1
-        ]
-      ),
-      rawPerHundredChanged: positiveSign(
-        Number(
-          data.dataCumulativeCasesChart.active100k[
-            data.dataCumulativeCasesChart.active100k.length - 1
-          ] -
-            data.dataCumulativeCasesChart.active100k[
-              data.dataCumulativeCasesChart.active100k.length - 2
-            ]
-        ).toFixed(2)
-      ),
-      rawDeceasedChanged: Number(data.deceasedChanged),
-      rawHospitalisedChanged: Number(data.hospitalChanged),
-      rawRecoveredChanged: Number(data.recoveredChanged),
-      rawTestsChanged: Number(
-        data.dataCumulativeTestsChart.testsAdministered[
-          data.dataCumulativeTestsChart.testsAdministered.length - 1
-        ] -
-          data.dataCumulativeTestsChart.testsAdministered[
-            data.dataCumulativeTestsChart.testsAdministered.length - 2
-          ]
-      ),
-
-      activeChanged: positiveSign(data.activeChanged),
-      deceasedChanged: positiveSign(data.deceasedChanged),
-      confirmedChanged: positiveSign(
-        data.dataNewCasesPerDayChart.confirmedCases[
-          data.dataNewCasesPerDayChart.confirmedCases.length - 1
-        ]
-      ),
-      hospitalisedChanged: positiveSign(data.hospitalChanged),
-      recoveredChanged: positiveSign(data.recoveredChanged),
-      testsChanged: positiveSign(
-        data.dataCumulativeTestsChart.testsAdministered[
-          data.dataCumulativeTestsChart.testsAdministered.length - 1
-        ] -
-          data.dataCumulativeTestsChart.testsAdministered[
-            data.dataCumulativeTestsChart.testsAdministered.length - 2
-          ]
-      ),
-      vaccinatedAtLeastOneDoseNumber: data.vaccinatedAtLeastOneDoseNumber,
-      vaccinatedAtLeastOneDoseChange: positiveSign(data.vaccinatedAtLeastOneDoseChange),
-      vaccinatedAtLeastOneDosePercentage: data.vaccinatedAtLeastOneDosePercentage,
-      fullyVaccinatedNumber: data.fullyVaccinatedNumber,
-      fullyVaccinatedNumberChange: positiveSign(data.fullyVaccinatedNumberChange),
-      fullyVaccinatedNumberPercentage: data.fullyVaccinatedNumberPercentage,
-    };
-  },
-
   computed: {
     currentLocale: function () {
       return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    activeCasesNumber () {
+      return this.$store.state.data.activeCasesNumber;
+    },
+    positiveTestAverage14Percent () {
+      return this.$store.state.data.dataTestsPerDayChart.positiveTestAverage14Percent;
+    },
+    confirmedCasesNumber () {
+      return this.$store.state.data.confirmedCasesNumber;
+    },
+    deceasedNumber () {
+      return this.$store.state.data.deceasedNumber;
+    },
+    perHundred () {
+      return this.$store.state.data.dataCumulativeCasesChart.active100k[
+        this.$store.state.data.dataCumulativeCasesChart.active100k.length - 1
+      ];
+    },
+    hospitalisedNumber () {
+      return this.$store.state.data.hospital.activehospitalizations[
+        this.$store.state.data.hospital.activehospitalizations.length - 1
+      ];
+    },
+    onVentilationNumber () {
+      return this.$store.state.data.onVentilationNumber;
+    },
+    testsAdministeredNumber () {
+      return this.$store.state.data.testsAdministeredNumber;
+    },
+    rawActiveChanged () {
+      return Number(
+        this.$store.state.data.dataCumulativeCasesChart.active[
+          this.$store.state.data.dataCumulativeCasesChart.active.length - 1
+        ] -
+        this.$store.state.data.dataCumulativeCasesChart.active[
+          this.$store.state.data.dataCumulativeCasesChart.active.length - 2
+        ]
+      );
+    },
+    rawConfirmedChanged () {
+      return Number(
+        this.$store.state.data.dataNewCasesPerDayChart.confirmedCases[
+          this.$store.state.data.dataNewCasesPerDayChart.confirmedCases.length - 1
+        ]
+      );
+    },
+    rawPerHundredChanged () {
+      return positiveSign(
+        Number(
+          this.$store.state.data.dataCumulativeCasesChart.active100k[
+            this.$store.state.data.dataCumulativeCasesChart.active100k.length - 1
+          ] -
+            this.$store.state.data.dataCumulativeCasesChart.active100k[
+              this.$store.state.data.dataCumulativeCasesChart.active100k.length - 2
+            ]
+        ).toFixed(2)
+      );
+    },
+    rawDeceasedChanged () {
+      return Number(
+        this.$store.state.data.deceasedChanged
+      );
+    },
+    rawHospitalisedChanged () {
+      return Number(
+        this.$store.state.data.hospitalChanged
+      );
+    },
+    rawOnVentilationChanged () {
+      return Number(
+        this.$store.state.data.onVentilationChanged
+      );
+    },
+    rawTestsChanged () {
+      return Number(
+        this.$store.state.data.dataCumulativeTestsChart.testsAdministered[
+          this.$store.state.data.dataCumulativeTestsChart.testsAdministered.length - 1
+        ] -
+        this.$store.state.data.dataCumulativeTestsChart.testsAdministered[
+          this.$store.state.data.dataCumulativeTestsChart.testsAdministered.length - 2
+        ]
+      );
+    },
+    activeChanged () {
+      return positiveSign(
+        this.$store.state.data.activeChanged
+      );
+    },
+    deceasedChanged () {
+      return positiveSign(
+        this.$store.state.data.deceasedChanged
+      );
+    },
+    confirmedChanged () {
+      return positiveSign(
+        this.$store.state.data.dataNewCasesPerDayChart.confirmedCases[
+          this.$store.state.data.dataNewCasesPerDayChart.confirmedCases.length - 1
+        ]
+      );
+    },
+    hospitalisedChanged () {
+      return positiveSign(
+        this.$store.state.data.hospitalChanged
+      );
+    },
+    testsChanged () {
+      return positiveSign(
+        this.$store.state.data.dataCumulativeTestsChart.testsAdministered[
+          this.$store.state.data.dataCumulativeTestsChart.testsAdministered.length - 1
+        ] -
+        this.$store.state.data.dataCumulativeTestsChart.testsAdministered[
+          this.$store.state.data.dataCumulativeTestsChart.testsAdministered.length - 2
+        ]
+      );
+    },
+    vaccinatedAtLeastOneDoseNumber () {
+      return this.$store.state.data.vaccinatedAtLeastOneDoseNumber;
+    },
+    vaccinatedAtLeastOneDoseChange () {
+      return positiveSign(this.$store.state.data.vaccinatedAtLeastOneDoseChange);
+    },
+    vaccinatedAtLeastOneDosePercentage () {
+      return this.$store.state.data.vaccinatedAtLeastOneDosePercentage;
+    },
+    fullyVaccinatedNumber () {
+      return this.$store.state.data.fullyVaccinatedNumber;
+    },
+    fullyVaccinatedNumberChange () {
+      return positiveSign(this.$store.state.data.fullyVaccinatedNumberChange);
+    },
+    fullyVaccinatedNumberPercentage () {
+      return this.$store.state.data.fullyVaccinatedNumberPercentage;
     },
   },
 
