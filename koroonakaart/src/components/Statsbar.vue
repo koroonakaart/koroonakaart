@@ -268,6 +268,11 @@ export default {
         this.$store.state.data.hospitalChanged
       );
     },
+    onVentilationChanged () {
+      return positiveSign(
+        this.$store.state.data.onVentilationChanged
+      );
+    },
     testsChanged () {
       return positiveSign(
         this.$store.state.data.dataCumulativeTestsChart.testsAdministered[
