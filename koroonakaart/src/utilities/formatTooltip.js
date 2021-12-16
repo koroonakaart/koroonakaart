@@ -1,15 +1,41 @@
 import { formatDate, capitalise } from "./helper";
 import { formatNumberByLocale } from "./formatNumberByLocale";
 
+
 export function formatTooltip(context, series, locale, precision, showMarker) {
   // Identify which position in the series and date we are dealing with
   var index = context.chart.hoverPoint.index;
+  var hoverpoint = context.chart.hoverPoint;
   var x = context.chart.hoverPoint.x;
+  var y = context.chart.hoverPoint.y;
   var category = context.chart.hoverPoint.category;
+  var dataGroupingUnitName;
+  if (context.chart.hoverPoint.series.currentDataGrouping !== undefined ) {
+    dataGroupingUnitName = context.chart.hoverPoint.series.currentDataGrouping.unitName
+  }
+
+  // Debug
+  console.log('context');
+  console.log(context);
+  console.log('series');
+  console.log(series);
+  console.log('hoverpoint');
+  console.log(hoverpoint);
+  console.log('index');
+  console.log(index);
+  console.log('x');
+  console.log(x);
+  console.log('y');
+  console.log(y);
+  console.log('category');
+  console.log(category);
+  console.log('dataGroupingUnitName');
+  console.log(dataGroupingUnitName);
 
   // Get data for the individual tooltip entries
   var tooltipEntries = [];
   var n_series = series.length;
+  console.log('n_series: ' + n_series);
   for (var i = 0; i < n_series; i++) {
     if (context.chart.series[i].visible && series[i].data[index] !== undefined) {
       tooltipEntries.push({

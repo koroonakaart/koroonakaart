@@ -12,10 +12,11 @@ def save_as_json(destination, data):
 
 
 def read_json_from_file(path):
+    log_status(f"Reading {path}")
     if not os.path.isfile(path):
-        return {}
+        raise Exception(f"{path} not found")
 
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         data = json.load(f)
     return data
 

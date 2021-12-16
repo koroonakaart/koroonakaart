@@ -1,3 +1,15 @@
+# Source files
+MANUAL_DATA_PATH = "../data/manual_data.json"
+DEATHS_PATH = "../data/deaths.json"
+TEST_RESULTS_PATH = "../data/test_results.json"
+TEST_LOCATIONS_PATH = "../data/test_locations.json"
+HOSPITALIZATION_PATH = "../data/hospitalization.json"
+VACCINATIONS_PATH = "../data/vaccinations.json"
+
+# Output files
+OUTPUT_FILE_LOCATION = "../data/data.json"
+
+
 county_mapping = {
     "Harju maakond": "Harjumaa",
     "Hiiu maakond": "Hiiumaa",

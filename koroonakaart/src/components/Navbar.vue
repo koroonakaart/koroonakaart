@@ -1,48 +1,32 @@
 <template>
   <headroom>
-    <b-navbar
-      class="shadow-sm p-3 mb-4 bg-white rounded"
-      sticky
-      toggleable="md"
-      type="light"
-      variant="light"
-    >
+    <b-navbar class="shadow-sm p-3 mb-4 bg-white rounded"
+              sticky
+              toggleable="md"
+              type="light"
+              variant="light">
       <b-container fluid="lg">
         <b-navbar-brand>
           <span id="navbar-headingleft" @click="this.goBackHome">Koroona</span>
           <span id="navbar-headingright" @click="this.goBackHome">kaart</span>
-          <small class="navbar-updated"
-            >{{ $t("navbarUpdated") }}: {{ updatedOn }}</small
-          >
+          <small class="navbar-updated">
+            <span v-if="loaded">{{ $t("navbarUpdated") }}: {{ updatedOn }}</span>
+            <span v-else>&nbsp;</span>
+          </small>
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <!--<b-nav-item class="navbar-updated">
-          </b-nav-item>-->
             <b-dropdown-divider />
-            <!-- <b-nav-item class="navbar-description"> -->
-            <!-- <small>{{ $t("faq.a5") }}</small> -->
-
-            <small>
-              {{ $t("hoia.me") }}
-              <a href="https://hoia.me" rel="noopener" target="_blank"
-                >hoia.me</a
-              >
-            </small>
-
-            <!-- </b-nav-item> -->
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <b-dropdown-divider />
             <b-nav-item toggle-class="nav-link-custom">
-              <div
-                class="navbar-faq"
-                :class="{ active: this.$store.state.faqActive }"
-                @click.prevent="toggleFaqActive"
-              >
+              <div class="navbar-faq"
+                   :class="{ active: this.$store.state.faqActive }"
+                   @click.prevent="toggleFaqActive">
                 {{ $t("faq.faqShort") }}
               </div>
             </b-nav-item>
@@ -56,11 +40,9 @@
                 <Earth id="navbar-langicon" />
                 {{ $t("language") }}
               </template>
-              <b-dropdown-item
-                @click="changeCurrentLanguage(locale)"
-                v-for="(locale, index) in locales"
-                :key="locale"
-              >
+              <b-dropdown-item @click="changeCurrentLanguage(locale)"
+                               v-for="(locale, index) in locales"
+                               :key="locale">
                 {{ languageNames[index] }}
               </b-dropdown-item>
             </b-nav-item-dropdown>
@@ -75,8 +57,6 @@
 import Earth from "vue-material-design-icons/Earth.vue";
 import { headroom } from "vue-headroom";
 
-import data from "../data.json";
-
 export default {
   name: "Navbar",
 
@@ -89,7 +69,6 @@ export default {
   data() {
     return {
       languageNames: ["Eesti", "English", "Русский"],
-      updatedOn: data.updatedOn,
       faqActive: false,
     };
   },
@@ -100,15 +79,17 @@ export default {
       this.changeCurrentLanguage(this.$route.params.locale);
   },
 
-  // Get available locales
   computed: {
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    updatedOn () {
+      return this.$store.state.data.updatedOn;
+    },
     locales: function () {
       const initialLocales = this.$i18n.availableLocales;
       // Swap order of locales so et would become before en
-      [initialLocales[0], initialLocales[1]] = [
-        initialLocales[1],
-        initialLocales[0],
-      ];
+      [initialLocales[0], initialLocales[1]] = [initialLocales[1], initialLocales[0]];
       return initialLocales;
     },
     linkToFaq: function () {

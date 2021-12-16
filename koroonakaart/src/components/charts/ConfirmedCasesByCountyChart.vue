@@ -1,15 +1,17 @@
 // "Cases by county" chart
 <template>
   <b-container fluid>
-    <highcharts class="chart" :options="chartOptions"></highcharts>
+    <highcharts v-if="chartOptions"
+                class="chart"
+                :options="chartOptions">
+    </highcharts>
   </b-container>
 </template>
 
 <script>
-import data from "../../data.json";
 
 export default {
-  name: "ConfirmedCasesByCountiesChart",
+  name: "ConfirmedCasesByCountyChart",
 
   props: {
     height: {
@@ -22,9 +24,31 @@ export default {
 
   data() {
     return {
-      chartOptions: {
+      chartOptions: null
+    };
+  },
+
+  // Get current locale
+  computed: {
+    currentLocale: function () {
+      return this.$i18n.locale;
+    },
+    loaded () {
+      return this.$store.state.loaded;
+    },
+    confirmedCasesByCounty () {
+      return this.$store.getters.confirmedCasesByCounty;
+    },
+    countyByDayNew () {
+      return this.$store.getters.countyByDayNew;
+    },
+  },
+
+  methods: {
+    getChartOptions() {
+      this.chartOptions = {
         title: {
-          text: this.$t("confirmedCasesByCounties"),
+          text: this.$t("confirmedCasesByCounty"),
           align: "left",
           y: 5,
         },
@@ -44,27 +68,14 @@ export default {
         },
 
         exporting: {
-          menuItemDefinitions: {
-            embed: {
-              onclick: () => {
-                this.$store.dispatch("setCurrentChartName", this.$options.name);
-                this.$bvModal.show("embed-modal");
-              },
-              text: "Embed chart",
-            },
-          },
-
           buttons: {
             contextButton: {
               menuItems: [
                 "viewFullscreen",
                 "printChart",
-                "separator",
                 "downloadPNG",
                 "downloadSVG",
                 "downloadCSV",
-                "separator",
-                "embed",
               ],
             },
           },
@@ -149,28 +160,29 @@ export default {
               enabled: true,
             },
             name: this.$t("numberOfCases"),
-            data: data.dataConfirmedCasesByCounties,
+            data: this.confirmedCasesByCounty,
           },
           {
             name: this.$t("newPositive"),
-            data: data.countyByDay.countyByDayNew,
+            data: this.countyByDayNew,
           },
         ],
-      },
-    };
+      };
+    }
   },
 
-  // Get current locale
-  computed: {
-    currentLocale: function () {
-      return this.$i18n.locale;
-    },
+  created: function () {
+      if (this.loaded) {
+        this.getChartOptions();
+      }
   },
 
-  // Fire when currentLocale computed property changes
   watch: {
+    loaded: function () {
+      this.getChartOptions();
+    },
     currentLocale() {
-      this.chartOptions.title.text = this.$t("confirmedCasesByCounties");
+      this.chartOptions.title.text = this.$t("confirmedCasesByCounty");
       this.chartOptions.yAxis.title.text = this.$t("numberOfCases");
       this.chartOptions.series[0].name = this.$t("numberOfCases");
       this.chartOptions.series[1].name = this.$t("newPositive");

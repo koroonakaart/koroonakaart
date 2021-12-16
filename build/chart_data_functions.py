@@ -5,12 +5,14 @@ from datetime import timedelta
 import numpy as np
 import pandas as pd
 
+from utils import log_status
+
 
 def get_hospital_data(json_hospitalisation, start_date):
+    log_status("get_hospital_data()")
     hospitalizations = []
     active_hospitalizations = []
     intensive = []
-    discharged = []
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
 
     for result in json_hospitalisation:
@@ -22,18 +24,17 @@ def get_hospital_data(json_hospitalisation, start_date):
                 intensive += [int(result["IsInIntensive"])]
             else:
                 intensive += [result["IsInIntensive"]]
-            discharged += [int(result["TotalCasesDischarged"])]
 
     hospital_results = {
         "hospitalizations": hospitalizations,
         "activehospitalizations": active_hospitalizations,
         "intensive": intensive,
-        "discharged": discharged,
     }
     return hospital_results
 
 
 def get_municipality_data(json_test_location, county_mapping):
+    log_status("get_municipality_data()")
     municipalities_array = []
     yesterday = datetime.strftime(datetime.today() - timedelta(1), "%Y-%m-%d")
     communes_that_are_summed = ["Tallinn", "Pärnu linn", "Saaremaa vald"]
@@ -84,6 +85,7 @@ def get_municipality_data(json_test_location, county_mapping):
 
 
 def get_infection_count_by_county(json, county_mapping) -> list:
+    log_status("get_infection_count_by_county()")
     # Ordering of counties for chart
     map_counties = [
         "Harjumaa",
@@ -123,6 +125,7 @@ def get_infection_count_by_county(json, county_mapping) -> list:
 
 
 def get_infections_data_by_count_10000(infections_by_county, county_sizes):
+    log_status("get_infections_data_by_count_10000()")
     return [
         [county, round(value / county_sizes[county] * 10000, 2), county]
         for county, value, county in infections_by_county
@@ -135,6 +138,7 @@ def get_test_data_pop_ratio(infections_by_county_10000):
 
 
 def get_county_by_day(json, dates, county_mapping, county_sizes):
+    log_status("get_county_by_day()")
     chart_counties = [
         "Harjumaa",
         "Hiiumaa",
@@ -157,10 +161,10 @@ def get_county_by_day(json, dates, county_mapping, county_sizes):
 
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
+            date = res["StatisticsDate"]
             county = county_mapping[res["County"]]
             if county in chart_counties:
-                county_date_counts[(county, str(date))] += 1
+                county_date_counts[(county, date)] += 1
 
     county_by_day = {}
     new_county_by_day = {}
@@ -209,6 +213,7 @@ def get_county_by_day(json, dates, county_mapping, county_sizes):
 
 
 def get_county_daily_active(json, dates, county_mapping, county_sizes):
+    log_status("get_county_daily_active()")
     chart_counties = [
         "Harjumaa",
         "Hiiumaa",
@@ -231,10 +236,10 @@ def get_county_daily_active(json, dates, county_mapping, county_sizes):
 
     for res in json:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
+            date = res["StatisticsDate"]
             county = county_mapping[res["County"]]
             if county in chart_counties:
-                county_date_counts[(county, str(date))] += 1
+                county_date_counts[(county, date)] += 1
 
     county_by_day = {}
     active_map_100k_playback = []
@@ -274,6 +279,7 @@ def get_county_daily_active(json, dates, county_mapping, county_sizes):
 
 
 def get_confirmed_cases_by_county(json, county_mapping):
+    log_status("get_confirmed_cases_by_county()")
     chart_counties = [
         "Harjumaa",
         "Hiiumaa",
@@ -305,20 +311,18 @@ def get_confirmed_cases_by_county(json, county_mapping):
 
 
 def get_new_cases_per_day_chart_data(data):
+    log_status("get_new_cases_per_day_chart_data()")
     cases = np.diff(data["cases"], prepend=0)
-    recovered = np.diff(data["recovered"], prepend=0)
-    deceased = np.diff(data["deceased"], prepend=0)
 
     dataNewCasesPerDayChart = {
         "confirmedCases": list(cases),
-        "recovered": list(recovered),
-        "deceased": list(deceased),
     }
 
     return dataNewCasesPerDayChart
 
 
 def get_cumulative_tests_chart_data(json, dates):
+    log_status("get_cumulative_tests_chart_data()")
     # Count totals for every day
 
     date_counts = defaultdict(int)
@@ -327,7 +331,7 @@ def get_cumulative_tests_chart_data(json, dates):
     count_before_date_range = 0
 
     for res in json:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts[date] += 1
         elif date < date_start:
@@ -347,6 +351,7 @@ def get_cumulative_tests_chart_data(json, dates):
 
 
 def get_tests_per_day_chart_data(json, dates):
+    log_status("get_tests_per_day_chart_data()")
     # Count totals for every day
 
     date_counts = defaultdict(int)
@@ -393,14 +398,20 @@ def get_tests_per_day_chart_data(json, dates):
 
 
 def get_cumulative_cases_chart_data(
-    json, recovered_list, deceased_list, hospitalised, intensive, on_ventilation, dates
+    test_results,
+    # deceased_list,
+    # hospitalized,
+    # intensive,
+    # on_ventilation,
+    dates,
+    tests_per_day_data,
 ):
+    log_status("get_cumulative_cases_chart_data()")
     date_counts = defaultdict(int)
-    andmed = get_tests_per_day_chart_data(json, dates)
-    for res in json:
+    for res in test_results:
         if res["ResultValue"] == "P":
-            date = pd.to_datetime(res["StatisticsDate"]).date()
-            date_counts[str(date)] += 1
+            date = res["StatisticsDate"]
+            date_counts[date] += 1
 
     confirmed_cases = []
 
@@ -409,36 +420,38 @@ def get_cumulative_cases_chart_data(
 
     cases = np.cumsum(confirmed_cases)
 
-    new_cases_14 = [andmed["positiveTestsPerDay"][0]]
+    new_cases_14 = [tests_per_day_data["positiveTestsPerDay"][0]]
     for i in range(1, 14):
-        new_cases_14.append(new_cases_14[i - 1] + andmed["positiveTestsPerDay"][i])
-
-    for i in range(14, len(andmed["positiveTestsPerDay"])):
         new_cases_14.append(
-            new_cases_14[i - 1] - andmed["positiveTestsPerDay"][i - 14] + andmed["positiveTestsPerDay"][i]
+            new_cases_14[i - 1] + tests_per_day_data["positiveTestsPerDay"][i]
+        )
+
+    for i in range(14, len(tests_per_day_data["positiveTestsPerDay"])):
+        new_cases_14.append(
+            new_cases_14[i - 1] - tests_per_day_data["positiveTestsPerDay"][i - 14] + tests_per_day_data["positiveTestsPerDay"][i]
         )
 
     estonian_population = 1_328_976  # From https://www.stat.ee/en/find-statistics/statistics-theme/population/population-figure
-    per_100_k_multiplier = 100_000 / estonian_population
-    new_cases_14_per_100_k = [
-        round(active_cases * per_100_k_multiplier, 2) for active_cases in new_cases_14
+    per_100k_multiplier = 100_000 / estonian_population
+    new_cases_14_per_100k = [
+        round(active_cases * per_100k_multiplier, 2) for active_cases in new_cases_14
     ]
 
     cumulative_cases_chart_data = {
         "cases": list(cases),
-        "recovered": recovered_list,
         "active": new_cases_14,
-        "active100k": new_cases_14_per_100_k,
-        "deceased": deceased_list,
-        "haiglas": hospitalised,
-        "intensive": intensive,
-        "onventilation": on_ventilation,
+        "active100k": new_cases_14_per_100k,
+        # "deceased": deceased_list,
+        # "haiglas": hospitalised,
+        # "intensive": intensive,
+        # "onventilation": on_ventilation,
     }
 
     return cumulative_cases_chart_data
 
 
 def get_positive_tests_by_age_chart_data(json):
+    log_status("get_positive_tests_by_age_chart_data()")
     results = [d["ResultValue"] for d in json]
     genders = [d["Gender"] for d in json]
     age_groups = [d["AgeGroup"] for d in json]
@@ -537,6 +550,7 @@ def get_positive_negative_chart_data(json, mapping):
     """
     Compile data for the "Positive and negative tests by county" chart.
     """
+    log_status("get_positive_negative_chart_data()")
 
     # Define counties (in order)
     chart_counties = [
@@ -585,6 +599,7 @@ def get_positive_negative_chart_data(json, mapping):
 
 
 def get_vaccinated_people_chart_data(json, dates):
+    log_status("get_vaccinated_people_chart_data()")
     date_counts_progress = defaultdict(int)
     date_counts_completed = defaultdict(int)
     date_counts = defaultdict(int)
@@ -595,18 +610,18 @@ def get_vaccinated_people_chart_data(json, dates):
     json_completed = [x for x in json if x["MeasurementType"] == "FullyVaccinated" and x["VaccinationSeries"] == 1]
 
     for res in json:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             if res["MeasurementType"] == "FullyVaccinated" and res["VaccinationSeries"] == 1:
                 date_counts_progress[date] -= res["DailyCount"]
             elif res["MeasurementType"] == "Vaccinated" and res["VaccinationSeries"] == 1:
                 date_counts_progress[date] += res["DailyCount"]
     for res in json_completed:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts_completed[date] += res["DailyCount"]
     for res in json_progress:
-        date = str(pd.to_datetime(res["StatisticsDate"]).date())
+        date = res["StatisticsDate"]
         if date in dates_within_range:
             date_counts[date] += res["DailyCount"]
 
@@ -629,6 +644,7 @@ def get_vaccinated_people_chart_data(json, dates):
 
 
 def get_in_intensive_data(json, manual_data):
+    log_status("get_in_intensive_data()")
     if type(json) is not list or type(manual_data) is not dict:
         return False
 
@@ -643,6 +659,7 @@ def get_in_intensive_data(json, manual_data):
 
 
 def get_on_ventilation_data(json):
+    log_status("get_on_ventilation_data()")
     if type(json) is not list:
         return False
 

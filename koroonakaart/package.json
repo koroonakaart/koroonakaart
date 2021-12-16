@@ -9,6 +9,7 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.10.1",
     "d3": "^5.16.0",

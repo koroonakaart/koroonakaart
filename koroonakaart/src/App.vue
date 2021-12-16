@@ -4,7 +4,6 @@
       <router-view class="router-view" />
     </div>
     <div v-else id="app">
-      <!-- <DisclaimerModal /> -->
       <Navbar />
       <router-view class="router-view" />
       <Footer />
@@ -15,6 +14,7 @@
 <script>
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -23,10 +23,13 @@ export default {
     Footer,
   },
 
-  // When app loads change language to specified language suffix (ee, en or ru)
   created() {
+    // When app loads change language to specified language suffix (ee, en or ru)
     if (this.$i18n.locale !== this.$route.params.locale)
       this.changeCurrentLanguage(this.$route.params.locale);
+
+    // Load data
+    this.loadData();
   },
 
   computed: {
@@ -41,6 +44,23 @@ export default {
         this.$router.push(targetLanguage);
       }
       this.$i18n.locale = targetLanguage;
+    },
+    loadData: function () {
+      // Load data required for statsbar and charts
+      axios.get('https://koroonakaart.ee/data.json')
+      .then((response) => {
+        // // Debug
+        // alert('Data received()');
+        // Save data to store
+        this.$store.dispatch('setData', response.data);
+        console.log('Loaded data');
+        // console.log('store.data:');
+        // console.log(this.$store.state.data);
+      })
+      .catch(function (error) {
+        console.log('Error when loading data:');
+        console.log(error);
+      });
     },
   },
 };
