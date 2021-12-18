@@ -86,13 +86,8 @@ def main():
     county_by_day = get_county_by_day(test_results, case_dates, county_mapping, county_sizes)
     confirmed_cases_by_county = get_confirmed_cases_by_county(test_results, county_mapping)
     tests_per_day_chart_data = get_tests_per_day_chart_data(test_results, case_dates)
-    # TODO: Review which data below can be dropped as it's no longer displayed on this chart
     cumulative_cases_chart_data = get_cumulative_cases_chart_data(
         test_results,
-        # deceased,  # TODO: Separate this data from this chart
-        # hospitalised,  # TODO: Separate this data from this chart
-        # intensive,  # TODO: Separate this data from this chart
-        # on_ventilation,  # TODO: Separate this data from this chart
         case_dates,
         tests_per_day_chart_data
     )
@@ -144,8 +139,7 @@ def main():
     #       and on ventilation statistics are being calculated correctly.
     intensive = list(get_in_intensive_data(hospitalization, manual_data["intensive"]).values())
     on_ventilation = list(get_on_ventilation_data(hospitalization).values())
-
-    # Delete hospitalization JSON from memory
+    # Delete hospitalization data from memory
     del hospitalization
 
     hospitalised = hospital["activehospitalizations"]
@@ -164,7 +158,7 @@ def main():
     last_day_vaccination_data = [x for x in vaccination if x["MeasurementType"] == "Vaccinated" and x["VaccinationSeries"] == 1][-1]
     last_day_completed_vaccination_data = [x for x in vaccination if x["MeasurementType"] == "FullyVaccinated" and x["VaccinationSeries"] == 1][-1]
     last_day_doses_administered_data = [x for x in vaccination if x["MeasurementType"] == "DosesAdministered" and x["VaccinationSeries"] == 1][-1]
-    # Delete vaccination JSON from memory
+    # Delete vaccination data from memory
     del vaccination
 
     n_fully_vaccinated = last_day_completed_vaccination_data["TotalCount"]

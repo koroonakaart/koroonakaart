@@ -71,7 +71,7 @@ export default {
   methods: {
     getMapOptions(chartData) {
       return {
-        chartType: "active",
+        chartType: "active100k",
         chart: {
           marginTop: 30,
           map: "mapEstonia",
@@ -302,7 +302,7 @@ export default {
         },
 
         title: {
-          text: this.$t("active"),
+          text: this.$t("active100k"),
           fontSize: 10,
           align: "left",
           y: 30,
@@ -410,7 +410,7 @@ export default {
           {
             drillUpText: this.$t("faq.back"),
             drilldown: true,
-            data: chartData.dataActiveInfectionsByCounty,
+            data: chartData.dataCountyDailyActive.activeMap100kPlayback,
             // allowPointSelect: true,
             // keys: ["MNIMI", "sequence", "drilldown"],
             joinBy: "MNIMI",

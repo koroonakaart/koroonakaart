@@ -264,7 +264,7 @@ def get_county_daily_active(json, dates, county_mapping, county_sizes):
                         pd.Series(active_per_day_county_100k)
                         .rolling(14, min_periods=0)
                         .sum(),
-                        2,
+                        1,
                     )
                 ),
                 "drilldown": county,
@@ -399,10 +399,6 @@ def get_tests_per_day_chart_data(json, dates):
 
 def get_cumulative_cases_chart_data(
     test_results,
-    # deceased_list,
-    # hospitalized,
-    # intensive,
-    # on_ventilation,
     dates,
     tests_per_day_data,
 ):
@@ -441,10 +437,6 @@ def get_cumulative_cases_chart_data(
         "cases": list(cases),
         "active": new_cases_14,
         "active100k": new_cases_14_per_100k,
-        # "deceased": deceased_list,
-        # "haiglas": hospitalised,
-        # "intensive": intensive,
-        # "onventilation": on_ventilation,
     }
 
     return cumulative_cases_chart_data

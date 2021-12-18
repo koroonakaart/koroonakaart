@@ -143,6 +143,10 @@ export default {
           },
         },
 
+        rangeSelector: {
+          selected: 1,
+        },
+
         series: [
           {
             name: this.$t("confirmedCases"),
