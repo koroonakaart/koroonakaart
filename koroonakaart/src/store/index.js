@@ -21,7 +21,7 @@ export default new Vuex.Store({
       return state.data.dates3;
     },
     confirmedCasesByCounty: state => {
-      return state.data.dataConfirmedCasesByCounties;
+      return state.data.dataConfirmedCasesByCounty;
     },
     countyByDayNew: state => {
       return state.data.countyByDay.countyByDayNew;
