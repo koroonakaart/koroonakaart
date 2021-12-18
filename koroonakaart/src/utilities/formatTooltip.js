@@ -5,16 +5,16 @@ import { formatNumberByLocale } from "./formatNumberByLocale";
 export function formatTooltip(context, series, locale, precision, showMarker) {
   // Identify which position in the series and date we are dealing with
   var index = context.chart.hoverPoint.index;
-  var hoverpoint = context.chart.hoverPoint;
   var x = context.chart.hoverPoint.x;
-  var y = context.chart.hoverPoint.y;
   var category = context.chart.hoverPoint.category;
-  var dataGroupingUnitName;
-  if (context.chart.hoverPoint.series.currentDataGrouping !== undefined ) {
-    dataGroupingUnitName = context.chart.hoverPoint.series.currentDataGrouping.unitName
-  }
 
   // // Debug
+  // var hoverpoint = context.chart.hoverPoint;
+  // var y = context.chart.hoverPoint.y;
+  // var dataGroupingUnitName;
+  // if (context.chart.hoverPoint.series.currentDataGrouping !== undefined ) {
+  //   dataGroupingUnitName = context.chart.hoverPoint.series.currentDataGrouping.unitName
+  // }
   // console.log('context');
   // console.log(context);
   // console.log('series');
