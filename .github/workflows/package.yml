@@ -76,7 +76,7 @@ jobs:
       - name: Generate chart data
         # If cache matched then the previously generated chart data is still valid
         if: steps.cache.outputs.cache-hit != 'true'
-        run: poetry run generate --parallel 2
+        run: poetry run generate
 
       - name: Build frontend
         run: |
