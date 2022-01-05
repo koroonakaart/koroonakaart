@@ -4,7 +4,7 @@ on:
   schedule:
     # Estonia is UTC+2/+3 and data updates often happen daily ~11-12
     # and their system is buggy as hell so we should avoid that time
-    - cron: "15 8,11,18,20 * * *"
+    - cron: "15 0,4,14,18,20 * * *"
   push:
     branches:
       - master
