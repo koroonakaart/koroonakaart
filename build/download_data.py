@@ -26,6 +26,7 @@ HOSPITALIZATION_ENDPOINT = (
 )
 VACCINATION_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v2/opendata_covid19_vaccination_total.json"
 TERVISEAMET_COVID_DASHBOARD = "https://www.terviseamet.ee/et/koroonaviirus/koroonakaart"
+CHUNK_SIZE = 128 * 1024  # 128kB
 
 
 def is_up_to_date(json_data, date_field_name):
@@ -46,7 +47,7 @@ def download_json_data(url, dst):
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         with open(dst, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
+            for chunk in r.iter_content(chunk_size=CHUNK_SIZE):
                 f.write(chunk)
 
 
