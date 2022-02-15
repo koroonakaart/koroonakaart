@@ -73,7 +73,16 @@ def main():
 
     # 3.  Calculate data related to test results
 
-    test_results = get_json_from_csv_file(TEST_RESULTS_PATH)
+    # Define columns to import
+    column_list = [
+        'Gender',
+        'AgeGroup',
+        'County',
+        'ResultValue',
+        'StatisticsDate'
+    ]
+
+    test_results = get_json_from_csv_file(TEST_RESULTS_PATH, column_list)
     
     log_status("Calculating data related to test results")
 
