@@ -91,6 +91,7 @@ def main():
 
     # Find total number of tests
     n_tests_administered = len(test_results)
+    log_status("Total number of tests: " + str(n_tests_administered))
 
     infections_by_county = get_infection_count_by_county(test_results, county_mapping)
     county_by_day = get_county_by_day(test_results, case_dates, county_mapping, county_sizes)
