@@ -35,6 +35,7 @@ def get_json_from_csv_file(path, column_list):
     del df
     log_status("Parsing JSON")
     json_parsed = json.loads(json_string)
+    log_status("First 3 lines of parsed JSON:" + str(json_parsed[:3]))
 
     return json_parsed
 
