@@ -30,10 +30,10 @@ def get_json_from_csv_file(path):
         raise Exception(f"{path} not found")
 
     df = pd.read_csv(path)
-    df.to_json(orient='records')
-    data = json.loads(df)
+    json_string = df.to_json(orient='records')
+    json_parsed = json.loads(json_string)
 
-    return data
+    return json_parsed
 
 
 def log_status(message):
