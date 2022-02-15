@@ -32,6 +32,7 @@ def get_json_from_csv_file(path):
     df = pd.read_csv(path)
     log_status("Converting data to JSON string")
     json_string = df.to_json(orient='records')
+    del df
     log_status("Parsing JSON")
     json_parsed = json.loads(json_string)
 
