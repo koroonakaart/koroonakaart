@@ -29,7 +29,7 @@ def get_json_from_csv_file(path, column_list):
     if not os.path.isfile(path):
         raise Exception(f"{path} not found")
 
-    df = pd.read_csv(path, usecols=column_list)
+    df = pd.read_csv(path, usecols=column_list, keep_default_na=False)
     log_status("Converting data to JSON string")
     json_string = df.to_json(orient='records')
     del df
