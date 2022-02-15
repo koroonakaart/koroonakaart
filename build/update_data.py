@@ -20,6 +20,7 @@ from constants import county_mapping
 from constants import county_sizes
 from utils import log_status
 from utils import read_json_from_file
+from utils import get_json_from_csv_file
 from utils import save_as_json
 
 
@@ -72,8 +73,8 @@ def main():
 
     # 3.  Calculate data related to test results
 
-    test_results = read_json_from_file(TEST_RESULTS_PATH)
-
+    test_results = get_json_from_csv_file(TEST_RESULTS_PATH)
+    
     log_status("Calculating data related to test results")
 
     # Find count of confirmed cases

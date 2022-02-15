@@ -17,7 +17,7 @@ from utils import save_as_json
 
 DEATHS_SELECTOR = ".node-lead-default strong"
 
-TESTING_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.json"
+TESTING_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_results.csv"
 TEST_LOCATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_test_location.json"
 HOSPITALIZATION_ENDPOINT = "https://opendata.digilugu.ee/opendata_covid19_hospitalization_timeline.json"
 VACCINATION_ENDPOINT = "https://opendata.digilugu.ee/covid19/vaccination/v3/opendata_covid19_vaccination_total.json"
@@ -35,7 +35,7 @@ def is_up_to_date(json_data, date_field_name):
     return False
 
 
-def download_json_data(url, destination):
+def download_data(url, destination):
     log_status(f"Downloading {url} to {destination}")
 
     with requests.get(url, stream=True) as r:
@@ -97,16 +97,16 @@ def main():
 
     # Download data from external services
     log_status("Downloading data from TEHIK: Test results")
-    download_json_data(TESTING_ENDPOINT, TEST_RESULTS_PATH + ".tmp")
+    download_data(TESTING_ENDPOINT, TEST_RESULTS_PATH + ".tmp")
 
     log_status("Downloading data from TEHIK: Location data")
-    download_json_data(TEST_LOCATION_ENDPOINT, TEST_LOCATIONS_PATH + ".tmp")
+    download_data(TEST_LOCATION_ENDPOINT, TEST_LOCATIONS_PATH + ".tmp")
 
     log_status("Downloading data from TEHIK: Hospitalization data")
-    download_json_data(HOSPITALIZATION_ENDPOINT, HOSPITALIZATION_PATH + ".tmp")
+    download_data(HOSPITALIZATION_ENDPOINT, HOSPITALIZATION_PATH + ".tmp")
 
     log_status("Downloading data from TEHIK: Vaccination data")
-    download_json_data(VACCINATION_ENDPOINT, VACCINATIONS_PATH + ".tmp")
+    download_data(VACCINATION_ENDPOINT, VACCINATIONS_PATH + ".tmp")
 
     # Validate data from remote endpoints
     #

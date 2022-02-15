@@ -2,6 +2,8 @@ import json
 import os.path
 import sys
 
+import pandas as pd
+
 from helpers import NpEncoder
 
 
@@ -18,6 +20,19 @@ def read_json_from_file(path):
 
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
+
+    return data
+
+
+def get_json_from_csv_file(path):
+    log_status(f"Reading {path}")
+    if not os.path.isfile(path):
+        raise Exception(f"{path} not found")
+
+    df = pd.read_csv(path)
+    df.to_json(orient='records')
+    data = json.loads(df)
+
     return data
 
 
