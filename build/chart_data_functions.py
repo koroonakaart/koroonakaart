@@ -111,8 +111,6 @@ def get_infection_count_by_county(json, county_mapping) -> list:
     counts = defaultdict(int)
 
     for res in json:
-        # Debug
-        log_status(str(res))
         # Check if test positive
         if res["ResultValue"] == "P":
             # Get county and map it, exclude unknown ones
