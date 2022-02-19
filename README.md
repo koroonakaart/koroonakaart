@@ -6,7 +6,7 @@ The project is currently managed by Open Knowledge Estonia. GitHub repository: [
 
 For more information please contact:
 
-Maarja-Leena Saar (board member of Open Knowledge Estonia) — maarjaleena@okee.ee
+Maarja-Leena Saar (board member of Open Knowledge Estonia) — maarjaleena@okee.ee  
 Chris Thompson (project maintainer) — chris@neuroactive.ai
 
 ## Data
