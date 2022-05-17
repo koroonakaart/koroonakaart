@@ -116,7 +116,7 @@ def main():
     # Validate data from remote endpoints
     hospitalization = read_json_from_file(HOSPITALIZATION_PATH + ".tmp")
     if not is_up_to_date(hospitalization, "LastLoadStatisticsDate"):
-        raise Exception("Hospitalization data is not up-to-date")
+        logger.info("Hospitalization data is not up-to-date")
 
     logger.info("All ok, replacing old files with downloaded files")
     if deaths:
