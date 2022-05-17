@@ -1,11 +1,8 @@
 name: Build and update to GitHub Pages
 
 on:
-#  Assholes at TEHIK decided to no longer publish data after going only down to ~350 cases per 100k on 2022-05-02
-#  schedule:
-#    # Estonia is UTC+2/+3 and data updates often happen daily ~11-12
-#    # and their system is buggy as hell so we should avoid that time
-#    - cron: "15 14,18,20 * * *"
+  schedule:
+    - cron: "11 0,4,8,12,16,20 * * *"
   push:
     branches:
       - master
