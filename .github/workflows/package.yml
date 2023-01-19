@@ -1,8 +1,8 @@
 name: Build and update to GitHub Pages
 
 on:
-  #schedule:
-  #  - cron: "11 0,4,8,12,16,20 * * *"
+  schedule:
+   - cron: "11 0,4,8,12,16,20 * * *"
   push:
     branches:
       - master
