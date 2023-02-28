@@ -6,7 +6,6 @@ The project is currently managed by Open Knowledge Estonia. GitHub repository: [
 
 For more information please contact:
 
-Maarja-Leena Saar (board member of Open Knowledge Estonia) — maarjaleena@okee.ee  
 Chris Thompson (project maintainer) — chris@neuroactive.ai
 
 ## Data
@@ -65,11 +64,7 @@ If you have a suggestion about something that could be improved or wish to help 
 
 All suggestions and ideas are welcome. Please feel free to fork the project, raise new issues, or make pull requests.
 
-The project is primarily voluntary and has received no funding other than from members of the community. Open Knowledge Estonia [https://www.facebook.com/okestonia/](https://www.facebook.com/okestonia/) has opened a separate bank account to receive support for infrastructure and core maintance:
-
-MTÜ Open Knowledge Estonia EE607700771004696794
-
-We will publish the amount of all support received and keep costs transparent.
+The project is primarily voluntary and has received no funding other than from members of the community. 
 
 # History
 
