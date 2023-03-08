@@ -6,7 +6,7 @@ The project is currently managed by Open Knowledge Estonia. GitHub repository: [
 
 For more information please contact:
 
-Chris Thompson (project maintainer) — chris@neuroactive.ai
+Chris Thompson (project maintainer) — info@christhompson.co.uk
 
 ## Data
 
