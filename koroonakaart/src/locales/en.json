@@ -51,7 +51,7 @@
   "testsPer10000": "Positive tests per 10,000 population by county",
   "testsPer10000Axis": "Positive tests per 10,000 population",
   "percentPositiveTests": "Positive tests %",
-  "navbarDescription": "Statistics about COVID-19 disease caused by coronavirus spread in Estonia. The application is being maintained by OKEE in collaboration with Terviseamet",
+  "navbarDescription": "Statistics about COVID-19 disease caused by coronavirus spread in Estonia.",
   "navbarUpdated": "Updated",
   "newCases": "New cases",
   "numberOfCases": "Number of cases",
@@ -78,8 +78,8 @@
   "faq": {
     "faqShort": "FAQ",
     "faqLong": "Frequently Asked Questions",
-    "q1": "When is data updated?",
-    "a1": "11:00-11:30 Estonian time",
+    "q1": "When is the data updated?",
+    "a1": "The data is normally updated once per week on Tuesdays.",
     "q2": "Where does the data come from?",
     "a2": "All data is provided by TEHIK: opendata.digilugu.ee.",
     "q3": "Who built the app?",
@@ -87,9 +87,9 @@
     "q4": "I have a feature request, where can I submit it?",
     "a4": "Please submit all feature requests on GitHub at this link: ",
     "q5": "Where can I support the application?",
-    "a5": "",
+    "a5": "Information about ways to support the project will be added soon.",
     "q6": "Who can I contact for more information?",
-    "a6": "",
+    "a6": "Chris Thompson – chris@koroonakaart.ee",
     "back": "Back"
   }
 }

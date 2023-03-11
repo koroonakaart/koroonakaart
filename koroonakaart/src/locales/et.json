@@ -51,7 +51,7 @@
   "testsPer10000": "Positiivsete testide arv 10 000 elaniku kohta",
   "testsPer10000Axis": "Positiivsete testide arv 10 000 elaniku kohta",
   "percentPositiveTests": "Positiivsete testide %",
-  "navbarDescription": "Statistika koroonaviiruse põhjustatud COVID-19 haiguse leviku kohta Eestis. Rakendust haldab OKEE koostöös Terviseametiga.",
+  "navbarDescription": "Statistika koroonaviiruse põhjustatud COVID-19 haiguse leviku kohta Eestis.",
   "navbarUpdated": "Uuendatud",
   "newCases": "Uued haigusjuhud",
   "numberOfCases": "Haigusjuhtude arv",
@@ -79,7 +79,7 @@
     "faqShort": "KKK",
     "faqLong": "Korduma Kippuvad Küsimused",
     "q1": "Millal uuendatakse andmeid?",
-    "a1": "11:00-11:30 EST",
+    "a1": "Andmeid uuendatakse tavaliselt kord nädalas teisipäeviti.",
     "q2": "Kust andmed pärinevad?",
     "a2": "Kõik andmed pärinevad TEHIKust: opendata.digilugu.ee.",
     "q3": "Kes arendavad rakendust?",
@@ -87,9 +87,9 @@
     "q4": "Mul on idee, kuidas rakendust paremaks teha, kuidas ma saan sellest teada anda?",
     "a4": "Palun sisestada kõik ideed GitHub-is veebiaadressil: ",
     "q5": "Kus ma saan toetada rakendust?",
-    "a5": "",
+    "a5": "Info projekti toetamise võimaluste kohta lisatakse peagi.",
     "q6": "Mul on täiendavaid küsimusi, kelle poole pöörduda?",
-    "a6": "",
+    "a6": "Chris Thompson – chris@koroonakaart.ee",
     "back": "Tagasi"
   }
 }

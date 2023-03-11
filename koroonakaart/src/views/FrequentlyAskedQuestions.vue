@@ -55,9 +55,7 @@
           <b-card-body>
             <b-card-text>
               {{ $t("faq.a3") }}
-              <a href="https://okee.ee" rel="noopener" target="_blank"
-                >Open Knowledge Estonia</a
-              >.
+              Chris Thompson OÜ.
             </b-card-text>
           </b-card-body>
         </b-collapse>
