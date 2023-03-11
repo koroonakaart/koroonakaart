@@ -2,11 +2,11 @@
 
 Koroonakaart is a project which aims to give accurate and up-to-date information about the Covid-19 epidemic in Estonia.
 
-The project is currently managed by Open Knowledge Estonia. GitHub repository: [https://github.com/okestonia/koroonakaart](https://github.com/okestonia/koroonakaart). The live version is available at [koroonakaart.ee](https://koroonakaart.ee/). The data is updated every day around 11:00 Estonian time, depending on the TEHIK data update. The app is published in three language versions: Estonian, English, and Russian.
+The live version of the application is available at [koroonakaart.ee](https://koroonakaart.ee/). The data is normally updated once per week on Tuesdays. The app is published in three language versions: Estonian, English, and Russian.
 
-For more information please contact:
+The project is managed by Chris Thompson OÜ. For more information please contact:
 
-Chris Thompson (project maintainer) — info@christhompson.co.uk
+Chris Thompson — chris@koroonakaart.ee
 
 ## Data
 
