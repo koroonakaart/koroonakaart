@@ -76,10 +76,10 @@
             <b-card-text>
               {{ $t("faq.a4") }}
               <a
-                href="https://github.com/okestonia/koroonakaart/issues"
+                href="https://github.com/koroonakaart/koroonakaart/issues"
                 rel="_noopener"
                 target="_blank"
-                >https://github.com/okestonia/koroonakaart/issues</a
+                >https://github.com/koroonakaart/koroonakaart/issues</a
               >.
             </b-card-text>
           </b-card-body>

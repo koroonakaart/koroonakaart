@@ -21,9 +21,9 @@
       </p>-->
       <p>
         {{ this.$t("footer9") }}
-        <a href="https://github.com/okestonia/koroonakaart/issues"
+        <a href="https://github.com/koroonakaart/koroonakaart/issues"
            target="_blank"
-           rel="noreferrer">https://github.com/okestonia/koroonakaart/issues</a>
+           rel="noreferrer">https://github.com/koroonakaart/koroonakaart/issues</a>
       </p>
     </b-container>
   </b-container>
